@@ -271,16 +271,28 @@ def auto_tvg_id(channel: dict) -> str:
 
 
 def assign_effective_ids(m3u_channels):
-    """For each M3U channel, set 'effective_id' = original tvg-id if present,
-    else a freshly generated auto id. Returns count of auto-generated."""
+    """Set 'effective_id' on every M3U channel.
+
+    Priority:
+      1. M3U's tvg-id, if set
+      2. M3U's tvg-name verbatim, if set — many players (Kodi pvr.iptvsimple,
+         and apparently UHF) fall back to tvg-name as the EPG lookup key when
+         tvg-id is empty. They look for <channel id="<tvg-name>">. So we use
+         the M3U title as the EPG channel id.
+      3. Auto-generated id from name hash (last-resort).
+    """
     auto_count = 0
+    name_count = 0
     for ch in m3u_channels:
         if ch["tvg_id"]:
             ch["effective_id"] = ch["tvg_id"]
+        elif ch["tvg_name"]:
+            ch["effective_id"] = ch["tvg_name"]
+            name_count += 1
         else:
             ch["effective_id"] = auto_tvg_id(ch)
             auto_count += 1
-    return auto_count
+    return auto_count, name_count
 
 
 # ---------------- tvg-id map (replacement for M3U republish) ----------------
@@ -435,8 +447,9 @@ def main():
         except Exception as e:
             print(f"      FAIL source[{idx}]: {e}")
     print(f"      M3U entries: {len(m3u_channels)} (combined)")
-    auto_n = assign_effective_ids(m3u_channels)
-    print(f"      effective ids assigned: {len(m3u_channels) - auto_n} from M3U, {auto_n} auto-generated")
+    auto_n, name_n = assign_effective_ids(m3u_channels)
+    tvg_id_n = len(m3u_channels) - auto_n - name_n
+    print(f"      effective ids assigned: {tvg_id_n} from tvg-id, {name_n} from tvg-name (fallback), {auto_n} auto-generated")
     tvg_ids, norm_names, callsigns = build_m3u_index(m3u_channels)
     # Include auto-generated effective ids in the matcher set so an upstream
     # source with that exact id (rare) still binds.
