@@ -518,6 +518,61 @@ def natural_key(s: str):
     return [int(p) if p.isdigit() else p.lower() for p in _NATURAL_SPLIT_RE.split(s)]
 
 
+# Channels whose tvg-name matches one of these word-boundary tokens are
+# dropped — they're explicitly non-English and non-Arabic. Arabic-region
+# country names (Algeria, Morocco, Egypt, etc.) are deliberately NOT here.
+_EXCLUDE_LANG_TOKENS = [
+    # 2/3-letter language/country codes
+    "FR", "FRA", "DE", "GER", "ES", "ESP", "IT", "ITA", "TR", "TUR",
+    "NL", "NED", "PL", "POL", "SE", "SWE", "NO", "NOR", "DK", "DAN",
+    "FI", "FIN", "RU", "RUS", "GR", "GRE", "PT", "POR", "HU", "HUN",
+    "RO", "ROM", "CZ", "CZE", "SK", "SVK", "UA", "UKR", "BG", "BUL",
+    "HR", "CRO", "RS", "SRB", "BA", "BIH", "SI", "SLO", "MK", "MKD",
+    "JP", "JPN", "CN", "CHN", "KR", "KOR", "HE", "HEB", "VN", "VIE",
+    "TH", "THA", "MY", "MYS", "PH", "PHL", "ID", "IDN", "TW", "TWN",
+    "IL", "ISR", "BR", "BRA",
+    # NOT "AR" — that means Arabic in our channel names, must stay.
+    "MX", "MEX", "CL", "CHL", "CO", "COL", "VE", "VEN", "BO", "BOL",
+    "PE", "PER", "AT", "AUT", "CH", "CHE", "BY", "BLR",
+    # Full language/country names
+    "FRANCE", "FRENCH", "FRANCAIS", "GERMANY", "GERMAN", "DEUTSCH",
+    "SPAIN", "SPANISH", "ESPANA", "ITALY", "ITALIAN", "ITALIA",
+    "TURKEY", "TURKISH", "TURKIYE", "NETHERLANDS", "DUTCH",
+    "POLAND", "POLISH", "POLSKA", "SWEDEN", "SWEDISH",
+    "NORWAY", "NORWEGIAN", "DENMARK", "DANISH", "FINLAND", "FINNISH",
+    "RUSSIA", "RUSSIAN", "GREECE", "GREEK", "PORTUGAL", "PORTUGUESE",
+    "HUNGARY", "HUNGARIAN", "ROMANIA", "ROMANIAN", "CZECHIA", "CZECH",
+    "SLOVAKIA", "SLOVAK", "UKRAINE", "UKRAINIAN", "BULGARIA", "BULGARIAN",
+    "CROATIA", "CROATIAN", "SERBIA", "SERBIAN", "BOSNIA", "BOSNIAN",
+    "SLOVENIA", "SLOVENIAN", "MACEDONIA", "MACEDONIAN", "ALBANIA",
+    "ALBANIAN", "MONTENEGRO", "ESTONIA", "LATVIA", "LITHUANIA",
+    "JAPAN", "JAPANESE", "CHINA", "CHINESE", "MANDARIN", "CANTONESE",
+    "KOREA", "KOREAN", "HEBREW", "VIETNAM", "VIETNAMESE",
+    "THAILAND", "THAI", "MALAYSIA", "MALAY", "INDONESIA", "INDONESIAN",
+    "INDIA", "HINDI", "URDU", "PUNJABI", "TAMIL", "TELUGU", "MARATHI",
+    "BENGALI", "GUJARATI", "BRAZIL", "BRAZILIAN", "PORTUGUES",
+    "ARGENTINA", "MEXICAN", "CHILE", "CHILEAN", "COLOMBIA", "VENEZUELA",
+    "PERU", "BOLIVIA", "ECUADOR", "URUGUAY", "PARAGUAY", "AUSTRIA",
+    "BELGIUM", "FLEMISH", "WALLOON", "SWISS", "SWITZERLAND", "BELARUS",
+    "LATIN", "LATINO", "ESPANOL", "JAPONES", "AUSTRIAN",
+    "EXYU", "EX-YU", "YU", "YUGO",
+]
+_EXCLUDE_LANG_RE = re.compile(
+    r'\b(' + "|".join(re.escape(t) for t in _EXCLUDE_LANG_TOKENS) + r')\b',
+    re.IGNORECASE,
+)
+
+
+def is_english_or_arabic(name: str) -> bool:
+    """Return True unless the channel name has an explicit non-English/
+    non-Arabic language or country tag. Arabic countries (Algeria, Egypt,
+    Morocco, etc.) and English-speaking countries (US/UK/Canada/Australia)
+    pass through."""
+    if not name:
+        return True
+    return _EXCLUDE_LANG_RE.search(name) is None
+
+
 # User-curated category whitelist in display order. Channels in any other
 # group-title are dropped from the patched M3U. Comments are the truncated
 # names visible in UHF's category grid.
@@ -622,18 +677,30 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
     seen_cats = []
+    lang_dropped_total = 0
     for cat in ALLOWED_CATEGORIES_ORDER:
         entries = by_cat.get(cat, [])
         if not entries:
             continue
         clean_cat = clean_category_name(cat)
+        # Language filter: drop channels whose raw tvg-name has an explicit
+        # non-English / non-Arabic tag.
+        kept_entries = []
+        for ch in entries:
+            raw = ch.get("tvg_name") or ch.get("title") or ""
+            if is_english_or_arabic(raw):
+                kept_entries.append(ch)
+            else:
+                lang_dropped_total += 1
+        if not kept_entries:
+            continue
         # Sort channels by quality desc, then natural-alpha by cleaned name.
         decorated = []
-        for ch in entries:
+        for ch in kept_entries:
             display = clean_channel_name(ch.get("tvg_name") or ch.get("title") or "")
             decorated.append((-quality_rank(display), natural_key(display), display, ch))
         decorated.sort(key=lambda x: (x[0], x[1]))
-        seen_cats.append((clean_cat, len(entries)))
+        seen_cats.append((clean_cat, len(kept_entries)))
         for _, _, display, ch in decorated:
             line = ch.get("extinf_line", "")
             if not line:
@@ -664,6 +731,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 out.append(ch["url_line"])
             written += 1
 
+    print(f"      M3U filters: language-dropped {lang_dropped_total} entries (non-EN/AR)")
     print(f"      M3U category filter: kept {written} entries from {len(seen_cats)}/{len(ALLOWED_CATEGORIES_ORDER)} categories")
     for clean_cat, n in seen_cats:
         print(f"        [{n:>3}]  {clean_cat}")
