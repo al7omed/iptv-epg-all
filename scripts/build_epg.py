@@ -528,19 +528,38 @@ def main():
             sid = m.group(1).decode("utf-8", "replace")
             progs_by_chan.setdefault(sid, []).append(p)
 
-    def rewrite_channel_id(block: bytes, old: str, new: str) -> bytes:
-        return re.sub(
-            rb'(<channel\b[^>]*?\bid=")' + re.escape(old.encode()) + rb'(")',
-            lambda m: m.group(1) + new.encode() + m.group(2),
-            block, count=1,
-        )
-
     def rewrite_prog_channel(block: bytes, old: str, new: str) -> bytes:
         return re.sub(
             rb'(<programme\b[^>]*?\bchannel=")' + re.escape(old.encode()) + rb'(")',
             lambda m: m.group(1) + new.encode() + m.group(2),
             block, count=1,
         )
+
+    DISPLAY_ANY_RE = re.compile(rb'<display-name\b[^>]*>[^<]*</display-name>')
+
+    def clone_channel_for_m3u(src_block: bytes, new_id: str, m3u_display_name: str) -> bytes:
+        """Clone a source <channel> block under a new id. The cloned channel
+        carries the M3U's own display-name as the FIRST (preferred) match, plus
+        the source's icon/url. Other source display-names are dropped to avoid
+        cross-variant ambiguity when UHF falls back to name matching."""
+        new_id_xml = html.escape(new_id, quote=True).encode("utf-8")
+        # Replace id
+        out = re.sub(
+            rb'(<channel\b[^>]*?\bid=")[^"]+(")',
+            lambda m: m.group(1) + new_id_xml + m.group(2),
+            src_block, count=1,
+        )
+        # Strip every existing <display-name>
+        out = DISPLAY_ANY_RE.sub(b"", out)
+        # Inject our single display-name right after opening <channel ...> tag
+        name_xml = html.escape(m3u_display_name, quote=True).encode("utf-8")
+        new_dn = b"<display-name>" + name_xml + b"</display-name>"
+        out = re.sub(
+            rb'(<channel\b[^>]*?>)',
+            lambda m: m.group(1) + new_dn,
+            out, count=1,
+        )
+        return out
 
     backfilled = 0
     backfill_progs = 0
@@ -564,7 +583,8 @@ def main():
         if not candidate_cid:
             continue
         src_block = kept_channels[candidate_cid]
-        new_block = rewrite_channel_id(src_block, candidate_cid, tid)
+        m3u_name = ch["tvg_name"] or ch["title"] or tid
+        new_block = clone_channel_for_m3u(src_block, tid, m3u_name)
         kept_channels[tid] = new_block
         kept_ids.add(tid)
         backfilled += 1
