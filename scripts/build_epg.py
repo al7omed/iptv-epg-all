@@ -38,6 +38,81 @@ from pathlib import Path
 # User-local timezone for snapping dummy programme blocks to a clean midnight.
 USER_TZ_OFFSET = dt.timedelta(hours=3)  # GMT+3
 
+
+# ---------------- display-name variants ----------------
+# UHF (and many players) normalize the channel name before matching it against
+# EPG display-names. We don't know the exact normalization, so we emit several
+# variants per channel. The player will match whichever variant fits its rules.
+
+UNICODE_ASCII_MAP = {
+    # Unicode "modifier letter" / superscript glyphs -> ASCII equivalents.
+    # UHF and similar players appear to normalize these in display, so we
+    # produce matching variants. Pictographs (⚽ ◉ ⚾) and other "real" glyphs
+    # are intentionally NOT mapped — players preserve them.
+    "ᴿᴬᵂ": "RAW", "ʳᵃʷ": "RAW",
+    "ᴴᴰ": "HD", "ʰᵈ": "HD",
+    "ʰᵉᵛᶜ": "hevc", "ᴴᴱᵛᶜ": "HEVC",
+    "ᶠᴴᴰ": "FHD", "ᶠʰᵈ": "FHD",
+    "ᵁᴴᴰ": "UHD", "ᵘʰᵈ": "UHD",
+    "⁴ᵏ": "4K", "⁴ᴷ": "4K",
+    "⁸ᴷ": "8K", "⁸ᵏ": "8K",
+    "⁶⁰ᶠᵖˢ": "60fps", "⁶⁰ᶠᴾˢ": "60FPS",
+    "ᶠ²": "F2",
+    "ᴺᴹ": "NM", "ᴮᴱ": "BE",
+    "ᴾ": "P", "ˢ": "S", "ᵖ": "p", "ᵏ": "k",
+    "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4",
+    "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9",
+}
+
+BORDER_DECOR_RE = re.compile(r'^[#*=\-_~\s]+|[#*=\-_~\s]+$')
+COLLAPSE_WS_RE = re.compile(r'\s+')
+PREFIX_STRIP_RE = re.compile(
+    r'^(?:[0-9]{1,2}[KkRr]|UK|US|AR|FR|DE|ES|IT|TR|EN|NM|BE|SS|FM|VIP|NOW|NEW|'
+    r'BACKUP|MAIN|F|D|H|S|A|OR|EXYU|GOBX|MBC|OSN|BEIN|ALL|PPV)\s*[:|]\s*',
+    re.IGNORECASE,
+)
+
+
+def _ascii_normalize(name: str) -> str:
+    for u, a in UNICODE_ASCII_MAP.items():
+        name = name.replace(u, a)
+    return name
+
+
+def display_variants(raw: str) -> list[str]:
+    """Return a list of display-name variants suitable for emitting under a
+    <channel>. Players that normalize the M3U title in various ways can match
+    against any of these."""
+    if not raw:
+        return []
+    out: list[str] = []
+    seen: set[str] = set()
+    def add(s: str) -> None:
+        s = s.strip()
+        if s and s not in seen:
+            seen.add(s)
+            out.append(s)
+    add(raw)
+    ascii_form = _ascii_normalize(raw)
+    add(ascii_form)
+    no_border = BORDER_DECOR_RE.sub("", ascii_form).strip()
+    add(no_border)
+    no_prefix = PREFIX_STRIP_RE.sub("", no_border).strip()
+    add(no_prefix)
+    add(COLLAPSE_WS_RE.sub(" ", no_prefix))
+    # Without the colon (some players strip "X:" delimiter when normalizing)
+    add(no_border.replace(":", ""))
+    add(no_prefix.replace(":", ""))
+    return out
+
+
+def display_name_block(name: str) -> bytes:
+    """Return concatenated <display-name>...</display-name> elements for all variants."""
+    parts = []
+    for v in display_variants(name):
+        parts.append(b"<display-name>" + html.escape(v, quote=True).encode("utf-8") + b"</display-name>")
+    return b"".join(parts)
+
 # ---------------- epgshare01 sources ----------------
 
 EPGSHARE_BASE = "https://epgshare01.online/epgshare01"
@@ -539,21 +614,17 @@ def main():
 
     def clone_channel_for_m3u(src_block: bytes, new_id: str, m3u_display_name: str) -> bytes:
         """Clone a source <channel> block under a new id. The cloned channel
-        carries the M3U's own display-name as the FIRST (preferred) match, plus
-        the source's icon/url. Other source display-names are dropped to avoid
-        cross-variant ambiguity when UHF falls back to name matching."""
+        carries display-name variants of the M3U's own name (so any name-based
+        normalization the player applies still matches). Original aliases from
+        the source provider are dropped to avoid cross-variant ambiguity."""
         new_id_xml = html.escape(new_id, quote=True).encode("utf-8")
-        # Replace id
         out = re.sub(
             rb'(<channel\b[^>]*?\bid=")[^"]+(")',
             lambda m: m.group(1) + new_id_xml + m.group(2),
             src_block, count=1,
         )
-        # Strip every existing <display-name>
         out = DISPLAY_ANY_RE.sub(b"", out)
-        # Inject our single display-name right after opening <channel ...> tag
-        name_xml = html.escape(m3u_display_name, quote=True).encode("utf-8")
-        new_dn = b"<display-name>" + name_xml + b"</display-name>"
+        new_dn = display_name_block(m3u_display_name)
         out = re.sub(
             rb'(<channel\b[^>]*?>)',
             lambda m: m.group(1) + new_dn,
@@ -622,11 +693,11 @@ def main():
     dummy_channels: list[bytes] = []
     dummy_programmes: list[bytes] = []
     for tid in sorted(uncovered_ids):
-        name_xml = html.escape(m3u_display[tid], quote=True)
         tid_xml = html.escape(tid, quote=True)
+        dn = display_name_block(m3u_display[tid])
         ch_block = (
-            f'<channel id="{tid_xml}"><display-name>{name_xml}</display-name></channel>'
-        ).encode("utf-8")
+            b'<channel id="' + tid_xml.encode("utf-8") + b'">' + dn + b'</channel>'
+        )
         dummy_channels.append(ch_block)
         for s_str, e_str in block_times:
             p = (
