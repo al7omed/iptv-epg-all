@@ -518,6 +518,17 @@ def natural_key(s: str):
     return [int(p) if p.isdigit() else p.lower() for p in _NATURAL_SPLIT_RE.split(s)]
 
 
+def language_rank(name: str) -> int:
+    """Lower comes first. Arabic = 0, English = 1, other = 2.
+    Matches the cleaned name form which uses full words 'Arabic' / 'English'
+    (these are inserted by clean_channel_name's BRAND_MAP)."""
+    if re.search(r'\bArabic\b', name):
+        return 0
+    if re.search(r'\bEnglish\b', name):
+        return 1
+    return 2
+
+
 # Channels whose tvg-name matches one of these word-boundary tokens are
 # dropped — they're explicitly non-English and non-Arabic. Arabic-region
 # country names (Algeria, Morocco, Egypt, etc.) are deliberately NOT here.
@@ -695,13 +706,17 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
         if not kept_entries:
             continue
         # Sort channels by quality desc, then natural-alpha by cleaned name.
+        # In beIN categories, prefer Arabic > English > other as a tie-breaker
+        # before natural-alpha.
+        is_bein = "beIN" in clean_cat or "BEIN" in cat.upper()
         decorated = []
         for ch in kept_entries:
             display = clean_channel_name(ch.get("tvg_name") or ch.get("title") or "")
-            decorated.append((-quality_rank(display), natural_key(display), display, ch))
-        decorated.sort(key=lambda x: (x[0], x[1]))
+            lang = language_rank(display) if is_bein else 0
+            decorated.append((-quality_rank(display), lang, natural_key(display), display, ch))
+        decorated.sort(key=lambda x: (x[0], x[1], x[2]))
         seen_cats.append((clean_cat, len(kept_entries)))
-        for _, _, display, ch in decorated:
+        for _, _, _, display, ch in decorated:
             line = ch.get("extinf_line", "")
             if not line:
                 continue
