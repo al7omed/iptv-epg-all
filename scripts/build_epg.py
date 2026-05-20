@@ -334,6 +334,188 @@ def write_tvg_id_map(m3u_channels, dest: Path) -> int:
 
 
 _TVG_ID_ATTR_RE = re.compile(r'\s*tvg-id="[^"]*"')
+_TVG_NAME_ATTR_RE = re.compile(r'(\stvg-name=")([^"]*)(")')
+_GROUP_TITLE_ATTR_RE = re.compile(r'(\sgroup-title=")([^"]*)(")')
+
+
+# ---------------- name normalization for display ----------------
+# Maps every Unicode modifier letter / superscript / subscript glyph we've
+# seen in the provider's data back to its ASCII counterpart. Anything not in
+# the map and not [a-zA-Z0-9] gets stripped.
+
+UNICODE_LETTER_MAP = {
+    "ᴬ": "A", "ᴮ": "B", "ᴰ": "D", "ᴱ": "E", "ᶠ": "F", "ᴳ": "G",
+    "ᴴ": "H", "ᴵ": "I", "ᴶ": "J", "ᴷ": "K", "ᴸ": "L", "ᴹ": "M",
+    "ᴺ": "N", "ᴼ": "O", "ᴾ": "P", "ᴿ": "R", "ˢ": "S", "ᵀ": "T",
+    "ᵁ": "U", "ⱽ": "V", "ᵂ": "W",
+    "ᵃ": "a", "ᵇ": "b", "ᶜ": "c", "ᵈ": "d", "ᵉ": "e",
+    "ᵍ": "g", "ʰ": "h", "ᶦ": "i", "ʲ": "j", "ᵏ": "k", "ˡ": "l",
+    "ᵐ": "m", "ⁿ": "n", "ᵒ": "o", "ᵖ": "p", "ʳ": "r",
+    "ᵗ": "t", "ᵘ": "u", "ᵛ": "v", "ʷ": "w", "ˣ": "x", "ʸ": "y", "ᶻ": "z",
+    "ᴬʳᵃᵇᶦᶜ": "Arabic", "ᶜᶦᵗʸ": "City", "ᴰᴼᴸᴮʸ": "Dolby", "ᴬᵁᴰᴵᴼ": "Audio",
+    "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4",
+    "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9",
+    "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4",
+    "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9",
+    "⁽": "(", "⁾": ")",
+}
+
+DECORATIVE_CHARS_RE = re.compile(r'[⚽◉▶⎋▼◀●♦★☆▪►⏵⏴️]')
+BORDER_CHARS_RE = re.compile(r'^[#*=\-_~\s]+|[#*=\-_~\s]+$')
+MULTI_SPACE_RE = re.compile(r'\s+')
+
+# Known brand casings — any word matching these (case-insensitive) is rendered
+# with the canonical form regardless of how it appeared in the source.
+BRAND_MAP = {
+    "BEIN": "beIN", "BBC": "BBC", "ESPN": "ESPN", "ESPN+": "ESPN+",
+    "ABC": "ABC", "CBS": "CBS", "NBC": "NBC", "FOX": "FOX", "CW": "CW",
+    "TNT": "TNT", "ITV": "ITV", "NBA": "NBA", "NFL": "NFL", "MLB": "MLB",
+    "UFC": "UFC", "MBC": "MBC", "OSN": "OSN", "DAZN": "DAZN", "TUBI": "Tubi",
+    "UEFA": "UEFA", "AFC": "AFC", "VIP": "VIP", "PPV": "PPV",
+    "HEVC": "HEVC", "RAW": "RAW", "HD": "HD", "UHD": "UHD", "FHD": "FHD",
+    "SD": "SD", "4K": "4K", "8K": "8K", "60FPS": "60fps",
+    "USA": "USA", "UK": "UK", "AR": "Arabic", "EN": "English", "FR": "French",
+    "DE": "German", "ES": "Spanish", "IT": "Italian", "TR": "Turkish",
+    "ART": "ART", "GOBX": "GOBX", "F2": "F2",
+    "PARAMOUNT+": "Paramount+", "PARAMOUNT": "Paramount",
+    "DISCOVERY+": "Discovery+", "DISCOVERY": "Discovery",
+    "NETFLIX": "Netflix", "PEACOCK": "Peacock", "PRIME": "Prime",
+    "AMAZON": "Amazon", "SHAHID": "Shahid", "ROTANA": "Rotana",
+    "MAX": "MAX", "PASS": "Pass", "ACTORS": "Actors", "ALWAN": "Alwan",
+    "ALGERIA": "Algeria", "BAHRAIN": "Bahrain", "JEEM": "Jeem",
+    "BARAEM": "Baraem", "ANGHAMI": "Anghami", "THMANYAH": "Thmanyah",
+    "FM": "FM", "NM": "NM", "BE": "BE", "SS": "SS", "F": "F", "OR": "OR",
+    "RK": "RK", "SA": "SA", "PLATINUM": "Platinum",
+    "SPORTS": "Sports", "SPORT": "Sport", "SOCCER": "Soccer",
+    "EVENT": "Event", "FOOTBALL": "Football", "LIVE": "Live",
+    "NEWS": "News", "GENERAL": "General", "ENTERTAINMENT": "Entertainment",
+    "DOCUMENTARY": "Documentary", "NETWORK": "Network",
+    "WORLD": "World", "COOKING": "Cooking", "CINEMA": "Cinema",
+    "SPECTRUM": "Spectrum", "SKY": "Sky", "IPLAYER": "iPlayer",
+    "DIREC": "Direc", "MENA": "MENA", "SERIES": "Series",
+    "AUDIO": "Audio", "DOLBY": "Dolby", "REPLAY": "Replay",
+    "CHAMPIONS": "Champions", "LEAGUE": "League", "ORIGINAL": "Original",
+    "ULTIMATE": "Ultimate", "ULTRA": "Ultra", "EVENTS": "Events",
+    "3840P": "3840p", "ASIA": "Asia", "CITY": "City",
+    "WIPEOUT": "Wipeout", "AL-FAJER": "Al-Fajer", "AL-KASS": "Al-Kass",
+    "AL-MAJD": "Al-Majd", "ALRABIAA": "Al Rabiaa",
+    "TENNIS": "Tennis", "GOLF": "Golf",
+}
+
+
+def _strip_unicode_glyphs(s: str) -> str:
+    """Replace known Unicode modifier letters with ASCII equivalents. Drop
+    decorative symbols. Collapse remaining whitespace."""
+    if not s:
+        return ""
+    for u, a in UNICODE_LETTER_MAP.items():
+        s = s.replace(u, a)
+    s = DECORATIVE_CHARS_RE.sub(" ", s)
+    s = BORDER_CHARS_RE.sub("", s)
+    s = MULTI_SPACE_RE.sub(" ", s).strip()
+    return s
+
+
+def _title_word(w: str) -> str:
+    up = w.upper()
+    if up in BRAND_MAP:
+        return BRAND_MAP[up]
+    # Words mixing digits and letters (e.g. F1, MAX1, NBC4) — keep as upper
+    if any(c.isdigit() for c in w) and any(c.isalpha() for c in w):
+        return up
+    return w.capitalize()
+
+
+_WORD_RE = re.compile(r"[A-Za-z0-9+]+|[^A-Za-z0-9+]+")
+_PARENS_CALLSIGN_RE = re.compile(r'\(([KW][a-z][a-z0-9]{1,4}(?:-[a-z]{1,3}\d?)?)\)', re.I)
+
+
+def _smart_title_case(s: str) -> str:
+    result = "".join(_title_word(part) if part.strip() else part for part in _WORD_RE.findall(s))
+    # Re-upper any parenthesized callsigns (e.g. (KNBC), (WBAL)) that got
+    # title-cased by mistake.
+    result = _PARENS_CALLSIGN_RE.sub(lambda m: '(' + m.group(1).upper() + ')', result)
+    return result
+
+
+_SINGLE_LETTER_PARENS_RE = re.compile(r'\s*\([A-Z]{1,2}\d?\)\s*')
+
+
+def clean_channel_name(raw: str) -> str:
+    """Clean an M3U channel name for display. Preserves the source/region
+    prefix (8K:, FM:, NM:, BE:, SS:, F:) as a [...] suffix so duplicates
+    from different sources stay distinguishable."""
+    if not raw:
+        return ""
+    s = _strip_unicode_glyphs(raw)
+    source = None
+    m = re.match(r'^([0-9A-Za-z]{1,4})\s*:\s*(.+)$', s)
+    if m and 1 <= len(m.group(1)) <= 4:
+        source = m.group(1).upper()
+        s = m.group(2).strip()
+    # Strip single-letter / 2-letter parenthesized provider codes like (H), (D), (TB)
+    s = _SINGLE_LETTER_PARENS_RE.sub(" ", s)
+    s = re.sub(r'\bSP\s*RTS\b', 'Sports', s, flags=re.I)
+    s = _smart_title_case(s)
+    s = MULTI_SPACE_RE.sub(" ", s).strip()
+    if source:
+        s = f"{s} [{source}]"
+    return s
+
+
+REGION_LABEL = {"AR": "Arabic", "US": "US", "UK": "UK", "8K": "8K",
+                "F": "France", "DE": "Germany", "ES": "Spain", "IT": "Italy",
+                "TR": "Turkey", "GR": "Greece", "PL": "Poland", "NL": "Netherlands",
+                "SE": "Sweden", "DK": "Denmark", "NO": "Norway", "FI": "Finland",
+                "BR": "Brazil", "CA": "Canada", "MX": "Mexico", "AU": "Australia",
+                "VIP": "VIP", "ASIA": "Asia"}
+
+
+def clean_category_name(raw: str) -> str:
+    """Clean an M3U group-title for display. Format: 'Region — Subject'."""
+    if not raw:
+        return ""
+    s = _strip_unicode_glyphs(raw)
+    m = re.match(r'^\s*([A-Za-z0-9]{1,4})\s*\|\s*(.+)$', s)
+    if m:
+        prefix = m.group(1).upper()
+        rest = m.group(2).strip()
+        region = REGION_LABEL.get(prefix, prefix)
+        rest = re.sub(r'\bSP\s*RTS\b', 'Sports', rest, flags=re.I)
+        rest = _smart_title_case(rest)
+        rest = MULTI_SPACE_RE.sub(" ", rest).strip()
+        return f"{region} — {rest}"
+    s = re.sub(r'\bSP\s*RTS\b', 'Sports', s, flags=re.I)
+    s = _smart_title_case(s)
+    return MULTI_SPACE_RE.sub(" ", s).strip()
+
+
+# Quality tier ordering for sorting within a category (higher = better).
+_QUALITY_TIERS = [
+    (re.compile(r'\b8K\b', re.I), 100),
+    (re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I), 90),
+    (re.compile(r'\bFHD\b', re.I), 80),
+    (re.compile(r'\bHD\b', re.I), 70),
+    (re.compile(r'\bHEVC\b', re.I), 60),
+    (re.compile(r'\bRAW\b', re.I), 55),
+    (re.compile(r'\bSD\b', re.I), 30),
+]
+
+
+def quality_rank(name: str) -> int:
+    n = _strip_unicode_glyphs(name)
+    for pat, score in _QUALITY_TIERS:
+        if pat.search(n):
+            return score
+    return 0
+
+
+_NATURAL_SPLIT_RE = re.compile(r'(\d+)')
+
+
+def natural_key(s: str):
+    """Split a string into alternating text/number chunks for natural sort."""
+    return [int(p) if p.isdigit() else p.lower() for p in _NATURAL_SPLIT_RE.split(s)]
 
 
 # User-curated category whitelist in display order. Channels in any other
@@ -424,11 +606,13 @@ ALLOWED_CATEGORIES_ORDER = [
 def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     """Emit a patched M3U where every entry's tvg-id is set to its effective_id.
 
-    Filtered to ALLOWED_CATEGORIES_ORDER (in that order); entries in other
-    groups are dropped. Within a category, original M3U order is preserved.
+    Filtered to ALLOWED_CATEGORIES_ORDER (in that order). Within each category,
+    channels are sorted by quality desc then natural-alphabetical name.
+    Category, channel name, and tvg-name are normalized for display
+    (Unicode → ASCII, brand-cased, decorations removed). The tvg-id is
+    UNCHANGED so EPG binding still works against the raw effective_id.
 
-    SECURITY: this file contains the user's stream URLs with credentials.
-    Caller is responsible for placing it at a non-guessable URL path.
+    SECURITY: contains stream URLs with credentials.
     """
     by_cat: dict[str, list] = defaultdict(list)
     for ch in m3u_channels:
@@ -442,12 +626,33 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
         entries = by_cat.get(cat, [])
         if not entries:
             continue
-        seen_cats.append((cat, len(entries)))
+        clean_cat = clean_category_name(cat)
+        # Sort channels by quality desc, then natural-alpha by cleaned name.
+        decorated = []
         for ch in entries:
+            display = clean_channel_name(ch.get("tvg_name") or ch.get("title") or "")
+            decorated.append((-quality_rank(display), natural_key(display), display, ch))
+        decorated.sort(key=lambda x: (x[0], x[1]))
+        seen_cats.append((clean_cat, len(entries)))
+        for _, _, display, ch in decorated:
             line = ch.get("extinf_line", "")
             if not line:
                 continue
             line = _TVG_ID_ATTR_RE.sub("", line)
+            # Replace tvg-name and group-title attributes with cleaned versions.
+            line = _TVG_NAME_ATTR_RE.sub(
+                lambda m: m.group(1) + display.replace('"', "'") + m.group(3),
+                line,
+            )
+            line = _GROUP_TITLE_ATTR_RE.sub(
+                lambda m: m.group(1) + clean_cat.replace('"', "'") + m.group(3),
+                line,
+            )
+            # Replace the title text after the comma with the cleaned display.
+            comma_idx = line.find(",")
+            if comma_idx > 0:
+                line = line[: comma_idx + 1] + display
+            # Re-insert tvg-id (effective_id) just after the #EXTINF token.
             eff = ch["effective_id"].replace('"', "'")
             m = re.match(r'(#EXTINF[^\s,]*)\s*(.*?,.*)$', line, re.DOTALL)
             if m:
@@ -460,9 +665,10 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             written += 1
 
     print(f"      M3U category filter: kept {written} entries from {len(seen_cats)}/{len(ALLOWED_CATEGORIES_ORDER)} categories")
-    for cat, n in seen_cats:
-        print(f"        [{n:>3}]  {cat}")
-    missing = [c for c in ALLOWED_CATEGORIES_ORDER if c not in {c2 for c2, _ in seen_cats}]
+    for clean_cat, n in seen_cats:
+        print(f"        [{n:>3}]  {clean_cat}")
+    matched_cats = {orig for orig in ALLOWED_CATEGORIES_ORDER if by_cat.get(orig)}
+    missing = [c for c in ALLOWED_CATEGORIES_ORDER if c not in matched_cats]
     if missing:
         print(f"      not found in M3U ({len(missing)}):")
         for c in missing:
