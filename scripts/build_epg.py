@@ -270,6 +270,18 @@ def auto_tvg_id(channel: dict) -> str:
     return f"{s}-{h}.auto"
 
 
+MAX_ID_LEN = 96
+
+
+def _shorten_id(s: str) -> str:
+    """Cap channel ids at MAX_ID_LEN chars. Append a short hash if truncated so
+    multiple long ids with the same prefix don't collide."""
+    if len(s) <= MAX_ID_LEN:
+        return s
+    h = hashlib.md5(s.encode("utf-8")).hexdigest()[:8]
+    return s[: MAX_ID_LEN - 9].rstrip() + "~" + h
+
+
 def assign_effective_ids(m3u_channels):
     """Set 'effective_id' on every M3U channel.
 
@@ -280,14 +292,16 @@ def assign_effective_ids(m3u_channels):
          tvg-id is empty. They look for <channel id="<tvg-name>">. So we use
          the M3U title as the EPG channel id.
       3. Auto-generated id from name hash (last-resort).
+
+    Long ids are capped at MAX_ID_LEN to avoid parser issues.
     """
     auto_count = 0
     name_count = 0
     for ch in m3u_channels:
         if ch["tvg_id"]:
-            ch["effective_id"] = ch["tvg_id"]
+            ch["effective_id"] = _shorten_id(ch["tvg_id"])
         elif ch["tvg_name"]:
-            ch["effective_id"] = ch["tvg_name"]
+            ch["effective_id"] = _shorten_id(ch["tvg_name"])
             name_count += 1
         else:
             ch["effective_id"] = auto_tvg_id(ch)
@@ -695,7 +709,7 @@ def main():
     # "data unavailable" instead. So we emit 4-hour blocks for 8 days = 48
     # blocks per channel. Snapped to GMT+3 hour boundaries.
     BLOCK_HOURS = 4
-    DAYS_AHEAD = 8
+    DAYS_AHEAD = 5  # was 8 — cut to ease memory pressure on tvOS
     now_utc = dt.datetime.now(dt.timezone.utc)
     local_now = now_utc + USER_TZ_OFFSET
     local_midnight = local_now.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -818,6 +832,38 @@ def main():
     kept_programmes.extend(gap_fill_programmes)
     print(f"      ({fully_empty} channels were fully empty pre-fill)")
     print(f"      filled gaps in {channels_with_gaps} channels (+{len(gap_fill_programmes)} dummy programmes)")
+
+    # ---------- overlap dedup pass ----------
+    # Different upstream sources can publish slightly-shifted programme times
+    # for the same channel (e.g. 09:30 vs 09:55). Both pass the (start, channel)
+    # dedup. The result confuses players (overlapping cells). Drop programmes
+    # that overlap an already-kept earlier programme on the same channel.
+    print(f"[5d.5] overlap dedup pass")
+    chan_to_programmes: dict[str, list] = defaultdict(list)
+    for p in kept_programmes:
+        m = PROG_TIMES_RE.search(p)
+        if not m:
+            continue
+        start = parse_xmltv(m.group(1).decode())
+        stop = parse_xmltv(m.group(2).decode())
+        if start is None or stop is None:
+            continue
+        cid = m.group(3).decode("utf-8", "replace")
+        chan_to_programmes[cid].append((start, stop, p))
+
+    deduped: list[bytes] = []
+    overlap_dropped = 0
+    for cid, items in chan_to_programmes.items():
+        items.sort(key=lambda x: (x[0], x[1]))
+        last_stop = None
+        for start, stop, p in items:
+            if last_stop is not None and start < last_stop:
+                overlap_dropped += 1
+                continue
+            deduped.append(p)
+            last_stop = stop
+    kept_programmes = deduped
+    print(f"      dropped {overlap_dropped} overlapping programmes; kept {len(kept_programmes)}")
 
     # ---------- orphan prune pass ----------
     # Provider EPGs contain channels neither subscription's M3U references.
