@@ -391,23 +391,26 @@ PROG_CHANNEL_RE = re.compile(rb'<programme\b[^>]*?\bchannel="([^"]+)"')
 
 
 def iter_channels(xml_bytes: bytes):
+    """Yield (id, display_names, block) — id is unescaped (raw) form."""
     for m in CHANNEL_RE.finditer(xml_bytes):
         block = m.group(0)
         idm = CHANNEL_ID_RE.search(block)
         if not idm:
             continue
-        cid = idm.group(1).decode("utf-8", errors="replace")
-        names = [n.decode("utf-8", errors="replace") for n in DISPLAY_NAME_RE.findall(block)]
+        cid = html.unescape(idm.group(1).decode("utf-8", errors="replace"))
+        names = [html.unescape(n.decode("utf-8", errors="replace"))
+                 for n in DISPLAY_NAME_RE.findall(block)]
         yield cid, names, block
 
 
 def iter_programmes(xml_bytes: bytes):
+    """Yield (channel_id, block) — channel_id is unescaped (raw) form."""
     for m in PROGRAMME_RE.finditer(xml_bytes):
         block = m.group(0)
         chm = PROG_CHANNEL_RE.search(block)
         if not chm:
             continue
-        yield chm.group(1).decode("utf-8", errors="replace"), block
+        yield html.unescape(chm.group(1).decode("utf-8", errors="replace")), block
 
 
 # ---------------- channel matching ----------------
@@ -730,7 +733,7 @@ def main():
         e = s + dt.timedelta(hours=BLOCK_HOURS)
         block_times.append((fmt_xmltv_time(s), fmt_xmltv_time(e)))
 
-    dummy_channels: list[bytes] = []
+    dummy_count = 0
     dummy_programmes: list[bytes] = []
     for tid in sorted(uncovered_ids):
         tid_xml = html.escape(tid, quote=True)
@@ -738,7 +741,11 @@ def main():
         ch_block = (
             b'<channel id="' + tid_xml.encode("utf-8") + b'">' + dn + b'</channel>'
         )
-        dummy_channels.append(ch_block)
+        # Key by RAW tid (not extracted from escaped XML bytes) to keep
+        # kept_ids consistent with the rest of the pipeline.
+        kept_channels[tid] = ch_block
+        kept_ids.add(tid)
+        dummy_count += 1
         for s_str, e_str in block_times:
             p = (
                 f'<programme start="{s_str}" stop="{e_str}" channel="{tid_xml}">'
@@ -746,14 +753,8 @@ def main():
             ).encode("utf-8")
             dummy_programmes.append(p)
 
-    for blk in dummy_channels:
-        m = CHANNEL_ID_RE.search(blk)
-        if m:
-            cid = m.group(1).decode("utf-8", "replace")
-            kept_channels[cid] = blk
-            kept_ids.add(cid)
     kept_programmes.extend(dummy_programmes)
-    print(f"      added {len(dummy_channels)} dummy channels × {n_blocks} blocks = {len(dummy_programmes)} programmes")
+    print(f"      added {dummy_count} dummy channels × {n_blocks} blocks = {len(dummy_programmes)} programmes")
 
     # ---------- gap-fill pass ----------
     # Channels with REAL EPG sometimes have coverage gaps (e.g. provider EPG
