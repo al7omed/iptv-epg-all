@@ -333,6 +333,39 @@ def write_tvg_id_map(m3u_channels, dest: Path) -> int:
     return len(m3u_channels)
 
 
+_TVG_ID_ATTR_RE = re.compile(r'\s*tvg-id="[^"]*"')
+
+
+def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
+    """Emit a patched M3U where every entry's tvg-id is set to its effective_id.
+
+    SECURITY: this file contains the user's stream URLs with credentials.
+    Caller is responsible for placing it at a non-guessable URL path.
+    """
+    out = [f'#EXTM3U x-tvg-url="{epg_url}"']
+    written = 0
+    for ch in m3u_channels:
+        line = ch.get("extinf_line", "")
+        if not line:
+            continue
+        line = _TVG_ID_ATTR_RE.sub("", line)
+        # The effective_id may contain " which would break the attribute.
+        # M3U is plain-text (not XML), so just substitute " -> ' for safety.
+        eff = ch["effective_id"].replace('"', "'")
+        m = re.match(r'(#EXTINF[^\s,]*)\s*(.*?,.*)$', line, re.DOTALL)
+        if m:
+            head, tail = m.group(1), m.group(2)
+            line = f'{head} tvg-id="{eff}" {tail}'
+        out.append(line)
+        out.extend(ch.get("extra_lines", []))
+        if ch.get("url_line"):
+            out.append(ch["url_line"])
+        written += 1
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text("\n".join(out) + "\n", encoding="utf-8")
+    return written
+
+
 def build_m3u_index(m3u_channels):
     """Build the matching index used to decide whether to keep an upstream channel."""
     tvg_ids = set()
@@ -973,6 +1006,17 @@ def main():
     out_map = out_dir / "tvg-id-map.tsv"
     written = write_tvg_id_map(m3u_channels, out_map)
     print(f"      wrote {out_map} ({out_map.stat().st_size//1024} KB, {written} rows)")
+
+    # OPTIONAL: also write a patched M3U with tvg-ids injected, behind a
+    # random URL token (env M3U_PATH_TOKEN). The token doubles as the only
+    # access key — anyone with the URL can use the user's IPTV subscription.
+    token = os.environ.get("M3U_PATH_TOKEN", "").strip()
+    if token:
+        pages_base = os.environ.get("PAGES_BASE", "https://al7omed.github.io/iptv-epg-all")
+        epg_link = f"{pages_base}/guide.xml.gz"
+        m3u_out = out_dir / token / "playlist.m3u"
+        n = write_patched_m3u(m3u_channels, m3u_out, epg_link)
+        print(f"      wrote patched M3U at {m3u_out} ({m3u_out.stat().st_size//1024} KB, {n} entries)")
 
     print()
     print("=== source breakdown (channels) ===")

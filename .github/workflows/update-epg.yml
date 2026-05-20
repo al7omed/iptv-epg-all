@@ -79,6 +79,10 @@ jobs:
           # Order matters: bein-epg first (highest fidelity for beIN MENA),
           # then provider EPGs. First wins on (channel,start) collisions.
           PROVIDER_EPG_URL: ${{ env.BEIN_EPG_URL }},${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
+          # When set, build also emits a patched M3U at docs/<token>/playlist.m3u
+          # The token is the access key — anyone with the URL can use the
+          # subscription. Keep the URL private.
+          M3U_PATH_TOKEN: ${{ secrets.M3U_PATH_TOKEN }}
         run: python3 scripts/build_epg.py
 
       - name: Stats
@@ -91,14 +95,20 @@ jobs:
           rm -f docs/playlist.m3u docs/guide.xml
 
       - name: Commit and push
+        env:
+          M3U_PATH_TOKEN: ${{ secrets.M3U_PATH_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/guide.xml.gz docs/tvg-id-map.tsv
+          # Add the patched M3U folder if it was produced
+          if [ -n "$M3U_PATH_TOKEN" ] && [ -d "docs/$M3U_PATH_TOKEN" ]; then
+            git add "docs/$M3U_PATH_TOKEN"
+          fi
           git rm --cached --ignore-unmatch docs/guide.xml docs/playlist.m3u >/dev/null 2>&1 || true
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update unified EPG $(date -u +%Y-%m-%dT%H:%MZ)"
+            git commit -m "Update unified EPG + M3U $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           fi
