@@ -519,14 +519,17 @@ def natural_key(s: str):
 
 
 def language_rank(name: str) -> int:
-    """Lower comes first. Arabic = 0, English = 1, other = 2.
-    Matches the cleaned name form which uses full words 'Arabic' / 'English'
-    (these are inserted by clean_channel_name's BRAND_MAP)."""
-    if re.search(r'\bArabic\b', name):
-        return 0
+    """Lower comes first.
+
+    Within beIN categories the convention is:
+      * 'Arabic' or no explicit language → Arabic feed (rank 0)
+      * 'English' → English commentary feed (rank 1)
+    So untagged channels (e.g. 'beIN Sports 1 HD') are sorted with the
+    Arabic ones, matching how beIN MENA labels their primary feeds.
+    """
     if re.search(r'\bEnglish\b', name):
         return 1
-    return 2
+    return 0
 
 
 # Channels whose tvg-name matches one of these word-boundary tokens are
