@@ -1,0 +1,89 @@
+name: Update EPG
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/update-epg.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-epg
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      M3U_URL_1: ${{ secrets.M3U_URL_1 }}
+      M3U_URL_2: ${{ secrets.M3U_URL_2 }}
+      PROVIDER_EPG_URL_1: ${{ secrets.PROVIDER_EPG_URL_1 }}
+      PROVIDER_EPG_URL_2: ${{ secrets.PROVIDER_EPG_URL_2 }}
+      XTREAM_HOST_2: ${{ secrets.XTREAM_HOST_2 }}
+      XTREAM_USER_2: ${{ secrets.XTREAM_USER_2 }}
+      XTREAM_PASS_2: ${{ secrets.XTREAM_PASS_2 }}
+      BEIN_EPG_URL: https://al7omed.github.io/bein-epg/guide.xml
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch sub1 M3U (direct)
+        run: |
+          mkdir -p epg-work
+          curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
+            "$M3U_URL_1" -o epg-work/m3u_sub1.m3u
+          echo "sub1: $(grep -c '^#EXTINF' epg-work/m3u_sub1.m3u) channels"
+
+      - name: Fetch sub2 M3U (direct, falling back to Xtream API)
+        run: |
+          if curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
+              "$M3U_URL_2" -o epg-work/m3u_sub2.m3u; then
+            echo "sub2 direct OK"
+          else
+            echo "sub2 direct failed; synthesizing from Xtream API..."
+            XTREAM_HOST="$XTREAM_HOST_2" XTREAM_USER="$XTREAM_USER_2" XTREAM_PASS="$XTREAM_PASS_2" \
+              python3 scripts/synth_m3u_from_xtream.py > epg-work/m3u_sub2.m3u
+          fi
+          echo "sub2: $(grep -c '^#EXTINF' epg-work/m3u_sub2.m3u) channels"
+
+      - name: Build EPG
+        env:
+          M3U_URL: file://${{ github.workspace }}/epg-work/m3u_sub1.m3u,file://${{ github.workspace }}/epg-work/m3u_sub2.m3u
+          # Order matters: bein-epg first (highest fidelity for beIN MENA),
+          # then provider EPGs. First wins on (channel,start) collisions.
+          PROVIDER_EPG_URL: ${{ env.BEIN_EPG_URL }},${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
+        run: python3 scripts/build_epg.py
+
+      - name: Stats
+        run: |
+          echo "guide.xml.gz:   $(stat -c '%s' docs/guide.xml.gz) bytes"
+          echo "tvg-id-map.tsv: $(stat -c '%s' docs/tvg-id-map.tsv) bytes"
+
+      - name: Ensure stale files stay purged
+        run: |
+          rm -f docs/playlist.m3u docs/guide.xml
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/guide.xml.gz docs/tvg-id-map.tsv
+          git rm --cached --ignore-unmatch docs/guide.xml docs/playlist.m3u >/dev/null 2>&1 || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update unified EPG $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
