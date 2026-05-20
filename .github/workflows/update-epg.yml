@@ -46,17 +46,32 @@ jobs:
             "$M3U_URL_1" -o epg-work/m3u_sub1.m3u
           echo "sub1: $(grep -c '^#EXTINF' epg-work/m3u_sub1.m3u) channels"
 
-      - name: Fetch sub2 M3U (direct, falling back to Xtream API)
+      - name: Fetch sub2 M3U (best-effort, soft-fails on CF block)
+        continue-on-error: true
         run: |
+          set +e
+          ok=0
           if curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
               "$M3U_URL_2" -o epg-work/m3u_sub2.m3u; then
             echo "sub2 direct OK"
+            ok=1
           else
-            echo "sub2 direct failed; synthesizing from Xtream API..."
-            XTREAM_HOST="$XTREAM_HOST_2" XTREAM_USER="$XTREAM_USER_2" XTREAM_PASS="$XTREAM_PASS_2" \
-              python3 scripts/synth_m3u_from_xtream.py > epg-work/m3u_sub2.m3u
+            echo "sub2 direct returned non-2xx; trying Xtream API..."
+            if XTREAM_HOST="$XTREAM_HOST_2" XTREAM_USER="$XTREAM_USER_2" XTREAM_PASS="$XTREAM_PASS_2" \
+               python3 scripts/synth_m3u_from_xtream.py > epg-work/m3u_sub2.m3u 2> /tmp/synth.err; then
+              echo "sub2 synth OK"
+              ok=1
+            else
+              echo "sub2 synth failed:"
+              cat /tmp/synth.err
+              echo "#EXTM3U" > epg-work/m3u_sub2.m3u
+              echo "::warning::sub2 M3U could not be fetched; build continues with sub1 only"
+            fi
           fi
-          echo "sub2: $(grep -c '^#EXTINF' epg-work/m3u_sub2.m3u) channels"
+          if [ "$ok" = "1" ]; then
+            echo "sub2: $(grep -c '^#EXTINF' epg-work/m3u_sub2.m3u) channels"
+          fi
+          exit 0
 
       - name: Build EPG
         env:

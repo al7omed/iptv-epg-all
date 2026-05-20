@@ -3,33 +3,62 @@
 
 Used as a fallback when the provider's /get.php endpoint is blocked by the
 CDN's WAF (some IPs receive a non-standard HTTP 884). The Xtream API endpoint
-is usually unaffected.
+is usually unaffected, but Cloudflare sometimes blocks even that with HTTP 511.
+This script retries with delays and uses browser-like headers to slip past
+intermittent WAF rules.
 
 Environment:
   XTREAM_HOST  e.g. http://mil79711.wd.business-cdn-8k.com
   XTREAM_USER  e.g. ac50ff82173e
   XTREAM_PASS  e.g. 0b9695fafe
 
-Writes the synthesized M3U to stdout. The format mirrors what a typical
-Xtream get.php?type=m3u_plus would produce:
-
-  #EXTM3U
-  #EXTINF:-1 tvg-id="<epg_channel_id>" tvg-name="<name>" tvg-logo="<icon>" group-title="<cat>",<name>
-  <XTREAM_HOST>/live/<USER>/<PASS>/<stream_id>.ts
+Writes the synthesized M3U to stdout. Exits non-zero on irrecoverable failure.
 """
 from __future__ import annotations
 
 import json
 import os
+import random
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
 
-def get_json(url: str, timeout: int = 60):
-    req = urllib.request.Request(url, headers={"User-Agent": "iptv-epg-builder/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read())
+BROWSER_UA = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/120.0.0.0 Safari/537.36"
+)
+HEADERS = {
+    "User-Agent": BROWSER_UA,
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "keep-alive",
+}
+
+
+def get_json(url: str, max_attempts: int = 5):
+    last_err = None
+    for attempt in range(max_attempts):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                raw = resp.read()
+                if resp.headers.get("Content-Encoding") == "gzip":
+                    import gzip as _gz
+                    raw = _gz.decompress(raw)
+                return json.loads(raw)
+        except urllib.error.HTTPError as e:
+            last_err = e
+            sys.stderr.write(f"  attempt {attempt+1}/{max_attempts}: HTTP {e.code} {e.reason}\n")
+            time.sleep(8 + attempt * 6 + random.uniform(0, 4))
+        except Exception as e:
+            last_err = e
+            sys.stderr.write(f"  attempt {attempt+1}/{max_attempts}: {e}\n")
+            time.sleep(4 + attempt * 4)
+    raise RuntimeError(f"all {max_attempts} attempts failed: {last_err}")
 
 
 def main():
