@@ -679,7 +679,12 @@ def main():
 
     gap_fill_programmes: list[bytes] = []
     channels_with_gaps = 0
-    for cid, items in ch_progs.items():
+    fully_empty = 0
+    # Iterate ALL channels in kept_ids, not just those with programmes — a
+    # channel can land in kept_ids via backfill from a provider channel that
+    # had zero programmes, leaving the .auto id with no schedule data.
+    for cid in kept_ids:
+        items = ch_progs.get(cid, [])
         items.sort(key=lambda x: x[0])
         cid_xml = html.escape(cid, quote=True)
         had_gap = False
@@ -694,9 +699,12 @@ def main():
         if cursor < series_stop_utc:
             gap_fill_programmes.extend(gap_blocks(cursor, series_stop_utc, cid_xml))
             had_gap = True
+            if not items:
+                fully_empty += 1
         if had_gap:
             channels_with_gaps += 1
     kept_programmes.extend(gap_fill_programmes)
+    print(f"      ({fully_empty} channels were fully empty pre-fill)")
     print(f"      filled gaps in {channels_with_gaps} channels (+{len(gap_fill_programmes)} dummy programmes)")
 
     # ---------- orphan prune pass ----------
