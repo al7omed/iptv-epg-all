@@ -584,6 +584,19 @@ def is_english_or_arabic(name: str) -> bool:
     return _EXCLUDE_LANG_RE.search(name) is None
 
 
+_LOW_QUALITY_RE = re.compile(r'\b(SD|LQ|LOW)\b|▼SD|▼LQ|▼', re.IGNORECASE)
+
+
+def is_acceptable_quality(name: str) -> bool:
+    """Drop channels whose quality marker is SD or LQ. The source prefix
+    (e.g. '8K:') is informational about the provider, not the actual stream
+    quality — so if 'SD' appears anywhere as a word, drop. Channels with no
+    quality tag at all are kept (assume standard delivery)."""
+    if not name:
+        return True
+    return _LOW_QUALITY_RE.search(name) is None
+
+
 # User-curated category whitelist in display order. Channels in any other
 # group-title are dropped from the patched M3U. Comments are the truncated
 # names visible in UHF's category grid.
@@ -689,20 +702,23 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     written = 0
     seen_cats = []
     lang_dropped_total = 0
+    quality_dropped_total = 0
     for cat in ALLOWED_CATEGORIES_ORDER:
         entries = by_cat.get(cat, [])
         if not entries:
             continue
         clean_cat = clean_category_name(cat)
-        # Language filter: drop channels whose raw tvg-name has an explicit
-        # non-English / non-Arabic tag.
+        # Combined filter: drop non-English/Arabic AND drop SD/LQ.
         kept_entries = []
         for ch in entries:
             raw = ch.get("tvg_name") or ch.get("title") or ""
-            if is_english_or_arabic(raw):
-                kept_entries.append(ch)
-            else:
+            if not is_english_or_arabic(raw):
                 lang_dropped_total += 1
+                continue
+            if not is_acceptable_quality(raw):
+                quality_dropped_total += 1
+                continue
+            kept_entries.append(ch)
         if not kept_entries:
             continue
         # Sort channels by quality desc, then natural-alpha by cleaned name.
@@ -746,7 +762,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 out.append(ch["url_line"])
             written += 1
 
-    print(f"      M3U filters: language-dropped {lang_dropped_total} entries (non-EN/AR)")
+    print(f"      M3U filters: language-dropped {lang_dropped_total} (non-EN/AR), quality-dropped {quality_dropped_total} (SD/LQ)")
     print(f"      M3U category filter: kept {written} entries from {len(seen_cats)}/{len(ALLOWED_CATEGORIES_ORDER)} categories")
     for clean_cat, n in seen_cats:
         print(f"        [{n:>3}]  {clean_cat}")
