@@ -336,31 +336,138 @@ def write_tvg_id_map(m3u_channels, dest: Path) -> int:
 _TVG_ID_ATTR_RE = re.compile(r'\s*tvg-id="[^"]*"')
 
 
+# User-curated category whitelist in display order. Channels in any other
+# group-title are dropped from the patched M3U. Comments are the truncated
+# names visible in UHF's category grid.
+ALLOWED_CATEGORIES_ORDER = [
+    # Row 1: beIN Sports MAX + 8K variants + F + SS + ◉
+    "AR| BEIN SPORTS MAX ⁸ᴷ ⚽",
+    "AR| BEIN SPORTS MAX F ⚽",
+    "AR| BEIN SPORTS MAX ᴺᴹ ⚽",
+    "AR| BEIN SPORTS ⁸ᴷ & ³⁸⁴⁰ᴾ ⚽",
+    "AR| BEIN SPORTS ⁸ᴷ & ᴴᴰ ⚽",
+    "AR| BEIN SPORTS ⁸ᴷ & ʰᵉᵛᶜ ⚽",
+    "AR| BEIN SPORTS ⁸ᴷ & ᴿᴬᵂ ⚽",
+    "AR| BEIN SPORTS ⁸ᴷ & AFC ⚽",
+    "AR| BEIN SPORTS F ⚽",
+    "AR| BEIN SPORTS F & AFC ⚽",
+    "AR| BEIN SPORTS ˢˢ ⚽",
+    "AR| BEIN SPORTS ◉ ⚽",
+    # Row 2: more beIN variants + 8K Sport + UEFA + Alwan + Arabic Sport + Thmanyah + Shahid PPV + Sports PPV
+    "AR| BEIN SPORTS ᵁᴴᴰ ⚽",
+    "AR| BEIN SPORTS ᴮᴱ ⚽",
+    "AR| BEIN SPORTS ᴺᴹ ⚽",
+    "AR| BEIN SPORTS ᴺᴹ & ASIA ⚽",
+    "AR| BEIN SPORTS SA ⚽",
+    "8K| SPORT ON AIR ⁸ᴷ",
+    "AR| UEFA CHAMPIONS LEAGUE ⚽",
+    "AR| ALWAN SPORT ᴿᴬᵂ ⚽",
+    "AR| ARABIC SPORT 4K ▶ رياضه ⚽️",
+    "AR| THMANYAH ⁸ᴷ ⚽",
+    "AR| SHAHID PPV ⚽",
+    "AR| SPORTS PPV ᴺᴹ ⚽",
+    # Row 3: DAZN MENA, MBC, OSN, GOBX, Rotana, Shahid, Cooking, Actors, Bahrain, Discovery, Documentary, US Sport
+    "AR| DAZN MENA PPV ⁸ᴷ",
+    "AR| MBC 4K",
+    "AR| OSN PLATINUM ᴿᴬᵂ",
+    "AR| GOBX PLATINUM 4K",
+    "AR| ROTANA & ART 4K ▶ روتانا",
+    "AR| SHAHID VIP 4K ▶ شاهد الاصلية",
+    "AR| WORLD OF COOKING 4K ▶ عالم الطبخ",
+    "AR| ️ACTORS 4K ▶ الفنانون",  # note: contains invisible variation selector
+    "AR| BAHRAIN 4K ▶ البحرين",
+    "AR| DISCOVERY+ ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ ديسكفري",
+    "AR| DOCUMENTARY 4K ▶ وثائقي",
+    "US| SPORT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    # Row 4: US PPV/streaming
+    "US| ESPN+ PPV ⱽᴵᴾ",
+    "US| NBA PPV",
+    "US| NBA PASS PPV ⁸ᴷ",
+    "US| UFC PPV",
+    "US| PPV EVENT ⁽ᴮᴷ⁾",
+    "US| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| PARAMOUNT+ ORIGINAL ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| NETFLIX PPV",
+    "US| DAZN PPV",
+    "US| ABC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| CBS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| CW ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    # Row 5: US broadcast + UK General/Sport
+    "US| FOX ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| NBC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| NEWS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| SPECTRUM NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| DIREC TV ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| PEACOCK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| TUBI ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "UK| GENERAL ʰᵉᵛᶜ",
+    "UK| SPORT ʰᵉᵛᶜ",
+    "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
+    # Row 6: UK Live Football + TNT + News + ITV + BBC + Prime + Amazon + Documentary + Discovery + Soccer + Sky
+    "UK| LIVE FOOTBALL PPV",
+    "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
+    "UK| TNT SPORT EVENT",
+    "UK| NEWS ʰᵉᵛᶜ",
+    "UK| ITV X VIP",
+    "UK| BBC IPLAYER ᴿᴬᵂ",
+    "UK| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "UK| AMAZON PRIME PPV",
+    "UK| DOCUMENTARY ʰᵉᵛᶜ",
+    "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
+    "UK| SOCCER REPLAY ᴿᴬᵂ",
+    "UK| SKY CINEMA ʰᵉᵛᶜ",
+]
+
+
 def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     """Emit a patched M3U where every entry's tvg-id is set to its effective_id.
+
+    Filtered to ALLOWED_CATEGORIES_ORDER (in that order); entries in other
+    groups are dropped. Within a category, original M3U order is preserved.
 
     SECURITY: this file contains the user's stream URLs with credentials.
     Caller is responsible for placing it at a non-guessable URL path.
     """
+    by_cat: dict[str, list] = defaultdict(list)
+    for ch in m3u_channels:
+        cat = ch.get("group", "")
+        by_cat[cat].append(ch)
+
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
-    for ch in m3u_channels:
-        line = ch.get("extinf_line", "")
-        if not line:
+    seen_cats = []
+    for cat in ALLOWED_CATEGORIES_ORDER:
+        entries = by_cat.get(cat, [])
+        if not entries:
             continue
-        line = _TVG_ID_ATTR_RE.sub("", line)
-        # The effective_id may contain " which would break the attribute.
-        # M3U is plain-text (not XML), so just substitute " -> ' for safety.
-        eff = ch["effective_id"].replace('"', "'")
-        m = re.match(r'(#EXTINF[^\s,]*)\s*(.*?,.*)$', line, re.DOTALL)
-        if m:
-            head, tail = m.group(1), m.group(2)
-            line = f'{head} tvg-id="{eff}" {tail}'
-        out.append(line)
-        out.extend(ch.get("extra_lines", []))
-        if ch.get("url_line"):
-            out.append(ch["url_line"])
-        written += 1
+        seen_cats.append((cat, len(entries)))
+        for ch in entries:
+            line = ch.get("extinf_line", "")
+            if not line:
+                continue
+            line = _TVG_ID_ATTR_RE.sub("", line)
+            eff = ch["effective_id"].replace('"', "'")
+            m = re.match(r'(#EXTINF[^\s,]*)\s*(.*?,.*)$', line, re.DOTALL)
+            if m:
+                head, tail = m.group(1), m.group(2)
+                line = f'{head} tvg-id="{eff}" {tail}'
+            out.append(line)
+            out.extend(ch.get("extra_lines", []))
+            if ch.get("url_line"):
+                out.append(ch["url_line"])
+            written += 1
+
+    print(f"      M3U category filter: kept {written} entries from {len(seen_cats)}/{len(ALLOWED_CATEGORIES_ORDER)} categories")
+    for cat, n in seen_cats:
+        print(f"        [{n:>3}]  {cat}")
+    missing = [c for c in ALLOWED_CATEGORIES_ORDER if c not in {c2 for c2, _ in seen_cats}]
+    if missing:
+        print(f"      not found in M3U ({len(missing)}):")
+        for c in missing:
+            print(f"        ?? {c}")
+
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text("\n".join(out) + "\n", encoding="utf-8")
     return written
