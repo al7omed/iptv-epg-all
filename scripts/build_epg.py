@@ -699,6 +699,33 @@ def main():
     kept_programmes.extend(gap_fill_programmes)
     print(f"      filled gaps in {channels_with_gaps} channels (+{len(gap_fill_programmes)} dummy programmes)")
 
+    # ---------- orphan prune pass ----------
+    # Provider EPGs contain channels neither subscription's M3U references.
+    # They bloat the file with no benefit (the player can't display them).
+    # Keep only channels whose id is an M3U effective_id or original tvg-id.
+    print(f"[5e]  orphan prune pass")
+    m3u_id_set = set()
+    for ch in m3u_channels:
+        m3u_id_set.add(ch["effective_id"])
+        if ch["tvg_id"]:
+            m3u_id_set.add(ch["tvg_id"])
+
+    before_ch = len(kept_channels)
+    kept_channels = {cid: blk for cid, blk in kept_channels.items() if cid in m3u_id_set}
+    kept_ids = set(kept_channels.keys())
+    dropped_channels = before_ch - len(kept_channels)
+
+    before_prog = len(kept_programmes)
+    new_progs = []
+    for p in kept_programmes:
+        m = PROG_CHANNEL_RE.search(p)
+        if m and m.group(1).decode("utf-8", "replace") in kept_ids:
+            new_progs.append(p)
+    kept_programmes = new_progs
+    dropped_programmes = before_prog - len(kept_programmes)
+    print(f"      dropped {dropped_channels} orphan channels, {dropped_programmes} orphan programmes")
+    print(f"      final: {len(kept_channels)} channels, {len(kept_programmes)} programmes")
+
     print(f"[6/6] writing output...")
     out_xml = out_dir / "guide.xml"
     out_gz = out_dir / "guide.xml.gz"
