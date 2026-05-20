@@ -481,13 +481,21 @@ def main():
     for src_name, p_path in provider_paths:
         raw = read_xmltv(p_path)
         before = len(kept_ids)
+        skipped_auto = 0
         for cid, names, block in iter_channels(raw):
+            # Skip provider channels whose id ends with .auto — these are stale
+            # echoes scraped from our own previously-published guide. They have
+            # no programmes and their multi-alias blocks confuse name matching.
+            if cid.endswith(".auto"):
+                skipped_auto += 1
+                continue
             if cid not in kept_ids:
                 kept_channels[cid] = block
                 kept_ids.add(cid)
         added = len(kept_ids) - before
         source_stats[src_name] = added
-        print(f"      {src_name}: +{added} channels")
+        suffix = f" (skipped {skipped_auto} stale .auto echoes)" if skipped_auto else ""
+        print(f"      {src_name}: +{added} channels{suffix}")
 
     for name, path in upstream_paths:
         raw = read_xmltv(path)
