@@ -639,9 +639,14 @@ def main():
             progs_by_chan.setdefault(sid, []).append(p)
 
     def rewrite_prog_channel(block: bytes, old: str, new: str) -> bytes:
+        # Both `old` and `new` are raw Python strings. The XML in `block` has
+        # `old` written in escaped form. Match the escaped form and replace
+        # with the escaped form of `new`.
+        old_xml = html.escape(old, quote=True).encode("utf-8")
+        new_xml = html.escape(new, quote=True).encode("utf-8")
         return re.sub(
-            rb'(<programme\b[^>]*?\bchannel=")' + re.escape(old.encode()) + rb'(")',
-            lambda m: m.group(1) + new.encode() + m.group(2),
+            rb'(<programme\b[^>]*?\bchannel=")' + re.escape(old_xml) + rb'(")',
+            lambda m: m.group(1) + new_xml + m.group(2),
             block, count=1,
         )
 
@@ -785,7 +790,9 @@ def main():
         stop = parse_xmltv(m.group(2).decode())
         if start is None or stop is None:
             continue
-        cid = m.group(3).decode("utf-8", "replace")
+        # html.unescape because channel attr in XML may have &amp;/&#x27; that
+        # need decoding to match the raw Python form in kept_ids.
+        cid = html.unescape(m.group(3).decode("utf-8", "replace"))
         ch_progs[cid].append((start, stop))
 
     def gap_blocks(start: dt.datetime, end: dt.datetime, cid_xml: str) -> list[bytes]:
@@ -884,7 +891,7 @@ def main():
         stop = parse_xmltv(m.group(2).decode())
         if start is None or stop is None:
             continue
-        cid = m.group(3).decode("utf-8", "replace")
+        cid = html.unescape(m.group(3).decode("utf-8", "replace"))
         chan_to_programmes[cid].append((start, stop, p))
 
     deduped: list[bytes] = []
@@ -921,7 +928,7 @@ def main():
     new_progs = []
     for p in kept_programmes:
         m = PROG_CHANNEL_RE.search(p)
-        if m and m.group(1).decode("utf-8", "replace") in kept_ids:
+        if m and html.unescape(m.group(1).decode("utf-8", "replace")) in kept_ids:
             new_progs.append(p)
     kept_programmes = new_progs
     dropped_programmes = before_prog - len(kept_programmes)
