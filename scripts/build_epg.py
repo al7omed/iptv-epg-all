@@ -304,7 +304,7 @@ def assign_effective_ids(m3u_channels):
             ch["effective_id"] = _shorten_id(ch["tvg_name"])
             name_count += 1
         else:
-            ch["effective_id"] = auto_tvg_id(ch)
+            ch["effective_id"] = _shorten_id(auto_tvg_id(ch))
             auto_count += 1
     return auto_count, name_count
 
@@ -832,6 +832,42 @@ def main():
     kept_programmes.extend(gap_fill_programmes)
     print(f"      ({fully_empty} channels were fully empty pre-fill)")
     print(f"      filled gaps in {channels_with_gaps} channels (+{len(gap_fill_programmes)} dummy programmes)")
+
+    # ---------- normalize all programme times to UTC ----------
+    # Sources publish mixed TZ offsets (+0000, +0200, +0100, -0400). Different
+    # timezones with the same wall-clock time look like overlaps in players
+    # that compare by raw string. Convert everything to +0000 once so the
+    # wall-time IS the UTC time and downstream comparisons are unambiguous.
+    print(f"[5d.4] normalize programme timezones to UTC")
+    NON_UTC_TIME_RE = re.compile(rb'(start|stop)="(\d{14})\s*([+-])(\d{2})(\d{2})"')
+
+    def _to_utc_str(wall: str, sign: str, oh: int, om: int) -> str:
+        y = int(wall[0:4]); mo = int(wall[4:6]); d = int(wall[6:8])
+        h = int(wall[8:10]); mi = int(wall[10:12]); sec = int(wall[12:14])
+        delta = dt.timedelta(hours=oh, minutes=om)
+        if sign == "+":
+            t = dt.datetime(y, mo, d, h, mi, sec) - delta
+        else:
+            t = dt.datetime(y, mo, d, h, mi, sec) + delta
+        return t.strftime("%Y%m%d%H%M%S")
+
+    converted = 0
+    def _repl(m):
+        nonlocal converted
+        sign = m.group(3).decode()
+        oh = int(m.group(4))
+        om = int(m.group(5))
+        if oh == 0 and om == 0:
+            return m.group(0)
+        new_wall = _to_utc_str(m.group(2).decode(), sign, oh, om)
+        converted += 1
+        return m.group(1) + b'="' + new_wall.encode() + b' +0000"'
+
+    for i, p in enumerate(kept_programmes):
+        new_p = NON_UTC_TIME_RE.sub(_repl, p)
+        if new_p is not p:
+            kept_programmes[i] = new_p
+    print(f"      converted {converted} time attributes to UTC")
 
     # ---------- overlap dedup pass ----------
     # Different upstream sources can publish slightly-shifted programme times
