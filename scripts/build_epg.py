@@ -578,23 +578,25 @@ def is_english_or_arabic(name: str) -> bool:
     """Return True unless the channel name has an explicit non-English/
     non-Arabic language or country tag. Arabic countries (Algeria, Egypt,
     Morocco, etc.) and English-speaking countries (US/UK/Canada/Australia)
-    pass through."""
+    pass through. Normalizes Unicode modifiers (ˢᴰ → SD) first so the
+    word-boundary patterns hit consistently."""
     if not name:
         return True
-    return _EXCLUDE_LANG_RE.search(name) is None
+    normalized = _strip_unicode_glyphs(name).upper()
+    return _EXCLUDE_LANG_RE.search(normalized) is None
 
 
-_LOW_QUALITY_RE = re.compile(r'\b(SD|LQ|LOW)\b|▼SD|▼LQ|▼', re.IGNORECASE)
+_LOW_QUALITY_RE = re.compile(r'\b(SD|LQ|LOW)\b|▼', re.IGNORECASE)
 
 
 def is_acceptable_quality(name: str) -> bool:
-    """Drop channels whose quality marker is SD or LQ. The source prefix
-    (e.g. '8K:') is informational about the provider, not the actual stream
-    quality — so if 'SD' appears anywhere as a word, drop. Channels with no
-    quality tag at all are kept (assume standard delivery)."""
+    """Drop channels whose quality marker is SD or LQ. Normalizes Unicode
+    modifier letters first (ˢᴰ → SD) so the regex hits regardless of how the
+    provider encoded the quality tag."""
     if not name:
         return True
-    return _LOW_QUALITY_RE.search(name) is None
+    normalized = _strip_unicode_glyphs(name)
+    return _LOW_QUALITY_RE.search(normalized) is None
 
 
 # User-curated category whitelist in display order. Channels in any other
