@@ -339,7 +339,14 @@ _GROUP_TITLE_ATTR_RE = re.compile(r'(\sgroup-title=")([^"]*)(")')
 _TVG_CHNO_ATTR_RE = re.compile(r'\s*tvg-chno="[^"]*"')
 
 # Provider priority (user-set): 8K > NM > FM > BE > SS > UHD > SA.
-PROVIDER_PRIORITY = {"8K": 0, "NM": 1, "FM": 2, "BE": 3, "SS": 4, "UHD": 5, "SA": 6}
+# Provider source ordering (lower = better, applied as a secondary sort
+# after quality_rank). VIP is the provider's flagship subscription tier
+# (IPTV community convention — premium feeds live on VIP servers), so it
+# leads. Then user-confirmed ordering: 8K > NM > FM > BE > SS > UHD > SA.
+PROVIDER_PRIORITY = {
+    "VIP": 0,
+    "8K": 1, "NM": 2, "FM": 3, "BE": 4, "SS": 5, "UHD": 6, "SA": 7,
+}
 
 
 def extract_source_tag(name: str) -> str:
@@ -631,77 +638,79 @@ _RE_DOLBY  = re.compile(r'\bDolby\b', re.I)
 def quality_rank(name: str, source_category: str = "") -> int:
     """Composite quality score (higher = better).
 
+    Either RAW or VIP alone is treated as the provider's flagship tier
+    — RAW means uncompressed/non-transcoded source passthrough (no
+    quality loss from re-encoding), and VIP is the standard IPTV
+    community convention for the premium subscription source. Both
+    indicate top-tier quality regardless of resolution label.
+
     Scoring:
-      RAW + VIP combo  → 110 (flagship)  +  resolution bonus (+5 for 4K/8K)
-      8K               → 100
-      4K / UHD         → 90
-      RAW alone        → 85  (raw source, resolution unknown)
-      HEVC             → 75  (codec)
-      FHD              → 65
-      HD               → 55
-      VIP alone        → 50  (premium tier without RAW; ambiguous)
-      SD               → 20
-    Additional +2 if Dolby Audio.
+      RAW + VIP combo  → 110 (flagship)  + resolution bonus
+      RAW alone        → 100
+      VIP alone        → 100
+      8K               →  95
+      4K / UHD         →  85
+      HEVC             →  75
+      FHD              →  65
+      HD               →  55
+      SD               →  20
+    Additional bonuses (stacked):
+      +10 if combined with 8K
+      +5  if combined with 4K
+      +2  if Dolby Audio
+
+    VIP detection includes bracketed source tags like '[VIP]' since the
+    VIP source IS the provider's flagship tier. (Other source codes like
+    [SS], [NM], [BE] are just regular providers and don't trigger this.)
 
     When the channel name doesn't carry quality tags but its SOURCE
-    CATEGORY does (e.g. category 'UK Sport RAW VIP Dolby Audio'), the
-    category's tags are used as a fallback. This preserves the implicit
-    quality tier when the category label is the only quality signal.
+    CATEGORY does, the category is used as a fallback.
     """
-    n = re.sub(r'\s*\[[^\]]+\]\s*$', '', name)
-    n = _strip_unicode_glyphs(n)
-    # Combined haystack for RAW/VIP/Dolby/resolution detection — channel
-    # name first, source category as fallback. The flagship 'RAW VIP'
-    # signal can sit on either.
+    # Keep the bracketed tail when scanning so a '[VIP]' source tag is
+    # detected. Other bracket contents like '[SS]', '[NM]' don't match VIP.
+    n_full = _strip_unicode_glyphs(name)
     src = _strip_unicode_glyphs(source_category or "")
-    combined = n + " " + src
+    combined = n_full + " " + src
     has_raw   = bool(_RE_RAW.search(combined))
     has_vip   = bool(_RE_VIP.search(combined))
     has_dolby = bool(_RE_DOLBY.search(combined))
     has_8k    = bool(_RE_8K.search(combined))
     has_4k    = bool(_RE_4K.search(combined))
 
+    def _res_bonus() -> int:
+        if has_8k:
+            return 10
+        if has_4k:
+            return 5
+        return 0
+
     # Flagship tier: RAW + VIP combo
     if has_raw and has_vip:
-        score = 110
-        if has_8k or has_4k:
-            score += 5
+        score = 110 + _res_bonus()
         if has_dolby:
             score += 2
         return score
 
-    # Resolution claims
+    # RAW alone or VIP alone — either is top tier
+    if has_raw or has_vip:
+        score = 100 + _res_bonus()
+        if has_dolby:
+            score += 2
+        return score
+
+    # Resolution claims (no RAW or VIP signal)
     if has_8k:
-        score = 100
-        if has_raw:
-            score += 5
-        if has_dolby:
-            score += 2
-        return score
+        return 95 + (2 if has_dolby else 0)
     if has_4k:
-        score = 90
-        if has_raw:
-            score += 5
-        if has_dolby:
-            score += 2
-        return score
+        return 85 + (2 if has_dolby else 0)
 
-    # RAW alone (no resolution claim, but raw bitrate)
-    if has_raw:
-        score = 85
-        if has_dolby:
-            score += 2
-        return score
-
-    # Codec/quality fallbacks
+    # Codec/resolution fallbacks
     if _RE_HEVC.search(combined):
         return 75
     if _RE_FHD.search(combined):
         return 65
     if _RE_HD.search(combined):
         return 55
-    if has_vip:
-        return 50  # VIP without RAW or resolution — premium label only
     if _RE_SD.search(combined):
         return 20
     return 0
