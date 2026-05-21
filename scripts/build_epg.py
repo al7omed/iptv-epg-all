@@ -424,12 +424,14 @@ def trim_category_redundancy(cat_name: str, uniform_source: str | None = None,
         name = re.sub(r'\b8K\b', '', name)
 
     # Aggressive trailing-token trim. Run multiple passes for chained tokens.
+    # Ordered specific-first so 'HD/RAW 60fps' is caught before 'HD/RAW' alone.
     quality_blobs = [
         r'HD/RAW\s+60fps', r'HD/RAW',
         r'RAW\s+VIP\s+Dolby\s+Audio', r'Dolby\s+Audio',
         r'RAW\s+60fps', r'60fps', r'VIP',
+        r'UHD\s+3840p', r'3840p', r'2160p', r'1080p', r'720p',
         r'HEVC', r'RAW', r'4K', r'8K', r'UHD', r'FHD', r'HD',
-        r'Original',
+        r'Original', r'Tk', r'Gold',
     ]
     for _ in range(3):
         for blob in quality_blobs:
@@ -437,12 +439,24 @@ def trim_category_redundancy(cat_name: str, uniform_source: str | None = None,
 
     # Strip trailing provider codes regardless of detected uniformity (safer
     # to over-strip in category name; channel names still preserve [SRC]).
-    name = re.sub(r'\s+(?:8K|FM|NM|BE|SS|UHD|SA|F)\s*$', '', name, flags=re.IGNORECASE)
+    name = re.sub(r'\s+(?:8K|FM|NM|BE|SS|UHD|SA|F|M)\s*$', '', name, flags=re.IGNORECASE)
 
-    # Strip trailing parenthesized noise.
+    # Strip trailing parenthesized noise + bracket noise.
     name = re.sub(r'\s*\([^)]*\)\s*$', '', name).strip()
-    name = re.sub(r'^[\s:;|,.\-_~]+|[\s:;|,.\-_~]+$', '', name).strip()
+    name = re.sub(r'\s*\[[^\]]*\]\s*$', '', name).strip()
+    # Strip dangling '&' left over after operand removal (e.g. 'StarzPlay
+    # Sport BE &' after stripping the RAW operand). Do NOT strip '+' here
+    # because brand names like 'Discovery+', 'Paramount+', 'ESPN+' end in +.
+    for _ in range(3):
+        name = re.sub(r'\s+&\s*$', '', name).strip()
+        name = re.sub(r'\s+(?:8K|FM|NM|BE|SS|UHD|SA|F|M|Tk)\s*$', '', name, flags=re.IGNORECASE)
+    # Generic leading/trailing punctuation cleanup. '+' deliberately omitted.
+    name = re.sub(r'^[\s:;|,.\-_~&]+|[\s:;|,.\-_~&]+$', '', name).strip()
+    # DirecTV brand fix (split into two words by Unicode strip).
     name = re.sub(r'\bDirec\s+Tv\b', 'DirecTV', name, flags=re.IGNORECASE)
+    # HBO MAX → HBO Max (max in this context is the streaming brand, not the
+    # generic 'MAX' acronym). Same for 'TV+' brand-style fix.
+    name = re.sub(r'\bHBO\s+MAX\b', 'HBO Max', name)
     name = re.sub(r'\s+', ' ', name).strip()
     return f"{region} — {name}".strip(' —').strip()
 
@@ -514,22 +528,29 @@ BRAND_MAP = {
     "BEIN": "beIN", "BBC": "BBC", "ESPN": "ESPN", "ESPN+": "ESPN+",
     "ABC": "ABC", "CBS": "CBS", "NBC": "NBC", "FOX": "FOX", "CW": "CW",
     "TNT": "TNT", "ITV": "ITV", "NBA": "NBA", "NFL": "NFL", "MLB": "MLB",
+    "NHL": "NHL", "MILB": "MiLB", "WNBA": "WNBA",
+    "NCAAF": "NCAAF", "NCAAB": "NCAAB", "BTN": "BTN", "NFHS": "NFHS",
+    "MLS": "MLS", "EPL": "EPL", "SPFL": "SPFL", "PDC": "PDC",
     "UFC": "UFC", "MBC": "MBC", "OSN": "OSN", "DAZN": "DAZN", "TUBI": "Tubi",
     "UEFA": "UEFA", "AFC": "AFC", "VIP": "VIP", "PPV": "PPV",
+    "HBO": "HBO", "MGM": "MGM", "TLC": "TLC", "AMC": "AMC", "FX": "FX",
+    "TV": "TV", "TV+": "TV+",
     "HEVC": "HEVC", "RAW": "RAW", "HD": "HD", "UHD": "UHD", "FHD": "FHD",
     "SD": "SD", "4K": "4K", "8K": "8K", "60FPS": "60fps",
     "USA": "USA", "UK": "UK", "AR": "Arabic", "EN": "English", "FR": "French",
     "DE": "German", "ES": "Spanish", "IT": "Italian", "TR": "Turkish",
-    "ART": "ART", "GOBX": "GOBX", "F2": "F2",
+    "ART": "ART", "GOBX": "GOBX", "F2": "F2", "F1": "F1",
     "PARAMOUNT+": "Paramount+", "PARAMOUNT": "Paramount",
     "DISCOVERY+": "Discovery+", "DISCOVERY": "Discovery",
     "NETFLIX": "Netflix", "PEACOCK": "Peacock", "PRIME": "Prime",
     "AMAZON": "Amazon", "SHAHID": "Shahid", "ROTANA": "Rotana",
+    "STARZPLAY": "StarzPlay", "STARZ": "Starz",
     "MAX": "MAX", "PASS": "Pass", "ACTORS": "Actors", "ALWAN": "Alwan",
     "ALGERIA": "Algeria", "BAHRAIN": "Bahrain", "JEEM": "Jeem",
     "BARAEM": "Baraem", "ANGHAMI": "Anghami", "THMANYAH": "Thmanyah",
+    "MYHD": "MyHD", "TOD": "TOD", "VIDIO": "Vidio", "TODD": "Todd",
     "FM": "FM", "NM": "NM", "BE": "BE", "SS": "SS", "F": "F", "OR": "OR",
-    "RK": "RK", "SA": "SA", "PLATINUM": "Platinum",
+    "RK": "RK", "SA": "SA", "TK": "TK", "PLATINUM": "Platinum",
     "SPORTS": "Sports", "SPORT": "Sport", "SOCCER": "Soccer",
     "EVENT": "Event", "FOOTBALL": "Football", "LIVE": "Live",
     "NEWS": "News", "GENERAL": "General", "ENTERTAINMENT": "Entertainment",
@@ -543,7 +564,29 @@ BRAND_MAP = {
     "3840P": "3840p", "ASIA": "Asia", "CITY": "City",
     "WIPEOUT": "Wipeout", "AL-FAJER": "Al-Fajer", "AL-KASS": "Al-Kass",
     "AL-MAJD": "Al-Majd", "ALRABIAA": "Al Rabiaa",
-    "TENNIS": "Tennis", "GOLF": "Golf",
+    "TENNIS": "Tennis", "GOLF": "Golf", "FA": "FA", "TT": "TT",
+    "F1": "F1", "MXGP": "MXGP", "EU": "EU",
+    "HULU": "Hulu", "ROKU": "Roku", "VIA": "Via", "VIAPLAY": "Viaplay",
+    "RACES": "Races", "BOARD": "Board", "TEAM": "Team", "STAN": "Stan",
+    "MATCHROOM": "Matchroom", "TRILLER": "Triller", "FANATIZ": "Fanatiz",
+    "FLORUGBY": "FloRugby", "BRAZIL": "Brazil", "ARGENTINA": "Argentina",
+    "MIAMI": "Miami", "TELEMUNDO": "Telemundo", "FLO": "FLO",
+    "PREMIER": "Premier", "POOL": "Pool", "RUGBY": "Rugby", "MUSIC": "Music",
+    "KIDS": "Kids", "FAMILY": "Family", "MOVIES": "Movies", "REALITY": "Reality",
+    "ACTION": "Action", "COMEDY": "Comedy", "CRIME": "Crime", "DRAMA": "Drama",
+    "CARTOON": "Cartoon", "CHRISTIAN": "Christian", "QURAN": "Quran",
+    "ISLAMIC": "Islamic", "SAUDI": "Saudi", "EMIRATES": "Emirates",
+    "KUWAIT": "Kuwait", "QATAR": "Qatar", "OMAN": "Oman", "JORDAN": "Jordan",
+    "IRAQ": "Iraq", "EGYPT": "Egypt", "MOROCCO": "Morocco", "LEBANON": "Lebanon",
+    "SYRIA": "Syria", "PALESTINE": "Palestine", "YEMEN": "Yemen",
+    "LIBYA": "Libya", "SUDAN": "Sudan", "TUNISIA": "Tunisia",
+    "WATER": "Water", "POST": "Post", "ON": "On", "AIR": "Air", "AFRICA": "Africa",
+    "GLOBAL": "Global", "HOLLYWOOD": "Hollywood", "ADVENTURE": "Adventure",
+    "CLASSIC": "Classic", "SHOWS": "Shows", "ONEPLAY": "OnePlay",
+    "ROYA": "Roya", "GROUP": "Group", "MAJESTIC": "Majestic",
+    "BOX": "Box", "OFFICE": "Office", "CHEF": "Chef", "OMAR": "Omar",
+    "WATCH": "Watch", "WEYYAK": "Weyyak", "SHOOF": "Shoof",
+    "IT": "It", "ITUNES": "iTunes",
 }
 
 
@@ -860,11 +903,28 @@ def is_acceptable_quality(name: str) -> bool:
     return _LOW_QUALITY_RE.search(normalized) is None
 
 
-# User-curated category whitelist in display order. Channels in any other
-# group-title are dropped from the patched M3U. Comments are the truncated
-# names visible in UHF's category grid.
+# User-curated category whitelist in display order.
+#
+# Order strategy (after user input):
+#   1. beIN Sports / MAX / XTRA               (always on top)
+#   2. Sports — Major Events PPV              (NFL/MLB/NHL/F1/UEFA/UFC/etc.)
+#   3. AR sports + premium                    (UEFA, Thmanyah, DAZN MENA, ...)
+#   4. AR entertainment + lifestyle           (MBC, OSN, Shahid, Rotana, ...)
+#   5. 8K — Sport On Air                      (catch-all 8K sports)
+#   6. UK sports                              (Sport, TNT, Live Football, ...)
+#   7. UK premium movies & series             (Sky Cinema, BBC iPlayer, ...)
+#   8. UK general / news / streaming services (General, News, ITV X, ...)
+#   9. US sports                              (Sport, ESPN+, NBA, UFC, MLS, ...)
+#   10. US broadcast networks                 (ABC, CBS, NBC, FOX, CW, ...)
+#   11. US streaming networks                 (Prime, HBO Max, Hulu, ...)
+#   12. US 24/7 catch-up archives             (Prime/Disney+/PPV/Movies/etc.)
+#
+# Source categories with the same root name (e.g. 'UK SPORT HEVC' + 'UK SPORT
+# RAW VIP DOLBY AUDIO') merge into one display via auto-merge. Major-PPV
+# sources are forced into a single 'Sports — Major Events PPV' bucket via
+# CATEGORY_REMAP above.
 ALLOWED_CATEGORIES_ORDER = [
-    # Row 1: beIN Sports MAX + 8K variants + F + SS + ◉
+    # ───────────── 1. beIN ─────────────
     "AR| BEIN SPORTS MAX ⁸ᴷ ⚽",
     "AR| BEIN SPORTS MAX F ⚽",
     "AR| BEIN SPORTS MAX ᴺᴹ ⚽",
@@ -877,126 +937,211 @@ ALLOWED_CATEGORIES_ORDER = [
     "AR| BEIN SPORTS F & AFC ⚽",
     "AR| BEIN SPORTS ˢˢ ⚽",
     "AR| BEIN SPORTS ◉ ⚽",
-    # Row 2: more beIN variants + 8K Sport + UEFA + Alwan + Arabic Sport + Thmanyah + Shahid PPV + Sports PPV
     "AR| BEIN SPORTS ᵁᴴᴰ ⚽",
     "AR| BEIN SPORTS ᴮᴱ ⚽",
     "AR| BEIN SPORTS ᴺᴹ ⚽",
     "AR| BEIN SPORTS ᴺᴹ & ASIA ⚽",
     "AR| BEIN SPORTS SA ⚽",
-    "8K| SPORT ON AIR ⁸ᴷ",
+
+    # ───────────── 2. Sports — Major Events PPV (consolidated bucket) ─────────────
+    # All these source cats route via CATEGORY_REMAP → 'Sports — Major Events PPV'
+    "US| NFL PPV",
+    "US| NFL REPLAY",
+    "US| MLB PPV",
+    "US| MLB TEAM PPV",
+    "US| MILB PPV",
+    "US| NHL PPV",
+    "US| NHL TEAM PPV",
+    "US| NHL REPLAY",
+    "US| VIAPLAY NHL PPV",
+    "US| WNBA PPV",
+    "US| NBA TEAM PPV",
+    "US| NCAAF PPV",
+    "US| NCAAB PPV",
+    "US| NFHS PPV",
+    "US| B/R MAX SPORTS PPV",
+    "US| BTN+ PPV",
+    "US| THE MASTERS PPV",
+    "US| APPLE TV F1 PPV",
+    "US| MATCHROOM PPV",
+    "US| GOLF PPV",
+    "US| TENNIS PPV",
+    "US| RUGBY PPV",
+    "US| SUPERCROSS PPV",
+    "US| DIRTVISION PPV",
+    "US| FLO COLLEGE PPV",
+    "US| FLO RACING PPV",
+    "US| FLO SPORTS PPV",
+    "US| FIFA+ PPV",
+    "US| UEFA PPV",
+    "US| SOCCER PPV",
+    "US| BALLY SPORTS PPV",
+    "UK| FORMULA 1 PPV",
+    "UK| APPLE TV F1 PPV",
+    "UK| UEFA PPV",
+    "UK| LA LIGA TEAM PPV",
+    "UK| LIGUE 1 PPV",
+    "UK| SERIE A TEAM PPV",
+    "UK| CHAMPIONSHIP PPV",
+    "UK| LEAGUE ONE PPV",
+    "UK| LEAGUE TWO PPV",
+    "UK| SCOTTISH CUP PPV",
+    "UK| SPFL/SCOTTISH PPV",
+    "UK| SUPER LEAGUE PLUS PPV",
+    "UK| HUB PREMIER PPV",
+    "UK| FA PLAYER PPV",
+    "UK| EU GAME PASS PPV",
+    "UK| NATIONAL LEAGUE PPV",
+    "UK| VIDIO EPL PPV",
+    "UK| MXGP PPV",
+    "UK| RALLY PPV",
+    "UK| TT RACES PPV",
+    "UK| ULTIMATE POOL PPV",
+    "UK| VOLLEY BALL WORLD PPV",
+    "UK| PDC BOARD PPV",
+    "UK| MONO MAX PPV",
+    "UK| TRILLER TV PPV",
+    "UK| FLORUGBY PPV",
+    "UK| UFC PPV",
+    "UK| NETFLIX PPV",
+    "UK| ESPN+ PPV",
+    "UK| MAX PPV",
+    "UK| HBO MAX PPV",
+    "UK| PPV EVENT",
+    "UK| PPV EVENT ⁽ᴮᴷ⁾",
+
+    # ───────────── 3. AR sports (non-beIN) ─────────────
     "AR| UEFA CHAMPIONS LEAGUE ⚽",
+    "AR| THMANYAH ⁸ᴷ ⚽",
+    "AR| SPORTS PPV ᴺᴹ ⚽",
+    "AR| DAZN MENA PPV ⁸ᴷ",
     "AR| ALWAN SPORT ᴿᴬᵂ ⚽",
     "AR| ARABIC SPORT 4K ▶ رياضه ⚽️",
-    "AR| THMANYAH ⁸ᴷ ⚽",
     "AR| SHAHID PPV ⚽",
-    "AR| SPORTS PPV ᴺᴹ ⚽",
-    # Row 3: DAZN MENA, MBC, OSN, GOBX, Rotana, Shahid, Cooking, Actors, Bahrain, Discovery, Documentary, US Sport
-    "AR| DAZN MENA PPV ⁸ᴷ",
+    "AR| POST SPORT ᴿᴬᵂ ⚽",
+    "AR| WATER SPORT ᴿᴬᵂ ⚽️",
+    "AR| STARZPLAY SPORT ⁸ᴷ & ⁴ᴷ ⚽",
+    "AR| STARZPLAY SPORT ⁸ᴷ & ᵀᴷ ⚽",
+    "AR| STARZPLAY SPORT ᴹ & ᴿᴬᵂ ⚽",
+    "AR| STARZPLAY SPORT ᴮᴱ & ᴿᴬᵂ ⚽",
+    "AR| STARZPLAY SPORT F & ᴿᴬᵂ ⚽",
+
+    # ───────────── 4. AR entertainment + lifestyle ─────────────
     "AR| MBC 4K",
     "AR| OSN PLATINUM ᴿᴬᵂ",
     "AR| GOBX PLATINUM 4K",
-    "AR| ROTANA & ART 4K ▶ روتانا",
     "AR| SHAHID VIP 4K ▶ شاهد الاصلية",
-    "AR| WORLD OF COOKING 4K ▶ عالم الطبخ",
-    "AR| ️ACTORS 4K ▶ الفنانون",  # note: contains invisible variation selector
-    "AR| BAHRAIN 4K ▶ البحرين",
+    "AR| ROTANA & ART 4K ▶ روتانا",
     "AR| DISCOVERY+ ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ ديسكفري",
     "AR| DOCUMENTARY 4K ▶ وثائقي",
+    "AR| WORLD OF COOKING 4K ▶ عالم الطبخ",
+    "AR| ️ACTORS 4K ▶ الفنانون",
+    "AR| BAHRAIN 4K ▶ البحرين",
+    "AR| MBC 24/7 ᴿᴬᵂ",
+    "AR| MBC SHAHID ᴿᴬᵂ",
+    "AR| MYHD ᶠ ᴿᴬᵂ",
+    "AR| AL FAJER ᴿᴬᵂ ▶ الفجر ⚽️",
+    "AR| AL FAJER ᴮᴱ ▶ الفجر ⚽️",
+
+    # ───────────── 5. 8K Sport On Air ─────────────
+    "8K| SPORT ON AIR ⁸ᴷ",
+
+    # ───────────── 6. UK sports ─────────────
+    "UK| SPORT ʰᵉᵛᶜ",
+    "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
+    "UK| SPORT ᴿᴬᵂ",
+    "UK| SPORT ᴴᴰ ⱽᴵᴾ",
+    "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
+    "UK| TNT SPORT ᴴᴰ ⱽᴵᴾ",
+    "UK| TNT SPORT EVENT",
+    "UK| LIVE FOOTBALL PPV",
+    "UK| SOCCER REPLAY ᴿᴬᵂ",
+    "UK| SKY SPORT+ PPV ᴿᴬᵂ",
+    "UK| EPL PREMIER LEAGUE PPV ⱽᴵᴾ",
+    "UK| EPL PREMIER LEAGUE PPV",
+    "UK| DAZN PPV VIP",
+    "UK| DAZN PPV",
+    "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ",
+    "UK| NOW TV SPORT ᵁᴴᴰ ³⁸⁴⁰ᴾ",
+
+    # ───────────── 7. UK premium movies & series ─────────────
+    "UK| SKY CINEMA ʰᵉᵛᶜ",
+    "UK| SKY CINEMA ᴴᴰ/ᴿᴬᵂ",
+    "UK| BBC IPLAYER ᴿᴬᵂ",
+    "UK| BBC IPLAYER SERIES ᴿᴬᵂ",
+    "UK| APPLE TV+ SERIES ᴿᴬᵂ",
+    "UK| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "UK| PRIME VIDEO SERIES ᴿᴬᵂ",
+    "UK| NETFLIX ORIGINAL ᴿᴬᵂ",
+    "UK| SKY MIX SERIES ᴿᴬᵂ",
+    "UK| SKY MIX DOCS ᴿᴬᵂ",
+    "UK| SKY STORE ᴿᴬᵂ",
+    "UK| REALITY SHOW TV ᴿᴬᵂ",
+
+    # ───────────── 8. UK general + news + streaming services ─────────────
+    "UK| GENERAL ʰᵉᵛᶜ",
+    "UK| GENERAL ᴴᴰ/ᴿᴬᵂ",
+    "UK| NEWS ʰᵉᵛᶜ",
+    "UK| NEWS ᴴᴰ/ᴿᴬᵂ",
+    "UK| DOCUMENTARY ʰᵉᵛᶜ",
+    "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",
+    "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
+    "UK| ITV X VIP",
+    "UK| NOW TV ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ",
+    "UK| 24/7 ᴴᴰ/ᴿᴬᵂ",
+    "UK| AMAZON PRIME PPV",
+    "UK| MUSIC ᴴᴰ/ᴿᴬᵂ",
+    "UK| KIDS ᴴᴰ/ᴿᴬᵂ",
+
+    # ───────────── 9. US sports ─────────────
     "US| SPORT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    # Row 4: US PPV/streaming
     "US| ESPN+ PPV ⱽᴵᴾ",
     "US| NBA PPV",
     "US| NBA PASS PPV ⁸ᴷ",
     "US| UFC PPV",
+    "US| MLS PPV VIP",
+    "US| MLS PPV",
+    "US| MLS PPV ⁽ᴮᴷ⁾",
+    "US| MAX PPV ⱽᴵᴾ",
+    "US| MAX PPV",
+    "US| PEACOCK PPV ⱽᴵᴾ",
+    "US| PEACOCK PPV ⁽ᴮᴷ⁾",
+    "US| FLO ⱽᴵᴾ PPV",
     "US| PPV EVENT ⁽ᴮᴷ⁾",
-    "US| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| PARAMOUNT+ ORIGINAL ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| NETFLIX PPV",
     "US| DAZN PPV",
+    "US| NETFLIX PPV",
+
+    # ───────────── 10. US broadcast networks ─────────────
     "US| ABC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| CBS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| CW ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    # Row 5: US broadcast + UK General/Sport
-    "US| FOX ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| NBC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| FOX ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| CW ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| NEWS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| SPECTRUM NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| DIREC TV ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| TELEMUNDO NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| MIAMI ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| MOVIES ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| KIDS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+
+    # ───────────── 11. US streaming networks ─────────────
+    "US| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| PARAMOUNT+ ORIGINAL ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| PEACOCK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| PEACOCK NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| TUBI ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "UK| GENERAL ʰᵉᵛᶜ",
-    "UK| SPORT ʰᵉᵛᶜ",
-    "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
-    # Row 6: UK Live Football + TNT + News + ITV + BBC + Prime + Amazon + Documentary + Discovery + Soccer + Sky
-    "UK| LIVE FOOTBALL PPV",
-    "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
-    "UK| TNT SPORT EVENT",
-    "UK| NEWS ʰᵉᵛᶜ",
-    "UK| ITV X VIP",
-    "UK| BBC IPLAYER ᴿᴬᵂ",
-    "UK| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "UK| AMAZON PRIME PPV",
-    "UK| DOCUMENTARY ʰᵉᵛᶜ",
-    "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
-    "UK| SOCCER REPLAY ᴿᴬᵂ",
-    "UK| SKY CINEMA ʰᵉᵛᶜ",
-    # === Additional RAW/VIP categories pulled from source ===
-    # UK parallel quality variants (alongside the HEVC ones above). Auto-merge
-    # collapses these into the existing display categories — channels from
-    # multiple sources end up under one UK — Sport / UK — News / UK — General
-    # / UK — Documentary / UK — Sky Cinema heading.
-    "UK| GENERAL ᴴᴰ/ᴿᴬᵂ",
-    "UK| NEWS ᴴᴰ/ᴿᴬᵂ",
-    "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",
-    "UK| SKY CINEMA ᴴᴰ/ᴿᴬᵂ",
-    "UK| SPORT ᴿᴬᵂ",
-    "UK| SPORT ᴴᴰ ⱽᴵᴾ",
-    "UK| TNT SPORT ᴴᴰ ⱽᴵᴾ",
-    # UK premium PPV + 24/7 archives + streaming series (new display categories)
-    "UK| EPL PREMIER LEAGUE PPV ⱽᴵᴾ",
-    "UK| EPL PREMIER LEAGUE PPV",
-    "UK| DAZN PPV VIP",
-    "UK| DAZN PPV",
-    "UK| 24/7 ᴴᴰ/ᴿᴬᵂ",
-    "UK| BBC IPLAYER SERIES ᴿᴬᵂ",
-    "UK| APPLE TV+ SERIES ᴿᴬᵂ",
-    "UK| PRIME VIDEO SERIES ᴿᴬᵂ",
-    "UK| NETFLIX ORIGINAL ᴿᴬᵂ",
-    "UK| REALITY SHOW TV ᴿᴬᵂ",
-    "UK| SKY MIX DOCS ᴿᴬᵂ",
-    "UK| SKY MIX SERIES ᴿᴬᵂ",
-    "UK| SKY STORE ᴿᴬᵂ",
-    "UK| SKY SPORT+ PPV ᴿᴬᵂ",
-    "UK| NOW TV ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ",
-    "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ",
-    "UK| NOW TV SPORT ᵁᴴᴰ ³⁸⁴⁰ᴾ",
-    "UK| KIDS ᴴᴰ/ᴿᴬᵂ",
-    "UK| MUSIC ᴴᴰ/ᴿᴬᵂ",
-    # US PPV variants (alongside existing PPV cats above)
-    "US| MAX PPV ⱽᴵᴾ",
-    "US| MAX PPV",
-    "US| PEACOCK PPV ⱽᴵᴾ",
-    "US| PEACOCK PPV ⁽ᴮᴷ⁾",
-    "US| MLS PPV VIP",
-    "US| MLS PPV",
-    "US| MLS PPV ⁽ᴮᴷ⁾",
-    "US| FLO ⱽᴵᴾ PPV",
-    # US premium streaming networks (new display categories)
     "US| HBO MAX NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| ️HULU NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| DISNEY+ NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| NETFLIX ON AIR ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| PEACOCK NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| CINEMANIA HOLLYWOOD ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| CINEMA TV SHOWS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| ROKU ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| TELEMUNDO NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| MIAMI ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| KIDS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| MOVIES ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    # US 24/7 catch-up archives (new display categories per genre)
+
+    # ───────────── 12. US 24/7 catch-up archives ─────────────
     "US| 24/7 ONEPLAY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| 24/7 PRIME VIDEO ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| 24/7 DISNEY+ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
@@ -1009,20 +1154,88 @@ ALLOWED_CATEGORIES_ORDER = [
     "US| 24/7 CRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| 24/7 CARTOON ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| 24/7 KIDS/FAMILY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    # AR additional RAW categories (MBC archives, niche sports)
-    "AR| MBC 24/7 ᴿᴬᵂ",
-    "AR| MBC SHAHID ᴿᴬᵂ",
-    "AR| MYHD ᶠ ᴿᴬᵂ",
-    "AR| POST SPORT ᴿᴬᵂ ⚽",
-    "AR| WATER SPORT ᴿᴬᵂ ⚽️",
-    "AR| AL FAJER ᴿᴬᵂ ▶ الفجر ⚽️",
-    "AR| AL FAJER ᴮᴱ ▶ الفجر ⚽️",
-    "AR| STARZPLAY SPORT ⁸ᴷ & ⁴ᴷ ⚽",
-    "AR| STARZPLAY SPORT ⁸ᴷ & ᵀᴷ ⚽",
-    "AR| STARZPLAY SPORT ᴹ & ᴿᴬᵂ ⚽",
-    "AR| STARZPLAY SPORT ᴮᴱ & ᴿᴬᵂ ⚽",
-    "AR| STARZPLAY SPORT F & ᴿᴬᵂ ⚽",
 ]
+
+
+# ----------------- category remap & major-PPV consolidation -----------------
+# Some source categories should NOT use the auto-trimmed display name and
+# instead be forced into a specific bucket. Two reasons:
+#   1. Merging similar UI groups (e.g. US DirecTV + DirecTV City → DirecTV).
+#   2. Consolidating dozens of major-PPV sports sources into ONE 'Major Events
+#      PPV' bucket per user request — keeps the playlist easier to browse.
+#
+# Key: exact source-category string. Value: display name override.
+CATEGORY_REMAP = {
+    # DirecTV merge
+    "US| DIREC TV ᴿᴬᵂ ⁶⁰ᶠᵖˢ":           "US — DirecTV",
+    "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ":      "US — DirecTV",
+    # Major Events PPV consolidation — US side
+    "US| NFL PPV":                       "Sports — Major Events PPV",
+    "US| NFL REPLAY":                    "Sports — Major Events PPV",
+    "US| NFHS PPV":                      "Sports — Major Events PPV",
+    "US| NHL PPV":                       "Sports — Major Events PPV",
+    "US| NHL TEAM PPV":                  "Sports — Major Events PPV",
+    "US| NHL REPLAY":                    "Sports — Major Events PPV",
+    "US| VIAPLAY NHL PPV":               "Sports — Major Events PPV",
+    "US| MILB PPV":                      "Sports — Major Events PPV",
+    "US| MLB PPV":                       "Sports — Major Events PPV",
+    "US| MLB TEAM PPV":                  "Sports — Major Events PPV",
+    "US| WNBA PPV":                      "Sports — Major Events PPV",
+    "US| NBA TEAM PPV":                  "Sports — Major Events PPV",
+    "US| NCAAF PPV":                     "Sports — Major Events PPV",
+    "US| NCAAB PPV":                     "Sports — Major Events PPV",
+    "US| B/R MAX SPORTS PPV":            "Sports — Major Events PPV",
+    "US| BTN+ PPV":                      "Sports — Major Events PPV",
+    "US| THE MASTERS PPV":               "Sports — Major Events PPV",
+    "US| APPLE TV F1 PPV":               "Sports — Major Events PPV",
+    "US| MATCHROOM PPV":                 "Sports — Major Events PPV",
+    "US| GOLF PPV":                      "Sports — Major Events PPV",
+    "US| TENNIS PPV":                    "Sports — Major Events PPV",
+    "US| RUGBY PPV":                     "Sports — Major Events PPV",
+    "US| SUPERCROSS PPV":                "Sports — Major Events PPV",
+    "US| DIRTVISION PPV":                "Sports — Major Events PPV",
+    "US| FLO COLLEGE PPV":               "Sports — Major Events PPV",
+    "US| FLO RACING PPV":                "Sports — Major Events PPV",
+    "US| FLO SPORTS PPV":                "Sports — Major Events PPV",
+    "US| FIFA+ PPV":                     "Sports — Major Events PPV",
+    "US| UEFA PPV":                      "Sports — Major Events PPV",
+    "US| SOCCER PPV":                    "Sports — Major Events PPV",
+    "US| BALLY SPORTS PPV":              "Sports — Major Events PPV",
+    # Major Events PPV consolidation — UK side
+    "UK| FORMULA 1 PPV":                 "Sports — Major Events PPV",
+    "UK| APPLE TV F1 PPV":               "Sports — Major Events PPV",
+    "UK| UEFA PPV":                      "Sports — Major Events PPV",
+    "UK| LA LIGA TEAM PPV":              "Sports — Major Events PPV",
+    "UK| LIGUE 1 PPV":                   "Sports — Major Events PPV",
+    "UK| SERIE A TEAM PPV":              "Sports — Major Events PPV",
+    "UK| CHAMPIONSHIP PPV":              "Sports — Major Events PPV",
+    "UK| LEAGUE ONE PPV":                "Sports — Major Events PPV",
+    "UK| LEAGUE TWO PPV":                "Sports — Major Events PPV",
+    "UK| SCOTTISH CUP PPV":              "Sports — Major Events PPV",
+    "UK| SPFL/SCOTTISH PPV":             "Sports — Major Events PPV",
+    "UK| SUPER LEAGUE PLUS PPV":         "Sports — Major Events PPV",
+    "UK| HUB PREMIER PPV":               "Sports — Major Events PPV",
+    "UK| FA PLAYER PPV":                 "Sports — Major Events PPV",
+    "UK| EU GAME PASS PPV":              "Sports — Major Events PPV",
+    "UK| NATIONAL LEAGUE PPV":           "Sports — Major Events PPV",
+    "UK| VIDIO EPL PPV":                 "Sports — Major Events PPV",
+    "UK| MXGP PPV":                      "Sports — Major Events PPV",
+    "UK| RALLY PPV":                     "Sports — Major Events PPV",
+    "UK| TT RACES PPV":                  "Sports — Major Events PPV",
+    "UK| ULTIMATE POOL PPV":             "Sports — Major Events PPV",
+    "UK| VOLLEY BALL WORLD PPV":         "Sports — Major Events PPV",
+    "UK| PDC BOARD PPV":                 "Sports — Major Events PPV",
+    "UK| MONO MAX PPV":                  "Sports — Major Events PPV",
+    "UK| TRILLER TV PPV":                "Sports — Major Events PPV",
+    "UK| FLORUGBY PPV":                  "Sports — Major Events PPV",
+    "UK| UFC PPV":                       "Sports — Major Events PPV",
+    "UK| NETFLIX PPV":                   "Sports — Major Events PPV",
+    "UK| ESPN+ PPV":                     "Sports — Major Events PPV",
+    "UK| MAX PPV":                       "Sports — Major Events PPV",
+    "UK| HBO MAX PPV":                   "Sports — Major Events PPV",
+    "UK| PPV EVENT":                     "Sports — Major Events PPV",
+    "UK| PPV EVENT ⁽ᴮᴷ⁾":                "Sports — Major Events PPV",
+}
 
 
 # ----------------- favorites M3U -----------------
@@ -1379,7 +1592,11 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
         entries = by_cat.get(cat, [])
         if not entries:
             continue
-        clean_cat = clean_category_name(cat)
+        # Apply explicit category remap (DirecTV merge, Major-PPV consolidation).
+        # If a source category has a remap entry, that's the display name —
+        # auto-trim is bypassed for it.
+        remapped_display = CATEGORY_REMAP.get(cat)
+        clean_cat = remapped_display if remapped_display else clean_category_name(cat)
         is_bein_src = ("beIN" in clean_cat or "BEIN" in cat.upper())
         # Skip any source category whose name carries AFC — user removed AFC
         # entirely from the playlist.
@@ -1431,12 +1648,16 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
     final_buckets: "dict[str, list]" = defaultdict(list)
     final_order: list[str] = []  # preserves first-occurrence order
     seen_final: set = set()
+    # Set of CATEGORY_REMAP target display names — these came from the remap,
+    # so we skip the trim step for them (they're already the final name).
+    _remap_target_displays = set(CATEGORY_REMAP.values())
     for new_cat in new_cat_order:
         entries = new_buckets[new_cat]
         if not entries:
             continue
         is_bein_cat = "beIN" in new_cat
-        if is_bein_cat:
+        is_remap_target = new_cat in _remap_target_displays
+        if is_bein_cat or is_remap_target:
             emitted_cat = new_cat
             display_entries = entries
         else:
