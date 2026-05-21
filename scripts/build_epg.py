@@ -369,6 +369,42 @@ def provider_priority_rank(name: str) -> int:
     return PROVIDER_PRIORITY.get(src, 99)
 
 
+def trim_category_redundancy(cat_name: str, uniform_source: str | None,
+                              uniform_quality: str | None) -> str:
+    """When all channels in a category share the same source or quality, the
+    category name often repeats that tag (e.g. 'US — NBC HD/RAW 60fps' where
+    every channel is HD/RAW 60fps). Strip those trailing tokens from the
+    category name for a cleaner display."""
+    if " — " not in cat_name:
+        return cat_name
+    region, name = cat_name.split(" — ", 1)
+    # Strip common trailing quality blobs.
+    quality_blobs = [
+        r'HD/RAW\s+60fps',
+        r'HD/RAW',
+        r'RAW\s+60fps',
+        r'RAW\s+VIP\s+Dolby\s+Audio',
+        r'60fps',
+        r'HEVC',
+        r'RAW',
+        r'4K',
+        r'8K',
+        r'HD',
+        r'UHD',
+        r'Original\s+RAW\s+60fps',
+    ]
+    for blob in quality_blobs:
+        name = re.sub(r'\s+' + blob + r'\s*$', '', name, flags=re.IGNORECASE)
+    # Strip uniform source if present at end and matches a known provider code.
+    if uniform_source and uniform_source.upper() in PROVIDER_PRIORITY:
+        name = re.sub(r'\s+' + re.escape(uniform_source) + r'\s*$', '', name, flags=re.IGNORECASE)
+    # Strip stale punctuation.
+    name = re.sub(r'^[\s:;|,.\-_~]+|[\s:;|,.\-_~]+$', '', name).strip()
+    # Fix DirecTV casing (special two-word brand).
+    name = re.sub(r'\bDirec\s+Tv\b', 'DirecTV', name, flags=re.IGNORECASE)
+    return f"{region} — {name}".strip(' —')
+
+
 def strip_uniform(name: str, uniform_source: str | None,
                   uniform_lang: str | None, uniform_quality: str | None) -> str:
     """Strip attributes that are uniform across the channel's category from the
@@ -560,12 +596,13 @@ def clean_category_name(raw: str) -> str:
 
 # Quality tier ordering for sorting within a category (higher = better).
 _QUALITY_TIERS = [
-    (re.compile(r'\b8K\b', re.I), 100),
-    (re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I), 90),
-    (re.compile(r'\bFHD\b', re.I), 80),
-    (re.compile(r'\bHD\b', re.I), 70),
-    (re.compile(r'\bHEVC\b', re.I), 60),
-    (re.compile(r'\bRAW\b', re.I), 55),
+    # HEVC = best codec on the user's setup; ranked top by their preference.
+    (re.compile(r'\bHEVC\b', re.I), 100),
+    (re.compile(r'\b8K\b', re.I), 90),
+    (re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I), 80),
+    (re.compile(r'\bFHD\b', re.I), 70),
+    (re.compile(r'\bHD\b', re.I), 60),
+    (re.compile(r'\bRAW\b', re.I), 50),
     (re.compile(r'\bSD\b', re.I), 30),
 ]
 
@@ -844,12 +881,14 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
         uniform_quality = next(iter(qualities_in)) if len(qualities_in) == 1 else None
         # Apply pruning to display names — only if not a beIN category (we keep
         # full info in beIN per user request). For non-beIN categories, prune
-        # to reduce repetition.
+        # to reduce repetition AND strip the same tokens from the category name.
+        emitted_cat = new_cat
         if not is_bein_cat:
             entries = [
                 (strip_uniform(d, uniform_source, uniform_lang, uniform_quality), c)
                 for d, c in entries
             ]
+            emitted_cat = trim_category_redundancy(new_cat, uniform_source, uniform_quality)
         # Sort
         decorated = []
         for display, ch in entries:
@@ -870,7 +909,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 lambda m: m.group(1) + display.replace('"', "'") + m.group(3), line,
             )
             line = _GROUP_TITLE_ATTR_RE.sub(
-                lambda m: m.group(1) + new_cat.replace('"', "'") + m.group(3), line,
+                lambda m: m.group(1) + emitted_cat.replace('"', "'") + m.group(3), line,
             )
             comma_idx = line.find(",")
             if comma_idx > 0:
@@ -886,7 +925,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 out.append(ch["url_line"])
             written += 1
             chno += 1
-        seen_cats_log.append((new_cat, len(decorated)))
+        seen_cats_log.append((emitted_cat, len(decorated)))
 
     print(f"      M3U filters: language-dropped {lang_dropped_total} (non-EN/AR), quality-dropped {quality_dropped_total} (SD/LQ), dead-dropped {dead_dropped_total}")
     print(f"      M3U category filter: {written} entries across {len(seen_cats_log)} merged categories")
@@ -1517,6 +1556,23 @@ def main():
         b'source-info-name="epgshare01.online + provider">\n'
     )
     footer = b"</tv>\n"
+
+    # Post-process: scrub provider-supplied placeholder titles like "No EPG"
+    # so the player shows a blank cell instead.
+    NO_EPG_RE = re.compile(
+        rb'(<title\b[^>]*>)\s*(?:No\s*EPG|N/A|TBA|TBD|Not Available|Data Unavailable|Pas de programme|No Programa)\s*(</title>)',
+        re.IGNORECASE,
+    )
+    scrubbed = 0
+    for i, p in enumerate(kept_programmes):
+        if (b'No EPG' in p or b'N/A' in p or b'TBA' in p or b'TBD' in p
+                or b'Not Available' in p or b'Data Unavailable' in p):
+            new_p, n = NO_EPG_RE.subn(rb'\1\2', p)
+            if n:
+                kept_programmes[i] = new_p
+                scrubbed += n
+    if scrubbed:
+        print(f"      scrubbed {scrubbed} placeholder titles ('No EPG'/'N/A'/etc.)")
 
     # Full version (gzipped). Lite uncompressed version was dropped — every
     # modern player accepts .gz, and the file would otherwise exceed GitHub
