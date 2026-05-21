@@ -2,7 +2,7 @@ name: Update EPG
 
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '15 * * * *'   # hourly so PPV channel name rotations flow through
   workflow_dispatch:
   push:
     branches: [main]

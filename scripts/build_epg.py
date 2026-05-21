@@ -336,6 +336,67 @@ def write_tvg_id_map(m3u_channels, dest: Path) -> int:
 _TVG_ID_ATTR_RE = re.compile(r'\s*tvg-id="[^"]*"')
 _TVG_NAME_ATTR_RE = re.compile(r'(\stvg-name=")([^"]*)(")')
 _GROUP_TITLE_ATTR_RE = re.compile(r'(\sgroup-title=")([^"]*)(")')
+_TVG_CHNO_ATTR_RE = re.compile(r'\s*tvg-chno="[^"]*"')
+
+# Provider priority (user-set): 8K > NM > FM > BE > SS > UHD > SA.
+PROVIDER_PRIORITY = {"8K": 0, "NM": 1, "FM": 2, "BE": 3, "SS": 4, "UHD": 5, "SA": 6}
+
+
+def extract_source_tag(name: str) -> str:
+    """Return the [SRC] trailing tag, or '' if none."""
+    m = re.search(r'\[([^\]]+)\]\s*$', name)
+    return m.group(1) if m else ""
+
+
+def extract_language(name: str) -> str:
+    if re.search(r'\bArabic\b', name):
+        return "Arabic"
+    if re.search(r'\bEnglish\b', name):
+        return "English"
+    return ""
+
+
+def extract_quality(name: str) -> str:
+    base = re.sub(r'\s*\[[^\]]+\]\s*$', '', name)
+    for tag in ("8K", "4K", "UHD", "3840p", "FHD", "HD", "HEVC", "RAW"):
+        if re.search(r'\b' + re.escape(tag) + r'\b', base, re.IGNORECASE):
+            return tag
+    return ""
+
+
+def provider_priority_rank(name: str) -> int:
+    src = extract_source_tag(name)
+    return PROVIDER_PRIORITY.get(src, 99)
+
+
+def strip_uniform(name: str, uniform_source: str | None,
+                  uniform_lang: str | None, uniform_quality: str | None) -> str:
+    """Strip attributes that are uniform across the channel's category from the
+    channel's display name. Reduces visual noise where a tag is redundant with
+    its category label."""
+    s = name
+    if uniform_source:
+        s = re.sub(r'\s*\[' + re.escape(uniform_source) + r'\]\s*$', '', s)
+    if uniform_lang in ("Arabic", "English"):
+        s = re.sub(r'\b' + re.escape(uniform_lang) + r'\b', '', s)
+    if uniform_quality:
+        s = re.sub(r'\b' + re.escape(uniform_quality) + r'\b', '', s, flags=re.IGNORECASE)
+    return MULTI_SPACE_RE.sub(' ', s).strip(' -')
+
+
+# ---- beIN merged-category classifier ----
+
+def classify_to_merged_category(cleaned_name: str) -> str:
+    """Classify a cleaned beIN channel name into one of the 4 merged buckets."""
+    n = cleaned_name
+    if re.search(r'\bMAX\b', n, re.IGNORECASE):
+        return "beIN Sports MAX"
+    if re.search(r'\bXTRA\b', n, re.IGNORECASE):
+        return "beIN Sports XTRA"
+    if re.search(r'\bAFC\b', n, re.IGNORECASE):
+        return "beIN Sports AFC"
+    # Default to main numbered/branded beIN Sports bucket
+    return "beIN Sports"
 
 
 # ---------------- name normalization for display ----------------
@@ -361,6 +422,8 @@ UNICODE_LETTER_MAP = {
 }
 
 DECORATIVE_CHARS_RE = re.compile(r'[⚽◉▶⎋▼◀●♦★☆▪►⏵⏴️]')
+# U+0600..U+06FF Arabic; U+0750..U+077F Arabic Supplement; etc.
+ARABIC_BLOCK_RE = re.compile(r'[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]+')
 BORDER_CHARS_RE = re.compile(r'^[#*=\-_~\s]+|[#*=\-_~\s]+$')
 MULTI_SPACE_RE = re.compile(r'\s+')
 
@@ -405,12 +468,14 @@ BRAND_MAP = {
 
 def _strip_unicode_glyphs(s: str) -> str:
     """Replace known Unicode modifier letters with ASCII equivalents. Drop
-    decorative symbols. Collapse remaining whitespace."""
+    decorative symbols AND Arabic-script text (the user wants ASCII-only
+    display). Collapse remaining whitespace."""
     if not s:
         return ""
     for u, a in UNICODE_LETTER_MAP.items():
         s = s.replace(u, a)
     s = DECORATIVE_CHARS_RE.sub(" ", s)
+    s = ARABIC_BLOCK_RE.sub(" ", s)
     s = BORDER_CHARS_RE.sub("", s)
     s = MULTI_SPACE_RE.sub(" ", s).strip()
     return s
@@ -503,7 +568,10 @@ _QUALITY_TIERS = [
 
 
 def quality_rank(name: str) -> int:
-    n = _strip_unicode_glyphs(name)
+    # Strip "[source]" suffix so the source tag (often 8K/UHD) doesn't get
+    # interpreted as a quality marker.
+    n = re.sub(r'\s*\[[^\]]+\]\s*$', '', name)
+    n = _strip_unicode_glyphs(n)
     for pat, score in _QUALITY_TIERS:
         if pat.search(n):
             return score
@@ -690,31 +758,47 @@ ALLOWED_CATEGORIES_ORDER = [
 def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     """Emit a patched M3U where every entry's tvg-id is set to its effective_id.
 
-    Filtered to ALLOWED_CATEGORIES_ORDER (in that order). Within each category,
-    channels are sorted by quality desc then natural-alphabetical name.
-    Category, channel name, and tvg-name are normalized for display
-    (Unicode → ASCII, brand-cased, decorations removed). The tvg-id is
-    UNCHANGED so EPG binding still works against the raw effective_id.
+    Filtered to ALLOWED_CATEGORIES_ORDER, with beIN categories collapsed into
+    4 merged buckets (MAX / Numbered / XTRA / AFC). Channels sorted by quality
+    desc → language (Arabic first in beIN) → provider priority → natural alpha.
+    Names are normalized; uniform-across-category source/quality/language tags
+    are auto-stripped from channel names. tvg-chno added per category.
 
     SECURITY: contains stream URLs with credentials.
     """
+    # Load health-check blacklist if present.
+    bl_path = Path("channels/dead_channels.txt")
+    dead_ids: set[str] = set()
+    if bl_path.exists():
+        for line in bl_path.read_text().splitlines():
+            line = line.split("#", 1)[0].strip()
+            if line:
+                dead_ids.add(line)
+
     by_cat: dict[str, list] = defaultdict(list)
     for ch in m3u_channels:
         cat = ch.get("group", "")
         by_cat[cat].append(ch)
 
+    # First pass: filter + clean + bucket into NEW (possibly merged) categories.
+    # The new category for an entry = beIN-merged name if it lives in a beIN
+    # source category, else its cleaned original.
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
-    seen_cats = []
     lang_dropped_total = 0
     quality_dropped_total = 0
+    dead_dropped_total = 0
+    new_buckets: "dict[str, list]" = defaultdict(list)  # new_cat -> list of (display, ch)
+    new_cat_order: list[str] = []  # in source-list order, deduped
+    seen_new_cats: set = set()
+
     for cat in ALLOWED_CATEGORIES_ORDER:
         entries = by_cat.get(cat, [])
         if not entries:
             continue
         clean_cat = clean_category_name(cat)
-        # Combined filter: drop non-English/Arabic AND drop SD/LQ.
-        kept_entries = []
+        is_bein_src = ("beIN" in clean_cat or "BEIN" in cat.upper())
+
         for ch in entries:
             raw = ch.get("tvg_name") or ch.get("title") or ""
             if not is_english_or_arabic(raw):
@@ -723,54 +807,88 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             if not is_acceptable_quality(raw):
                 quality_dropped_total += 1
                 continue
-            kept_entries.append(ch)
-        if not kept_entries:
+            if ch.get("effective_id") in dead_ids:
+                dead_dropped_total += 1
+                continue
+            display = clean_channel_name(raw)
+            # Re-bucket beIN channels into one of 4 merged categories.
+            new_cat = classify_to_merged_category(display) if is_bein_src else clean_cat
+            if new_cat not in seen_new_cats:
+                seen_new_cats.add(new_cat)
+                new_cat_order.append(new_cat)
+            new_buckets[new_cat].append((display, ch))
+
+    # Enforce a stable display order for the 4 merged beIN categories
+    # ahead of the rest (which keep their source order from ALLOWED_CATEGORIES_ORDER).
+    BEIN_DISPLAY_ORDER = ["beIN Sports", "beIN Sports MAX", "beIN Sports XTRA", "beIN Sports AFC"]
+    bein_present = [c for c in BEIN_DISPLAY_ORDER if c in seen_new_cats]
+    non_bein = [c for c in new_cat_order if c not in set(BEIN_DISPLAY_ORDER)]
+    new_cat_order = bein_present + non_bein
+
+    # Second pass: per merged bucket, strip uniform suffixes, sort, emit.
+    seen_cats_log = []
+    for new_cat in new_cat_order:
+        entries = new_buckets[new_cat]
+        if not entries:
             continue
-        # Sort channels by quality desc, then natural-alpha by cleaned name.
-        # In beIN categories, prefer Arabic > English > other as a tie-breaker
-        # before natural-alpha.
-        is_bein = "beIN" in clean_cat or "BEIN" in cat.upper()
+        is_bein_cat = "beIN" in new_cat
+        # Detect uniform attributes for this bucket.
+        sources_in = {extract_source_tag(d) for d, _ in entries}
+        langs_in = {extract_language(d) for d, _ in entries}
+        qualities_in = {extract_quality(d) for d, _ in entries}
+        uniform_source = next(iter(sources_in)) if len(sources_in) == 1 else None
+        uniform_lang = next(iter(langs_in)) if len(langs_in) == 1 else None
+        uniform_quality = next(iter(qualities_in)) if len(qualities_in) == 1 else None
+        # Apply pruning to display names — only if not a beIN category (we keep
+        # full info in beIN per user request). For non-beIN categories, prune
+        # to reduce repetition.
+        if not is_bein_cat:
+            entries = [
+                (strip_uniform(d, uniform_source, uniform_lang, uniform_quality), c)
+                for d, c in entries
+            ]
+        # Sort
         decorated = []
-        for ch in kept_entries:
-            display = clean_channel_name(ch.get("tvg_name") or ch.get("title") or "")
-            lang = language_rank(display) if is_bein else 0
-            decorated.append((-quality_rank(display), lang, natural_key(display), display, ch))
-        decorated.sort(key=lambda x: (x[0], x[1], x[2]))
-        seen_cats.append((clean_cat, len(kept_entries)))
-        for _, _, _, display, ch in decorated:
+        for display, ch in entries:
+            q = -quality_rank(display)
+            lang = language_rank(display) if is_bein_cat else 0
+            prov = provider_priority_rank(display)
+            decorated.append((q, lang, natural_key(display), prov, display, ch))
+        decorated.sort(key=lambda x: (x[0], x[1], x[2], x[3]))
+        # Emit with tvg-chno.
+        chno = 1
+        for _, _, _, _, display, ch in decorated:
             line = ch.get("extinf_line", "")
             if not line:
                 continue
             line = _TVG_ID_ATTR_RE.sub("", line)
-            # Replace tvg-name and group-title attributes with cleaned versions.
+            line = _TVG_CHNO_ATTR_RE.sub("", line)
             line = _TVG_NAME_ATTR_RE.sub(
-                lambda m: m.group(1) + display.replace('"', "'") + m.group(3),
-                line,
+                lambda m: m.group(1) + display.replace('"', "'") + m.group(3), line,
             )
             line = _GROUP_TITLE_ATTR_RE.sub(
-                lambda m: m.group(1) + clean_cat.replace('"', "'") + m.group(3),
-                line,
+                lambda m: m.group(1) + new_cat.replace('"', "'") + m.group(3), line,
             )
-            # Replace the title text after the comma with the cleaned display.
             comma_idx = line.find(",")
             if comma_idx > 0:
                 line = line[: comma_idx + 1] + display
-            # Re-insert tvg-id (effective_id) just after the #EXTINF token.
             eff = ch["effective_id"].replace('"', "'")
             m = re.match(r'(#EXTINF[^\s,]*)\s*(.*?,.*)$', line, re.DOTALL)
             if m:
                 head, tail = m.group(1), m.group(2)
-                line = f'{head} tvg-id="{eff}" {tail}'
+                line = f'{head} tvg-id="{eff}" tvg-chno="{chno}" {tail}'
             out.append(line)
             out.extend(ch.get("extra_lines", []))
             if ch.get("url_line"):
                 out.append(ch["url_line"])
             written += 1
+            chno += 1
+        seen_cats_log.append((new_cat, len(decorated)))
 
-    print(f"      M3U filters: language-dropped {lang_dropped_total} (non-EN/AR), quality-dropped {quality_dropped_total} (SD/LQ)")
-    print(f"      M3U category filter: kept {written} entries from {len(seen_cats)}/{len(ALLOWED_CATEGORIES_ORDER)} categories")
-    for clean_cat, n in seen_cats:
-        print(f"        [{n:>3}]  {clean_cat}")
+    print(f"      M3U filters: language-dropped {lang_dropped_total} (non-EN/AR), quality-dropped {quality_dropped_total} (SD/LQ), dead-dropped {dead_dropped_total}")
+    print(f"      M3U category filter: {written} entries across {len(seen_cats_log)} merged categories")
+    for clean_cat, n in seen_cats_log:
+        print(f"        [{n:>4}]  {clean_cat}")
     matched_cats = {orig for orig in ALLOWED_CATEGORIES_ORDER if by_cat.get(orig)}
     missing = [c for c in ALLOWED_CATEGORIES_ORDER if c not in matched_cats]
     if missing:
@@ -1199,7 +1317,7 @@ def main():
         for s_str, e_str in block_times:
             p = (
                 f'<programme start="{s_str}" stop="{e_str}" channel="{tid_xml}">'
-                f'<title lang="en">No EPG</title></programme>'
+                f'<title lang="en"> </title></programme>'
             ).encode("utf-8")
             dummy_programmes.append(p)
 
@@ -1256,7 +1374,7 @@ def main():
             e_str = fmt_xmltv_time(nxt)
             out.append(
                 f'<programme start="{s_str}" stop="{e_str}" channel="{cid_xml}">'
-                f'<title lang="en">No EPG</title></programme>'.encode("utf-8")
+                f'<title lang="en"> </title></programme>'.encode("utf-8")
             )
             cur = nxt
         return out

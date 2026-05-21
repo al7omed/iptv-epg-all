@@ -1,0 +1,49 @@
+name: Check streams (one-shot)
+
+# Manually-triggered HEAD-probe of every stream URL in published categories.
+# Writes channels/dead_channels.txt with effective_ids that failed.
+# The next regular EPG build picks up the blacklist automatically.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      M3U_URL: ${{ secrets.M3U_URL_1 }},${{ secrets.M3U_URL_2 }}
+      XTREAM_HOST: ${{ secrets.XTREAM_HOST_2 }}
+      XTREAM_USER: ${{ secrets.XTREAM_USER_2 }}
+      XTREAM_PASS: ${{ secrets.XTREAM_PASS_2 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch sub2 if needed
+        run: |
+          mkdir -p epg-work
+          if curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
+              "${{ secrets.M3U_URL_2 }}" -o epg-work/sub2.m3u; then
+            echo "sub2 fetched directly"
+          else
+            python3 scripts/synth_m3u_from_xtream.py > epg-work/sub2.m3u || \
+              echo "#EXTM3U" > epg-work/sub2.m3u
+          fi
+      - name: Run health check
+        env:
+          M3U_URL: ${{ secrets.M3U_URL_1 }},file://${{ github.workspace }}/epg-work/sub2.m3u
+        run: python3 scripts/check_streams.py
+      - name: Commit blacklist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add channels/dead_channels.txt
+          if ! git diff --staged --quiet; then
+            git commit -m "Update dead channels list ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git push
+          fi
