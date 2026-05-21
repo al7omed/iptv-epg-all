@@ -6,6 +6,11 @@ name: Check streams (one-shot)
 
 on:
   workflow_dispatch:
+  schedule:
+    # Sundays at 03:00 UTC — weekly auto health check. Refreshes
+    # channels/dead_channels.txt; the next regular EPG build picks up
+    # the new blacklist automatically.
+    - cron: '0 3 * * 0'
 
 permissions:
   contents: write
