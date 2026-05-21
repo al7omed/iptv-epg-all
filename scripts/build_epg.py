@@ -827,21 +827,38 @@ ALLOWED_CATEGORIES_ORDER = [
 _CANONICAL_STRIP_RE = re.compile(
     r'\s*\[[^\]]+\]\s*|'                            # [SS], [NM] etc.
     r'\b(?:HEVC|UHD|8K|4K|FHD|HD|RAW|VIP|60FPS|'
-    r'ORIGINAL|DOLBY\s+AUDIO|3840P|2160P|1080P|720P)\b',
+    r'ORIGINAL|DOLBY\s+AUDIO|3840P|2160P|1080P|720P|'
+    r'2K|FM|NM|BE|SS|SA|F)\b',
     re.IGNORECASE,
 )
+
+# Leading-prefix words that aren't part of the channel name itself —
+# they're region/group markers some providers prepend. Stripped from the
+# canonical key so 'Hub beIN Sports 1' dedupes against 'beIN Sports 1'.
+_CANONICAL_PREFIX_RE = re.compile(
+    r'^(?:hub|sa|us|uk|ar|me|mena|asia|asian|global)\s+', re.IGNORECASE,
+)
+_CANONICAL_LEAD_ZERO_RE = re.compile(r'\b0(\d)\b')
 
 
 def canonical_channel_name(name: str) -> str:
     """Canonical key for de-duplicating the same logical channel across
-    sources/qualities. 'beIN Sports 1 4K [SS]' and 'beIN Sports 1 HEVC [NM]'
-    both reduce to 'bein sports 1'.
+    sources/qualities/regions.
 
-    We intentionally KEEP parenthesized markers like '(Event Only)' or
-    '(East)' — those are meaningful distinctions, not noise.
+      * '[SS]', '[NM]' etc.        → stripped
+      * 'HEVC', '4K', '8K', etc.   → stripped
+      * 'Hub beIN Sports 1'        → 'bein sports 1'  (Hub prefix stripped)
+      * 'beIN Sports 01'           → 'bein sports 1'  (zero-padded number)
+      * '(Event Only)' / '(East)'  → KEPT (meaningful distinction)
     """
     s = _CANONICAL_STRIP_RE.sub(' ', name)
-    s = re.sub(r'\s+', ' ', s).strip(' -:.,;|').lower()
+    s = _CANONICAL_PREFIX_RE.sub('', s)
+    s = _CANONICAL_LEAD_ZERO_RE.sub(r'\1', s)
+    # Strip orphan '&' left behind after stripping the operands around it
+    # (e.g. 'Sky Sports F1 4K & 3840p' → 'Sky Sports F1  &  ' → 'sky sports f1').
+    s = re.sub(r'\s+&\s*$', '', s)
+    s = re.sub(r'\s+&\s+', ' ', s)
+    s = re.sub(r'\s+', ' ', s).strip(' -:.,;|&').lower()
     return s
 
 
@@ -881,12 +898,29 @@ _FAV_KIDS_SUBSTR = (
     'cartoon network', 'boomerang', 'nickelodeon', 'nick jr',
     'baby tv', 'cbeebies', 'cbbc',
 )
+# General Sports: ONLY the national flagships, not regional affiliates.
+# 'FOX Sports Arizona/Carolinas/Detroit/...' get rejected via the
+# regional-name blocklist below.
 _FAV_SPORT_SUBSTR = (
-    'espn', 'fox sports', 'nbc sports', 'tnt sports',
     'sky sports main', 'sky sports premier', 'sky sports football',
     'sky sports f1', 'sky sports cricket', 'sky sports news',
     'sky sports racing', 'sky sports golf', 'sky sports arena',
     'sky sports action', 'sky sports mix',
+    'tnt sports',
+)
+# Tight word-boundary patterns for flagship-only matches.
+_FAV_SPORT_WORD_RE = re.compile(
+    r'\b(?:espn(?:\s*[u23]|\s*news|\s*usa)?|fox\s*sports\s*[12]|'
+    r'fs1|fs2|nbc\s*sports\s*(?:network|nbc)|nbcsn)\b',
+    re.IGNORECASE,
+)
+# Drop FOX Sports / Bally Sports regionals — Arizona, Carolinas, Detroit, etc.
+_FAV_SPORT_REGIONAL_RE = re.compile(
+    r'\b(?:arizona|carolinas?|college|detroit|florida|kansas|'
+    r'midwest|mid\s*west|netbase|north|ohio|oklahoma|pacific|'
+    r'pittsburgh|prime\s*ticket|san\s*diego|south|southeast|southwest|'
+    r'sun|tennessee|texas|utah|west|wisconsin|atlantic|central)\b',
+    re.IGNORECASE,
 )
 # Word-boundary brand regexes for single-word brands prone to false matches.
 _FAV_DOC_WORD_RE = re.compile(r'\b(?:discovery|documentary|tlc|h2|pbs|history)\b', re.I)
@@ -918,8 +952,14 @@ def classify_favorite(display: str) -> str | None:
     # 5. Kids
     if any(k in d for k in _FAV_KIDS_SUBSTR):
         return "Favorites — Kids"
-    # 6. General sports (non-soccer flagships)
+    # 6. General sports (national flagships only). Reject regional FOX/Bally
+    # affiliates so we don't pull in 'FOX Sports Detroit', 'FOX Sports
+    # Carolinas', etc.
+    if _FAV_SPORT_REGIONAL_RE.search(d):
+        return None
     if any(s in d for s in _FAV_SPORT_SUBSTR):
+        return "Favorites — General Sports"
+    if _FAV_SPORT_WORD_RE.search(d):
         return "Favorites — General Sports"
     return None
 
