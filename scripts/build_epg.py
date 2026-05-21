@@ -369,40 +369,52 @@ def provider_priority_rank(name: str) -> int:
     return PROVIDER_PRIORITY.get(src, 99)
 
 
-def trim_category_redundancy(cat_name: str, uniform_source: str | None,
-                              uniform_quality: str | None) -> str:
-    """When all channels in a category share the same source or quality, the
-    category name often repeats that tag (e.g. 'US — NBC HD/RAW 60fps' where
-    every channel is HD/RAW 60fps). Strip those trailing tokens from the
-    category name for a cleaner display."""
+def trim_category_redundancy(cat_name: str, uniform_source: str | None = None,
+                              uniform_quality: str | None = None) -> str:
+    """Aggressively trim category names for cleanest display:
+      - Drop the region word from the suffix when the prefix already says it
+        ('Arabic — Discovery+ Arabic RAW' → 'Arabic — Discovery+')
+      - Drop trailing quality/codec/frame-rate tokens
+      - Drop trailing source provider codes
+      - Fix DirecTV casing
+    """
     if " — " not in cat_name:
         return cat_name
     region, name = cat_name.split(" — ", 1)
-    # Strip common trailing quality blobs.
+
+    # Strip duplicate region word that bled into the suffix.
+    if region == "Arabic":
+        name = re.sub(r'\bArabic\b', '', name, flags=re.IGNORECASE)
+    elif region in ("US", "USA"):
+        name = re.sub(r'\b(?:USA|US)\b', '', name)
+    elif region == "UK":
+        name = re.sub(r'\bUK\b', '', name)
+    elif region == "8K":
+        # 8K — Sport On Air 8K → 8K — Sport On Air
+        name = re.sub(r'\b8K\b', '', name)
+
+    # Aggressive trailing-token trim. Run multiple passes for chained tokens.
     quality_blobs = [
-        r'HD/RAW\s+60fps',
-        r'HD/RAW',
-        r'RAW\s+60fps',
-        r'RAW\s+VIP\s+Dolby\s+Audio',
-        r'60fps',
-        r'HEVC',
-        r'RAW',
-        r'4K',
-        r'8K',
-        r'HD',
-        r'UHD',
-        r'Original\s+RAW\s+60fps',
+        r'HD/RAW\s+60fps', r'HD/RAW',
+        r'RAW\s+VIP\s+Dolby\s+Audio', r'Dolby\s+Audio',
+        r'RAW\s+60fps', r'60fps', r'VIP',
+        r'HEVC', r'RAW', r'4K', r'8K', r'UHD', r'FHD', r'HD',
+        r'Original',
     ]
-    for blob in quality_blobs:
-        name = re.sub(r'\s+' + blob + r'\s*$', '', name, flags=re.IGNORECASE)
-    # Strip uniform source if present at end and matches a known provider code.
-    if uniform_source and uniform_source.upper() in PROVIDER_PRIORITY:
-        name = re.sub(r'\s+' + re.escape(uniform_source) + r'\s*$', '', name, flags=re.IGNORECASE)
-    # Strip stale punctuation.
+    for _ in range(3):
+        for blob in quality_blobs:
+            name = re.sub(r'\s+' + blob + r'\s*$', '', name, flags=re.IGNORECASE)
+
+    # Strip trailing provider codes regardless of detected uniformity (safer
+    # to over-strip in category name; channel names still preserve [SRC]).
+    name = re.sub(r'\s+(?:8K|FM|NM|BE|SS|UHD|SA|F)\s*$', '', name, flags=re.IGNORECASE)
+
+    # Strip trailing parenthesized noise.
+    name = re.sub(r'\s*\([^)]*\)\s*$', '', name).strip()
     name = re.sub(r'^[\s:;|,.\-_~]+|[\s:;|,.\-_~]+$', '', name).strip()
-    # Fix DirecTV casing (special two-word brand).
     name = re.sub(r'\bDirec\s+Tv\b', 'DirecTV', name, flags=re.IGNORECASE)
-    return f"{region} — {name}".strip(' —')
+    name = re.sub(r'\s+', ' ', name).strip()
+    return f"{region} — {name}".strip(' —').strip()
 
 
 def strip_uniform(name: str, uniform_source: str | None,
@@ -595,11 +607,21 @@ def clean_category_name(raw: str) -> str:
 
 
 # Quality tier ordering for sorting within a category (higher = better).
+# Ranked by what the LABEL actually claims:
+#   * 8K  = resolution claim (7680×4320), top of the stack
+#   * 4K / UHD = resolution claim (3840×2160)
+#   * HEVC = codec claim (H.265). Codec, not resolution — but in IPTV practice
+#     providers reserve "HEVC" for their flagship streams, so rank it above
+#     FHD/HD. Sits below 4K/UHD because the label itself doesn't claim a
+#     resolution.
+#   * FHD = 1080p
+#   * HD  = 720p
+#   * RAW = uncompressed feed, no resolution claim
+#   * SD  = anything 480p or lower (we filter these out earlier anyway)
 _QUALITY_TIERS = [
-    # HEVC = best codec on the user's setup; ranked top by their preference.
-    (re.compile(r'\bHEVC\b', re.I), 100),
-    (re.compile(r'\b8K\b', re.I), 90),
-    (re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I), 80),
+    (re.compile(r'\b8K\b', re.I), 100),
+    (re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I), 90),
+    (re.compile(r'\bHEVC\b', re.I), 80),
     (re.compile(r'\bFHD\b', re.I), 70),
     (re.compile(r'\bHD\b', re.I), 60),
     (re.compile(r'\bRAW\b', re.I), 50),
@@ -795,6 +817,223 @@ ALLOWED_CATEGORIES_ORDER = [
 ]
 
 
+# ----------------- favorites M3U -----------------
+# A curated subset playlist: one of each beIN feed at top quality, the strongest
+# documentary lineup, plus must-have news/movies/kids. All channels here go
+# through the same language/quality/dead filters as the main M3U, then are
+# de-duped by canonical name (best quality wins) and grouped into clean
+# Favorites buckets.
+
+_CANONICAL_STRIP_RE = re.compile(
+    r'\s*\[[^\]]+\]\s*|'                            # [SS], [NM] etc.
+    r'\b(?:HEVC|UHD|8K|4K|FHD|HD|RAW|VIP|60FPS|'
+    r'ORIGINAL|DOLBY\s+AUDIO|3840P|2160P|1080P|720P)\b',
+    re.IGNORECASE,
+)
+
+
+def canonical_channel_name(name: str) -> str:
+    """Canonical key for de-duplicating the same logical channel across
+    sources/qualities. 'beIN Sports 1 4K [SS]' and 'beIN Sports 1 HEVC [NM]'
+    both reduce to 'bein sports 1'.
+
+    We intentionally KEEP parenthesized markers like '(Event Only)' or
+    '(East)' — those are meaningful distinctions, not noise.
+    """
+    s = _CANONICAL_STRIP_RE.sub(' ', name)
+    s = re.sub(r'\s+', ' ', s).strip(' -:.,;|').lower()
+    return s
+
+
+# Favorite-bucket classifier. Returns the display group title for the favorites
+# M3U, or None if the channel isn't a favorite.
+#
+# Brand patterns use word boundaries so 'BBC One' doesn't catch 'CBBC One' and
+# 'AMC HD' doesn't need a trailing space. Order matters: more-specific brands
+# first (catch 'beIN' before generic 'sports').
+
+# Substring lookups (lowercase). Used for multi-word brand names that don't
+# need precise boundary matching.
+_FAV_DOC_SUBSTR = (
+    'national geographic', 'nat geo', 'natgeo',
+    'discovery channel', 'discovery science', 'discovery turbo',
+    'discovery+', 'investigation discovery', 'animal planet',
+    'history channel', 'bbc earth', 'smithsonian',
+    'science channel', 'curiosity stream', 'travel channel',
+    'crime+investigation', 'crime + investigation', 'crime investigation',
+    'motortrend', 'love nature', 'love history', 'love documentary',
+)
+_FAV_NEWS_SUBSTR = (
+    'bbc news', 'bbc world', 'sky news', 'cnn international',
+    'al jazeera', 'aljazeera', 'al arabiya', 'alarabiya',
+    'france 24', 'france24', 'dw news', 'dw english',
+    'euronews', 'cnbc world', 'fox news',
+)
+_FAV_MOVIE_SUBSTR = (
+    'sky cinema', 'sky movies', 'sky atlantic',
+    'max original', 'max hits',
+    'paramount+', 'paramount plus',
+    'osn first', 'osn movies', 'osn rotana', 'osn ya hala',
+    'mbc max', 'mbc drama', 'mbc action', 'mbc bollywood', 'mbc 4',
+)
+_FAV_KIDS_SUBSTR = (
+    'disney channel', 'disney jr', 'disney junior', 'disney xd',
+    'cartoon network', 'boomerang', 'nickelodeon', 'nick jr',
+    'baby tv', 'cbeebies', 'cbbc',
+)
+_FAV_SPORT_SUBSTR = (
+    'espn', 'fox sports', 'nbc sports', 'tnt sports',
+    'sky sports main', 'sky sports premier', 'sky sports football',
+    'sky sports f1', 'sky sports cricket', 'sky sports news',
+    'sky sports racing', 'sky sports golf', 'sky sports arena',
+    'sky sports action', 'sky sports mix',
+)
+# Word-boundary brand regexes for single-word brands prone to false matches.
+_FAV_DOC_WORD_RE = re.compile(r'\b(?:discovery|documentary|tlc|h2|pbs|history)\b', re.I)
+_FAV_NEWS_WORD_RE = re.compile(r'\b(?:cnn|bloomberg|msnbc|cnbc)\b', re.I)
+_FAV_MOVIE_WORD_RE = re.compile(r'\b(?:hbo|max|showtime|cinemax|starz|amc|fx|fxx|mgm\+?)\b', re.I)
+
+
+def classify_favorite(display: str) -> str | None:
+    d = display.lower()
+    # 1. beIN — every beIN feed is a favorite (Sports / Movies / News if any)
+    if 'bein' in d:
+        return "Favorites — beIN"
+    # 2. Documentaries
+    if any(b in d for b in _FAV_DOC_SUBSTR):
+        return "Favorites — Documentaries"
+    if _FAV_DOC_WORD_RE.search(d) and 'discovery+' not in d:
+        return "Favorites — Documentaries"
+    # 3. News
+    if any(n in d for n in _FAV_NEWS_SUBSTR):
+        return "Favorites — News"
+    if _FAV_NEWS_WORD_RE.search(d):
+        return "Favorites — News"
+    # 4. Movies & premium series. Check substrings first (Sky Cinema etc),
+    # then word-boundary single-word brands.
+    if any(m in d for m in _FAV_MOVIE_SUBSTR):
+        return "Favorites — Movies & Series"
+    if _FAV_MOVIE_WORD_RE.search(d):
+        return "Favorites — Movies & Series"
+    # 5. Kids
+    if any(k in d for k in _FAV_KIDS_SUBSTR):
+        return "Favorites — Kids"
+    # 6. General sports (non-soccer flagships)
+    if any(s in d for s in _FAV_SPORT_SUBSTR):
+        return "Favorites — General Sports"
+    return None
+
+
+FAVORITES_SECTION_ORDER = [
+    "Favorites — beIN",
+    "Favorites — Documentaries",
+    "Favorites — News",
+    "Favorites — Movies & Series",
+    "Favorites — General Sports",
+    "Favorites — Kids",
+]
+
+
+def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
+    """Emit a curated favorites playlist:
+      * One entry per logical beIN feed (highest quality, best provider)
+      * Top documentary networks (Nat Geo, Discovery, History, BBC Earth, ...)
+      * Top news (BBC News, Sky News, CNN, Al Jazeera, France 24, ...)
+      * Premium movies/series (Sky Cinema, HBO/Max, Showtime, ...)
+      * Premium sports (ESPN, Fox Sports, Sky Sports flagships)
+      * Kids (Disney, Cartoon Network, Nickelodeon)
+    All channels go through the same filters as the main M3U.
+    """
+    # Same blacklist as main M3U.
+    bl_path = Path("channels/dead_channels.txt")
+    dead_ids: set[str] = set()
+    if bl_path.exists():
+        for line in bl_path.read_text().splitlines():
+            line = line.split("#", 1)[0].strip()
+            if line:
+                dead_ids.add(line)
+
+    allowed = set(ALLOWED_CATEGORIES_ORDER)
+
+    # bucket[(favorites_section, canonical_name)] = list of (rank_tuple, display, ch)
+    # We'll then keep the best per canonical key inside each section.
+    candidates: "dict[tuple[str, str], list]" = defaultdict(list)
+    for ch in m3u_channels:
+        cat = ch.get("group", "")
+        if cat not in allowed:
+            continue
+        raw = ch.get("tvg_name") or ch.get("title") or ""
+        if not is_english_or_arabic(raw):
+            continue
+        if not is_acceptable_quality(raw):
+            continue
+        if ch.get("effective_id") in dead_ids:
+            continue
+        display = clean_channel_name(raw)
+        section = classify_favorite(display)
+        if not section:
+            continue
+        canon = canonical_channel_name(display)
+        if not canon:
+            continue
+        q = -quality_rank(display)             # lower is better in sort
+        prov = provider_priority_rank(display)  # 0 = best source
+        rank = (q, prov, natural_key(display))
+        candidates[(section, canon)].append((rank, display, ch))
+
+    # Pick the single best entry per (section, canonical name).
+    best: "dict[str, list[tuple[list, str, dict]]]" = defaultdict(list)
+    for (section, canon), items in candidates.items():
+        items.sort(key=lambda x: x[0])
+        rank, display, ch = items[0]
+        best[section].append((rank, display, ch))
+
+    # Emit in the curated section order, sorted within each section.
+    out = [f'#EXTM3U x-tvg-url="{epg_url}"']
+    written = 0
+    section_log: list[tuple[str, int]] = []
+    for section in FAVORITES_SECTION_ORDER:
+        items = best.get(section, [])
+        if not items:
+            continue
+        items.sort(key=lambda x: x[0])
+        chno = 1
+        for _, display, ch in items:
+            line = ch.get("extinf_line", "")
+            if not line:
+                continue
+            line = _TVG_ID_ATTR_RE.sub("", line)
+            line = _TVG_CHNO_ATTR_RE.sub("", line)
+            line = _TVG_NAME_ATTR_RE.sub(
+                lambda m: m.group(1) + display.replace('"', "'") + m.group(3), line,
+            )
+            line = _GROUP_TITLE_ATTR_RE.sub(
+                lambda m: m.group(1) + section.replace('"', "'") + m.group(3), line,
+            )
+            comma_idx = line.find(",")
+            if comma_idx > 0:
+                line = line[: comma_idx + 1] + display
+            eff = ch["effective_id"].replace('"', "'")
+            m = re.match(r'(#EXTINF[^\s,]*)\s*(.*?,.*)$', line, re.DOTALL)
+            if m:
+                head, tail = m.group(1), m.group(2)
+                line = f'{head} tvg-id="{eff}" tvg-chno="{chno}" {tail}'
+            out.append(line)
+            out.extend(ch.get("extra_lines", []))
+            if ch.get("url_line"):
+                out.append(ch["url_line"])
+            written += 1
+            chno += 1
+        section_log.append((section, len(items)))
+    print(f"      Favorites M3U: {written} entries across {len(section_log)} sections")
+    for s, n in section_log:
+        print(f"        [{n:>3}]  {s}")
+
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text("\n".join(out) + "\n", encoding="utf-8")
+    return written
+
+
 def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     """Emit a patched M3U where every entry's tvg-id is set to its effective_id.
 
@@ -865,41 +1104,88 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     non_bein = [c for c in new_cat_order if c not in set(BEIN_DISPLAY_ORDER)]
     new_cat_order = bein_present + non_bein
 
-    # Second pass: per merged bucket, strip uniform suffixes, sort, emit.
-    seen_cats_log = []
+    # Second pass: compute the FINAL emitted category name for each bucket,
+    # then re-bucket by that name so source categories that trim to the same
+    # display label get merged. Example:
+    #   'UK — Sport HEVC' + 'UK — Sport RAW VIP Dolby Audio' → 'UK — Sport'
+    # Channels from both source buckets end up in one combined display group.
+    final_buckets: "dict[str, list]" = defaultdict(list)
+    final_order: list[str] = []  # preserves first-occurrence order
+    seen_final: set = set()
     for new_cat in new_cat_order:
         entries = new_buckets[new_cat]
         if not entries:
             continue
         is_bein_cat = "beIN" in new_cat
-        # Detect uniform attributes for this bucket.
+        if is_bein_cat:
+            emitted_cat = new_cat
+            display_entries = entries
+        else:
+            sources_in = {extract_source_tag(d) for d, _ in entries}
+            langs_in = {extract_language(d) for d, _ in entries}
+            qualities_in = {extract_quality(d) for d, _ in entries}
+            uniform_source = next(iter(sources_in)) if len(sources_in) == 1 else None
+            uniform_lang = next(iter(langs_in)) if len(langs_in) == 1 else None
+            uniform_quality = next(iter(qualities_in)) if len(qualities_in) == 1 else None
+            display_entries = [
+                (strip_uniform(d, uniform_source, uniform_lang, uniform_quality), c)
+                for d, c in entries
+            ]
+            emitted_cat = trim_category_redundancy(new_cat, uniform_source, uniform_quality)
+        if emitted_cat not in seen_final:
+            seen_final.add(emitted_cat)
+            final_order.append(emitted_cat)
+        final_buckets[emitted_cat].extend(display_entries)
+
+    # Re-run uniform-suffix stripping on each MERGED bucket — a tag that was
+    # uniform inside a source bucket may no longer be uniform after merging,
+    # and vice versa. This guarantees the final channel names match what's
+    # actually shared across the displayed group.
+    cleaned_final: "dict[str, list]" = {}
+    for emitted_cat, entries in final_buckets.items():
+        if "beIN" in emitted_cat:
+            cleaned_final[emitted_cat] = entries
+            continue
         sources_in = {extract_source_tag(d) for d, _ in entries}
         langs_in = {extract_language(d) for d, _ in entries}
         qualities_in = {extract_quality(d) for d, _ in entries}
         uniform_source = next(iter(sources_in)) if len(sources_in) == 1 else None
         uniform_lang = next(iter(langs_in)) if len(langs_in) == 1 else None
         uniform_quality = next(iter(qualities_in)) if len(qualities_in) == 1 else None
-        # Apply pruning to display names — only if not a beIN category (we keep
-        # full info in beIN per user request). For non-beIN categories, prune
-        # to reduce repetition AND strip the same tokens from the category name.
-        emitted_cat = new_cat
-        if not is_bein_cat:
-            entries = [
-                (strip_uniform(d, uniform_source, uniform_lang, uniform_quality), c)
-                for d, c in entries
-            ]
-            emitted_cat = trim_category_redundancy(new_cat, uniform_source, uniform_quality)
-        # Sort
+        cleaned_final[emitted_cat] = [
+            (strip_uniform(d, uniform_source, uniform_lang, uniform_quality), c)
+            for d, c in entries
+        ]
+
+    # Third pass: per final bucket, sort and emit.
+    seen_cats_log = []
+    for emitted_cat in final_order:
+        entries = cleaned_final[emitted_cat]
+        if not entries:
+            continue
+        is_bein_cat = "beIN" in emitted_cat
         decorated = []
+        seen_display_per_cat: set = set()
         for display, ch in entries:
+            # Drop within-category dupes (same exact display name) — keeps the
+            # first occurrence which, after sort below, will be the best one.
+            # For now we just collect; dedup happens after sort.
             q = -quality_rank(display)
             lang = language_rank(display) if is_bein_cat else 0
             prov = provider_priority_rank(display)
             decorated.append((q, lang, natural_key(display), prov, display, ch))
         decorated.sort(key=lambda x: (x[0], x[1], x[2], x[3]))
+        # Dedup by exact display name within a category (keep highest-quality).
+        dedup = []
+        for tup in decorated:
+            display = tup[4]
+            if display in seen_display_per_cat:
+                continue
+            seen_display_per_cat.add(display)
+            dedup.append(tup)
         # Emit with tvg-chno.
         chno = 1
-        for _, _, _, _, display, ch in decorated:
+        for _, _, _, _, display, ch in dedup:
             line = ch.get("extinf_line", "")
             if not line:
                 continue
@@ -925,7 +1211,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 out.append(ch["url_line"])
             written += 1
             chno += 1
-        seen_cats_log.append((emitted_cat, len(decorated)))
+        seen_cats_log.append((emitted_cat, len(dedup)))
 
     print(f"      M3U filters: language-dropped {lang_dropped_total} (non-EN/AR), quality-dropped {quality_dropped_total} (SD/LQ), dead-dropped {dead_dropped_total}")
     print(f"      M3U category filter: {written} entries across {len(seen_cats_log)} merged categories")
@@ -1611,6 +1897,10 @@ def main():
         m3u_out = out_dir / token / "playlist.m3u"
         n = write_patched_m3u(m3u_channels, m3u_out, epg_link)
         print(f"      wrote patched M3U at {m3u_out} ({m3u_out.stat().st_size//1024} KB, {n} entries)")
+        # Curated favorites playlist behind the same access token.
+        fav_out = out_dir / token / "favorites.m3u"
+        fn = write_favorites_m3u(m3u_channels, fav_out, epg_link)
+        print(f"      wrote favorites M3U at {fav_out} ({fav_out.stat().st_size//1024} KB, {fn} entries)")
 
     print()
     print("=== source breakdown (channels) ===")
