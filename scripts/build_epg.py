@@ -1010,7 +1010,11 @@ ALLOWED_CATEGORIES_ORDER = [
     "UK| PPV EVENT",
     "UK| PPV EVENT ⁽ᴮᴷ⁾",
 
-    # ───────────── 3. AR sports (non-beIN) ─────────────
+    # ───────────── 3. Sports — 8K Live (was '8K Sport On Air') ─────────────
+    # Renamed via CATEGORY_REMAP for consistency with 'Sports — Major Events PPV'
+    "8K| SPORT ON AIR ⁸ᴷ",
+
+    # ───────────── 4. AR sports (non-beIN) ─────────────
     "AR| UEFA CHAMPIONS LEAGUE ⚽",
     "AR| THMANYAH ⁸ᴷ ⚽",
     "AR| SPORTS PPV ᴺᴹ ⚽",
@@ -1043,9 +1047,6 @@ ALLOWED_CATEGORIES_ORDER = [
     "AR| AL FAJER ᴿᴬᵂ ▶ الفجر ⚽️",
     "AR| AL FAJER ᴮᴱ ▶ الفجر ⚽️",
 
-    # ───────────── 5. 8K Sport On Air ─────────────
-    "8K| SPORT ON AIR ⁸ᴷ",
-
     # ───────────── 6. UK sports ─────────────
     "UK| SPORT ʰᵉᵛᶜ",
     "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
@@ -1064,21 +1065,16 @@ ALLOWED_CATEGORIES_ORDER = [
     "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ",
     "UK| NOW TV SPORT ᵁᴴᴰ ³⁸⁴⁰ᴾ",
 
-    # ───────────── 7. UK premium movies & series ─────────────
+    # ───────────── 7. UK live channels (Sky Cinema, BBC iPlayer live) ─────────────
+    # NOTE: removed UK on-demand series/archives — user has those on Netflix /
+    # Real-Debrid / Stremio (BBC iPlayer Series, Apple TV+ Series, Prime Video
+    # Series, Netflix Original, Sky Mix Series/Docs, Sky Store, Reality Show TV,
+    # Music, Kids, 24/7).
     "UK| SKY CINEMA ʰᵉᵛᶜ",
     "UK| SKY CINEMA ᴴᴰ/ᴿᴬᵂ",
     "UK| BBC IPLAYER ᴿᴬᵂ",
-    "UK| BBC IPLAYER SERIES ᴿᴬᵂ",
-    "UK| APPLE TV+ SERIES ᴿᴬᵂ",
-    "UK| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "UK| PRIME VIDEO SERIES ᴿᴬᵂ",
-    "UK| NETFLIX ORIGINAL ᴿᴬᵂ",
-    "UK| SKY MIX SERIES ᴿᴬᵂ",
-    "UK| SKY MIX DOCS ᴿᴬᵂ",
-    "UK| SKY STORE ᴿᴬᵂ",
-    "UK| REALITY SHOW TV ᴿᴬᵂ",
 
-    # ───────────── 8. UK general + news + streaming services ─────────────
+    # ───────────── 8. UK general + news ─────────────
     "UK| GENERAL ʰᵉᵛᶜ",
     "UK| GENERAL ᴴᴰ/ᴿᴬᵂ",
     "UK| NEWS ʰᵉᵛᶜ",
@@ -1087,11 +1083,9 @@ ALLOWED_CATEGORIES_ORDER = [
     "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",
     "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
     "UK| ITV X VIP",
-    "UK| NOW TV ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ",
-    "UK| 24/7 ᴴᴰ/ᴿᴬᵂ",
     "UK| AMAZON PRIME PPV",
-    "UK| MUSIC ᴴᴰ/ᴿᴬᵂ",
-    "UK| KIDS ᴴᴰ/ᴿᴬᵂ",
+    # NOTE: removed UK| PRIME RAW 60fps (Amazon Prime VOD),
+    # UK| NOW TV ENTERTAINMENT (on-demand catalog).
 
     # ───────────── 9. US sports ─────────────
     "US| SPORT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
@@ -1111,7 +1105,12 @@ ALLOWED_CATEGORIES_ORDER = [
     "US| DAZN PPV",
     "US| NETFLIX PPV",
 
-    # ───────────── 10. US broadcast networks ─────────────
+    # ───────────── 10. US broadcast / live cable networks ─────────────
+    # NOTE: removed US on-demand-ish categories — user has those on Netflix /
+    # Real-Debrid / Stremio (Prime, Paramount+ originals, Peacock,
+    # Peacock Network, Tubi, HBO Max Network, Hulu Network, Disney+ Network,
+    # Netflix On Air, Cinemania Hollywood, Cinema TV Shows, Roku, Movies, Kids,
+    # and all 12 US 24/7 catch-up archives).
     "US| ABC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| CBS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| NBC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
@@ -1124,36 +1123,6 @@ ALLOWED_CATEGORIES_ORDER = [
     "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| TELEMUNDO NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| MIAMI ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| MOVIES ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| KIDS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-
-    # ───────────── 11. US streaming networks ─────────────
-    "US| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| PARAMOUNT+ ORIGINAL ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| PEACOCK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| PEACOCK NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| TUBI ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| HBO MAX NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| ️HULU NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| DISNEY+ NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| NETFLIX ON AIR ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| CINEMANIA HOLLYWOOD ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| CINEMA TV SHOWS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| ROKU ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-
-    # ───────────── 12. US 24/7 catch-up archives ─────────────
-    "US| 24/7 ONEPLAY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 PRIME VIDEO ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 DISNEY+ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 PPV ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 MOVIES/ACTORS ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 ACTION/ADVENTURE ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 CLASSIC SHOWS ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 REALITY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 COMEDY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 CRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 CARTOON ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| 24/7 KIDS/FAMILY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
 ]
 
 
@@ -1169,6 +1138,8 @@ CATEGORY_REMAP = {
     # DirecTV merge
     "US| DIREC TV ᴿᴬᵂ ⁶⁰ᶠᵖˢ":           "US — DirecTV",
     "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ":      "US — DirecTV",
+    # 8K Sport On Air renamed to match the 'Sports — XXX' pattern
+    "8K| SPORT ON AIR ⁸ᴷ":               "Sports — 8K Live",
     # Major Events PPV consolidation — US side
     "US| NFL PPV":                       "Sports — Major Events PPV",
     "US| NFL REPLAY":                    "Sports — Major Events PPV",
