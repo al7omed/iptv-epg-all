@@ -628,7 +628,7 @@ _RE_VIP    = re.compile(r'\bVIP\b', re.I)
 _RE_DOLBY  = re.compile(r'\bDolby\b', re.I)
 
 
-def quality_rank(name: str) -> int:
+def quality_rank(name: str, source_category: str = "") -> int:
     """Composite quality score (higher = better).
 
     Scoring:
@@ -642,14 +642,24 @@ def quality_rank(name: str) -> int:
       VIP alone        → 50  (premium tier without RAW; ambiguous)
       SD               → 20
     Additional +2 if Dolby Audio.
+
+    When the channel name doesn't carry quality tags but its SOURCE
+    CATEGORY does (e.g. category 'UK Sport RAW VIP Dolby Audio'), the
+    category's tags are used as a fallback. This preserves the implicit
+    quality tier when the category label is the only quality signal.
     """
     n = re.sub(r'\s*\[[^\]]+\]\s*$', '', name)
     n = _strip_unicode_glyphs(n)
-    has_raw   = bool(_RE_RAW.search(n))
-    has_vip   = bool(_RE_VIP.search(n))
-    has_dolby = bool(_RE_DOLBY.search(n))
-    has_8k    = bool(_RE_8K.search(n))
-    has_4k    = bool(_RE_4K.search(n))
+    # Combined haystack for RAW/VIP/Dolby/resolution detection — channel
+    # name first, source category as fallback. The flagship 'RAW VIP'
+    # signal can sit on either.
+    src = _strip_unicode_glyphs(source_category or "")
+    combined = n + " " + src
+    has_raw   = bool(_RE_RAW.search(combined))
+    has_vip   = bool(_RE_VIP.search(combined))
+    has_dolby = bool(_RE_DOLBY.search(combined))
+    has_8k    = bool(_RE_8K.search(combined))
+    has_4k    = bool(_RE_4K.search(combined))
 
     # Flagship tier: RAW + VIP combo
     if has_raw and has_vip:
@@ -684,15 +694,15 @@ def quality_rank(name: str) -> int:
         return score
 
     # Codec/quality fallbacks
-    if _RE_HEVC.search(n):
+    if _RE_HEVC.search(combined):
         return 75
-    if _RE_FHD.search(n):
+    if _RE_FHD.search(combined):
         return 65
-    if _RE_HD.search(n):
+    if _RE_HD.search(combined):
         return 55
     if has_vip:
         return 50  # VIP without RAW or resolution — premium label only
-    if _RE_SD.search(n):
+    if _RE_SD.search(combined):
         return 20
     return 0
 
@@ -1076,8 +1086,12 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
         canon = canonical_channel_name(display)
         if not canon:
             continue
-        q = -quality_rank(display)             # lower is better in sort
-        prov = provider_priority_rank(display)  # 0 = best source
+        # Pass the source category so RAW/VIP/Dolby tags carried at the
+        # category level (e.g. 'UK| SPORT RAW VIP DOLBY AUDIO') still feed
+        # quality_rank when the channel name itself lost those tags after
+        # cleanup.
+        q = -quality_rank(display, source_category=cat)
+        prov = provider_priority_rank(display)
         rank = (q, prov, natural_key(display))
         candidates[(section, canon)].append((rank, display, ch))
 
@@ -1285,7 +1299,11 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             # Drop within-category dupes (same exact display name) — keeps the
             # first occurrence which, after sort below, will be the best one.
             # For now we just collect; dedup happens after sort.
-            q = -quality_rank(display)
+            # Source-category passes the RAW/VIP/Dolby tier signal that may
+            # only live on the original group-title (e.g. 'UK| SPORT RAW VIP
+            # DOLBY AUDIO').
+            src_cat = ch.get("group", "")
+            q = -quality_rank(display, source_category=src_cat)
             lang = language_rank(display) if is_bein_cat else 0
             prov = provider_priority_rank(display)
             decorated.append((q, lang, natural_key(display), prov, display, ch))
