@@ -523,6 +523,9 @@ def clean_channel_name(raw: str) -> str:
     s = re.sub(r'\bSP\s*RTS\b', 'Sports', s, flags=re.I)
     s = _smart_title_case(s)
     s = MULTI_SPACE_RE.sub(" ", s).strip()
+    # After decoration stripping, residual leading/trailing punctuation
+    # (": " from "◉:" originals, dangling dashes etc.) needs cleanup.
+    s = re.sub(r'^[\s:;|,.\-_~]+|[\s:;|,.\-_~]+$', '', s)
     if source:
         s = f"{s} [{source}]"
     return s
