@@ -434,15 +434,18 @@ def strip_uniform(name: str, uniform_source: str | None,
 
 # ---- beIN merged-category classifier ----
 
-def classify_to_merged_category(cleaned_name: str) -> str:
-    """Classify a cleaned beIN channel name into one of the 4 merged buckets."""
+def classify_to_merged_category(cleaned_name: str) -> str | None:
+    """Classify a cleaned beIN channel name into one of the merged buckets,
+    or return None to drop the channel entirely (AFC channels — user
+    request, not relevant to MENA viewers)."""
     n = cleaned_name
+    # AFC = Asian Football Confederation; user opted to remove.
+    if re.search(r'\bAFC\b', n, re.IGNORECASE):
+        return None
     if re.search(r'\bMAX\b', n, re.IGNORECASE):
         return "beIN Sports MAX"
     if re.search(r'\bXTRA\b', n, re.IGNORECASE):
         return "beIN Sports XTRA"
-    if re.search(r'\bAFC\b', n, re.IGNORECASE):
-        return "beIN Sports AFC"
     # Default to main numbered/branded beIN Sports bucket
     return "beIN Sports"
 
@@ -606,37 +609,91 @@ def clean_category_name(raw: str) -> str:
     return MULTI_SPACE_RE.sub(" ", s).strip()
 
 
-# Quality tier ordering for sorting within a category (higher = better).
-# Ranked by what the LABEL actually claims:
-#   * 8K  = resolution claim (7680×4320), top of the stack
-#   * 4K / UHD = resolution claim (3840×2160)
-#   * HEVC = codec claim (H.265). Codec, not resolution — but in IPTV practice
-#     providers reserve "HEVC" for their flagship streams, so rank it above
-#     FHD/HD. Sits below 4K/UHD because the label itself doesn't claim a
-#     resolution.
-#   * FHD = 1080p
-#   * HD  = 720p
-#   * RAW = uncompressed feed, no resolution claim
-#   * SD  = anything 480p or lower (we filter these out earlier anyway)
-_QUALITY_TIERS = [
-    (re.compile(r'\b8K\b', re.I), 100),
-    (re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I), 90),
-    (re.compile(r'\bHEVC\b', re.I), 80),
-    (re.compile(r'\bFHD\b', re.I), 70),
-    (re.compile(r'\bHD\b', re.I), 60),
-    (re.compile(r'\bRAW\b', re.I), 50),
-    (re.compile(r'\bSD\b', re.I), 30),
-]
+# Quality scoring. Higher = better. Composite of resolution/codec tier plus
+# RAW/VIP/Dolby bonuses.
+#
+# User preference: RAW + VIP combo is the provider's flagship tier (raw
+# source bitrate, no transcoding, premium subscription). Even if a stream
+# doesn't carry a resolution label, RAW+VIP is the highest-quality feed
+# available. After that, 8K and 4K resolution claims, then HEVC codec,
+# then FHD/HD.
+_RE_8K     = re.compile(r'\b8K\b', re.I)
+_RE_4K     = re.compile(r'\b(?:4K|UHD|2160P|3840P)\b', re.I)
+_RE_HEVC   = re.compile(r'\bHEVC\b', re.I)
+_RE_FHD    = re.compile(r'\bFHD\b', re.I)
+_RE_HD     = re.compile(r'\bHD\b', re.I)
+_RE_SD     = re.compile(r'\bSD\b', re.I)
+_RE_RAW    = re.compile(r'\bRAW\b', re.I)
+_RE_VIP    = re.compile(r'\bVIP\b', re.I)
+_RE_DOLBY  = re.compile(r'\bDolby\b', re.I)
 
 
 def quality_rank(name: str) -> int:
-    # Strip "[source]" suffix so the source tag (often 8K/UHD) doesn't get
-    # interpreted as a quality marker.
+    """Composite quality score (higher = better).
+
+    Scoring:
+      RAW + VIP combo  → 110 (flagship)  +  resolution bonus (+5 for 4K/8K)
+      8K               → 100
+      4K / UHD         → 90
+      RAW alone        → 85  (raw source, resolution unknown)
+      HEVC             → 75  (codec)
+      FHD              → 65
+      HD               → 55
+      VIP alone        → 50  (premium tier without RAW; ambiguous)
+      SD               → 20
+    Additional +2 if Dolby Audio.
+    """
     n = re.sub(r'\s*\[[^\]]+\]\s*$', '', name)
     n = _strip_unicode_glyphs(n)
-    for pat, score in _QUALITY_TIERS:
-        if pat.search(n):
-            return score
+    has_raw   = bool(_RE_RAW.search(n))
+    has_vip   = bool(_RE_VIP.search(n))
+    has_dolby = bool(_RE_DOLBY.search(n))
+    has_8k    = bool(_RE_8K.search(n))
+    has_4k    = bool(_RE_4K.search(n))
+
+    # Flagship tier: RAW + VIP combo
+    if has_raw and has_vip:
+        score = 110
+        if has_8k or has_4k:
+            score += 5
+        if has_dolby:
+            score += 2
+        return score
+
+    # Resolution claims
+    if has_8k:
+        score = 100
+        if has_raw:
+            score += 5
+        if has_dolby:
+            score += 2
+        return score
+    if has_4k:
+        score = 90
+        if has_raw:
+            score += 5
+        if has_dolby:
+            score += 2
+        return score
+
+    # RAW alone (no resolution claim, but raw bitrate)
+    if has_raw:
+        score = 85
+        if has_dolby:
+            score += 2
+        return score
+
+    # Codec/quality fallbacks
+    if _RE_HEVC.search(n):
+        return 75
+    if _RE_FHD.search(n):
+        return 65
+    if _RE_HD.search(n):
+        return 55
+    if has_vip:
+        return 50  # VIP without RAW or resolution — premium label only
+    if _RE_SD.search(n):
+        return 20
     return 0
 
 
@@ -1010,6 +1067,9 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
         if ch.get("effective_id") in dead_ids:
             continue
         display = clean_channel_name(raw)
+        # Drop AFC channels — user removed this category entirely.
+        if re.search(r'\bAFC\b', display, re.I):
+            continue
         section = classify_favorite(display)
         if not section:
             continue
@@ -1117,6 +1177,10 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             continue
         clean_cat = clean_category_name(cat)
         is_bein_src = ("beIN" in clean_cat or "BEIN" in cat.upper())
+        # Skip any source category whose name carries AFC — user removed AFC
+        # entirely from the playlist.
+        if re.search(r'\bAFC\b', clean_cat, re.I) or re.search(r'\bAFC\b', cat, re.I):
+            continue
 
         for ch in entries:
             raw = ch.get("tvg_name") or ch.get("title") or ""
@@ -1130,16 +1194,27 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 dead_dropped_total += 1
                 continue
             display = clean_channel_name(raw)
-            # Re-bucket beIN channels into one of 4 merged categories.
-            new_cat = classify_to_merged_category(display) if is_bein_src else clean_cat
+            # Re-bucket beIN channels into one of the merged categories. Some
+            # branches (AFC) return None — drop those channels entirely.
+            if is_bein_src:
+                new_cat = classify_to_merged_category(display)
+                if new_cat is None:
+                    continue
+            else:
+                # Drop non-beIN source categories whose source name carries
+                # 'AFC' as well — user doesn't want it anywhere.
+                if re.search(r'\bAFC\b', clean_cat, re.I) or re.search(r'\bAFC\b', raw, re.I):
+                    continue
+                new_cat = clean_cat
             if new_cat not in seen_new_cats:
                 seen_new_cats.add(new_cat)
                 new_cat_order.append(new_cat)
             new_buckets[new_cat].append((display, ch))
 
-    # Enforce a stable display order for the 4 merged beIN categories
-    # ahead of the rest (which keep their source order from ALLOWED_CATEGORIES_ORDER).
-    BEIN_DISPLAY_ORDER = ["beIN Sports", "beIN Sports MAX", "beIN Sports XTRA", "beIN Sports AFC"]
+    # Enforce a stable display order for the merged beIN categories ahead of
+    # the rest (which keep their source order from ALLOWED_CATEGORIES_ORDER).
+    # AFC removed per user request.
+    BEIN_DISPLAY_ORDER = ["beIN Sports", "beIN Sports MAX", "beIN Sports XTRA"]
     bein_present = [c for c in BEIN_DISPLAY_ORDER if c in seen_new_cats]
     non_bein = [c for c in new_cat_order if c not in set(BEIN_DISPLAY_ORDER)]
     new_cat_order = bein_present + non_bein
