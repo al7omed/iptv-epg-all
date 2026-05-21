@@ -924,7 +924,7 @@ def is_acceptable_quality(name: str) -> bool:
 # sources are forced into a single 'Sports — Major Events PPV' bucket via
 # CATEGORY_REMAP above.
 ALLOWED_CATEGORIES_ORDER = [
-    # ───────────── 1. beIN ─────────────
+    # ───────────── 1. beIN (Sports / MAX / XTRA) ─────────────
     "AR| BEIN SPORTS MAX ⁸ᴷ ⚽",
     "AR| BEIN SPORTS MAX F ⚽",
     "AR| BEIN SPORTS MAX ᴺᴹ ⚽",
@@ -944,185 +944,96 @@ ALLOWED_CATEGORIES_ORDER = [
     "AR| BEIN SPORTS SA ⚽",
 
     # ───────────── 2. Sports — Major Events PPV (consolidated bucket) ─────────────
-    # All these source cats route via CATEGORY_REMAP → 'Sports — Major Events PPV'
+    # All these sources route via CATEGORY_REMAP to a single
+    # 'Sports — Major Events PPV' display bucket. Major sport-event hitters
+    # consolidated into one easy-to-find category (NFL, MLB, NHL, F1, UEFA,
+    # La Liga, Tennis, Golf, Boxing/Matchroom, UFC, etc.).
     "US| NFL PPV",
-    "US| NFL REPLAY",
     "US| MLB PPV",
-    "US| MLB TEAM PPV",
-    "US| MILB PPV",
     "US| NHL PPV",
-    "US| NHL TEAM PPV",
-    "US| NHL REPLAY",
-    "US| VIAPLAY NHL PPV",
-    "US| WNBA PPV",
-    "US| NBA TEAM PPV",
     "US| NCAAF PPV",
     "US| NCAAB PPV",
-    "US| NFHS PPV",
-    "US| B/R MAX SPORTS PPV",
-    "US| BTN+ PPV",
     "US| THE MASTERS PPV",
     "US| APPLE TV F1 PPV",
     "US| MATCHROOM PPV",
     "US| GOLF PPV",
     "US| TENNIS PPV",
-    "US| RUGBY PPV",
-    "US| SUPERCROSS PPV",
-    "US| DIRTVISION PPV",
-    "US| FLO COLLEGE PPV",
-    "US| FLO RACING PPV",
-    "US| FLO SPORTS PPV",
     "US| FIFA+ PPV",
     "US| UEFA PPV",
-    "US| SOCCER PPV",
-    "US| BALLY SPORTS PPV",
     "UK| FORMULA 1 PPV",
-    "UK| APPLE TV F1 PPV",
     "UK| UEFA PPV",
     "UK| LA LIGA TEAM PPV",
     "UK| LIGUE 1 PPV",
     "UK| SERIE A TEAM PPV",
-    "UK| CHAMPIONSHIP PPV",
-    "UK| LEAGUE ONE PPV",
-    "UK| LEAGUE TWO PPV",
-    "UK| SCOTTISH CUP PPV",
-    "UK| SPFL/SCOTTISH PPV",
-    "UK| SUPER LEAGUE PLUS PPV",
-    "UK| HUB PREMIER PPV",
-    "UK| FA PLAYER PPV",
-    "UK| EU GAME PASS PPV",
-    "UK| NATIONAL LEAGUE PPV",
-    "UK| VIDIO EPL PPV",
-    "UK| MXGP PPV",
-    "UK| RALLY PPV",
-    "UK| TT RACES PPV",
-    "UK| ULTIMATE POOL PPV",
-    "UK| VOLLEY BALL WORLD PPV",
-    "UK| PDC BOARD PPV",
-    "UK| MONO MAX PPV",
-    "UK| TRILLER TV PPV",
-    "UK| FLORUGBY PPV",
     "UK| UFC PPV",
-    "UK| NETFLIX PPV",
-    "UK| ESPN+ PPV",
-    "UK| MAX PPV",
-    "UK| HBO MAX PPV",
     "UK| PPV EVENT",
-    "UK| PPV EVENT ⁽ᴮᴷ⁾",
 
     # ───────────── 3. Sports — 8K Live (was '8K Sport On Air') ─────────────
-    # Renamed via CATEGORY_REMAP for consistency with 'Sports — Major Events PPV'
+    # Renamed via CATEGORY_REMAP for consistency with the 'Sports — XXX' pattern.
     "8K| SPORT ON AIR ⁸ᴷ",
 
-    # ───────────── 4. AR sports (non-beIN) ─────────────
+    # ───────────── 4. Arabic — sports (non-beIN) ─────────────
     "AR| UEFA CHAMPIONS LEAGUE ⚽",
-    "AR| THMANYAH ⁸ᴷ ⚽",
-    "AR| SPORTS PPV ᴺᴹ ⚽",
-    "AR| DAZN MENA PPV ⁸ᴷ",
     "AR| ALWAN SPORT ᴿᴬᵂ ⚽",
     "AR| ARABIC SPORT 4K ▶ رياضه ⚽️",
+    "AR| THMANYAH ⁸ᴷ ⚽",
     "AR| SHAHID PPV ⚽",
-    "AR| POST SPORT ᴿᴬᵂ ⚽",
-    "AR| WATER SPORT ᴿᴬᵂ ⚽️",
-    "AR| STARZPLAY SPORT ⁸ᴷ & ⁴ᴷ ⚽",
-    "AR| STARZPLAY SPORT ⁸ᴷ & ᵀᴷ ⚽",
-    "AR| STARZPLAY SPORT ᴹ & ᴿᴬᵂ ⚽",
-    "AR| STARZPLAY SPORT ᴮᴱ & ᴿᴬᵂ ⚽",
-    "AR| STARZPLAY SPORT F & ᴿᴬᵂ ⚽",
+    "AR| SPORTS PPV ᴺᴹ ⚽",
 
-    # ───────────── 4. AR entertainment + lifestyle ─────────────
+    # ───────────── 5. Arabic — entertainment + lifestyle ─────────────
+    "AR| DAZN MENA PPV ⁸ᴷ",
     "AR| MBC 4K",
     "AR| OSN PLATINUM ᴿᴬᵂ",
     "AR| GOBX PLATINUM 4K",
-    "AR| SHAHID VIP 4K ▶ شاهد الاصلية",
     "AR| ROTANA & ART 4K ▶ روتانا",
-    "AR| DISCOVERY+ ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ ديسكفري",
-    "AR| DOCUMENTARY 4K ▶ وثائقي",
+    "AR| SHAHID VIP 4K ▶ شاهد الاصلية",
     "AR| WORLD OF COOKING 4K ▶ عالم الطبخ",
     "AR| ️ACTORS 4K ▶ الفنانون",
     "AR| BAHRAIN 4K ▶ البحرين",
-    "AR| MBC 24/7 ᴿᴬᵂ",
-    "AR| MBC SHAHID ᴿᴬᵂ",
-    "AR| MYHD ᶠ ᴿᴬᵂ",
-    "AR| AL FAJER ᴿᴬᵂ ▶ الفجر ⚽️",
-    "AR| AL FAJER ᴮᴱ ▶ الفجر ⚽️",
+    "AR| DISCOVERY+ ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ ديسكفري",
+    "AR| DOCUMENTARY 4K ▶ وثائقي",
 
-    # ───────────── 6. UK sports ─────────────
+    # ───────────── 6. UK — sports ─────────────
     "UK| SPORT ʰᵉᵛᶜ",
     "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
-    "UK| SPORT ᴿᴬᵂ",
-    "UK| SPORT ᴴᴰ ⱽᴵᴾ",
     "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
-    "UK| TNT SPORT ᴴᴰ ⱽᴵᴾ",
     "UK| TNT SPORT EVENT",
     "UK| LIVE FOOTBALL PPV",
     "UK| SOCCER REPLAY ᴿᴬᵂ",
-    "UK| SKY SPORT+ PPV ᴿᴬᵂ",
-    "UK| EPL PREMIER LEAGUE PPV ⱽᴵᴾ",
-    "UK| EPL PREMIER LEAGUE PPV",
-    "UK| DAZN PPV VIP",
-    "UK| DAZN PPV",
-    "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ",
-    "UK| NOW TV SPORT ᵁᴴᴰ ³⁸⁴⁰ᴾ",
-
-    # ───────────── 7. UK live channels (Sky Cinema, BBC iPlayer live) ─────────────
-    # NOTE: removed UK on-demand series/archives — user has those on Netflix /
-    # Real-Debrid / Stremio (BBC iPlayer Series, Apple TV+ Series, Prime Video
-    # Series, Netflix Original, Sky Mix Series/Docs, Sky Store, Reality Show TV,
-    # Music, Kids, 24/7).
-    "UK| SKY CINEMA ʰᵉᵛᶜ",
-    "UK| SKY CINEMA ᴴᴰ/ᴿᴬᵂ",
-    "UK| BBC IPLAYER ᴿᴬᵂ",
-
-    # ───────────── 8. UK general + news ─────────────
-    "UK| GENERAL ʰᵉᵛᶜ",
-    "UK| GENERAL ᴴᴰ/ᴿᴬᵂ",
-    "UK| NEWS ʰᵉᵛᶜ",
-    "UK| NEWS ᴴᴰ/ᴿᴬᵂ",
-    "UK| DOCUMENTARY ʰᵉᵛᶜ",
-    "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",
-    "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
-    "UK| ITV X VIP",
     "UK| AMAZON PRIME PPV",
-    # NOTE: removed UK| PRIME RAW 60fps (Amazon Prime VOD),
-    # UK| NOW TV ENTERTAINMENT (on-demand catalog).
 
-    # ───────────── 9. US sports ─────────────
+    # ───────────── 7. UK — live channels + cinema ─────────────
+    "UK| SKY CINEMA ʰᵉᵛᶜ",
+    "UK| BBC IPLAYER ᴿᴬᵂ",
+    "UK| ITV X VIP",
+
+    # ───────────── 8. UK — general / news / documentary ─────────────
+    "UK| GENERAL ʰᵉᵛᶜ",
+    "UK| NEWS ʰᵉᵛᶜ",
+    "UK| DOCUMENTARY ʰᵉᵛᶜ",
+    "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
+
+    # ───────────── 9. US — sports + events ─────────────
     "US| SPORT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| ESPN+ PPV ⱽᴵᴾ",
     "US| NBA PPV",
     "US| NBA PASS PPV ⁸ᴷ",
     "US| UFC PPV",
-    "US| MLS PPV VIP",
-    "US| MLS PPV",
-    "US| MLS PPV ⁽ᴮᴷ⁾",
-    "US| MAX PPV ⱽᴵᴾ",
-    "US| MAX PPV",
-    "US| PEACOCK PPV ⱽᴵᴾ",
-    "US| PEACOCK PPV ⁽ᴮᴷ⁾",
-    "US| FLO ⱽᴵᴾ PPV",
     "US| PPV EVENT ⁽ᴮᴷ⁾",
-    "US| DAZN PPV",
     "US| NETFLIX PPV",
+    "US| DAZN PPV",
 
-    # ───────────── 10. US broadcast / live cable networks ─────────────
-    # NOTE: removed US on-demand-ish categories — user has those on Netflix /
-    # Real-Debrid / Stremio (Prime, Paramount+ originals, Peacock,
-    # Peacock Network, Tubi, HBO Max Network, Hulu Network, Disney+ Network,
-    # Netflix On Air, Cinemania Hollywood, Cinema TV Shows, Roku, Movies, Kids,
-    # and all 12 US 24/7 catch-up archives).
+    # ───────────── 10. US — broadcast / live cable networks ─────────────
     "US| ABC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| CBS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| NBC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| FOX ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| CW ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| FOX ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| NBC ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| NEWS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| SPECTRUM NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| DIREC TV ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| TELEMUNDO NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
-    "US| MIAMI ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
 ]
 
 
