@@ -552,11 +552,33 @@ def strip_uniform(name: str, uniform_source: str | None,
 
 def classify_to_merged_category(cleaned_name: str) -> str | None:
     """Classify a cleaned beIN channel name into one of the merged buckets,
-    or return None to drop the channel entirely (AFC channels — user
-    request, not relevant to MENA viewers)."""
+    or return None to drop the channel entirely.
+
+    Drops:
+      * AFC channels — Asian Football Confederation, not relevant to MENA viewers
+      * Al-Kass channels — Qatari sport, separate brand from beIN. Provider
+        sometimes mixes them into beIN source categories; reject them.
+      * Degenerate names — channels whose name is empty or contains no real
+        identifier beyond a quality tag (e.g. 'SS 4K', '4K', 'HD').
+      * Anything that doesn't actually mention 'beIN'/'bein' — final
+        defensive filter so only legitimate beIN feeds enter the bucket.
+    """
     n = cleaned_name
-    # AFC = Asian Football Confederation; user opted to remove.
     if re.search(r'\bAFC\b', n, re.IGNORECASE):
+        return None
+    # Al-Kass — Qatari sport brand, not beIN.
+    if re.search(r'\b(?:Al[-\s]?Kass|Alkass)\b', n, re.IGNORECASE):
+        return None
+    # Degenerate names: nothing left after stripping [SRC] suffix and quality
+    # tokens. e.g. 'SS 4K' → stripped to nothing meaningful.
+    bare = re.sub(r'\s*\[[^\]]+\]\s*$', '', n)
+    bare = re.sub(r'\b(?:HEVC|UHD|8K|4K|FHD|HD|RAW|VIP|60FPS|3840P|2160P|1080P|720P|SS|NM|FM|BE|F|M|SA)\b',
+                  '', bare, flags=re.I)
+    bare = re.sub(r'\s+', ' ', bare).strip(" -:.,;|&+")
+    if not bare or len(bare) < 3:
+        return None
+    # Final defensive filter — must mention beIN to belong in beIN bucket.
+    if not re.search(r'\bbeIN\b|\bbein\b', n, re.I):
         return None
     if re.search(r'\bMAX\b', n, re.IGNORECASE):
         return "beIN Sports MAX"
@@ -1107,6 +1129,82 @@ ALLOWED_CATEGORIES_ORDER = [
     "US| DIREC TV ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
     "US| DIREC TV ᶜᶦᵗʸ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
 ]
+
+
+# ----------------- category emoji prefixes -----------------
+# Tiny visual cue per category — helps scan the grid in UHF.
+# Palette is intentionally limited and consistent: same emoji = same content
+# type across regions.
+
+CATEGORY_EMOJI = {
+    # beIN
+    "beIN Sports":                       "⚽",
+    "beIN Sports MAX":                   "🏆",
+    "beIN Sports XTRA":                  "🌟",
+    # Top-level sports buckets
+    "Sports — Major Events PPV":         "🏟️",
+    "Sports — 8K Live":                  "✨",
+    # Arabic — sports
+    "Arabic — UEFA Champions League":    "🏆",
+    "Arabic — Thmanyah":                 "⚽",
+    "Arabic — Sport":                    "⚽",
+    "Arabic — Alwan Sport":              "⚽",
+    "Arabic — Sports PPV":               "🏟️",
+    "Arabic — DAZN MENA PPV":            "🥊",
+    "Arabic — Shahid PPV":               "🎬",
+    # Arabic — entertainment/lifestyle
+    "Arabic — MBC":                      "📺",
+    "Arabic — OSN Platinum":             "🎬",
+    "Arabic — GOBX Platinum":            "🎬",
+    "Arabic — Shahid":                   "🎬",
+    "Arabic — Rotana & ART":             "🎵",
+    "Arabic — World Of Cooking":         "🍳",
+    "Arabic — Actors":                   "🎭",
+    "Arabic — Bahrain":                  "🇧🇭",
+    "Arabic — Discovery+":               "🌍",
+    "Arabic — Documentary":              "🎥",
+    # UK
+    "UK — Sport":                        "⚽",
+    "UK — TNT Sport":                    "⚽",
+    "UK — TNT Sport Event":              "🏟️",
+    "UK — Live Football PPV":            "⚽",
+    "UK — Soccer Replay":                "⚽",
+    "UK — Amazon Prime PPV":             "🏟️",
+    "UK — Sky Cinema":                   "🎬",
+    "UK — BBC iPlayer":                  "📺",
+    "UK — ITV X":                        "📺",
+    "UK — General":                      "📺",
+    "UK — News":                         "📰",
+    "UK — Documentary":                  "🎥",
+    "UK — Discovery+":                   "🌍",
+    # US
+    "US — Sport":                        "🏈",
+    "US — ESPN+ PPV":                    "🏈",
+    "US — NBA PPV":                      "🏀",
+    "US — NBA Pass PPV":                 "🏀",
+    "US — UFC PPV":                      "🥊",
+    "US — PPV Event":                    "🏟️",
+    "US — Netflix PPV":                  "🎬",
+    "US — DAZN PPV":                     "🥊",
+    "US — ABC":                          "📺",
+    "US — CBS":                          "📺",
+    "US — NBC":                          "📺",
+    "US — FOX":                          "📺",
+    "US — CW":                           "📺",
+    "US — News":                         "📰",
+    "US — Spectrum Network":             "📺",
+    "US — Entertainment":                "🎭",
+    "US — DirecTV":                      "📡",
+}
+
+
+def add_category_emoji(name: str) -> str:
+    """Prepend a relevant emoji to the category name for visual scanning.
+    If no mapping exists, return the name unchanged."""
+    emoji = CATEGORY_EMOJI.get(name)
+    if emoji:
+        return f"{emoji} {name}"
+    return name
 
 
 # ----------------- category remap & major-PPV consolidation -----------------
@@ -1798,6 +1896,10 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
             dedup.append(tup)
         # Emit with tvg-chno.
         chno = 1
+        # Apply emoji prefix once per category for the player-visible name.
+        # Internal logic (dedup, seen_cats_log, region mapping) still uses
+        # the bare name so emoji changes don't break lookups.
+        display_cat = add_category_emoji(emitted_cat)
         for _, _, _, _, _, display, ch in dedup:
             line = ch.get("extinf_line", "")
             if not line:
@@ -1808,7 +1910,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
                 lambda m: m.group(1) + display.replace('"', "'") + m.group(3), line,
             )
             line = _GROUP_TITLE_ATTR_RE.sub(
-                lambda m: m.group(1) + emitted_cat.replace('"', "'") + m.group(3), line,
+                lambda m: m.group(1) + display_cat.replace('"', "'") + m.group(3), line,
             )
             # Strip obviously-broken logo URLs, then apply per-channel override.
             def _logo_repl(m: re.Match) -> str:
@@ -1841,7 +1943,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
             used_ids.add(ch["effective_id"])
             used_ids_by_region[_region_for(emitted_cat)].add(ch["effective_id"])
             chno += 1
-        seen_cats_log.append((emitted_cat, len(dedup)))
+        seen_cats_log.append((display_cat, len(dedup)))
 
     print(f"      M3U filters: language-dropped {lang_dropped_total} (non-EN/AR), quality-dropped {quality_dropped_total} (SD/LQ), dead-dropped {dead_dropped_total}")
     print(f"      M3U category filter: {written} entries across {len(seen_cats_log)} merged categories")
