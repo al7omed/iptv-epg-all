@@ -635,6 +635,27 @@ _RE_VIP    = re.compile(r'\bVIP\b', re.I)
 _RE_DOLBY  = re.compile(r'\bDolby\b', re.I)
 
 
+def _is_ambiguous_quality_category(cat: str) -> bool:
+    """A source category is 'ambiguous' if its label uses '/' (or other
+    OR-separator) to combine quality terms — meaning channels inside are
+    a MIX of qualities, not all the same.
+
+    Examples:
+      'US| SPORT HD/RAW 60fps'         → ambiguous (HD/RAW = HD or RAW)
+      'UK| SPORT RAW VIP DOLBY AUDIO'  → unambiguous (all RAW VIP Dolby)
+      'AR| BEIN SPORTS 8K & RAW'       → unambiguous (every channel is 8K+RAW)
+
+    When ambiguous, the category's RAW/VIP/Dolby tags are NOT inherited
+    by channels — each channel is scored only by its own quality tags.
+    """
+    s = _strip_unicode_glyphs(cat or "")
+    if "/" in s:
+        return True
+    if re.search(r"\bor\b", s, re.I):
+        return True
+    return False
+
+
 def quality_rank(name: str, source_category: str = "") -> int:
     """Composite quality score (higher = better).
 
@@ -670,7 +691,15 @@ def quality_rank(name: str, source_category: str = "") -> int:
     # detected. Other bracket contents like '[SS]', '[NM]' don't match VIP.
     n_full = _strip_unicode_glyphs(name)
     src = _strip_unicode_glyphs(source_category or "")
-    combined = n_full + " " + src
+
+    # If the source category is AMBIGUOUS (e.g. 'HD/RAW' = mix of HD and
+    # RAW channels), don't propagate its quality tags. Each channel is
+    # scored on its own name only.
+    if _is_ambiguous_quality_category(source_category):
+        combined = n_full
+    else:
+        combined = n_full + " " + src
+
     has_raw   = bool(_RE_RAW.search(combined))
     has_vip   = bool(_RE_VIP.search(combined))
     has_dolby = bool(_RE_DOLBY.search(combined))
