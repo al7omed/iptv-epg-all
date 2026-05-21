@@ -1529,16 +1529,21 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str,
             # display name routes the channel into 'Favorites — Pinned'.
             if any(p.search(display) for p in extra_patterns):
                 section = "Favorites — Pinned"
-        # Primetime override: live PPV/sport channels airing now get pinned
-        # to the very top via 'Favorites — Tonight' (in addition to their
-        # normal section). We add the Tonight entry as a separate candidate
-        # so the same channel can appear in two sections.
+        # Primetime override: live PPV / Event-Only channels airing now get
+        # pinned to 'Favorites — Tonight'. Strict criteria to avoid bloat:
+        #   1. We must be in primetime (16:00–22:59 GMT+3)
+        #   2. The channel must have a current EPG programme (live_set_str)
+        #   3. The channel name OR source category must explicitly say PPV /
+        #      Event Only / Live Event — generic sport channels don't qualify.
         if is_primetime and ch.get("effective_id") in live_set_str:
-            cat_matches = cat in primetime_categories or any(
-                emc in cat for emc in ("BEIN SPORTS", "SPORT", "PPV", "UEFA")
+            name_has_ppv = bool(_PPV_PIN_RE.search(display))
+            cat_has_ppv = bool(re.search(r'\b(?:PPV|EVENT[\s_-]?ONLY|LIVE\s+EVENT)\b',
+                                          cat, re.I))
+            # Special-case: Sports — Major Events PPV bucket is always Tonight-worthy
+            cat_is_major = "MAJOR EVENTS PPV" in cat.upper() or cat in (
+                "Sports — Major Events PPV",
             )
-            name_matches = any(p.search(display) for p in primetime_patterns)
-            if cat_matches or name_matches:
+            if name_has_ppv or cat_has_ppv or cat_is_major:
                 tonight_canon = canonical_channel_name(display)
                 if tonight_canon:
                     q_t = -quality_rank(display, source_category=cat)
@@ -1572,11 +1577,19 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str,
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
     section_log: list[tuple[str, int]] = []
+    # Per-section cap so 'Tonight' (live PPV) can't bloat to hundreds.
+    SECTION_CAP = {
+        "Favorites — Tonight": 30,
+        "Favorites — Pinned": 50,
+    }
     for section in FAVORITES_SECTION_ORDER:
         items = best.get(section, [])
         if not items:
             continue
         items.sort(key=lambda x: x[0])
+        cap = SECTION_CAP.get(section)
+        if cap and len(items) > cap:
+            items = items[:cap]
         chno = 1
         for _, display, ch in items:
             line = ch.get("extinf_line", "")
