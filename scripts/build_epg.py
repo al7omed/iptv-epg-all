@@ -2197,10 +2197,15 @@ def main():
         kept_channels[tid] = ch_block
         kept_ids.add(tid)
         dummy_count += 1
+        # Use the channel display name as the dummy programme title so the
+        # player shows the channel's own name in the EPG cell instead of
+        # rendering "No EPG" for blank/whitespace titles. XML-escape to be
+        # safe.
+        title_xml = html.escape(m3u_display[tid], quote=True)
         for s_str, e_str in block_times:
             p = (
                 f'<programme start="{s_str}" stop="{e_str}" channel="{tid_xml}">'
-                f'<title lang="en"> </title></programme>'
+                f'<title lang="en">{title_xml}</title></programme>'
             ).encode("utf-8")
             dummy_programmes.append(p)
 
@@ -2247,17 +2252,43 @@ def main():
         cid = html.unescape(m.group(3).decode("utf-8", "replace"))
         ch_progs[cid].append((start, stop))
 
-    def gap_blocks(start: dt.datetime, end: dt.datetime, cid_xml: str) -> list[bytes]:
-        """Split [start, end) into BLOCK_HOURS-sized chunks of dummy programmes."""
+    # Build a fast lookup: channel id (raw) → first display-name text.
+    # Used by gap_blocks to set a sensible title for filler programmes (the
+    # channel's own display name) instead of leaving them blank — many
+    # players render blank titles as "No EPG".
+    _DISPLAY_NAME_RE = re.compile(rb'<display-name[^>]*>([^<]+)</display-name>')
+    cid_to_display_xml: dict[str, str] = {}
+    for cid_raw, blk in kept_channels.items():
+        m = _DISPLAY_NAME_RE.search(blk)
+        if m:
+            # Keep the XML-escaped form ready to drop straight into <title>.
+            try:
+                txt = m.group(1).decode("utf-8")
+            except UnicodeDecodeError:
+                txt = m.group(1).decode("utf-8", "replace")
+            # The block was emitted XML-escaped already; reuse as-is.
+            cid_to_display_xml[cid_raw] = txt
+
+    def gap_blocks(start: dt.datetime, end: dt.datetime, cid_xml: str,
+                   cid_raw: str = "") -> list[bytes]:
+        """Split [start, end) into BLOCK_HOURS-sized chunks of dummy programmes.
+
+        Title comes from the channel's own display-name (looked up by cid_raw)
+        so the EPG cell shows the channel name instead of being blank — which
+        many players render as 'No EPG'."""
         out = []
         cur = start
+        # Title falls back to cid_xml if we can't look up a display name.
+        title_xml = cid_to_display_xml.get(cid_raw, cid_xml) or cid_xml
+        # Ensure it's a string and XML-safe (display-name was already escaped
+        # at emit time, so just trust it here).
         while cur < end:
             nxt = min(cur + dt.timedelta(hours=BLOCK_HOURS), end)
             s_str = fmt_xmltv_time(cur)
             e_str = fmt_xmltv_time(nxt)
             out.append(
                 f'<programme start="{s_str}" stop="{e_str}" channel="{cid_xml}">'
-                f'<title lang="en"> </title></programme>'.encode("utf-8")
+                f'<title lang="en">{title_xml}</title></programme>'.encode("utf-8")
             )
             cur = nxt
         return out
@@ -2276,13 +2307,13 @@ def main():
         cursor = series_start_utc
         for start, stop in items:
             if start > cursor:
-                gap_fill_programmes.extend(gap_blocks(cursor, min(start, series_stop_utc), cid_xml))
+                gap_fill_programmes.extend(gap_blocks(cursor, min(start, series_stop_utc), cid_xml, cid))
                 had_gap = True
             cursor = max(cursor, stop)
             if cursor >= series_stop_utc:
                 break
         if cursor < series_stop_utc:
-            gap_fill_programmes.extend(gap_blocks(cursor, series_stop_utc, cid_xml))
+            gap_fill_programmes.extend(gap_blocks(cursor, series_stop_utc, cid_xml, cid))
             had_gap = True
             if not items:
                 fully_empty += 1
@@ -2398,22 +2429,53 @@ def main():
     )
     footer = b"</tv>\n"
 
-    # Post-process: scrub provider-supplied placeholder titles like "No EPG"
-    # so the player shows a blank cell instead.
-    NO_EPG_RE = re.compile(
-        rb'(<title\b[^>]*>)\s*(?:No\s*EPG|N/A|TBA|TBD|Not Available|Data Unavailable|Pas de programme|No Programa)\s*(</title>)',
+    # Post-process: scrub provider-supplied placeholder titles ("No EPG",
+    # "N/A", "TBA", etc.). REPLACE them with the channel's own display name
+    # — many players interpret an empty/whitespace title as "no data" and
+    # render "No EPG" themselves, so emptying the cell makes the problem
+    # WORSE. Filling with the channel name keeps the cell looking informative.
+    NO_EPG_TITLE_RE = re.compile(
+        rb'(<programme\b[^>]*channel="([^"]+)"[^>]*>[^<]*<title\b[^>]*>)\s*'
+        rb'(?:No\s*EPG|N/?A|TBA|TBD|Not Available|Data Unavailable|'
+        rb'Pas de programme|No Programa|To Be Announced)\s*'
+        rb'(</title>)',
         re.IGNORECASE,
     )
+    def _scrub(match: re.Match) -> bytes:
+        cid_xml = match.group(2).decode("utf-8", "replace")
+        # Try both XML-escaped form and html-unescaped form for lookup.
+        cid_raw = html.unescape(cid_xml)
+        name = cid_to_display_xml.get(cid_raw) or cid_to_display_xml.get(cid_xml) or ""
+        if not name:
+            # Fall back to the channel id itself, sans any leading punctuation.
+            name = cid_xml.lstrip("#: ").strip()
+        # Escape since we'll inject into XML title text.
+        safe = html.escape(name, quote=False).encode("utf-8")
+        return match.group(1) + safe + match.group(3)
+
+    # Also catch empty / whitespace-only titles — these come either from the
+    # provider (some XMLTV sources emit '<title></title>') or from our own
+    # legacy gap-fill blocks. Player renders them as 'No EPG' too.
+    EMPTY_TITLE_RE = re.compile(
+        rb'(<programme\b[^>]*channel="([^"]+)"[^>]*>[^<]*<title\b[^>]*>)\s*(</title>)',
+    )
     scrubbed = 0
+    scrubbed_empty = 0
     for i, p in enumerate(kept_programmes):
-        if (b'No EPG' in p or b'N/A' in p or b'TBA' in p or b'TBD' in p
-                or b'Not Available' in p or b'Data Unavailable' in p):
-            new_p, n = NO_EPG_RE.subn(rb'\1\2', p)
-            if n:
-                kept_programmes[i] = new_p
-                scrubbed += n
-    if scrubbed:
-        print(f"      scrubbed {scrubbed} placeholder titles ('No EPG'/'N/A'/etc.)")
+        new_p = p
+        # Cheap pre-check to avoid running the heavy regex on every programme.
+        if (b'No EPG' in new_p or b'N/A' in new_p or b'TBA' in new_p or b'TBD' in new_p
+                or b'Not Available' in new_p or b'Data Unavailable' in new_p
+                or b'To Be Announced' in new_p):
+            new_p, n = NO_EPG_TITLE_RE.subn(_scrub, new_p)
+            scrubbed += n
+        # Empty-title pass (no pre-filter; cheap regex)
+        new_p, n2 = EMPTY_TITLE_RE.subn(_scrub, new_p)
+        scrubbed_empty += n2
+        if new_p is not p:
+            kept_programmes[i] = new_p
+    if scrubbed or scrubbed_empty:
+        print(f"      scrubbed {scrubbed} placeholder titles + {scrubbed_empty} empty titles (all replaced with channel name)")
 
     # Full version (gzipped). Lite uncompressed version was dropped — every
     # modern player accepts .gz, and the file would otherwise exceed GitHub
