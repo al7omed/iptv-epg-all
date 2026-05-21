@@ -101,6 +101,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/guide.xml.gz docs/tvg-id-map.tsv
+          # EPG lite (filtered to the patched playlist's channels) — much
+          # smaller, faster for the player to load.
+          if [ -f docs/guide-lite.xml.gz ]; then
+            git add docs/guide-lite.xml.gz
+          fi
           # Add the patched M3U folder (playlist.m3u + favorites.m3u) if it
           # was produced.
           if [ -n "$M3U_PATH_TOKEN" ] && [ -d "docs/$M3U_PATH_TOKEN" ]; then

@@ -335,6 +335,29 @@ def write_tvg_id_map(m3u_channels, dest: Path) -> int:
 
 _TVG_ID_ATTR_RE = re.compile(r'\s*tvg-id="[^"]*"')
 _TVG_NAME_ATTR_RE = re.compile(r'(\stvg-name=")([^"]*)(")')
+_TVG_LOGO_ATTR_RE = re.compile(r'(\stvg-logo=")([^"]*)(")')
+
+# Logo URLs that are obviously broken/placeholder — get stripped from the
+# patched M3U so the player falls back to its own default icon instead of
+# showing a broken-image glyph.
+_BROKEN_LOGO_RE = re.compile(
+    r'^\s*$|'                                        # empty
+    r'^\s*/+\s*$|'                                    # bare slash
+    r'^https?://[^/]+/?$|'                            # bare host with no path
+    r'\?ver=0(?:\D|$)|'                               # placeholder version
+    r'/null(?:\.\w+)?(?:\?|$)|'                       # /null.png style placeholder
+    r'/placeholder(?:\.\w+)?(?:\?|$)',
+    re.IGNORECASE,
+)
+
+
+def sanitize_logo(url: str) -> str:
+    """Return '' if the logo URL is obviously broken, else the URL unchanged."""
+    if not url:
+        return ""
+    if _BROKEN_LOGO_RE.search(url):
+        return ""
+    return url
 _GROUP_TITLE_ATTR_RE = re.compile(r'(\sgroup-title=")([^"]*)(")')
 _TVG_CHNO_ATTR_RE = re.compile(r'\s*tvg-chno="[^"]*"')
 
@@ -919,6 +942,86 @@ ALLOWED_CATEGORIES_ORDER = [
     "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
     "UK| SOCCER REPLAY ᴿᴬᵂ",
     "UK| SKY CINEMA ʰᵉᵛᶜ",
+    # === Additional RAW/VIP categories pulled from source ===
+    # UK parallel quality variants (alongside the HEVC ones above). Auto-merge
+    # collapses these into the existing display categories — channels from
+    # multiple sources end up under one UK — Sport / UK — News / UK — General
+    # / UK — Documentary / UK — Sky Cinema heading.
+    "UK| GENERAL ᴴᴰ/ᴿᴬᵂ",
+    "UK| NEWS ᴴᴰ/ᴿᴬᵂ",
+    "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",
+    "UK| SKY CINEMA ᴴᴰ/ᴿᴬᵂ",
+    "UK| SPORT ᴿᴬᵂ",
+    "UK| SPORT ᴴᴰ ⱽᴵᴾ",
+    "UK| TNT SPORT ᴴᴰ ⱽᴵᴾ",
+    # UK premium PPV + 24/7 archives + streaming series (new display categories)
+    "UK| EPL PREMIER LEAGUE PPV ⱽᴵᴾ",
+    "UK| EPL PREMIER LEAGUE PPV",
+    "UK| DAZN PPV VIP",
+    "UK| DAZN PPV",
+    "UK| 24/7 ᴴᴰ/ᴿᴬᵂ",
+    "UK| BBC IPLAYER SERIES ᴿᴬᵂ",
+    "UK| APPLE TV+ SERIES ᴿᴬᵂ",
+    "UK| PRIME VIDEO SERIES ᴿᴬᵂ",
+    "UK| NETFLIX ORIGINAL ᴿᴬᵂ",
+    "UK| REALITY SHOW TV ᴿᴬᵂ",
+    "UK| SKY MIX DOCS ᴿᴬᵂ",
+    "UK| SKY MIX SERIES ᴿᴬᵂ",
+    "UK| SKY STORE ᴿᴬᵂ",
+    "UK| SKY SPORT+ PPV ᴿᴬᵂ",
+    "UK| NOW TV ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ",
+    "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ",
+    "UK| NOW TV SPORT ᵁᴴᴰ ³⁸⁴⁰ᴾ",
+    "UK| KIDS ᴴᴰ/ᴿᴬᵂ",
+    "UK| MUSIC ᴴᴰ/ᴿᴬᵂ",
+    # US PPV variants (alongside existing PPV cats above)
+    "US| MAX PPV ⱽᴵᴾ",
+    "US| MAX PPV",
+    "US| PEACOCK PPV ⱽᴵᴾ",
+    "US| PEACOCK PPV ⁽ᴮᴷ⁾",
+    "US| MLS PPV VIP",
+    "US| MLS PPV",
+    "US| MLS PPV ⁽ᴮᴷ⁾",
+    "US| FLO ⱽᴵᴾ PPV",
+    # US premium streaming networks (new display categories)
+    "US| HBO MAX NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| ️HULU NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| DISNEY+ NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| NETFLIX ON AIR ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| PEACOCK NETWORK ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| CINEMANIA HOLLYWOOD ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| CINEMA TV SHOWS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| ROKU ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| TELEMUNDO NETWORK ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| MIAMI ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| KIDS ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| MOVIES ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    # US 24/7 catch-up archives (new display categories per genre)
+    "US| 24/7 ONEPLAY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 PRIME VIDEO ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 DISNEY+ ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 PPV ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 MOVIES/ACTORS ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 ACTION/ADVENTURE ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 CLASSIC SHOWS ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 REALITY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 COMEDY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 CRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 CARTOON ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    "US| 24/7 KIDS/FAMILY ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
+    # AR additional RAW categories (MBC archives, niche sports)
+    "AR| MBC 24/7 ᴿᴬᵂ",
+    "AR| MBC SHAHID ᴿᴬᵂ",
+    "AR| MYHD ᶠ ᴿᴬᵂ",
+    "AR| POST SPORT ᴿᴬᵂ ⚽",
+    "AR| WATER SPORT ᴿᴬᵂ ⚽️",
+    "AR| AL FAJER ᴿᴬᵂ ▶ الفجر ⚽️",
+    "AR| AL FAJER ᴮᴱ ▶ الفجر ⚽️",
+    "AR| STARZPLAY SPORT ⁸ᴷ & ⁴ᴷ ⚽",
+    "AR| STARZPLAY SPORT ⁸ᴷ & ᵀᴷ ⚽",
+    "AR| STARZPLAY SPORT ᴹ & ᴿᴬᵂ ⚽",
+    "AR| STARZPLAY SPORT ᴮᴱ & ᴿᴬᵂ ⚽",
+    "AR| STARZPLAY SPORT F & ᴿᴬᵂ ⚽",
 ]
 
 
@@ -1162,6 +1265,10 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             line = _GROUP_TITLE_ATTR_RE.sub(
                 lambda m: m.group(1) + section.replace('"', "'") + m.group(3), line,
             )
+            # Strip obviously-broken logo URLs.
+            line = _TVG_LOGO_ATTR_RE.sub(
+                lambda m: m.group(1) + sanitize_logo(m.group(2)) + m.group(3), line,
+            )
             comma_idx = line.find(",")
             if comma_idx > 0:
                 line = line[: comma_idx + 1] + display
@@ -1186,7 +1293,30 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     return written
 
 
-def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
+# Channel name patterns that mark a PPV / event-driven channel. When such a
+# channel has a current programme in the EPG (live_now_ids set), it gets
+# pinned to the top of its category.
+_PPV_PIN_RE = re.compile(
+    r'\b(?:PPV|Event\s*Only|Event-Only|Live\s+Event)\b|'
+    r'\(Event\s*Only\)|\(Live\)|\(PPV\)',
+    re.IGNORECASE,
+)
+
+
+def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
+                       live_now_ids: set | None = None):
+    """Returns (count, set_of_effective_ids_used).
+
+    live_now_ids: set of channel ids (bytes or str) that currently have an
+    airing programme with a non-blank title. PPV/Event-pattern channels that
+    are in this set get pinned to #1 of their category.
+    """
+    live_set = live_now_ids or set()
+    # Normalize all to str for comparison against ch['effective_id']
+    live_set_str = {
+        (i.decode('utf-8', 'replace') if isinstance(i, (bytes, bytearray)) else i)
+        for i in live_set
+    }
     """Emit a patched M3U where every entry's tvg-id is set to its effective_id.
 
     Filtered to ALLOWED_CATEGORIES_ORDER, with beIN categories collapsed into
@@ -1206,6 +1336,27 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             if line:
                 dead_ids.add(line)
 
+    # URL dedup: collapse channels with the same stream URL to a single
+    # channel (highest quality_rank wins). Providers sometimes expose the
+    # same stream under multiple group-titles or display names. Keeping only
+    # the best per URL prevents the same channel showing up two or three
+    # times in the playlist.
+    url_best: "dict[str, tuple[int, dict]]" = {}
+    no_url: list = []
+    for ch in m3u_channels:
+        url = ch.get("url_line", "")
+        if not url:
+            no_url.append(ch)
+            continue
+        raw = ch.get("tvg_name") or ch.get("title") or ""
+        score = quality_rank(raw, source_category=ch.get("group", ""))
+        cur = url_best.get(url)
+        if cur is None or score > cur[0]:
+            url_best[url] = (score, ch)
+    m3u_channels = [ch for _, ch in url_best.values()] + no_url
+    url_dedup_dropped = sum(1 for ch in m3u_channels if ch is None)  # 0 by construction
+    print(f"      M3U URL dedup: kept {len(url_best)} unique URLs from {len(url_best)+0} entries (+ {len(no_url)} without URL)")
+
     by_cat: dict[str, list] = defaultdict(list)
     for ch in m3u_channels:
         cat = ch.get("group", "")
@@ -1216,6 +1367,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
     # source category, else its cleaned original.
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
+    used_ids: set = set()  # effective_ids of channels actually emitted
     lang_dropped_total = 0
     quality_dropped_total = 0
     dead_dropped_total = 0
@@ -1341,22 +1493,28 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             # only live on the original group-title (e.g. 'UK| SPORT RAW VIP
             # DOLBY AUDIO').
             src_cat = ch.get("group", "")
+            # PPV pin: if this is a PPV/Event-pattern channel AND it's
+            # currently airing real content (in live_set_str), prepend pin=0
+            # so it sorts to the very top of the category. Otherwise pin=1.
+            is_ppv_pattern = bool(_PPV_PIN_RE.search(display))
+            is_live_now = ch.get("effective_id") in live_set_str
+            pin = 0 if (is_ppv_pattern and is_live_now) else 1
             q = -quality_rank(display, source_category=src_cat)
             lang = language_rank(display) if is_bein_cat else 0
             prov = provider_priority_rank(display)
-            decorated.append((q, lang, natural_key(display), prov, display, ch))
-        decorated.sort(key=lambda x: (x[0], x[1], x[2], x[3]))
+            decorated.append((pin, q, lang, natural_key(display), prov, display, ch))
+        decorated.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4]))
         # Dedup by exact display name within a category (keep highest-quality).
         dedup = []
         for tup in decorated:
-            display = tup[4]
+            display = tup[5]  # display is index 5 now (pin, q, lang, nat, prov, display, ch)
             if display in seen_display_per_cat:
                 continue
             seen_display_per_cat.add(display)
             dedup.append(tup)
         # Emit with tvg-chno.
         chno = 1
-        for _, _, _, _, display, ch in dedup:
+        for _, _, _, _, _, display, ch in dedup:
             line = ch.get("extinf_line", "")
             if not line:
                 continue
@@ -1367,6 +1525,10 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             )
             line = _GROUP_TITLE_ATTR_RE.sub(
                 lambda m: m.group(1) + emitted_cat.replace('"', "'") + m.group(3), line,
+            )
+            # Strip obviously-broken logo URLs.
+            line = _TVG_LOGO_ATTR_RE.sub(
+                lambda m: m.group(1) + sanitize_logo(m.group(2)) + m.group(3), line,
             )
             comma_idx = line.find(",")
             if comma_idx > 0:
@@ -1381,6 +1543,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             if ch.get("url_line"):
                 out.append(ch["url_line"])
             written += 1
+            used_ids.add(ch["effective_id"])
             chno += 1
         seen_cats_log.append((emitted_cat, len(dedup)))
 
@@ -1397,7 +1560,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
 
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text("\n".join(out) + "\n", encoding="utf-8")
-    return written
+    return written, used_ids
 
 
 def build_m3u_index(m3u_channels):
@@ -2061,17 +2224,106 @@ def main():
     # OPTIONAL: also write a patched M3U with tvg-ids injected, behind a
     # random URL token (env M3U_PATH_TOKEN). The token doubles as the only
     # access key — anyone with the URL can use the user's IPTV subscription.
+    # === Compute "live now" channels for the PPV pin ===
+    # Channels whose EPG has a currently-airing programme with a real (non-
+    # blank, non-placeholder) title. write_patched_m3u uses this to pin PPV
+    # /Event channels that ARE airing to the top of their category.
+    now_utc_now = dt.datetime.now(dt.timezone.utc)
+    PROG_LIVE_RE = re.compile(
+        rb'<programme\s+start="([^"]+)"\s+stop="([^"]+)"[^>]*channel="([^"]+)"[^>]*>'
+        rb'.*?<title\b[^>]*>([^<]*)</title>',
+        re.DOTALL,
+    )
+    LIVE_TIME_RE = re.compile(rb'(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})')
+    def _parse_xmltv_b(s: bytes):
+        m = LIVE_TIME_RE.match(s)
+        if not m:
+            return None
+        try:
+            y, mo, d, h, mi, sec = (int(m.group(i)) for i in range(1, 7))
+            return dt.datetime(y, mo, d, h, mi, sec, tzinfo=dt.timezone.utc)
+        except (ValueError, OverflowError):
+            return None
+    live_now_ids: set = set()
+    for p in kept_programmes:
+        m = PROG_LIVE_RE.search(p)
+        if not m:
+            continue
+        start = _parse_xmltv_b(m.group(1))
+        stop = _parse_xmltv_b(m.group(2))
+        if not start or not stop:
+            continue
+        if not (start <= now_utc_now < stop):
+            continue
+        title = m.group(4).strip()
+        if not title:
+            continue
+        # Strip XML entities for the blank check
+        if title.lower() in (b'no epg', b'n/a', b'tba', b'tbd', b'not available'):
+            continue
+        # Channel id may be XML-escaped; keep both forms
+        cid = m.group(3)
+        live_now_ids.add(cid)
+        live_now_ids.add(html.unescape(cid.decode('utf-8', 'replace')).encode('utf-8'))
+    print(f"      {len(live_now_ids)} channels are live-now (EPG has current programme with title)")
+
     token = os.environ.get("M3U_PATH_TOKEN", "").strip()
     if token:
         pages_base = os.environ.get("PAGES_BASE", "https://al7omed.github.io/iptv-epg-all")
-        epg_link = f"{pages_base}/guide.xml.gz"
+        # Patched M3U uses the LITE EPG to keep player load times snappy.
+        epg_lite_link = f"{pages_base}/guide-lite.xml.gz"
         m3u_out = out_dir / token / "playlist.m3u"
-        n = write_patched_m3u(m3u_channels, m3u_out, epg_link)
+        n, used_ids = write_patched_m3u(m3u_channels, m3u_out, epg_lite_link,
+                                          live_now_ids=live_now_ids)
         print(f"      wrote patched M3U at {m3u_out} ({m3u_out.stat().st_size//1024} KB, {n} entries)")
         # Curated favorites playlist behind the same access token.
         fav_out = out_dir / token / "favorites.m3u"
-        fn = write_favorites_m3u(m3u_channels, fav_out, epg_link)
+        fn = write_favorites_m3u(m3u_channels, fav_out, epg_lite_link)
         print(f"      wrote favorites M3U at {fav_out} ({fav_out.stat().st_size//1024} KB, {fn} entries)")
+
+        # === EPG lite: filter the EPG to just the channels in the patched M3U ===
+        # The full guide.xml.gz is ~47 MB. The lite version only includes the
+        # ~4500 channels actually exposed in the playlist (and their dummy IDs).
+        # Much faster cold-start for the player.
+        out_gz_lite = out_dir / "guide-lite.xml.gz"
+        # Channels: keep those whose id is in used_ids OR whose id ends with a
+        # known dummy variant (effective_id, .auto, .name, .src — auto-generated
+        # IDs are used for player binding fallback).
+        chan_id_re = re.compile(rb'<channel\s+id="([^"]+)"')
+        prog_chan_re = re.compile(rb'channel="([^"]+)"')
+        used_ids_bytes = {i.encode("utf-8") for i in used_ids}
+        # The EPG uses XML-escaped ids ('&' -> '&amp;' etc.). Build a regex-
+        # ready set of escaped variants.
+        used_ids_escaped = {
+            i.replace(b"&", b"&amp;").replace(b'"', b"&quot;").replace(b"<", b"&lt;").replace(b">", b"&gt;")
+            for i in used_ids_bytes
+        }
+        used_ids_all = used_ids_bytes | used_ids_escaped
+        kept_lite_chans: list[bytes] = []
+        kept_lite_chan_ids: set = set()
+        for cid in sorted(kept_channels):
+            cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
+            # Match against both the raw and XML-escaped form.
+            cid_escaped = cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;")
+            if cid_b in used_ids_all or cid_escaped in used_ids_all:
+                kept_lite_chans.append(kept_channels[cid])
+                kept_lite_chan_ids.add(cid_b)
+                kept_lite_chan_ids.add(cid_escaped)
+        kept_lite_progs = [
+            p for p in kept_programmes
+            if (m := prog_chan_re.search(p)) and m.group(1) in kept_lite_chan_ids
+        ]
+        with gzip.open(out_gz_lite, "wb", compresslevel=6) as f:
+            f.write(header)
+            for block in kept_lite_chans:
+                f.write(block)
+                f.write(b"\n")
+            for p in kept_lite_progs:
+                f.write(p)
+                f.write(b"\n")
+            f.write(footer)
+        print(f"      wrote EPG lite {out_gz_lite} ({out_gz_lite.stat().st_size//1024} KB, "
+              f"{len(kept_lite_chans)} channels, {len(kept_lite_progs)} programmes)")
 
     print()
     print("=== source breakdown (channels) ===")
