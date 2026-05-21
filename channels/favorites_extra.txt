@@ -1,0 +1,13 @@
+# One channel-name pattern per line. Matching channels are pinned into the
+# favorites M3U regardless of the automatic classifier.
+#
+# Each line is a case-insensitive substring or regex (literal substring
+# matching is checked first; if no match, treated as a regex). Examples:
+#
+#   beIN Sports News                          # pins beIN News channel
+#   ^Premier Sports                           # regex anchored to start
+#   AL JAZEERA ENGLISH                        # exact substring, case-insensitive
+#
+# Empty lines and lines starting with '#' are ignored.
+#
+# After saving this file, the next hourly build will pick it up automatically.

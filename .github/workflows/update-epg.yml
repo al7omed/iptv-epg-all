@@ -39,6 +39,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install Python deps
+        run: pip install --quiet qrcode
+
       - name: Fetch sub1 M3U (direct)
         run: |
           mkdir -p epg-work
@@ -101,15 +104,21 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/guide.xml.gz docs/tvg-id-map.tsv
-          # EPG lite (filtered to the patched playlist's channels) — much
-          # smaller, faster for the player to load.
-          if [ -f docs/guide-lite.xml.gz ]; then
-            git add docs/guide-lite.xml.gz
-          fi
-          # Add the patched M3U folder (playlist.m3u + favorites.m3u) if it
-          # was produced.
+          # EPG lite + region-specific EPG splits (smaller, faster for
+          # players; advanced users can mix multiple sub-playlists).
+          for f in docs/guide-lite.xml.gz docs/guide-bein.xml.gz \
+                   docs/guide-sports.xml.gz docs/guide-ar.xml.gz \
+                   docs/guide-uk.xml.gz docs/guide-us.xml.gz; do
+            [ -f "$f" ] && git add "$f"
+          done
+          # Add the patched M3U folder (playlist.m3u + favorites.m3u +
+          # failover.json + setup.json + README.txt + playlist-qr.svg).
           if [ -n "$M3U_PATH_TOKEN" ] && [ -d "docs/$M3U_PATH_TOKEN" ]; then
             git add "docs/$M3U_PATH_TOKEN"
+          fi
+          # Append-only channel-rename log (history of provider renames).
+          if [ -f channels/name_changes.log ]; then
+            git add channels/name_changes.log
           fi
           git rm --cached --ignore-unmatch docs/guide.xml docs/playlist.m3u >/dev/null 2>&1 || true
           if git diff --staged --quiet; then

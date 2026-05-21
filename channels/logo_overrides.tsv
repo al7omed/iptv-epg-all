@@ -1,0 +1,9 @@
+# Per-channel logo URL overrides. Tab-separated:
+#   channel-name-pattern<TAB>logo-url
+#
+# Pattern is a case-insensitive substring match against the cleaned channel
+# name. First match wins. Empty/# lines ignored.
+#
+# Example (uncomment to use):
+# beIN Sports 1	https://i.ibb.co/exampleX/beINsports1.png
+# BBC One HD	https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_One_logo_2021.svg/512px-BBC_One_logo_2021.svg.png

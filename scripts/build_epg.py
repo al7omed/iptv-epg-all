@@ -358,6 +358,78 @@ def sanitize_logo(url: str) -> str:
     if _BROKEN_LOGO_RE.search(url):
         return ""
     return url
+
+
+# ---------------- user-managed config files ----------------
+# Three optional sidecar files let the user steer the build without code
+# changes:
+#   channels/favorites_extra.txt   pin extra channels into favorites
+#   channels/category_hide.txt     drop categories from output
+#   channels/logo_overrides.tsv    per-channel logo URL override
+# All are read at build time and survive across runs.
+
+def _load_config_lines(path: Path) -> list[str]:
+    """Read a config file. Skip blank/# lines. Return list of stripped lines."""
+    if not path.exists():
+        return []
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.split("#", 1)[0].strip()
+        if line:
+            out.append(line)
+    return out
+
+
+def load_favorites_extra() -> list[re.Pattern]:
+    """Compiled regex patterns from channels/favorites_extra.txt.
+    Substring-style lines fall back to escaped-literal regex."""
+    raw = _load_config_lines(Path("channels/favorites_extra.txt"))
+    patterns = []
+    for line in raw:
+        try:
+            patterns.append(re.compile(line, re.IGNORECASE))
+        except re.error:
+            patterns.append(re.compile(re.escape(line), re.IGNORECASE))
+    return patterns
+
+
+def load_category_hide() -> set[str]:
+    """Categories listed in channels/category_hide.txt are skipped on output."""
+    return set(_load_config_lines(Path("channels/category_hide.txt")))
+
+
+def load_logo_overrides() -> list[tuple[re.Pattern, str]]:
+    """Parse channels/logo_overrides.tsv. Returns [(pattern, url), ...]."""
+    path = Path("channels/logo_overrides.tsv")
+    if not path.exists():
+        return []
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.split("#", 1)[0].rstrip("\n")
+        if not line.strip():
+            continue
+        parts = line.split("\t", 1)
+        if len(parts) != 2:
+            continue
+        pattern, url = parts[0].strip(), parts[1].strip()
+        if not pattern or not url:
+            continue
+        try:
+            out.append((re.compile(pattern, re.IGNORECASE), url))
+        except re.error:
+            out.append((re.compile(re.escape(pattern), re.IGNORECASE), url))
+    return out
+
+
+def apply_logo_override(name: str, original_url: str,
+                         overrides: list[tuple[re.Pattern, str]]) -> str:
+    """Return override URL if name matches a configured pattern, else original."""
+    for pat, url in overrides:
+        if pat.search(name):
+            return url
+    return original_url
+
+
 _GROUP_TITLE_ATTR_RE = re.compile(r'(\sgroup-title=")([^"]*)(")')
 _TVG_CHNO_ATTR_RE = re.compile(r'\s*tvg-chno="[^"]*"')
 
@@ -1268,6 +1340,8 @@ def classify_favorite(display: str) -> str | None:
 
 
 FAVORITES_SECTION_ORDER = [
+    "Favorites — Pinned",          # user-pinned via channels/favorites_extra.txt
+    "Favorites — Tonight",         # primetime live PPV (16:00-23:00 GMT+3)
     "Favorites — beIN",
     "Favorites — Documentaries",
     "Favorites — News",
@@ -1277,7 +1351,8 @@ FAVORITES_SECTION_ORDER = [
 ]
 
 
-def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
+def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str,
+                          live_now_ids: set | None = None) -> int:
     """Emit a curated favorites playlist:
       * One entry per logical beIN feed (highest quality, best provider)
       * Top documentary networks (Nat Geo, Discovery, History, BBC Earth, ...)
@@ -1297,6 +1372,39 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
                 dead_ids.add(line)
 
     allowed = set(ALLOWED_CATEGORIES_ORDER)
+    extra_patterns = load_favorites_extra()
+    logo_overrides = load_logo_overrides()
+    if extra_patterns:
+        print(f"      favorites_extra.txt: {len(extra_patterns)} extra patterns loaded")
+
+    # Primetime detection: build runs hourly, so the favorites M3U dynamically
+    # gains a 'Favorites — Tonight' section at the top during 16:00–23:00
+    # local time (GMT+3). Contains live PPV / sport channels currently airing.
+    local_now = dt.datetime.now(dt.timezone.utc) + USER_TZ_OFFSET
+    is_primetime = 16 <= local_now.hour <= 22  # inclusive of 22:xx, exclusive 23:00
+    live_set = live_now_ids or set()
+    live_set_str = {
+        (i.decode("utf-8", "replace") if isinstance(i, (bytes, bytearray)) else i)
+        for i in live_set
+    }
+    primetime_patterns = (
+        # Categories considered "primetime worthy" — sport-event flagships.
+        # A channel is auto-pinned into Tonight if its display name OR its
+        # source category matches AND it has a current EPG programme.
+        re.compile(r'\b(?:PPV|Event\s*Only|Live\s+Event|Match)\b', re.I),
+        re.compile(r'beIN\s+Sports', re.I),
+        re.compile(r'\bUEFA\b|\bChampions\s+League\b', re.I),
+        re.compile(r'\bTNT\s+Sport|Sky\s+Sport(?:s)?\b', re.I),
+        re.compile(r'\bNFL\b|\bMLB\b|\bNHL\b|\bUFC\b|\bF1\b|\bFormula\s+1\b', re.I),
+    )
+    primetime_categories = {
+        "Sports — Major Events PPV", "Sports — 8K Live",
+        "UK — Sport", "UK — TNT Sport", "UK — Live Football PPV",
+        "US — Sport", "US — ESPN+ PPV", "US — UFC PPV", "US — NBA PPV",
+        "Arabic — UEFA Champions League", "Arabic — Sports PPV",
+    }
+    if is_primetime:
+        print(f"      primetime favorites ACTIVE (local hour {local_now.hour:02d}:xx)")
 
     # bucket[(favorites_section, canonical_name)] = list of (rank_tuple, display, ch)
     # We'll then keep the best per canonical key inside each section.
@@ -1316,7 +1424,31 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
         # Drop AFC channels — user removed this category entirely.
         if re.search(r'\bAFC\b', display, re.I):
             continue
+        # Check classifier first, then favorites_extra.txt as a manual pin.
         section = classify_favorite(display)
+        if section is None:
+            # User-managed pin: any favorites_extra pattern that matches the
+            # display name routes the channel into 'Favorites — Pinned'.
+            if any(p.search(display) for p in extra_patterns):
+                section = "Favorites — Pinned"
+        # Primetime override: live PPV/sport channels airing now get pinned
+        # to the very top via 'Favorites — Tonight' (in addition to their
+        # normal section). We add the Tonight entry as a separate candidate
+        # so the same channel can appear in two sections.
+        if is_primetime and ch.get("effective_id") in live_set_str:
+            cat_matches = cat in primetime_categories or any(
+                emc in cat for emc in ("BEIN SPORTS", "SPORT", "PPV", "UEFA")
+            )
+            name_matches = any(p.search(display) for p in primetime_patterns)
+            if cat_matches or name_matches:
+                tonight_canon = canonical_channel_name(display)
+                if tonight_canon:
+                    q_t = -quality_rank(display, source_category=cat)
+                    prov_t = provider_priority_rank(display)
+                    rank_t = (q_t, prov_t, natural_key(display))
+                    candidates[("Favorites — Tonight", tonight_canon)].append(
+                        (rank_t, display, ch)
+                    )
         if not section:
             continue
         canon = canonical_channel_name(display)
@@ -1360,10 +1492,12 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str) -> int:
             line = _GROUP_TITLE_ATTR_RE.sub(
                 lambda m: m.group(1) + section.replace('"', "'") + m.group(3), line,
             )
-            # Strip obviously-broken logo URLs.
-            line = _TVG_LOGO_ATTR_RE.sub(
-                lambda m: m.group(1) + sanitize_logo(m.group(2)) + m.group(3), line,
-            )
+            # Strip obviously-broken logo URLs, then apply per-channel override.
+            def _logo_repl_fav(m: re.Match) -> str:
+                cleaned = sanitize_logo(m.group(2))
+                cleaned = apply_logo_override(display, cleaned, logo_overrides)
+                return m.group(1) + cleaned + m.group(3)
+            line = _TVG_LOGO_ATTR_RE.sub(_logo_repl_fav, line)
             comma_idx = line.find(",")
             if comma_idx > 0:
                 line = line[: comma_idx + 1] + display
@@ -1422,6 +1556,13 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
 
     SECURITY: contains stream URLs with credentials.
     """
+    # Load optional user-managed config files.
+    category_hide = load_category_hide()
+    logo_overrides = load_logo_overrides()
+    if category_hide:
+        print(f"      category_hide.txt: {len(category_hide)} categories will be skipped")
+    if logo_overrides:
+        print(f"      logo_overrides.tsv: {len(logo_overrides)} per-channel overrides loaded")
     # Load health-check blacklist if present.
     bl_path = Path("channels/dead_channels.txt")
     dead_ids: set[str] = set()
@@ -1430,6 +1571,24 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
             line = line.split("#", 1)[0].strip()
             if line:
                 dead_ids.add(line)
+
+    # Failover URL map: canonical channel name → ordered list of distinct
+    # stream URLs (best first). After URL dedup below collapses duplicates
+    # per URL, channels with the same logical name but different URLs still
+    # remain in the playlist; this map lets the emit pass attach backup-URL
+    # hints to each entry so players that support failover can switch on
+    # primary-stream failure. Built from the PRE-dedup channel list.
+    failover_map: "dict[str, list[str]]" = defaultdict(list)
+    for ch in m3u_channels:
+        url = ch.get("url_line", "")
+        if not url:
+            continue
+        raw = ch.get("tvg_name") or ch.get("title") or ""
+        if not is_english_or_arabic(raw) or not is_acceptable_quality(raw):
+            continue
+        canon = canonical_channel_name(clean_channel_name(raw))
+        if canon and url not in failover_map[canon]:
+            failover_map[canon].append(url)
 
     # URL dedup: collapse channels with the same stream URL to a single
     # channel (highest quality_rank wins). Providers sometimes expose the
@@ -1463,12 +1622,29 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
     used_ids: set = set()  # effective_ids of channels actually emitted
+    # Per-region used_ids for region-specific EPG outputs:
+    used_ids_by_region: "dict[str, set]" = defaultdict(set)
     lang_dropped_total = 0
     quality_dropped_total = 0
     dead_dropped_total = 0
     new_buckets: "dict[str, list]" = defaultdict(list)  # new_cat -> list of (display, ch)
     new_cat_order: list[str] = []  # in source-list order, deduped
     seen_new_cats: set = set()
+
+
+    def _region_for(cat: str) -> str:
+        """Map an emitted category name to a region key for the EPG splits."""
+        if cat.startswith("beIN"):
+            return "bein"
+        if cat.startswith("Sports —"):
+            return "sports"
+        if cat.startswith("Arabic —"):
+            return "ar"
+        if cat.startswith("UK —"):
+            return "uk"
+        if cat.startswith("US —"):
+            return "us"
+        return "other"
 
     for cat in ALLOWED_CATEGORIES_ORDER:
         entries = by_cat.get(cat, [])
@@ -1581,9 +1757,14 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
 
     # Third pass: per final bucket, sort and emit.
     seen_cats_log = []
+    hidden_cats_dropped = 0
     for emitted_cat in final_order:
         entries = cleaned_final[emitted_cat]
         if not entries:
+            continue
+        # User-managed hide list — drop entire category.
+        if emitted_cat in category_hide:
+            hidden_cats_dropped += 1
             continue
         is_bein_cat = "beIN" in emitted_cat
         decorated = []
@@ -1629,10 +1810,12 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
             line = _GROUP_TITLE_ATTR_RE.sub(
                 lambda m: m.group(1) + emitted_cat.replace('"', "'") + m.group(3), line,
             )
-            # Strip obviously-broken logo URLs.
-            line = _TVG_LOGO_ATTR_RE.sub(
-                lambda m: m.group(1) + sanitize_logo(m.group(2)) + m.group(3), line,
-            )
+            # Strip obviously-broken logo URLs, then apply per-channel override.
+            def _logo_repl(m: re.Match) -> str:
+                cleaned = sanitize_logo(m.group(2))
+                cleaned = apply_logo_override(display, cleaned, logo_overrides)
+                return m.group(1) + cleaned + m.group(3)
+            line = _TVG_LOGO_ATTR_RE.sub(_logo_repl, line)
             comma_idx = line.find(",")
             if comma_idx > 0:
                 line = line[: comma_idx + 1] + display
@@ -1643,10 +1826,20 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
                 line = f'{head} tvg-id="{eff}" tvg-chno="{chno}" {tail}'
             out.append(line)
             out.extend(ch.get("extra_lines", []))
-            if ch.get("url_line"):
-                out.append(ch["url_line"])
+            # Failover URL hints — emit up to 3 backup URLs for the same
+            # canonical channel as #EXTVLCOPT lines. Compatible players
+            # (VLC, some IPTV apps) try the next URL if the primary fails.
+            # Others safely ignore these lines.
+            primary_url = ch.get("url_line", "")
+            if primary_url:
+                canon = canonical_channel_name(display)
+                backups = [u for u in failover_map.get(canon, []) if u != primary_url][:3]
+                for i, backup in enumerate(backups, 1):
+                    out.append(f'#EXTVLCOPT:backup-url-{i}={backup}')
+                out.append(primary_url)
             written += 1
             used_ids.add(ch["effective_id"])
+            used_ids_by_region[_region_for(emitted_cat)].add(ch["effective_id"])
             chno += 1
         seen_cats_log.append((emitted_cat, len(dedup)))
 
@@ -1663,7 +1856,20 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
 
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text("\n".join(out) + "\n", encoding="utf-8")
-    return written, used_ids
+
+    # Write a sidecar failover.json mapping canonical channel name →
+    # ordered list of stream URLs. Easier for custom clients to parse than
+    # the #EXTVLCOPT lines embedded in the M3U.
+    import json as _json
+    fover = {k: v for k, v in failover_map.items() if len(v) > 1}
+    if fover:
+        (dest.parent / "failover.json").write_text(
+            _json.dumps(fover, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        n_fb = sum(len(v) - 1 for v in fover.values())
+        print(f"      wrote failover.json: {len(fover)} channels with {n_fb} total backup URLs")
+    return written, used_ids, dict(used_ids_by_region)
 
 
 def build_m3u_index(m3u_channels):
@@ -2438,57 +2644,209 @@ def main():
         # Patched M3U uses the LITE EPG to keep player load times snappy.
         epg_lite_link = f"{pages_base}/guide-lite.xml.gz"
         m3u_out = out_dir / token / "playlist.m3u"
-        n, used_ids = write_patched_m3u(m3u_channels, m3u_out, epg_lite_link,
-                                          live_now_ids=live_now_ids)
+
+        # Channel-name diff: snapshot the OLD playlist's {tvg-id: display_name}
+        # mapping BEFORE the new write overwrites it. After the new playlist
+        # is written, we'll diff and log renames.
+        old_names: dict[str, str] = {}
+        if m3u_out.exists():
+            old_extinf = re.compile(r'tvg-id="([^"]+)"[^,]*,(.*)$')
+            for line in m3u_out.read_text(encoding="utf-8", errors="replace").splitlines():
+                if line.startswith("#EXTINF"):
+                    m = old_extinf.search(line)
+                    if m:
+                        old_names[html.unescape(m.group(1))] = m.group(2).strip()
+
+        n, used_ids, used_ids_by_region = write_patched_m3u(
+            m3u_channels, m3u_out, epg_lite_link, live_now_ids=live_now_ids,
+        )
         print(f"      wrote patched M3U at {m3u_out} ({m3u_out.stat().st_size//1024} KB, {n} entries)")
+
+        # Now compute the new {tvg-id: display_name} and diff.
+        new_names: dict[str, str] = {}
+        new_extinf = re.compile(r'tvg-id="([^"]+)"[^,]*,(.*)$')
+        for line in m3u_out.read_text(encoding="utf-8", errors="replace").splitlines():
+            if line.startswith("#EXTINF"):
+                m = new_extinf.search(line)
+                if m:
+                    new_names[html.unescape(m.group(1))] = m.group(2).strip()
+
+        renames: list[tuple[str, str, str]] = []
+        for tid, new_name in new_names.items():
+            old = old_names.get(tid)
+            if old is not None and old != new_name:
+                renames.append((tid, old, new_name))
+        if renames:
+            ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            log_path = Path("channels/name_changes.log")
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            # Append-only log; user can inspect/clear as needed.
+            with log_path.open("a", encoding="utf-8") as f:
+                f.write(f"\n=== {ts} — {len(renames)} channel name change(s) ===\n")
+                for tid, old, new in renames[:200]:  # cap to avoid bloat
+                    f.write(f"  {tid}\n    OLD: {old}\n    NEW: {new}\n")
+                if len(renames) > 200:
+                    f.write(f"  ... and {len(renames) - 200} more\n")
+            print(f"      channel renames detected: {len(renames)} (logged to {log_path})")
         # Curated favorites playlist behind the same access token.
         fav_out = out_dir / token / "favorites.m3u"
-        fn = write_favorites_m3u(m3u_channels, fav_out, epg_lite_link)
+        fn = write_favorites_m3u(m3u_channels, fav_out, epg_lite_link,
+                                   live_now_ids=live_now_ids)
         print(f"      wrote favorites M3U at {fav_out} ({fav_out.stat().st_size//1024} KB, {fn} entries)")
 
-        # === EPG lite: filter the EPG to just the channels in the patched M3U ===
+        # === EPG lite + region splits ===
         # The full guide.xml.gz is ~47 MB. The lite version only includes the
-        # ~4500 channels actually exposed in the playlist (and their dummy IDs).
-        # Much faster cold-start for the player.
-        out_gz_lite = out_dir / "guide-lite.xml.gz"
-        # Channels: keep those whose id is in used_ids OR whose id ends with a
-        # known dummy variant (effective_id, .auto, .name, .src — auto-generated
-        # IDs are used for player binding fallback).
-        chan_id_re = re.compile(rb'<channel\s+id="([^"]+)"')
+        # channels actually exposed in the playlist (much faster cold-start).
+        # Region-specific files (guide-bein, guide-uk, guide-us, guide-ar,
+        # guide-sports) let advanced users mix multiple sub-playlists with
+        # tiny EPG payloads.
         prog_chan_re = re.compile(rb'channel="([^"]+)"')
-        used_ids_bytes = {i.encode("utf-8") for i in used_ids}
-        # The EPG uses XML-escaped ids ('&' -> '&amp;' etc.). Build a regex-
-        # ready set of escaped variants.
-        used_ids_escaped = {
-            i.replace(b"&", b"&amp;").replace(b'"', b"&quot;").replace(b"<", b"&lt;").replace(b">", b"&gt;")
-            for i in used_ids_bytes
+
+        def _write_epg_subset(out_path: Path, want_ids: set[str], label: str) -> None:
+            if not want_ids:
+                return
+            want_bytes = {i.encode("utf-8") for i in want_ids}
+            want_escaped = {
+                i.replace(b"&", b"&amp;").replace(b'"', b"&quot;")
+                 .replace(b"<", b"&lt;").replace(b">", b"&gt;")
+                for i in want_bytes
+            }
+            want_all = want_bytes | want_escaped
+            kept_chans: list[bytes] = []
+            kept_chan_ids: set = set()
+            for cid in sorted(kept_channels):
+                cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
+                cid_escaped = cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;")
+                if cid_b in want_all or cid_escaped in want_all:
+                    kept_chans.append(kept_channels[cid])
+                    kept_chan_ids.add(cid_b)
+                    kept_chan_ids.add(cid_escaped)
+            kept_progs = [
+                p for p in kept_programmes
+                if (m := prog_chan_re.search(p)) and m.group(1) in kept_chan_ids
+            ]
+            with gzip.open(out_path, "wb", compresslevel=6) as f:
+                f.write(header)
+                for block in kept_chans:
+                    f.write(block)
+                    f.write(b"\n")
+                for p in kept_progs:
+                    f.write(p)
+                    f.write(b"\n")
+                f.write(footer)
+            print(f"      wrote {out_path.name} ({out_path.stat().st_size//1024} KB, "
+                  f"{len(kept_chans)} channels, {len(kept_progs)} programmes) — {label}")
+
+        # Full lite (all playlist channels)
+        _write_epg_subset(out_dir / "guide-lite.xml.gz", used_ids, "lite = all playlist channels")
+        # Per-region splits
+        _write_epg_subset(out_dir / "guide-bein.xml.gz",
+                          used_ids_by_region.get("bein", set()), "beIN only")
+        _write_epg_subset(out_dir / "guide-sports.xml.gz",
+                          used_ids_by_region.get("sports", set()), "Sports — bucket only")
+        _write_epg_subset(out_dir / "guide-ar.xml.gz",
+                          used_ids_by_region.get("ar", set()) | used_ids_by_region.get("bein", set()),
+                          "Arabic (incl. beIN MENA)")
+        _write_epg_subset(out_dir / "guide-uk.xml.gz",
+                          used_ids_by_region.get("uk", set()), "UK only")
+        _write_epg_subset(out_dir / "guide-us.xml.gz",
+                          used_ids_by_region.get("us", set()), "US only")
+
+        # === Subscribe bundle: setup.json + README.txt + QR SVG ===
+        # Helps onboarding a new device: one URL/QR can be scanned/copied
+        # to set up the player without manually typing the long random token.
+        token_dir = out_dir / token
+        setup_payload = {
+            "playlist": f"{pages_base}/{token}/playlist.m3u",
+            "favorites": f"{pages_base}/{token}/favorites.m3u",
+            "epg_full": f"{pages_base}/guide.xml.gz",
+            "epg_lite_recommended": f"{pages_base}/guide-lite.xml.gz",
+            "epg_bein": f"{pages_base}/guide-bein.xml.gz",
+            "epg_sports": f"{pages_base}/guide-sports.xml.gz",
+            "epg_arabic": f"{pages_base}/guide-ar.xml.gz",
+            "epg_uk": f"{pages_base}/guide-uk.xml.gz",
+            "epg_us": f"{pages_base}/guide-us.xml.gz",
+            "failover_data": f"{pages_base}/{token}/failover.json",
+            "tvg_id_map": f"{pages_base}/tvg-id-map.tsv",
+            "channel_count": n,
+            "favorites_count": fn,
+            "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "timezone": "GMT+3 (user local)",
+            "build_cron": "every hour at :15",
+            "health_check_cron": "Sundays 03:00 UTC",
         }
-        used_ids_all = used_ids_bytes | used_ids_escaped
-        kept_lite_chans: list[bytes] = []
-        kept_lite_chan_ids: set = set()
-        for cid in sorted(kept_channels):
-            cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
-            # Match against both the raw and XML-escaped form.
-            cid_escaped = cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;")
-            if cid_b in used_ids_all or cid_escaped in used_ids_all:
-                kept_lite_chans.append(kept_channels[cid])
-                kept_lite_chan_ids.add(cid_b)
-                kept_lite_chan_ids.add(cid_escaped)
-        kept_lite_progs = [
-            p for p in kept_programmes
-            if (m := prog_chan_re.search(p)) and m.group(1) in kept_lite_chan_ids
+        import json as _json2
+        (token_dir / "setup.json").write_text(
+            _json2.dumps(setup_payload, indent=2), encoding="utf-8",
+        )
+
+        readme_lines = [
+            "IPTV — Auto-generated playlist + EPG bundle",
+            "=" * 50,
+            "",
+            f"Generated: {setup_payload['generated_utc']}",
+            f"Channels: {n}    Favorites: {fn}",
+            "",
+            "MAIN URLS (paste into your player)",
+            "-" * 50,
+            f"Playlist:  {setup_payload['playlist']}",
+            f"Favorites: {setup_payload['favorites']}",
+            f"EPG (recommended, smaller, faster): {setup_payload['epg_lite_recommended']}",
+            "",
+            "REGION-SPECIFIC EPG (advanced — mix multiple sub-playlists)",
+            "-" * 50,
+            f"beIN MENA only: {setup_payload['epg_bein']}",
+            f"Sports cats:    {setup_payload['epg_sports']}",
+            f"Arabic (+beIN): {setup_payload['epg_arabic']}",
+            f"UK only:        {setup_payload['epg_uk']}",
+            f"US only:        {setup_payload['epg_us']}",
+            f"All channels:   {setup_payload['epg_full']}",
+            "",
+            "DATA",
+            "-" * 50,
+            f"Stream failover (canonical → backup URLs): {setup_payload['failover_data']}",
+            f"tvg-id mapping (channel → EPG id):         {setup_payload['tvg_id_map']}",
+            "",
+            "BUILD SCHEDULE",
+            "-" * 50,
+            f"Playlist refresh: {setup_payload['build_cron']}",
+            f"Dead-channel scan: {setup_payload['health_check_cron']}",
+            "",
+            "CONFIG FILES (committed to repo, edit to customize)",
+            "-" * 50,
+            "channels/favorites_extra.txt   pin extra channels into favorites",
+            "channels/category_hide.txt     hide entire categories from output",
+            "channels/logo_overrides.tsv    per-channel logo URL override",
+            "channels/dead_channels.txt     dead-stream blacklist (auto-updated)",
+            "channels/name_changes.log      append-only log of channel rename events",
         ]
-        with gzip.open(out_gz_lite, "wb", compresslevel=6) as f:
-            f.write(header)
-            for block in kept_lite_chans:
-                f.write(block)
-                f.write(b"\n")
-            for p in kept_lite_progs:
-                f.write(p)
-                f.write(b"\n")
-            f.write(footer)
-        print(f"      wrote EPG lite {out_gz_lite} ({out_gz_lite.stat().st_size//1024} KB, "
-              f"{len(kept_lite_chans)} channels, {len(kept_lite_progs)} programmes)")
+        (token_dir / "README.txt").write_text(
+            "\n".join(readme_lines) + "\n", encoding="utf-8",
+        )
+
+        # QR code as SVG (no external deps). Encodes the playlist URL so a
+        # phone camera can grab it and the user can paste into their player.
+        # Minimal pure-Python QR — fall back to a text file if qrcode pkg
+        # isn't installed.
+        try:
+            import qrcode
+            qr = qrcode.QRCode(
+                version=None, error_correction=qrcode.constants.ERROR_CORRECT_M,
+                box_size=10, border=4,
+            )
+            qr.add_data(setup_payload["playlist"])
+            qr.make(fit=True)
+            from qrcode.image.svg import SvgImage
+            img = qr.make_image(image_factory=SvgImage)
+            img.save(str(token_dir / "playlist-qr.svg"))
+            print(f"      wrote subscribe bundle: setup.json, README.txt, playlist-qr.svg")
+        except Exception as e:
+            # Fallback: write a tiny placeholder noting why QR couldn't be generated.
+            (token_dir / "playlist-qr.svg").write_text(
+                f"<!-- QR generation skipped: {e}. Install 'qrcode' to enable. -->\n",
+                encoding="utf-8",
+            )
+            print(f"      wrote subscribe bundle: setup.json, README.txt (QR skipped: {e})")
 
     print()
     print("=== source breakdown (channels) ===")

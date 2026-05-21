@@ -1,0 +1,12 @@
+# One emitted category name per line. Listed categories are dropped from
+# the patched playlist.
+#
+# Match is exact (case-sensitive) against the cleaned display name as it
+# appears in the playlist (e.g. 'US — Spectrum Network', 'Arabic — Actors').
+#
+# Examples:
+#   US — Entertainment
+#   Arabic — Bahrain
+#   UK — Discovery+
+#
+# Empty lines and lines starting with '#' are ignored.
