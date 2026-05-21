@@ -1,87 +1,75 @@
 #EXTM3U x-tvg-url="https://al7omed.github.io/iptv-epg-all/guide.xml.gz"
-#EXTINF:-1 tvg-id="### beIN SP⚽RTS AFC 8K ###" tvg-chno="1" tvg-name="beIN Sports AFC 8K" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports AFC 8K
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/712234.ts
-#EXTINF:-1 tvg-id="##### beIN SP⚽RTS MAX ⁸ᴷ #####" tvg-chno="2" tvg-name="beIN Sports MAX 8K" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports MAX 8K
+#EXTINF:-1 tvg-id="##### beIN SP⚽RTS MAX ⁸ᴷ #####" tvg-chno="1" tvg-name="beIN Sports MAX 8K" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports MAX 8K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997495.ts
-#EXTINF:-1 tvg-id="8K: beIN ⁴ᴷ ³⁸⁴⁰ᵖ (EVENT ONLY)" tvg-chno="3" tvg-name="beIN 4K 3840p (Event Only) [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13686.jpg?ver=79226" group-title="Favorites — beIN",beIN 4K 3840p (Event Only) [8K]
+#EXTINF:-1 tvg-id="8K: beIN ⁴ᴷ ³⁸⁴⁰ᵖ (EVENT ONLY)" tvg-chno="2" tvg-name="beIN 4K 3840p (Event Only) [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13686.jpg?ver=79226" group-title="Favorites — beIN",beIN 4K 3840p (Event Only) [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544456.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 1 4K" tvg-chno="4" tvg-name="beIN Sports 1 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 1 4K" tvg-chno="3" tvg-name="beIN Sports 1 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706538.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 2 4K" tvg-chno="5" tvg-name="beIN Sports 2 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 2 4K" tvg-chno="4" tvg-name="beIN Sports 2 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706537.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 3 4K" tvg-chno="6" tvg-name="beIN Sports 3 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 3 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 3 4K" tvg-chno="5" tvg-name="beIN Sports 3 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 3 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706536.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 4 4K" tvg-chno="7" tvg-name="beIN Sports 4 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 4 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 4 4K" tvg-chno="6" tvg-name="beIN Sports 4 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 4 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706535.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 5 4K" tvg-chno="8" tvg-name="beIN Sports 5 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 5 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 5 4K" tvg-chno="7" tvg-name="beIN Sports 5 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 5 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706534.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 6 4K" tvg-chno="9" tvg-name="beIN Sports 6 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 6 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 6 4K" tvg-chno="8" tvg-name="beIN Sports 6 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 6 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706533.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 7 4K" tvg-chno="10" tvg-name="beIN Sports 7 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 7 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 7 4K" tvg-chno="9" tvg-name="beIN Sports 7 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 7 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706532.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 8 4K" tvg-chno="11" tvg-name="beIN Sports 8 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 8 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 8 4K" tvg-chno="10" tvg-name="beIN Sports 8 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 8 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706531.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 9 4K" tvg-chno="12" tvg-name="beIN Sports 9 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 9 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS 9 4K" tvg-chno="11" tvg-name="beIN Sports 9 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 9 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706530.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS XTRA 1 4K" tvg-chno="13" tvg-name="beIN Sports Xtra 1 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 1 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS XTRA 1 4K" tvg-chno="12" tvg-name="beIN Sports Xtra 1 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 1 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706529.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS XTRA 2 4K" tvg-chno="14" tvg-name="beIN Sports Xtra 2 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 2 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS XTRA 2 4K" tvg-chno="13" tvg-name="beIN Sports Xtra 2 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 2 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706528.ts
-#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS XTRA 3 4K" tvg-chno="15" tvg-name="beIN Sports Xtra 3 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 3 4K [SS]
+#EXTINF:-1 tvg-id="SS: beIN SP⚽RTS XTRA 3 4K" tvg-chno="14" tvg-name="beIN Sports Xtra 3 4K [SS]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 3 4K [SS]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/706527.ts
-#EXTINF:-1 tvg-id="beINSports1En.qa" tvg-chno="16" tvg-name="beIN Sports 1 English 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 English 4K
+#EXTINF:-1 tvg-id="beINSports1En.qa" tvg-chno="15" tvg-name="beIN Sports 1 English 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 English 4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544807.ts
-#EXTINF:-1 tvg-id="BeinSportsExtra1.qa" tvg-chno="17" tvg-name="beIN Sports 1 Xtra 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 Xtra 4K
+#EXTINF:-1 tvg-id="BeinSportsExtra1.qa" tvg-chno="16" tvg-name="beIN Sports 1 Xtra 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 Xtra 4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544812.ts
-#EXTINF:-1 tvg-id="BeinSportsExtra2.qa" tvg-chno="18" tvg-name="beIN Sports 2 Xtra 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 Xtra 4K
+#EXTINF:-1 tvg-id="BeinSportsExtra2.qa" tvg-chno="17" tvg-name="beIN Sports 2 Xtra 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 Xtra 4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544811.ts
-#EXTINF:-1 tvg-id="BeinSportsExtra3.qa" tvg-chno="19" tvg-name="beIN Sports 3 Xtra 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 3 Xtra 4K
+#EXTINF:-1 tvg-id="BeinSportsExtra3.qa" tvg-chno="18" tvg-name="beIN Sports 3 Xtra 4K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 3 Xtra 4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544810.ts
-#EXTINF:-1 tvg-id="##### beIN SP⚽RTS 4K ◉ #####" tvg-chno="20" tvg-name="beIN Sports 4K" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports 4K
+#EXTINF:-1 tvg-id="##### beIN SP⚽RTS 4K ◉ #####" tvg-chno="19" tvg-name="beIN Sports 4K" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports 4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544822.ts
-#EXTINF:-1 tvg-id="beINSports2En.qa" tvg-chno="21" tvg-name="beIN Sports 2 English HEVC [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 English HEVC [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544478.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 1 AR ʰᵉᵛᶜ" tvg-chno="22" tvg-name="beIN Sports MAX 1 Arabic HEVC [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 1 Arabic HEVC [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997482.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 2 AR ʰᵉᵛᶜ" tvg-chno="23" tvg-name="beIN Sports MAX 2 Arabic HEVC [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 2 Arabic HEVC [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997481.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 3 EN ʰᵉᵛᶜ" tvg-chno="24" tvg-name="beIN Sports MAX 3 English HEVC [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 3 English HEVC [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997480.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 4 EN ʰᵉᵛᶜ" tvg-chno="25" tvg-name="beIN Sports MAX 4 English HEVC [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 4 English HEVC [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997479.ts
-#EXTINF:-1 tvg-id="NM: beIN SP⚽RTS AFC 1 ʰᵉᵛᶜ" tvg-chno="26" tvg-name="beIN Sports AFC 1 HEVC [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports AFC 1 HEVC [NM]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1201128.ts
-#EXTINF:-1 tvg-id="NM: beIN SP⚽RTS AFC 2 ʰᵉᵛᶜ" tvg-chno="27" tvg-name="beIN Sports AFC 2 HEVC [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports AFC 2 HEVC [NM]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1201127.ts
-#EXTINF:-1 tvg-id="NM: beIN SP⚽RTS AFC 3 ʰᵉᵛᶜ" tvg-chno="28" tvg-name="beIN Sports AFC 3 HEVC [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports AFC 3 HEVC [NM]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1201126.ts
-#EXTINF:-1 tvg-id="NM: beIN SP⚽RTS NBA ʰᵉᵛᶜ" tvg-chno="29" tvg-name="beIN Sports NBA HEVC [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports NBA HEVC [NM]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1201145.ts
-#EXTINF:-1 tvg-id="NM: beIN SP⚽RTS News ʰᵉᵛᶜ" tvg-chno="30" tvg-name="beIN Sports News HEVC [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports News HEVC [NM]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1201161.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 4 XTRA ᴴᴰ" tvg-chno="31" tvg-name="beIN Sports 4 Xtra HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 4 Xtra HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1806818.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 5 XTRA ᴴᴰ" tvg-chno="32" tvg-name="beIN Sports 5 Xtra HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 5 Xtra HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1806817.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 6 XTRA ᴴᴰ" tvg-chno="33" tvg-name="beIN Sports 6 Xtra HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 6 Xtra HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1806816.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 7 XTRA ᴴᴰ" tvg-chno="34" tvg-name="beIN Sports 7 Xtra HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 7 Xtra HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1806815.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 8 XTRA ᴴᴰ" tvg-chno="35" tvg-name="beIN Sports 8 Xtra HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 8 Xtra HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1806814.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 9 XTRA ᴴᴰ" tvg-chno="36" tvg-name="beIN Sports 9 Xtra HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 9 Xtra HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1806813.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS AFC 4 HD" tvg-chno="37" tvg-name="beIN Sports AFC 4 HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports AFC 4 HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/712229.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS AFC 5 HD" tvg-chno="38" tvg-name="beIN Sports AFC 5 HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports AFC 5 HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/712228.ts
-#EXTINF:-1 tvg-id="beINSports.qa" tvg-chno="39" tvg-name="beIN Sports Global HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Global HD [8K]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544434.ts
-#EXTINF:-1 tvg-id="BE: beIN SP⚽RTS 1 ENG ᴴᴰ" tvg-chno="40" tvg-name="beIN Sports 1 Eng HD [BE]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 Eng HD [BE]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1352999.ts
-#EXTINF:-1 tvg-id="TUBI: BEIN SPORTS XTRA EN ESPAÑOL ᴿᴬᵂ" tvg-chno="41" tvg-name="beIN Sports Xtra English EspaÑOl RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — beIN",beIN Sports Xtra English EspaÑOl RAW [TUBI]
+#EXTINF:-1 tvg-id="beINSports2En.qa" tvg-chno="20" tvg-name="beIN Sports 2 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 English RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544441.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 4 XTRA ᴿᴬᵂ" tvg-chno="21" tvg-name="beIN Sports 4 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 4 Xtra RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301678.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 5 XTRA ᴿᴬᵂ" tvg-chno="22" tvg-name="beIN Sports 5 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 5 Xtra RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301677.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 6 XTRA ᴿᴬᵂ" tvg-chno="23" tvg-name="beIN Sports 6 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 6 Xtra RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301676.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 7 XTRA ᴿᴬᵂ" tvg-chno="24" tvg-name="beIN Sports 7 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 7 Xtra RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301675.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 8 XTRA ᴿᴬᵂ" tvg-chno="25" tvg-name="beIN Sports 8 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 8 Xtra RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301674.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 9 XTRA ᴿᴬᵂ" tvg-chno="26" tvg-name="beIN Sports 9 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 9 Xtra RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301673.ts
+#EXTINF:-1 tvg-id="beINSportsGlobal.qa" tvg-chno="27" tvg-name="beIN Sports Global RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Global RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544457.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 1 AR ᴿᴬᵂ" tvg-chno="28" tvg-name="beIN Sports MAX 1 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 1 Arabic RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997476.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 2 AR ᴿᴬᵂ" tvg-chno="29" tvg-name="beIN Sports MAX 2 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 2 Arabic RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997475.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 3 EN ᴿᴬᵂ" tvg-chno="30" tvg-name="beIN Sports MAX 3 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 3 English RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997474.ts
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 4 EN ᴿᴬᵂ" tvg-chno="31" tvg-name="beIN Sports MAX 4 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 4 English RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997473.ts
+#EXTINF:-1 tvg-id="beINSportsNews.qa" tvg-chno="32" tvg-name="beIN Sports News RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports News RAW [8K]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544458.ts
+#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts NBA ᴿᴬᵂ" tvg-chno="33" tvg-name="beIN Sports NBA RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports NBA RAW [UHD]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/985086.ts
+#EXTINF:-1 tvg-id="TUBI: BEIN SPORTS XTRA EN ESPAÑOL ᴿᴬᵂ" tvg-chno="34" tvg-name="beIN Sports Xtra English EspaÑOl RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — beIN",beIN Sports Xtra English EspaÑOl RAW [TUBI]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1548405.ts
-#EXTINF:-1 tvg-id="GO: BEIN SPORTS XTRA" tvg-chno="42" tvg-name="beIN Sports Xtra [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — beIN",beIN Sports Xtra [GO]
+#EXTINF:-1 tvg-id="BE: beIN SP⚽RTS 1 ENG ᴴᴰ" tvg-chno="35" tvg-name="beIN Sports 1 Eng HD [BE]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 Eng HD [BE]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1352999.ts
+#EXTINF:-1 tvg-id="GO: BEIN SPORTS XTRA" tvg-chno="36" tvg-name="beIN Sports Xtra [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — beIN",beIN Sports Xtra [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568858.ts
 #EXTINF:-1 tvg-id="AlJazeeraDocumentary.qa" tvg-chno="1" tvg-name="Al Jazeera Documentary 4K [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1183.jpg" group-title="Favorites — Documentaries",Al Jazeera Documentary 4K [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2320.ts
@@ -109,156 +97,156 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717709.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/262717.ts
 #EXTINF:-1 tvg-id="### UK DOCUMENTARY HEVC/4K ###" tvg-chno="13" tvg-name="UK Documentary HEVC/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Documentaries",UK Documentary HEVC/4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717712.ts
-#EXTINF:-1 tvg-id="animalplanet.us" tvg-chno="14" tvg-name="Animal Planet West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/626.png?93518" group-title="Favorites — Documentaries",Animal Planet West HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325844.ts
-#EXTINF:-1 tvg-id="GOBX: ASHARQ DOCUMENTARY ᴴᴰ" tvg-chno="15" tvg-name="Asharq Documentary HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Documentaries",Asharq Documentary HD [GOBX]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762628.ts
-#EXTINF:-1 tvg-id="US: DISCOVERY EAST HD" tvg-chno="16" tvg-name="Discovery East HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery East HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1453212.ts
-#EXTINF:-1 tvg-id="DiscoveryFamily.us" tvg-chno="17" tvg-name="Discovery Family HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6308.jpg?18025" group-title="Favorites — Documentaries",Discovery Family HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325776.ts
-#EXTINF:-1 tvg-id="DiscoveryLife.us" tvg-chno="18" tvg-name="Discovery Life HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?12232" group-title="Favorites — Documentaries",Discovery Life HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/326358.ts
-#EXTINF:-1 tvg-id="US: DISCOVERY SCIENCE HD" tvg-chno="19" tvg-name="Discovery Science HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/620.jpg?1168" group-title="Favorites — Documentaries",Discovery Science HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325774.ts
-#EXTINF:-1 tvg-id="DiscoveryChannel.us" tvg-chno="20" tvg-name="Discovery West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery West HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325855.ts
-#EXTINF:-1 tvg-id="MotorTrend.us" tvg-chno="21" tvg-name="Motortrend HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6265.jpg?83501" group-title="Favorites — Documentaries",Motortrend HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325836.ts
-#EXTINF:-1 tvg-id="NatGeo.us" tvg-chno="22" tvg-name="National Geographic HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6151.png?10667" group-title="Favorites — Documentaries",National Geographic HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325786.ts
-#EXTINF:-1 tvg-id="NatGeoWild.us" tvg-chno="23" tvg-name="National Geographic Wild HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1395.png?40753" group-title="Favorites — Documentaries",National Geographic Wild HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325785.ts
-#EXTINF:-1 tvg-id="US: PBS HD" tvg-chno="24" tvg-name="Pbs HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12149.jpg?93627" group-title="Favorites — Documentaries",Pbs HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325811.ts
-#EXTINF:-1 tvg-id="US: RT DOCUMENTARY HD" tvg-chno="25" tvg-name="Rt Documentary HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3898.jpeg?32640" group-title="Favorites — Documentaries",Rt Documentary HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325929.ts
-#EXTINF:-1 tvg-id="SmithsonianChannel.us" tvg-chno="26" tvg-name="Smithsonian Channel HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3051.png?79749" group-title="Favorites — Documentaries",Smithsonian Channel HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325877.ts
-#EXTINF:-1 tvg-id="SmithsonianChannel.us" tvg-chno="27" tvg-name="Smithsonian Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3051.png?53674" group-title="Favorites — Documentaries",Smithsonian Channel West HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325902.ts
-#EXTINF:-1 tvg-id="TravelChannel.us" tvg-chno="28" tvg-name="Travel Channel HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3081.jpg?12958" group-title="Favorites — Documentaries",Travel Channel HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325772.ts
-#EXTINF:-1 tvg-id="TravelChannel.us" tvg-chno="29" tvg-name="Travel Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3081.jpg?83728" group-title="Favorites — Documentaries",Travel Channel West HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325882.ts
-#EXTINF:-1 tvg-id="TUBI: BBC EARTH ᴿᴬᵂ" tvg-chno="30" tvg-name="BBC Earth RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — Documentaries",BBC Earth RAW [TUBI]
+#EXTINF:-1 tvg-id="TUBI: BBC EARTH ᴿᴬᵂ" tvg-chno="14" tvg-name="BBC Earth RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — Documentaries",BBC Earth RAW [TUBI]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1548406.ts
-#EXTINF:-1 tvg-id="OSN: DISCOVERY IDX ᴿᴬᵂ" tvg-chno="31" tvg-name="Discovery Idx RAW [OSN]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6623.jpg" group-title="Favorites — Documentaries",Discovery Idx RAW [OSN]
+#EXTINF:-1 tvg-id="OSN: DISCOVERY IDX ᴿᴬᵂ" tvg-chno="15" tvg-name="Discovery Idx RAW [OSN]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6623.jpg" group-title="Favorites — Documentaries",Discovery Idx RAW [OSN]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1772107.ts
-#EXTINF:-1 tvg-id="AR: DISCOVERY+ 1 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="32" tvg-name="Discovery+ 1 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 1 Arabic RAW [AR]
+#EXTINF:-1 tvg-id="AR: DISCOVERY+ 1 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="16" tvg-name="Discovery+ 1 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 1 Arabic RAW [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836324.ts
-#EXTINF:-1 tvg-id="AR: DISCOVERY+ 2 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="33" tvg-name="Discovery+ 2 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 2 Arabic RAW [AR]
+#EXTINF:-1 tvg-id="AR: DISCOVERY+ 2 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="17" tvg-name="Discovery+ 2 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 2 Arabic RAW [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836323.ts
-#EXTINF:-1 tvg-id="AR: DISCOVERY+ 3 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="34" tvg-name="Discovery+ 3 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 3 Arabic RAW [AR]
+#EXTINF:-1 tvg-id="AR: DISCOVERY+ 3 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="18" tvg-name="Discovery+ 3 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 3 Arabic RAW [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836322.ts
-#EXTINF:-1 tvg-id="AR: DISCOVERY+ 4 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="35" tvg-name="Discovery+ 4 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 4 Arabic RAW [AR]
+#EXTINF:-1 tvg-id="AR: DISCOVERY+ 4 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="19" tvg-name="Discovery+ 4 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 4 Arabic RAW [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836321.ts
-#EXTINF:-1 tvg-id="AR: DISCOVERY+ 5 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="36" tvg-name="Discovery+ 5 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 5 Arabic RAW [AR]
+#EXTINF:-1 tvg-id="AR: DISCOVERY+ 5 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="20" tvg-name="Discovery+ 5 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 5 Arabic RAW [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836320.ts
-#EXTINF:-1 tvg-id="OSN: DOCUMENTARY ᴿᴬᵂ" tvg-chno="37" tvg-name="Documentary RAW [OSN]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6623.jpg" group-title="Favorites — Documentaries",Documentary RAW [OSN]
+#EXTINF:-1 tvg-id="OSN: DOCUMENTARY ᴿᴬᵂ" tvg-chno="21" tvg-name="Documentary RAW [OSN]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6623.jpg" group-title="Favorites — Documentaries",Documentary RAW [OSN]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1772109.ts
-#EXTINF:-1 tvg-id="TUBI: LOVE NATURE ᴿᴬᵂ" tvg-chno="38" tvg-name="Love Nature RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — Documentaries",Love Nature RAW [TUBI]
+#EXTINF:-1 tvg-id="TUBI: LOVE NATURE ᴿᴬᵂ" tvg-chno="22" tvg-name="Love Nature RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — Documentaries",Love Nature RAW [TUBI]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1548326.ts
-#EXTINF:-1 tvg-id="US: NBC NAT GEO (EAST) ᴿᴬᵂ" tvg-chno="39" tvg-name="NBC Nat Geo (East) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Documentaries",NBC Nat Geo (East) RAW [US]
+#EXTINF:-1 tvg-id="US: NBC NAT GEO (EAST) ᴿᴬᵂ" tvg-chno="23" tvg-name="NBC Nat Geo (East) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Documentaries",NBC Nat Geo (East) RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820052.ts
-#EXTINF:-1 tvg-id="US: NBC NAT GEO (WEST) ᴿᴬᵂ" tvg-chno="40" tvg-name="NBC Nat Geo (WEST) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Documentaries",NBC Nat Geo (WEST) RAW [US]
+#EXTINF:-1 tvg-id="US: NBC NAT GEO (WEST) ᴿᴬᵂ" tvg-chno="24" tvg-name="NBC Nat Geo (WEST) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Documentaries",NBC Nat Geo (WEST) RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820051.ts
-#EXTINF:-1 tvg-id="US: NBC NAT GEO WILD ᴿᴬᵂ" tvg-chno="41" tvg-name="NBC Nat Geo Wild RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Documentaries",NBC Nat Geo Wild RAW [US]
+#EXTINF:-1 tvg-id="US: NBC NAT GEO WILD ᴿᴬᵂ" tvg-chno="25" tvg-name="NBC Nat Geo Wild RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Documentaries",NBC Nat Geo Wild RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820050.ts
-#EXTINF:-1 tvg-id="CITY: PBS KBDI DENVER ᴿᴬᵂ" tvg-chno="42" tvg-name="Pbs Kbdi Denver RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kbdi Denver RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KBDI DENVER ᴿᴬᵂ" tvg-chno="26" tvg-name="Pbs Kbdi Denver RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kbdi Denver RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587030.ts
-#EXTINF:-1 tvg-id="CITY: PBS KBTC SEATTLE ᴿᴬᵂ" tvg-chno="43" tvg-name="Pbs Kbtc Seattle RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kbtc Seattle RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KBTC SEATTLE ᴿᴬᵂ" tvg-chno="27" tvg-name="Pbs Kbtc Seattle RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kbtc Seattle RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587029.ts
-#EXTINF:-1 tvg-id="CITY: PBS KCTS SEATTLE ᴿᴬᵂ" tvg-chno="44" tvg-name="Pbs Kcts Seattle RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kcts Seattle RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KCTS SEATTLE ᴿᴬᵂ" tvg-chno="28" tvg-name="Pbs Kcts Seattle RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kcts Seattle RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587027.ts
-#EXTINF:-1 tvg-id="CITY: PBS KEPB BOULDER ᴿᴬᵂ" tvg-chno="45" tvg-name="Pbs Kepb Boulder RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kepb Boulder RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KEPB BOULDER ᴿᴬᵂ" tvg-chno="29" tvg-name="Pbs Kepb Boulder RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kepb Boulder RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587025.ts
-#EXTINF:-1 tvg-id="CITY: PBS KERA MIAMI ᴿᴬᵂ" tvg-chno="46" tvg-name="Pbs Kera Miami RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kera Miami RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KERA MIAMI ᴿᴬᵂ" tvg-chno="30" tvg-name="Pbs Kera Miami RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kera Miami RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587024.ts
-#EXTINF:-1 tvg-id="CITY: PBS KETC COLUMBUS ᴿᴬᵂ" tvg-chno="47" tvg-name="Pbs Ketc Columbus RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Ketc Columbus RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KETC COLUMBUS ᴿᴬᵂ" tvg-chno="31" tvg-name="Pbs Ketc Columbus RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Ketc Columbus RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587023.ts
-#EXTINF:-1 tvg-id="CITY: PBS KETS HOUSTON ᴿᴬᵂ" tvg-chno="48" tvg-name="Pbs Kets Houston RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kets Houston RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KETS HOUSTON ᴿᴬᵂ" tvg-chno="32" tvg-name="Pbs Kets Houston RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kets Houston RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587022.ts
-#EXTINF:-1 tvg-id="CITY: PBS KLPB BROOKLYN ᴿᴬᵂ" tvg-chno="49" tvg-name="Pbs Klpb Brooklyn RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Klpb Brooklyn RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KLPB BROOKLYN ᴿᴬᵂ" tvg-chno="33" tvg-name="Pbs Klpb Brooklyn RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Klpb Brooklyn RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587021.ts
-#EXTINF:-1 tvg-id="CITY: PBS KLTL MARIETTA ᴿᴬᵂ" tvg-chno="50" tvg-name="Pbs Kltl Marietta RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kltl Marietta RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KLTL MARIETTA ᴿᴬᵂ" tvg-chno="34" tvg-name="Pbs Kltl Marietta RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kltl Marietta RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587020.ts
-#EXTINF:-1 tvg-id="CITY: PBS KQED SAN FRANCISCO ᴿᴬᵂ" tvg-chno="51" tvg-name="Pbs Kqed San Francisco RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kqed San Francisco RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KQED SAN FRANCISCO ᴿᴬᵂ" tvg-chno="35" tvg-name="Pbs Kqed San Francisco RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kqed San Francisco RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587019.ts
-#EXTINF:-1 tvg-id="CITY: PBS KQIN LOS ANGELES ᴿᴬᵂ" tvg-chno="52" tvg-name="Pbs Kqin Los Angeles RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kqin Los Angeles RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KQIN LOS ANGELES ᴿᴬᵂ" tvg-chno="36" tvg-name="Pbs Kqin Los Angeles RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kqin Los Angeles RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587017.ts
-#EXTINF:-1 tvg-id="CITY: PBS KRCB SAN FRANCISCO ᴿᴬᵂ" tvg-chno="53" tvg-name="Pbs Krcb San Francisco RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Krcb San Francisco RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KRCB SAN FRANCISCO ᴿᴬᵂ" tvg-chno="37" tvg-name="Pbs Krcb San Francisco RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Krcb San Francisco RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587016.ts
-#EXTINF:-1 tvg-id="CITY: PBS KRMA DENVER ᴿᴬᵂ" tvg-chno="54" tvg-name="Pbs Krma Denver RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Krma Denver RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KRMA DENVER ᴿᴬᵂ" tvg-chno="38" tvg-name="Pbs Krma Denver RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Krma Denver RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587014.ts
-#EXTINF:-1 tvg-id="CITY: PBS KUED PHILADELPHIA ᴿᴬᵂ" tvg-chno="55" tvg-name="Pbs Kued Philadelphia RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kued Philadelphia RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS KUED PHILADELPHIA ᴿᴬᵂ" tvg-chno="39" tvg-name="Pbs Kued Philadelphia RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Kued Philadelphia RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587013.ts
-#EXTINF:-1 tvg-id="CITY: PBS WABE ATLANTA ᴿᴬᵂ" tvg-chno="56" tvg-name="Pbs Wabe Atlanta RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wabe Atlanta RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WABE ATLANTA ᴿᴬᵂ" tvg-chno="40" tvg-name="Pbs Wabe Atlanta RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wabe Atlanta RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587012.ts
-#EXTINF:-1 tvg-id="CITY: PBS WENH BOSTON ᴿᴬᵂ" tvg-chno="57" tvg-name="Pbs Wenh Boston RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wenh Boston RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WENH BOSTON ᴿᴬᵂ" tvg-chno="41" tvg-name="Pbs Wenh Boston RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wenh Boston RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587011.ts
-#EXTINF:-1 tvg-id="CITY: PBS WGBH BOSTON ᴿᴬᵂ" tvg-chno="58" tvg-name="Pbs Wgbh Boston RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wgbh Boston RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WGBH BOSTON ᴿᴬᵂ" tvg-chno="42" tvg-name="Pbs Wgbh Boston RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wgbh Boston RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587010.ts
-#EXTINF:-1 tvg-id="CITY: PBS WGBY DETROIT ᴿᴬᵂ" tvg-chno="59" tvg-name="Pbs Wgby Detroit RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wgby Detroit RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WGBY DETROIT ᴿᴬᵂ" tvg-chno="43" tvg-name="Pbs Wgby Detroit RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wgby Detroit RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587009.ts
-#EXTINF:-1 tvg-id="CITY: PBS WGTV ATLANTA ᴿᴬᵂ" tvg-chno="60" tvg-name="Pbs Wgtv Atlanta RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wgtv Atlanta RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WGTV ATLANTA ᴿᴬᵂ" tvg-chno="44" tvg-name="Pbs Wgtv Atlanta RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wgtv Atlanta RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587007.ts
-#EXTINF:-1 tvg-id="CITY: PBS WKLE PHOENIX ᴿᴬᵂ" tvg-chno="61" tvg-name="Pbs Wkle Phoenix RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wkle Phoenix RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WKLE PHOENIX ᴿᴬᵂ" tvg-chno="45" tvg-name="Pbs Wkle Phoenix RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wkle Phoenix RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587006.ts
-#EXTINF:-1 tvg-id="CITY: PBS WLJT NASHVILLE ᴿᴬᵂ" tvg-chno="62" tvg-name="Pbs Wljt Nashville RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wljt Nashville RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WLJT NASHVILLE ᴿᴬᵂ" tvg-chno="46" tvg-name="Pbs Wljt Nashville RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wljt Nashville RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587005.ts
-#EXTINF:-1 tvg-id="CITY: PBS WMAO TAMPA ᴿᴬᵂ" tvg-chno="63" tvg-name="Pbs Wmao Tampa RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wmao Tampa RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WMAO TAMPA ᴿᴬᵂ" tvg-chno="47" tvg-name="Pbs Wmao Tampa RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wmao Tampa RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587004.ts
-#EXTINF:-1 tvg-id="CITY: PBS WMUM SILVER SPRING ᴿᴬᵂ" tvg-chno="64" tvg-name="Pbs Wmum Silver Spring RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wmum Silver Spring RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WMUM SILVER SPRING ᴿᴬᵂ" tvg-chno="48" tvg-name="Pbs Wmum Silver Spring RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wmum Silver Spring RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587003.ts
-#EXTINF:-1 tvg-id="CITY: PBS WNET NEW YORK ᴿᴬᵂ" tvg-chno="65" tvg-name="Pbs Wnet New York RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wnet New York RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WNET NEW YORK ᴿᴬᵂ" tvg-chno="49" tvg-name="Pbs Wnet New York RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wnet New York RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587002.ts
-#EXTINF:-1 tvg-id="CITY: PBS WNJN NEW YORK ᴿᴬᵂ" tvg-chno="66" tvg-name="Pbs Wnjn New York RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wnjn New York RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WNJN NEW YORK ᴿᴬᵂ" tvg-chno="50" tvg-name="Pbs Wnjn New York RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wnjn New York RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587001.ts
-#EXTINF:-1 tvg-id="CITY: PBS WPNE GREENBAY ᴿᴬᵂ" tvg-chno="67" tvg-name="Pbs Wpne Greenbay RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wpne Greenbay RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WPNE GREENBAY ᴿᴬᵂ" tvg-chno="51" tvg-name="Pbs Wpne Greenbay RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wpne Greenbay RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1587000.ts
-#EXTINF:-1 tvg-id="CITY: PBS WQPT LOS ANGELES ᴿᴬᵂ" tvg-chno="68" tvg-name="Pbs Wqpt Los Angeles RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wqpt Los Angeles RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WQPT LOS ANGELES ᴿᴬᵂ" tvg-chno="52" tvg-name="Pbs Wqpt Los Angeles RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wqpt Los Angeles RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1586999.ts
-#EXTINF:-1 tvg-id="CITY: PBS WSKG CAMBRIDGE ᴿᴬᵂ" tvg-chno="69" tvg-name="Pbs Wskg Cambridge RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wskg Cambridge RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WSKG CAMBRIDGE ᴿᴬᵂ" tvg-chno="53" tvg-name="Pbs Wskg Cambridge RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wskg Cambridge RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1586998.ts
-#EXTINF:-1 tvg-id="CITY: PBS WTCI WASHINGTON ᴿᴬᵂ" tvg-chno="70" tvg-name="Pbs Wtci Washington RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wtci Washington RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WTCI WASHINGTON ᴿᴬᵂ" tvg-chno="54" tvg-name="Pbs Wtci Washington RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wtci Washington RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1586997.ts
-#EXTINF:-1 tvg-id="CITY: PBS WTTW CHICAGO ᴿᴬᵂ" tvg-chno="71" tvg-name="Pbs Wttw Chicago RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wttw Chicago RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WTTW CHICAGO ᴿᴬᵂ" tvg-chno="55" tvg-name="Pbs Wttw Chicago RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wttw Chicago RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1586996.ts
-#EXTINF:-1 tvg-id="CITY: PBS WYIN CHICAGO ᴿᴬᵂ" tvg-chno="72" tvg-name="Pbs Wyin Chicago RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wyin Chicago RAW [CITY]
+#EXTINF:-1 tvg-id="CITY: PBS WYIN CHICAGO ᴿᴬᵂ" tvg-chno="56" tvg-name="Pbs Wyin Chicago RAW [CITY]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Pbs Wyin Chicago RAW [CITY]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1586995.ts
-#EXTINF:-1 tvg-id="PRIME: BBC EARTH ᴿᴬᵂ" tvg-chno="73" tvg-name="Prime: BBC Earth RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: BBC Earth RAW
+#EXTINF:-1 tvg-id="PRIME: BBC EARTH ᴿᴬᵂ" tvg-chno="57" tvg-name="Prime: BBC Earth RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: BBC Earth RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536963.ts
-#EXTINF:-1 tvg-id="PRIME: HISTORY & UNDISCOVERED ᴿᴬᵂ" tvg-chno="74" tvg-name="Prime: History & Undiscovered RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History & Undiscovered RAW
+#EXTINF:-1 tvg-id="PRIME: HISTORY & UNDISCOVERED ᴿᴬᵂ" tvg-chno="58" tvg-name="Prime: History & Undiscovered RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History & Undiscovered RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536712.ts
-#EXTINF:-1 tvg-id="PRIME: HISTORY HIT CHANNEL ᴿᴬᵂ" tvg-chno="75" tvg-name="Prime: History Hit Channel RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History Hit Channel RAW
+#EXTINF:-1 tvg-id="PRIME: HISTORY HIT CHANNEL ᴿᴬᵂ" tvg-chno="59" tvg-name="Prime: History Hit Channel RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History Hit Channel RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536711.ts
-#EXTINF:-1 tvg-id="PRIME: HISTORY HUNTERS ᴿᴬᵂ" tvg-chno="76" tvg-name="Prime: History Hunters RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History Hunters RAW
+#EXTINF:-1 tvg-id="PRIME: HISTORY HUNTERS ᴿᴬᵂ" tvg-chno="60" tvg-name="Prime: History Hunters RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History Hunters RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537446.ts
-#EXTINF:-1 tvg-id="PRIME: HISTORY UNTOLD ᴿᴬᵂ" tvg-chno="77" tvg-name="Prime: History Untold RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History Untold RAW
+#EXTINF:-1 tvg-id="PRIME: HISTORY UNTOLD ᴿᴬᵂ" tvg-chno="61" tvg-name="Prime: History Untold RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: History Untold RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536710.ts
-#EXTINF:-1 tvg-id="PRIME: LOVE NATURE ᴿᴬᵂ" tvg-chno="78" tvg-name="Prime: Love Nature RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Love Nature RAW
+#EXTINF:-1 tvg-id="PRIME: LOVE NATURE ᴿᴬᵂ" tvg-chno="62" tvg-name="Prime: Love Nature RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Love Nature RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536637.ts
-#EXTINF:-1 tvg-id="PRIME: MOTORTREND FAST TV ᴿᴬᵂ" tvg-chno="79" tvg-name="Prime: Motortrend Fast Tv RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Motortrend Fast Tv RAW
+#EXTINF:-1 tvg-id="PRIME: MOTORTREND FAST TV ᴿᴬᵂ" tvg-chno="63" tvg-name="Prime: Motortrend Fast Tv RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Motortrend Fast Tv RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536605.ts
-#EXTINF:-1 tvg-id="PRIME: NAT GEO SHARKS ᴿᴬᵂ" tvg-chno="80" tvg-name="Prime: Nat Geo Sharks RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Nat Geo Sharks RAW
+#EXTINF:-1 tvg-id="PRIME: NAT GEO SHARKS ᴿᴬᵂ" tvg-chno="64" tvg-name="Prime: Nat Geo Sharks RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Nat Geo Sharks RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536585.ts
-#EXTINF:-1 tvg-id="PRIME: PBS ANTIQUES ROADSHOW ᴿᴬᵂ" tvg-chno="81" tvg-name="Prime: Pbs Antiques Roadshow RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Antiques Roadshow RAW
+#EXTINF:-1 tvg-id="PRIME: PBS ANTIQUES ROADSHOW ᴿᴬᵂ" tvg-chno="65" tvg-name="Prime: Pbs Antiques Roadshow RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Antiques Roadshow RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536528.ts
-#EXTINF:-1 tvg-id="PRIME: PBS DOCUMENTARIES ᴿᴬᵂ" tvg-chno="82" tvg-name="Prime: Pbs Documentaries RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Documentaries RAW
+#EXTINF:-1 tvg-id="PRIME: PBS DOCUMENTARIES ᴿᴬᵂ" tvg-chno="66" tvg-name="Prime: Pbs Documentaries RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Documentaries RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536527.ts
-#EXTINF:-1 tvg-id="PRIME: PBS DRAMA ᴿᴬᵂ" tvg-chno="83" tvg-name="Prime: Pbs Drama RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Drama RAW
+#EXTINF:-1 tvg-id="PRIME: PBS DRAMA ᴿᴬᵂ" tvg-chno="67" tvg-name="Prime: Pbs Drama RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Drama RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536526.ts
-#EXTINF:-1 tvg-id="PRIME: PBS FOOD ᴿᴬᵂ" tvg-chno="84" tvg-name="Prime: Pbs Food RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Food RAW
+#EXTINF:-1 tvg-id="PRIME: PBS FOOD ᴿᴬᵂ" tvg-chno="68" tvg-name="Prime: Pbs Food RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Food RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536525.ts
-#EXTINF:-1 tvg-id="PRIME: PBS GENEALOGY ᴿᴬᵂ" tvg-chno="85" tvg-name="Prime: Pbs Genealogy RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Genealogy RAW
+#EXTINF:-1 tvg-id="PRIME: PBS GENEALOGY ᴿᴬᵂ" tvg-chno="69" tvg-name="Prime: Pbs Genealogy RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Genealogy RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536524.ts
-#EXTINF:-1 tvg-id="PRIME: PBS NATURE ᴿᴬᵂ" tvg-chno="86" tvg-name="Prime: Pbs Nature RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Nature RAW
+#EXTINF:-1 tvg-id="PRIME: PBS NATURE ᴿᴬᵂ" tvg-chno="70" tvg-name="Prime: Pbs Nature RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Nature RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536522.ts
-#EXTINF:-1 tvg-id="PRIME: PBS TRAVEL ᴿᴬᵂ" tvg-chno="87" tvg-name="Prime: Pbs Travel RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Travel RAW
+#EXTINF:-1 tvg-id="PRIME: PBS TRAVEL ᴿᴬᵂ" tvg-chno="71" tvg-name="Prime: Pbs Travel RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: Pbs Travel RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536520.ts
-#EXTINF:-1 tvg-id="PRIME: TRUE HISTORY ᴿᴬᵂ" tvg-chno="88" tvg-name="Prime: True History RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: True History RAW
+#EXTINF:-1 tvg-id="PRIME: TRUE HISTORY ᴿᴬᵂ" tvg-chno="72" tvg-name="Prime: True History RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Documentaries",Prime: True History RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536341.ts
+#EXTINF:-1 tvg-id="animalplanet.us" tvg-chno="73" tvg-name="Animal Planet West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/626.png?93518" group-title="Favorites — Documentaries",Animal Planet West HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325844.ts
+#EXTINF:-1 tvg-id="GOBX: ASHARQ DOCUMENTARY ᴴᴰ" tvg-chno="74" tvg-name="Asharq Documentary HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Documentaries",Asharq Documentary HD [GOBX]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762628.ts
+#EXTINF:-1 tvg-id="US: DISCOVERY EAST HD" tvg-chno="75" tvg-name="Discovery East HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery East HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1453212.ts
+#EXTINF:-1 tvg-id="DiscoveryFamily.us" tvg-chno="76" tvg-name="Discovery Family HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6308.jpg?18025" group-title="Favorites — Documentaries",Discovery Family HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325776.ts
+#EXTINF:-1 tvg-id="DiscoveryLife.us" tvg-chno="77" tvg-name="Discovery Life HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?12232" group-title="Favorites — Documentaries",Discovery Life HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/326358.ts
+#EXTINF:-1 tvg-id="US: DISCOVERY SCIENCE HD" tvg-chno="78" tvg-name="Discovery Science HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/620.jpg?1168" group-title="Favorites — Documentaries",Discovery Science HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325774.ts
+#EXTINF:-1 tvg-id="DiscoveryChannel.us" tvg-chno="79" tvg-name="Discovery West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery West HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325855.ts
+#EXTINF:-1 tvg-id="MotorTrend.us" tvg-chno="80" tvg-name="Motortrend HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6265.jpg?83501" group-title="Favorites — Documentaries",Motortrend HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325836.ts
+#EXTINF:-1 tvg-id="NatGeo.us" tvg-chno="81" tvg-name="National Geographic HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6151.png?10667" group-title="Favorites — Documentaries",National Geographic HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325786.ts
+#EXTINF:-1 tvg-id="NatGeoWild.us" tvg-chno="82" tvg-name="National Geographic Wild HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1395.png?40753" group-title="Favorites — Documentaries",National Geographic Wild HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325785.ts
+#EXTINF:-1 tvg-id="US: PBS HD" tvg-chno="83" tvg-name="Pbs HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12149.jpg?93627" group-title="Favorites — Documentaries",Pbs HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325811.ts
+#EXTINF:-1 tvg-id="US: RT DOCUMENTARY HD" tvg-chno="84" tvg-name="Rt Documentary HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3898.jpeg?32640" group-title="Favorites — Documentaries",Rt Documentary HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325929.ts
+#EXTINF:-1 tvg-id="SmithsonianChannel.us" tvg-chno="85" tvg-name="Smithsonian Channel HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3051.png?79749" group-title="Favorites — Documentaries",Smithsonian Channel HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325877.ts
+#EXTINF:-1 tvg-id="SmithsonianChannel.us" tvg-chno="86" tvg-name="Smithsonian Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3051.png?53674" group-title="Favorites — Documentaries",Smithsonian Channel West HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325902.ts
+#EXTINF:-1 tvg-id="TravelChannel.us" tvg-chno="87" tvg-name="Travel Channel HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3081.jpg?12958" group-title="Favorites — Documentaries",Travel Channel HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325772.ts
+#EXTINF:-1 tvg-id="TravelChannel.us" tvg-chno="88" tvg-name="Travel Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3081.jpg?83728" group-title="Favorites — Documentaries",Travel Channel West HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325882.ts
 #EXTINF:-1 tvg-id="AR: Almajd Documentary" tvg-chno="89" tvg-name="Almajd Documentary [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12970.png?ver=82607" group-title="Favorites — Documentaries",Almajd Documentary [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/214812.ts
 #EXTINF:-1 tvg-id="AR: CGTN Arabic Documentary" tvg-chno="90" tvg-name="Cgtn Arabic Documentary [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/377.png" group-title="Favorites — Documentaries",Cgtn Arabic Documentary [AR]
@@ -305,36 +293,36 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429591.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429593.ts
 #EXTINF:-1 tvg-id="SkyNews.uk" tvg-chno="6" tvg-name="Sky News HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3124.jpg?78087" group-title="Favorites — News",Sky News HEVC 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717697.ts
-#EXTINF:-1 tvg-id="CNBC.us" tvg-chno="7" tvg-name="Cnbc HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/404.png?58424" group-title="Favorites — News",Cnbc HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324929.ts
-#EXTINF:-1 tvg-id="CNBCWorld.us" tvg-chno="8" tvg-name="Cnbc World HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/755.png?48211" group-title="Favorites — News",Cnbc World HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324948.ts
-#EXTINF:-1 tvg-id="msnbc.us" tvg-chno="9" tvg-name="Msnbc HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8223.png?68505" group-title="Favorites — News",Msnbc HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324922.ts
-#EXTINF:-1 tvg-id="TUBI: BLOOMBERG ORIGINALS ᴿᴬᵂ" tvg-chno="10" tvg-name="Bloomberg Originals RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — News",Bloomberg Originals RAW [TUBI]
+#EXTINF:-1 tvg-id="TUBI: BLOOMBERG ORIGINALS ᴿᴬᵂ" tvg-chno="7" tvg-name="Bloomberg Originals RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — News",Bloomberg Originals RAW [TUBI]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1548403.ts
-#EXTINF:-1 tvg-id="TUBI: BLOOMBERG TV+ ᴿᴬᵂ" tvg-chno="11" tvg-name="Bloomberg Tv+ RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — News",Bloomberg Tv+ RAW [TUBI]
+#EXTINF:-1 tvg-id="TUBI: BLOOMBERG TV+ ᴿᴬᵂ" tvg-chno="8" tvg-name="Bloomberg Tv+ RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — News",Bloomberg Tv+ RAW [TUBI]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1548402.ts
-#EXTINF:-1 tvg-id="TUBI: EURONEWS ᴿᴬᵂ" tvg-chno="12" tvg-name="Euronews RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — News",Euronews RAW [TUBI]
+#EXTINF:-1 tvg-id="TUBI: EURONEWS ᴿᴬᵂ" tvg-chno="9" tvg-name="Euronews RAW [TUBI]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14491.png?ver=79983" group-title="Favorites — News",Euronews RAW [TUBI]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1548369.ts
-#EXTINF:-1 tvg-id="US: NBC CNBC ᴿᴬᵂ" tvg-chno="13" tvg-name="NBC Cnbc RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — News",NBC Cnbc RAW [US]
+#EXTINF:-1 tvg-id="US: NBC CNBC ᴿᴬᵂ" tvg-chno="10" tvg-name="NBC Cnbc RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — News",NBC Cnbc RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820474.ts
-#EXTINF:-1 tvg-id="PRIME: BBC NEWS ᴿᴬᵂ" tvg-chno="14" tvg-name="Prime: BBC News RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: BBC News RAW
+#EXTINF:-1 tvg-id="PRIME: BBC NEWS ᴿᴬᵂ" tvg-chno="11" tvg-name="Prime: BBC News RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: BBC News RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536959.ts
-#EXTINF:-1 tvg-id="PRIME: BLOOMBERG ORIGINALS ᴿᴬᵂ" tvg-chno="15" tvg-name="Prime: Bloomberg Originals RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Bloomberg Originals RAW
+#EXTINF:-1 tvg-id="PRIME: BLOOMBERG ORIGINALS ᴿᴬᵂ" tvg-chno="12" tvg-name="Prime: Bloomberg Originals RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Bloomberg Originals RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537480.ts
-#EXTINF:-1 tvg-id="PRIME: BLOOMBERG TV+ ᴿᴬᵂ" tvg-chno="16" tvg-name="Prime: Bloomberg Tv+ RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Bloomberg Tv+ RAW
+#EXTINF:-1 tvg-id="PRIME: BLOOMBERG TV+ ᴿᴬᵂ" tvg-chno="13" tvg-name="Prime: Bloomberg Tv+ RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Bloomberg Tv+ RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537479.ts
-#EXTINF:-1 tvg-id="PRIME: CNN HEADLINES ᴿᴬᵂ" tvg-chno="17" tvg-name="Prime: Cnn Headlines RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Cnn Headlines RAW
+#EXTINF:-1 tvg-id="PRIME: CNN HEADLINES ᴿᴬᵂ" tvg-chno="14" tvg-name="Prime: Cnn Headlines RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Cnn Headlines RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537476.ts
-#EXTINF:-1 tvg-id="PRIME: CNN INTERNATIONAL ᴿᴬᵂ" tvg-chno="18" tvg-name="Prime: Cnn International RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Cnn International RAW
+#EXTINF:-1 tvg-id="PRIME: CNN INTERNATIONAL ᴿᴬᵂ" tvg-chno="15" tvg-name="Prime: Cnn International RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Cnn International RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537475.ts
-#EXTINF:-1 tvg-id="PRIME: CNN ORIGINALS ᴿᴬᵂ" tvg-chno="19" tvg-name="Prime: Cnn Originals RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Cnn Originals RAW
+#EXTINF:-1 tvg-id="PRIME: CNN ORIGINALS ᴿᴬᵂ" tvg-chno="16" tvg-name="Prime: Cnn Originals RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Cnn Originals RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536872.ts
-#EXTINF:-1 tvg-id="PRIME: EURONEWS ᴿᴬᵂ" tvg-chno="20" tvg-name="Prime: Euronews RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Euronews RAW
+#EXTINF:-1 tvg-id="PRIME: EURONEWS ᴿᴬᵂ" tvg-chno="17" tvg-name="Prime: Euronews RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Euronews RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537460.ts
-#EXTINF:-1 tvg-id="PRIME: SKY NEWS ᴿᴬᵂ" tvg-chno="21" tvg-name="Prime: Sky News RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Sky News RAW
+#EXTINF:-1 tvg-id="PRIME: SKY NEWS ᴿᴬᵂ" tvg-chno="18" tvg-name="Prime: Sky News RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — News",Prime: Sky News RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536456.ts
+#EXTINF:-1 tvg-id="CNBC.us" tvg-chno="19" tvg-name="Cnbc HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/404.png?58424" group-title="Favorites — News",Cnbc HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324929.ts
+#EXTINF:-1 tvg-id="CNBCWorld.us" tvg-chno="20" tvg-name="Cnbc World HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/755.png?48211" group-title="Favorites — News",Cnbc World HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324948.ts
+#EXTINF:-1 tvg-id="msnbc.us" tvg-chno="21" tvg-name="Msnbc HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8223.png?68505" group-title="Favorites — News",Msnbc HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324922.ts
 #EXTINF:-1 tvg-id="AlJazeeraEnglish.uk" tvg-chno="22" tvg-name="Al Jazeera English [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3367.jpg?18634" group-title="Favorites — News",Al Jazeera English [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325829.ts
 #EXTINF:-1 tvg-id="US: BBC WORLD NEWS" tvg-chno="23" tvg-name="BBC World News [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/192.png?ver=81217" group-title="Favorites — News",BBC World News [US]
@@ -383,108 +371,108 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639181.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639182.ts
 #EXTINF:-1 tvg-id="SkyCinemaThriller.uk" tvg-chno="21" tvg-name="Sky Cinema Thriller HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12182.jpg?8761" group-title="Favorites — Movies & Series",Sky Cinema Thriller HEVC 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639183.ts
-#EXTINF:-1 tvg-id="AMC.us" tvg-chno="22" tvg-name="Amc HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6164.png?84800" group-title="Favorites — Movies & Series",Amc HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325778.ts
-#EXTINF:-1 tvg-id="FX.us" tvg-chno="23" tvg-name="Fx HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6695.png?86707" group-title="Favorites — Movies & Series",Fx HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325784.ts
-#EXTINF:-1 tvg-id="FX.us" tvg-chno="24" tvg-name="Fx West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",Fx West HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325860.ts
-#EXTINF:-1 tvg-id="FXX.us" tvg-chno="25" tvg-name="Fxx HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8234.jpg?87392" group-title="Favorites — Movies & Series",Fxx HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325782.ts
-#EXTINF:-1 tvg-id="FXX.us" tvg-chno="26" tvg-name="Fxx West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",Fxx West HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325861.ts
-#EXTINF:-1 tvg-id="HBOComedy.us" tvg-chno="27" tvg-name="Hbo Comedy HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8226.jpg?82955" group-title="Favorites — Movies & Series",Hbo Comedy HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325975.ts
-#EXTINF:-1 tvg-id="GOBX: KIDZ ZONE MAX ᴴᴰ" tvg-chno="28" tvg-name="Kidz Zone MAX HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Kidz Zone MAX HD [GOBX]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762637.ts
-#EXTINF:-1 tvg-id="GOBX: MBC DRAMA MASR ᴴᴰ" tvg-chno="29" tvg-name="MBC Drama Masr HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",MBC Drama Masr HD [GOBX]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762688.ts
-#EXTINF:-1 tvg-id="US: MGM HD" tvg-chno="30" tvg-name="Mgm HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8527.png?46535" group-title="Favorites — Movies & Series",Mgm HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325886.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 1 ᴴᴰ" tvg-chno="31" tvg-name="Paramount+ Original 1 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 1 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575799.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 2 ᴴᴰ" tvg-chno="32" tvg-name="Paramount+ Original 2 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 2 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575800.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 3 ᴴᴰ" tvg-chno="33" tvg-name="Paramount+ Original 3 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 3 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575801.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 4 ᴴᴰ" tvg-chno="34" tvg-name="Paramount+ Original 4 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 4 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575802.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 5 ᴴᴰ" tvg-chno="35" tvg-name="Paramount+ Original 5 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 5 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575803.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 6 ᴴᴰ" tvg-chno="36" tvg-name="Paramount+ Original 6 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 6 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575804.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 7 ᴴᴰ" tvg-chno="37" tvg-name="Paramount+ Original 7 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 7 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575805.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 8 ᴴᴰ" tvg-chno="38" tvg-name="Paramount+ Original 8 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 8 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575806.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 9 ᴴᴰ" tvg-chno="39" tvg-name="Paramount+ Original 9 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 9 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575807.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 10 ᴴᴰ" tvg-chno="40" tvg-name="Paramount+ Original 10 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 10 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575808.ts
-#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL INFO ᴴᴰ" tvg-chno="41" tvg-name="Paramount+ Original Info HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original Info HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575798.ts
-#EXTINF:-1 tvg-id="US: SHOWTIME BET HD" tvg-chno="42" tvg-name="Showtime Bet HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8130.jpg?86612" group-title="Favorites — Movies & Series",Showtime Bet HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325932.ts
-#EXTINF:-1 tvg-id="GOBX: STARZ PLAY SERIES ᴴᴰ" tvg-chno="43" tvg-name="Starz Play Series HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Starz Play Series HD [GOBX]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762648.ts
-#EXTINF:-1 tvg-id="US: NBC FX (EAST) ᴿᴬᵂ" tvg-chno="44" tvg-name="NBC Fx (East) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fx (East) RAW [US]
+#EXTINF:-1 tvg-id="US: NBC FX (EAST) ᴿᴬᵂ" tvg-chno="22" tvg-name="NBC Fx (East) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fx (East) RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820055.ts
-#EXTINF:-1 tvg-id="US: NBC FX (WEST) ᴿᴬᵂ" tvg-chno="45" tvg-name="NBC Fx (WEST) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fx (WEST) RAW [US]
+#EXTINF:-1 tvg-id="US: NBC FX (WEST) ᴿᴬᵂ" tvg-chno="23" tvg-name="NBC Fx (WEST) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fx (WEST) RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820054.ts
-#EXTINF:-1 tvg-id="US: NBC FXX (EAST) ᴿᴬᵂ" tvg-chno="46" tvg-name="NBC Fxx (East) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fxx (East) RAW [US]
+#EXTINF:-1 tvg-id="US: NBC FXX (EAST) ᴿᴬᵂ" tvg-chno="24" tvg-name="NBC Fxx (East) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fxx (East) RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820062.ts
-#EXTINF:-1 tvg-id="US: NBC FXX (WEST) ᴿᴬᵂ" tvg-chno="47" tvg-name="NBC Fxx (WEST) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fxx (WEST) RAW [US]
+#EXTINF:-1 tvg-id="US: NBC FXX (WEST) ᴿᴬᵂ" tvg-chno="25" tvg-name="NBC Fxx (WEST) RAW [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13623.png?ver=41451" group-title="Favorites — Movies & Series",NBC Fxx (WEST) RAW [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820061.ts
-#EXTINF:-1 tvg-id="## PARAMOUNT+ ORIGINAL ᴿᴬᵂ ⁶⁰ᶠᵖˢ ##" tvg-chno="48" tvg-name="Paramount+ Original RAW 60fps" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/42/Animated-Flag-USA.gif" group-title="Favorites — Movies & Series",Paramount+ Original RAW 60fps
+#EXTINF:-1 tvg-id="## PARAMOUNT+ ORIGINAL ᴿᴬᵂ ⁶⁰ᶠᵖˢ ##" tvg-chno="26" tvg-name="Paramount+ Original RAW 60fps" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/42/Animated-Flag-USA.gif" group-title="Favorites — Movies & Series",Paramount+ Original RAW 60fps
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575809.ts
-#EXTINF:-1 tvg-id="PRIME: AMC + ᴿᴬᵂ" tvg-chno="49" tvg-name="Prime: Amc + RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Amc + RAW
+#EXTINF:-1 tvg-id="PRIME: AMC + ᴿᴬᵂ" tvg-chno="27" tvg-name="Prime: Amc + RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Amc + RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536996.ts
-#EXTINF:-1 tvg-id="PRIME: AMC ᴿᴬᵂ" tvg-chno="50" tvg-name="Prime: Amc RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Amc RAW
+#EXTINF:-1 tvg-id="PRIME: AMC ᴿᴬᵂ" tvg-chno="28" tvg-name="Prime: Amc RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Amc RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536997.ts
-#EXTINF:-1 tvg-id="PRIME: AMC THRILLERS ᴿᴬᵂ" tvg-chno="51" tvg-name="Prime: Amc Thrillers RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Amc Thrillers RAW
+#EXTINF:-1 tvg-id="PRIME: AMC THRILLERS ᴿᴬᵂ" tvg-chno="29" tvg-name="Prime: Amc Thrillers RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Amc Thrillers RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536995.ts
-#EXTINF:-1 tvg-id="PRIME: CINEMAX EAST ᴿᴬᵂ" tvg-chno="52" tvg-name="Prime: Cinemax East RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Cinemax East RAW
+#EXTINF:-1 tvg-id="PRIME: CINEMAX EAST ᴿᴬᵂ" tvg-chno="30" tvg-name="Prime: Cinemax East RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Cinemax East RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536884.ts
-#EXTINF:-1 tvg-id="PRIME: CINEMAX WEST ᴿᴬᵂ" tvg-chno="53" tvg-name="Prime: Cinemax West RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Cinemax West RAW
+#EXTINF:-1 tvg-id="PRIME: CINEMAX WEST ᴿᴬᵂ" tvg-chno="31" tvg-name="Prime: Cinemax West RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Cinemax West RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536883.ts
-#EXTINF:-1 tvg-id="PRIME: FV AMC EN ESPAÑOL US ᴿᴬᵂ" tvg-chno="54" tvg-name="Prime: Fv Amc English EspaÑOl Us RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Fv Amc English EspaÑOl Us RAW
+#EXTINF:-1 tvg-id="PRIME: FV AMC EN ESPAÑOL US ᴿᴬᵂ" tvg-chno="32" tvg-name="Prime: Fv Amc English EspaÑOl Us RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Fv Amc English EspaÑOl Us RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536756.ts
-#EXTINF:-1 tvg-id="PRIME: HBO 2 ᴿᴬᵂ" tvg-chno="55" tvg-name="Prime: Hbo 2 RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo 2 RAW
+#EXTINF:-1 tvg-id="PRIME: HBO 2 ᴿᴬᵂ" tvg-chno="33" tvg-name="Prime: Hbo 2 RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo 2 RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536725.ts
-#EXTINF:-1 tvg-id="PRIME: HBO BOXING ᴿᴬᵂ" tvg-chno="56" tvg-name="Prime: Hbo Boxing RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Boxing RAW
+#EXTINF:-1 tvg-id="PRIME: HBO BOXING ᴿᴬᵂ" tvg-chno="34" tvg-name="Prime: Hbo Boxing RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Boxing RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536724.ts
-#EXTINF:-1 tvg-id="PRIME: HBO COMEDY ᴿᴬᵂ" tvg-chno="57" tvg-name="Prime: Hbo Comedy RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Comedy RAW
+#EXTINF:-1 tvg-id="PRIME: HBO COMEDY ᴿᴬᵂ" tvg-chno="35" tvg-name="Prime: Hbo Comedy RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Comedy RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536723.ts
-#EXTINF:-1 tvg-id="PRIME: HBO ᴿᴬᵂ" tvg-chno="58" tvg-name="Prime: Hbo RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo RAW
+#EXTINF:-1 tvg-id="PRIME: HBO ᴿᴬᵂ" tvg-chno="36" tvg-name="Prime: Hbo RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536726.ts
-#EXTINF:-1 tvg-id="PRIME: HBO SIGNATURE ᴿᴬᵂ" tvg-chno="59" tvg-name="Prime: Hbo Signature RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Signature RAW
+#EXTINF:-1 tvg-id="PRIME: HBO SIGNATURE ᴿᴬᵂ" tvg-chno="37" tvg-name="Prime: Hbo Signature RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Signature RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536720.ts
-#EXTINF:-1 tvg-id="PRIME: HBO WEST ᴿᴬᵂ" tvg-chno="60" tvg-name="Prime: Hbo West RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo West RAW
+#EXTINF:-1 tvg-id="PRIME: HBO WEST ᴿᴬᵂ" tvg-chno="38" tvg-name="Prime: Hbo West RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo West RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536719.ts
-#EXTINF:-1 tvg-id="PRIME: HBO ZONE ᴿᴬᵂ" tvg-chno="61" tvg-name="Prime: Hbo Zone RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Zone RAW
+#EXTINF:-1 tvg-id="PRIME: HBO ZONE ᴿᴬᵂ" tvg-chno="39" tvg-name="Prime: Hbo Zone RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Hbo Zone RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536718.ts
-#EXTINF:-1 tvg-id="PRIME: MGM CELEBRATES BLACK CINEMA ᴿᴬᵂ" tvg-chno="62" tvg-name="Prime: Mgm Celebrates Black Cinema RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Celebrates Black Cinema RAW
+#EXTINF:-1 tvg-id="PRIME: MGM CELEBRATES BLACK CINEMA ᴿᴬᵂ" tvg-chno="40" tvg-name="Prime: Mgm Celebrates Black Cinema RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Celebrates Black Cinema RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536628.ts
-#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS ᴿᴬᵂ" tvg-chno="63" tvg-name="Prime: Mgm Presents RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents RAW
+#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS ᴿᴬᵂ" tvg-chno="41" tvg-name="Prime: Mgm Presents RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536627.ts
-#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS: ACTION ᴿᴬᵂ" tvg-chno="64" tvg-name="Prime: Mgm Presents: Action RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents: Action RAW
+#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS: ACTION ᴿᴬᵂ" tvg-chno="42" tvg-name="Prime: Mgm Presents: Action RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents: Action RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536626.ts
-#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS: HORROR ᴿᴬᵂ" tvg-chno="65" tvg-name="Prime: Mgm Presents: Horror RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents: Horror RAW
+#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS: HORROR ᴿᴬᵂ" tvg-chno="43" tvg-name="Prime: Mgm Presents: Horror RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents: Horror RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536625.ts
-#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS: WESTERNS ᴿᴬᵂ" tvg-chno="66" tvg-name="Prime: Mgm Presents: Westerns RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents: Westerns RAW
+#EXTINF:-1 tvg-id="PRIME: MGM PRESENTS: WESTERNS ᴿᴬᵂ" tvg-chno="44" tvg-name="Prime: Mgm Presents: Westerns RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm Presents: Westerns RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536624.ts
-#EXTINF:-1 tvg-id="PRIME: MGM+ DRIVE-IN ᴿᴬᵂ" tvg-chno="67" tvg-name="Prime: Mgm+ Drive-In RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ Drive-In RAW
+#EXTINF:-1 tvg-id="PRIME: MGM+ DRIVE-IN ᴿᴬᵂ" tvg-chno="45" tvg-name="Prime: Mgm+ Drive-In RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ Drive-In RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536622.ts
-#EXTINF:-1 tvg-id="PRIME: MGM+ HITS ᴿᴬᵂ" tvg-chno="68" tvg-name="Prime: Mgm+ Hits RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ Hits RAW
+#EXTINF:-1 tvg-id="PRIME: MGM+ HITS ᴿᴬᵂ" tvg-chno="46" tvg-name="Prime: Mgm+ Hits RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ Hits RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536621.ts
-#EXTINF:-1 tvg-id="PRIME: MGM+ MARQUEE ᴿᴬᵂ" tvg-chno="69" tvg-name="Prime: Mgm+ Marquee RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ Marquee RAW
+#EXTINF:-1 tvg-id="PRIME: MGM+ MARQUEE ᴿᴬᵂ" tvg-chno="47" tvg-name="Prime: Mgm+ Marquee RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ Marquee RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536620.ts
-#EXTINF:-1 tvg-id="PRIME: MGM+ ᴿᴬᵂ" tvg-chno="70" tvg-name="Prime: Mgm+ RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ RAW
+#EXTINF:-1 tvg-id="PRIME: MGM+ ᴿᴬᵂ" tvg-chno="48" tvg-name="Prime: Mgm+ RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Mgm+ RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536623.ts
-#EXTINF:-1 tvg-id="PRIME: SHOWTIME ᴿᴬᵂ" tvg-chno="71" tvg-name="Prime: Showtime RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Showtime RAW
+#EXTINF:-1 tvg-id="PRIME: SHOWTIME ᴿᴬᵂ" tvg-chno="49" tvg-name="Prime: Showtime RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Showtime RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536459.ts
-#EXTINF:-1 tvg-id="PRIME: SHOWTIME WEST ᴿᴬᵂ" tvg-chno="72" tvg-name="Prime: Showtime West RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Showtime West RAW
+#EXTINF:-1 tvg-id="PRIME: SHOWTIME WEST ᴿᴬᵂ" tvg-chno="50" tvg-name="Prime: Showtime West RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — Movies & Series",Prime: Showtime West RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536458.ts
+#EXTINF:-1 tvg-id="AMC.us" tvg-chno="51" tvg-name="Amc HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6164.png?84800" group-title="Favorites — Movies & Series",Amc HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325778.ts
+#EXTINF:-1 tvg-id="FX.us" tvg-chno="52" tvg-name="Fx HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6695.png?86707" group-title="Favorites — Movies & Series",Fx HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325784.ts
+#EXTINF:-1 tvg-id="FX.us" tvg-chno="53" tvg-name="Fx West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",Fx West HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325860.ts
+#EXTINF:-1 tvg-id="FXX.us" tvg-chno="54" tvg-name="Fxx HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8234.jpg?87392" group-title="Favorites — Movies & Series",Fxx HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325782.ts
+#EXTINF:-1 tvg-id="FXX.us" tvg-chno="55" tvg-name="Fxx West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",Fxx West HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325861.ts
+#EXTINF:-1 tvg-id="HBOComedy.us" tvg-chno="56" tvg-name="Hbo Comedy HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8226.jpg?82955" group-title="Favorites — Movies & Series",Hbo Comedy HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325975.ts
+#EXTINF:-1 tvg-id="GOBX: KIDZ ZONE MAX ᴴᴰ" tvg-chno="57" tvg-name="Kidz Zone MAX HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Kidz Zone MAX HD [GOBX]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762637.ts
+#EXTINF:-1 tvg-id="GOBX: MBC DRAMA MASR ᴴᴰ" tvg-chno="58" tvg-name="MBC Drama Masr HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",MBC Drama Masr HD [GOBX]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762688.ts
+#EXTINF:-1 tvg-id="US: MGM HD" tvg-chno="59" tvg-name="Mgm HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8527.png?46535" group-title="Favorites — Movies & Series",Mgm HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325886.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 1 ᴴᴰ" tvg-chno="60" tvg-name="Paramount+ Original 1 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 1 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575799.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 2 ᴴᴰ" tvg-chno="61" tvg-name="Paramount+ Original 2 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 2 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575800.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 3 ᴴᴰ" tvg-chno="62" tvg-name="Paramount+ Original 3 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 3 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575801.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 4 ᴴᴰ" tvg-chno="63" tvg-name="Paramount+ Original 4 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 4 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575802.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 5 ᴴᴰ" tvg-chno="64" tvg-name="Paramount+ Original 5 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 5 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575803.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 6 ᴴᴰ" tvg-chno="65" tvg-name="Paramount+ Original 6 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 6 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575804.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 7 ᴴᴰ" tvg-chno="66" tvg-name="Paramount+ Original 7 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 7 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575805.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 8 ᴴᴰ" tvg-chno="67" tvg-name="Paramount+ Original 8 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 8 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575806.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 9 ᴴᴰ" tvg-chno="68" tvg-name="Paramount+ Original 9 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 9 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575807.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL 10 ᴴᴰ" tvg-chno="69" tvg-name="Paramount+ Original 10 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original 10 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575808.ts
+#EXTINF:-1 tvg-id="US: PARAMOUNT+ ORIGINAL INFO ᴴᴰ" tvg-chno="70" tvg-name="Paramount+ Original Info HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/2274.jpg?71327" group-title="Favorites — Movies & Series",Paramount+ Original Info HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/575798.ts
+#EXTINF:-1 tvg-id="US: SHOWTIME BET HD" tvg-chno="71" tvg-name="Showtime Bet HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8130.jpg?86612" group-title="Favorites — Movies & Series",Showtime Bet HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325932.ts
+#EXTINF:-1 tvg-id="GOBX: STARZ PLAY SERIES ᴴᴰ" tvg-chno="72" tvg-name="Starz Play Series HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Starz Play Series HD [GOBX]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762648.ts
 #EXTINF:-1 tvg-id="AMC.us" tvg-chno="73" tvg-name="Amc Plus [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1114.png?6385" group-title="Favorites — Movies & Series",Amc Plus [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325934.ts
 #EXTINF:-1 tvg-id="GO: FX MOVIE CHANNEL" tvg-chno="74" tvg-name="Fx Movie Channel [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Movies & Series",Fx Movie Channel [GO]
@@ -551,36 +539,36 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/621637.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/621636.ts
 #EXTINF:-1 tvg-id="VIP: TNT SPORTS ULTIMATE ⁴ᵏ & ³⁸⁴⁰ᴾ" tvg-chno="18" tvg-name="TNT Sports Ultimate 4K & 3840p [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1070.png?81674" group-title="Favorites — General Sports",TNT Sports Ultimate 4K & 3840p [VIP]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290338.ts
-#EXTINF:-1 tvg-id="US: ESPN 2 HD" tvg-chno="19" tvg-name="ESPN 2 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8263.jpg?37574" group-title="Favorites — General Sports",ESPN 2 HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325021.ts
-#EXTINF:-1 tvg-id="ESPN.us" tvg-chno="20" tvg-name="ESPN HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?ver=35784" group-title="Favorites — General Sports",ESPN HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325020.ts
-#EXTINF:-1 tvg-id="ESPNNews.us" tvg-chno="21" tvg-name="ESPN News HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8260.png?68747" group-title="Favorites — General Sports",ESPN News HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325019.ts
-#EXTINF:-1 tvg-id="US: ESPN U HD" tvg-chno="22" tvg-name="ESPN U HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?21514" group-title="Favorites — General Sports",ESPN U HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/434360.ts
-#EXTINF:-1 tvg-id="ESPN.us" tvg-chno="23" tvg-name="ESPN USA HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?7255" group-title="Favorites — General Sports",ESPN USA HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/437219.ts
-#EXTINF:-1 tvg-id="PRIME: ESPN OCHO ᴿᴬᵂ" tvg-chno="24" tvg-name="Prime: ESPN Ocho RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — General Sports",Prime: ESPN Ocho RAW
+#EXTINF:-1 tvg-id="PRIME: ESPN OCHO ᴿᴬᵂ" tvg-chno="19" tvg-name="Prime: ESPN Ocho RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — General Sports",Prime: ESPN Ocho RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1536816.ts
-#EXTINF:-1 tvg-id="PRIME: TNT SPORTS 4 ᴿᴬᵂ" tvg-chno="25" tvg-name="Prime: TNT Sports 4 RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — General Sports",Prime: TNT Sports 4 RAW
+#EXTINF:-1 tvg-id="PRIME: TNT SPORTS 4 ᴿᴬᵂ" tvg-chno="20" tvg-name="Prime: TNT Sports 4 RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13797.png?ver=39230" group-title="Favorites — General Sports",Prime: TNT Sports 4 RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537390.ts
-#EXTINF:-1 tvg-id="espn.nz" tvg-chno="26" tvg-name="Sky ESPN 1 RAW [NZ]" tvg-logo="https://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?62004" group-title="Favorites — General Sports",Sky ESPN 1 RAW [NZ]
+#EXTINF:-1 tvg-id="espn.nz" tvg-chno="21" tvg-name="Sky ESPN 1 RAW [NZ]" tvg-logo="https://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?62004" group-title="Favorites — General Sports",Sky ESPN 1 RAW [NZ]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1968682.ts
-#EXTINF:-1 tvg-id="espn2.nz" tvg-chno="27" tvg-name="Sky ESPN 2 RAW [NZ]" tvg-logo="https://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?62004" group-title="Favorites — General Sports",Sky ESPN 2 RAW [NZ]
+#EXTINF:-1 tvg-id="espn2.nz" tvg-chno="22" tvg-name="Sky ESPN 2 RAW [NZ]" tvg-logo="https://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?62004" group-title="Favorites — General Sports",Sky ESPN 2 RAW [NZ]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1968681.ts
-#EXTINF:-1 tvg-id="TNTSport1.uk" tvg-chno="28" tvg-name="TNT Sports 1 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/9672.png?51391" group-title="Favorites — General Sports",TNT Sports 1 RAW 50 Fps [VIP]
+#EXTINF:-1 tvg-id="TNTSport1.uk" tvg-chno="23" tvg-name="TNT Sports 1 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/9672.png?51391" group-title="Favorites — General Sports",TNT Sports 1 RAW 50 Fps [VIP]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290337.ts
-#EXTINF:-1 tvg-id="TNTSport2.uk" tvg-chno="29" tvg-name="TNT Sports 2 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6400.png?67159" group-title="Favorites — General Sports",TNT Sports 2 RAW 50 Fps [VIP]
+#EXTINF:-1 tvg-id="TNTSport2.uk" tvg-chno="24" tvg-name="TNT Sports 2 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6400.png?67159" group-title="Favorites — General Sports",TNT Sports 2 RAW 50 Fps [VIP]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290336.ts
-#EXTINF:-1 tvg-id="TNTSport3.uk" tvg-chno="30" tvg-name="TNT Sports 3 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6123.png?96158" group-title="Favorites — General Sports",TNT Sports 3 RAW 50 Fps [VIP]
+#EXTINF:-1 tvg-id="TNTSport3.uk" tvg-chno="25" tvg-name="TNT Sports 3 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6123.png?96158" group-title="Favorites — General Sports",TNT Sports 3 RAW 50 Fps [VIP]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290335.ts
-#EXTINF:-1 tvg-id="TNTSport4.uk" tvg-chno="31" tvg-name="TNT Sports 4 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6398.png?95958" group-title="Favorites — General Sports",TNT Sports 4 RAW 50 Fps [VIP]
+#EXTINF:-1 tvg-id="TNTSport4.uk" tvg-chno="26" tvg-name="TNT Sports 4 RAW 50 Fps [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6398.png?95958" group-title="Favorites — General Sports",TNT Sports 4 RAW 50 Fps [VIP]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290334.ts
-#EXTINF:-1 tvg-id="GO: ESPN2" tvg-chno="32" tvg-name="ESPN2 [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — General Sports",ESPN2 [GO]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568792.ts
-#EXTINF:-1 tvg-id="####### ESPN+ PPV ⱽᴵᴾ #######" tvg-chno="33" tvg-name="ESPN+ PPV VIP" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/42/Animated-Flag-USA.gif" group-title="Favorites — General Sports",ESPN+ PPV VIP
+#EXTINF:-1 tvg-id="US: ESPN 2 HD" tvg-chno="27" tvg-name="ESPN 2 HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8263.jpg?37574" group-title="Favorites — General Sports",ESPN 2 HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325021.ts
+#EXTINF:-1 tvg-id="ESPN.us" tvg-chno="28" tvg-name="ESPN HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?ver=35784" group-title="Favorites — General Sports",ESPN HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325020.ts
+#EXTINF:-1 tvg-id="ESPNNews.us" tvg-chno="29" tvg-name="ESPN News HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8260.png?68747" group-title="Favorites — General Sports",ESPN News HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325019.ts
+#EXTINF:-1 tvg-id="US: ESPN U HD" tvg-chno="30" tvg-name="ESPN U HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?21514" group-title="Favorites — General Sports",ESPN U HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/434360.ts
+#EXTINF:-1 tvg-id="ESPN.us" tvg-chno="31" tvg-name="ESPN USA HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8258.jpg?7255" group-title="Favorites — General Sports",ESPN USA HD [US]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/437219.ts
+#EXTINF:-1 tvg-id="####### ESPN+ PPV ⱽᴵᴾ #######" tvg-chno="32" tvg-name="ESPN+ PPV VIP" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/42/Animated-Flag-USA.gif" group-title="Favorites — General Sports",ESPN+ PPV VIP
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924730.ts
+#EXTINF:-1 tvg-id="GO: ESPN2" tvg-chno="33" tvg-name="ESPN2 [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — General Sports",ESPN2 [GO]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568792.ts
 #EXTINF:-1 tvg-id="GO: ESPNU" tvg-chno="34" tvg-name="Espnu [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — General Sports",Espnu [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568789.ts
 #EXTINF:-1 tvg-id="US: NBC SPORTS NETWORK" tvg-chno="35" tvg-name="NBC Sports Network [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8202.png?21398" group-title="Favorites — General Sports",NBC Sports Network [US]
