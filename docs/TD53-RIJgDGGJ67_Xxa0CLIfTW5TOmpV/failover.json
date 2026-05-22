@@ -82,6 +82,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562517.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562973.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290304.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003322.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562517.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562718.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562973.ts",
@@ -320,6 +321,7 @@
   ],
   "v sport golf": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562511.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003229.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562511.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003229.ts"
   ],
@@ -5174,17 +5176,33 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1954312.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1954312.ts"
   ],
-  "live | beirut vs. antonine sc | fri 22 may 16:45 +3 | exclusive | : shahid ppv 2": [
+  "ended | beirut vs. antonine sc | fri 22 may 16:45 +3 | exclusive | : shahid ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762523.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762523.ts"
   ],
-  "next | rot-weiss essen vs. spvgg greuther fürth | fri 22 may 21:30 +3 | exclusive | : shahid ppv 3": [
+  "live | rot-weiss essen vs. spvgg greuther fürth | fri 22 may 21:30 +3 | exclusive | : shahid ppv 3": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762522.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762522.ts"
+  ],
+  "ended | polina kudermetova - wang xiyu | fri 22 may 14:1 utc | exclusive | uk: max ppv 23": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896463.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896463.ts"
+  ],
+  "ended | veenendaal-veenendaal classic | fri 22 may 14:0 utc | exclusive | uk: max ppv 24": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896462.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896462.ts"
   ],
   "next | cleveland guardians @ philadelphia phillies | fri 22 may 22:30 utc | exclusive | uk: max ppv 25": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896461.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896461.ts"
+  ],
+  "ended | tennis | fri 22 may 14:3 utc | exclusive | uk: max ppv 26": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896460.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896460.ts"
+  ],
+  "ended | polina kudermetova - wang xiyu | fri 22 may 14:17 utc | exclusive | uk: max ppv 27": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896459.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896459.ts"
   ],
   "live | erc bauhaus royal rally of scandinavia 2026 | fri 22 may 10:0 utc | exclusive | uk: rally ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/999513.ts",
@@ -5193,6 +5211,14 @@
   "next | 25th may 2026 - pairs cup 2026 - super 8 week 1 | mon 25 may 17:0 utc | exclusive | uk: ultimate pool ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1627858.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1627858.ts"
+  ],
+  "ended | as real v fc diarra | ligue 1 pro orange 2025/26 | fri 22 may 12:20 edt | exclusive | us: fifa+ ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474572.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474572.ts"
+  ],
+  "ended | djoliba ac v usfas | ligue 1 pro orange 2025/26 | fri 22 may 12:20 edt | exclusive | us: fifa+ ppv 12": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474571.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474571.ts"
   ],
   "ended | wusum stars fc v bullom stars fc | leone rock premier league 2025-26 | fri 22 may 4:50 edt | exclusive | us: fifa+ ppv 13": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474570.ts",
@@ -7478,9 +7504,25 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525383.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525383.ts"
   ],
+  "end | teichmann vs. marcinko | all | 22-5-2026 | 6:15 (gmt) | exclusive | us: soccer ppv 23": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940134.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940134.ts"
+  ],
+  "end | beiras serra da estrela gp - day 1 | all | 22-5-2026 | 6:45 (gmt) | exclusive | us: soccer ppv 32": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940125.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940125.ts"
+  ],
   "end | australia vs. malawi | fifa women's series | 2026-4-11 | 11:0 (gmt) | exclusive | ma: dazn ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892967.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892967.ts"
+  ],
+  "end | isack hadjar | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 68": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940089.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940089.ts"
+  ],
+  "end | lance stroll | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 54": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940103.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940103.ts"
   ],
   "end | inter willemstad vs. jong holland | promé divishon - curaçao | 2026-5-22 | 0:0 (gmt) | exclusive | gb: dazn ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1900001.ts",
@@ -7490,13 +7532,29 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899901.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899901.ts"
   ],
-  "live | indian premier league 2026 - 67th match - sunrisers hyderabad vs royal challengers bengaluru | all | exclusive | us: soccer ppv 24": [
+  "end | oliver bearman | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 66": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940091.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940091.ts"
+  ],
+  "end | second serve - live-roland garros preview show | all | 22-5-2026 | 9:0 (gmt) | exclusive | us: soccer ppv 40": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940117.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940117.ts"
+  ],
+  "end | indian premier league 2026 - 67th match - sunrisers hyderabad vs royal challengers bengaluru | all | 22-5-2026 | 5:50 (gmt) | exclusive | us: soccer ppv 24": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940133.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940133.ts"
   ],
   "end | udvardy vs. kalinina | all | 22-5-2026 | 5:0 (gmt) | exclusive | us: soccer ppv 25": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940132.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940132.ts"
+  ],
+  "live | mlp dallas-day 1 | all | exclusive | us: soccer ppv 60": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940097.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940097.ts"
+  ],
+  "end | andrea kimi antonelli | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 48": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940109.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940109.ts"
   ],
   "end | herring vs. larrimore: weigh-in | bkfc 89 | 2026-5-22 | 2:0 (gmt) | exclusive | gb: dazn ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1900000.ts",
@@ -7506,25 +7564,69 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940154.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940154.ts"
   ],
+  "end | charles leclerc | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 63": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940094.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940094.ts"
+  ],
+  "end | pierre gasly | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 52": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940105.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940105.ts"
+  ],
   "end | vuelta a burgos feminas: women's individual - stage 2 | all | 22-5-2026 | 5:30 (gmt) | exclusive | us: soccer ppv 31": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940126.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940126.ts"
+  ],
+  "end | somerset vs. hampshire hawks | all | 22-5-2026 | 6:30 (gmt) | exclusive | us: soccer ppv 37": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940120.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940120.ts"
   ],
   "end | fremantle vs. st kilda | all | 22-5-2026 | 3:15 (gmt) | exclusive | us: soccer ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940150.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940150.ts"
   ],
-  "live | final: paris saint-germain u19 vs montpellier hsc u19 | all | exclusive | us: soccer ppv 18": [
+  "end | final: paris saint-germain u19 vs montpellier hsc u19 | all | 22-5-2026 | 8:0 (gmt) | exclusive | us: soccer ppv 18": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940139.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940139.ts"
   ],
-  "live | sramkova vs. carle | all | exclusive | us: soccer ppv 21": [
+  "end | esteban ocon | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 53": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940104.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940104.ts"
+  ],
+  "end | lewis hamilton | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 41": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940116.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940116.ts"
+  ],
+  "end | arvid lindblad | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 45": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940112.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940112.ts"
+  ],
+  "end | stage 13 | all | 22-5-2026 | 3:10 (gmt) | exclusive | us: soccer ppv 16": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940141.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940141.ts"
+  ],
+  "end | live: soudal open day 2 | all | 22-5-2026 | 4:0 (gmt) | exclusive | us: soccer ppv 13": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940144.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940144.ts"
+  ],
+  "end | sramkova vs. carle | all | 22-5-2026 | 4:39 (gmt) | exclusive | us: soccer ppv 21": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940136.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940136.ts"
   ],
   "end | tan vs. fruhvirtova | all | 22-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 11": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940146.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940146.ts"
+  ],
+  "end | driver tracker | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 47": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940110.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940110.ts"
+  ],
+  "end | max verstappen | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 43": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940114.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940114.ts"
+  ],
+  "end | nico hülkenberg | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 39": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940118.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940118.ts"
   ],
   "end | crusaders vs. chiefs | all | 22-5-2026 | 0:0 (gmt) | exclusive | us: soccer ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940155.ts",
@@ -7538,13 +7640,21 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892964.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892964.ts"
   ],
-  "next | wienie 500 | all | 22-5-2026 | 11:0 (gmt) | exclusive | us: soccer ppv 78": [
+  "end | t20 blast 2026 - somerset vs hampshire | all | 22-5-2026 | 9:55 (gmt) | exclusive | us: soccer ppv 74": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940083.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940083.ts"
+  ],
+  "end | wienie 500 | all | 22-5-2026 | 11:0 (gmt) | exclusive | us: soccer ppv 78": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940079.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940079.ts"
   ],
-  "live | big ten tournament: michigan state vs. usc | all | exclusive | us: soccer ppv 26": [
+  "end | big ten tournament: michigan state vs. usc | all | 22-5-2026 | 7:0 (gmt) | exclusive | us: soccer ppv 26": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940131.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940131.ts"
+  ],
+  "end | carlos sainz cenamor | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 50": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940107.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940107.ts"
   ],
   "end | bandecchi vs. hrunčáková | all | 22-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 9": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940148.ts",
@@ -7554,9 +7664,13 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940142.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940142.ts"
   ],
-  "live | mboko vs. cristian | all | exclusive | us: soccer ppv 19": [
+  "end | mboko vs. cristian | all | 22-5-2026 | 7:30 (gmt) | exclusive | us: soccer ppv 19": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940138.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940138.ts"
+  ],
+  "end | canada: practice 1 (sky sports) | all | 22-5-2026 | 9:0 (gmt) | exclusive | us: soccer ppv 44": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940113.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940113.ts"
   ],
   "end | sasnovich vs. bassols ribera | all | 22-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 4": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940153.ts",
@@ -7574,9 +7688,33 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892965.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892965.ts"
   ],
+  "end | gabriel bortoleto | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 62": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940095.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940095.ts"
+  ],
+  "live | canada: sprint qualifying | all | exclusive | us: soccer ppv 97": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940060.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940060.ts"
+  ],
   "end | dabrowski/stefani vs. alexandrova/danilina | all | 22-5-2026 | 3:0 (gmt) | exclusive | us: soccer ppv 10": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940147.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940147.ts"
+  ],
+  "end | canada: practice 1 | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 35": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940122.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940122.ts"
+  ],
+  "end | franco colapinto | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 56": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940101.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940101.ts"
+  ],
+  "end | alexander albon | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 61": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940096.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940096.ts"
+  ],
+  "end | driver data | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 55": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940102.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940102.ts"
   ],
   "end | navarro vs. li | all | 22-5-2026 | 0:0 (gmt) | exclusive | us: soccer ppv 22": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940135.ts",
@@ -7586,87 +7724,159 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940152.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940152.ts"
   ],
+  "end | george russell | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 64": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940093.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940093.ts"
+  ],
+  "end | sergio perez | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 38": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940119.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940119.ts"
+  ],
   "end | nepal vs. u.s. | all | 22-5-2026 | 0:50 (gmt) | exclusive | us: soccer ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940156.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940156.ts"
+  ],
+  "end | valtteri bottas | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 57": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940100.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940100.ts"
   ],
   "end | nsw waratahs vs. brumbies | all | 22-5-2026 | 2:30 (gmt) | exclusive | us: soccer ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940145.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940145.ts"
   ],
-  "live | t20 blast 2026 - somerset women vs hampshire women | all | exclusive | us: soccer ppv 34": [
+  "end | t20 blast 2026 - somerset women vs hampshire women | all | 22-5-2026 | 6:0 (gmt) | exclusive | us: soccer ppv 34": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940123.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940123.ts"
   ],
-  "live | zvonareva/sutjiadi vs. chong/kempen | all | exclusive | us: soccer ppv 29": [
+  "end | zvonareva/sutjiadi vs. chong/kempen | all | 22-5-2026 | 8:20 (gmt) | exclusive | us: soccer ppv 29": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940128.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940128.ts"
   ],
-  "live | freestyle friday #10 | all | exclusive | us: soccer ppv 36": [
+  "end | lando norris | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 51": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940106.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940106.ts"
+  ],
+  "end | freestyle friday #10 | all | 22-5-2026 | 7:45 (gmt) | exclusive | us: soccer ppv 36": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940121.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940121.ts"
   ],
-  "live | south stanly bulls | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 9": [
+  "ended | south stanly bulls | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 9": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666054.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666054.ts"
   ],
-  "live | 2026 fhsaa 5a softball semifinals #1 | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 14": [
+  "ended | 2026 fhsaa 5a softball semifinals #1 | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 14": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666049.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666049.ts"
   ],
-  "live | 2026 girls soccer postseason tournament | fri 22 may 10:40 edt | exclusive | us: nfhs ppv 16": [
+  "ended | 2026 girls soccer postseason tournament | fri 22 may 10:40 edt | exclusive | us: nfhs ppv 16": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666047.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666047.ts"
   ],
-  "live | 2026 ghsa 1a d1 baseball championship game 1 | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 18": [
+  "ended | 2026 ghsa 1a d1 baseball championship game 1 | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 18": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666045.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666045.ts"
   ],
-  "live | denver cs | fri 22 may 10:30 edt | exclusive | us: nfhs ppv 15": [
+  "ended | denver cs | fri 22 may 10:30 edt | exclusive | us: nfhs ppv 15": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666048.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666048.ts"
   ],
-  "live | 2026 aaa class 4a softball championship | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 19": [
+  "live | 2026 wiaa 4a state fastpitch softball - field 2 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 45": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666018.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666018.ts"
+  ],
+  "ended | shawe memorial | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 27": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666036.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666036.ts"
+  ],
+  "ended | 2026 wiaa 2b state fastpitch softball - field 1 | fri 22 may 12:0 edt | exclusive | us: nfhs ppv 36": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666027.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666027.ts"
+  ],
+  "ended | 2026 aaa class 4a softball championship | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 19": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666044.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666044.ts"
   ],
-  "live | 2026 ihsa 2a girls outdoor track championship semifinals | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 20": [
+  "ended | 2026 chsaa 3a baseball playoffs | fri 22 may 11:30 edt | exclusive | us: nfhs ppv 31": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666032.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666032.ts"
+  ],
+  "ended | 2026 chsaa 4a baseball playoffs | fri 22 may 11:30 edt | exclusive | us: nfhs ppv 33": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666030.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666030.ts"
+  ],
+  "ended | 2026 ghsa private baseball championship game 1 | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 30": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666033.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666033.ts"
+  ],
+  "ended | 2026 kshsaa 5a-1a swimming championship prelims | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 29": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666034.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666034.ts"
+  ],
+  "ended | 2026 chsaa 5a baseball playoffs | fri 22 may 11:30 edt | exclusive | us: nfhs ppv 32": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666031.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666031.ts"
+  ],
+  "ended | tucumcari | fri 22 may 11:45 edt | exclusive | us: nfhs ppv 34": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666029.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666029.ts"
+  ],
+  "ended | 2026 ihsa 2a girls outdoor track championship semifinals | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 20": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666043.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666043.ts"
   ],
-  "live | 2026 ahsaa 3a softball championship game #12 | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 8": [
+  "ended | 2026 ahsaa 3a softball championship game #12 | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 8": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666055.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666055.ts"
   ],
-  "live | north stanly | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 13": [
+  "live | 2026 wiaa 2a state fastpitch softball - field 3 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 42": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666021.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666021.ts"
+  ],
+  "ended | north stanly | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 13": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666050.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666050.ts"
   ],
-  "live | roxbury vs. seton hall prep | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 21": [
+  "live | 2026 aaa class 4a baseball championship | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 41": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666022.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666022.ts"
+  ],
+  "ended | roxbury vs. seton hall prep | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 21": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666042.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666042.ts"
   ],
-  "live | 2026 whsaa girls soccer championship | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 25": [
+  "ended | 2026 whsaa boys and girls track and field championship day 2 | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 28": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666035.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666035.ts"
+  ],
+  "live | 2026 wiaa 4a state fastpitch softball - field 1 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 46": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666017.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666017.ts"
+  ],
+  "ended | 2026 whsaa girls soccer championship | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 25": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666038.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666038.ts"
   ],
-  "live | 2026 tssaa div ii class aa softball championship final | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 26": [
+  "ended | 2026 tssaa div ii class aa softball championship final | fri 22 may 11:0 edt | exclusive | us: nfhs ppv 26": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666037.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666037.ts"
   ],
-  "live | forest park | fri 22 may 9:30 edt | exclusive | us: nfhs ppv 6": [
+  "ended | forest park | fri 22 may 9:30 edt | exclusive | us: nfhs ppv 6": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666057.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666057.ts"
   ],
-  "live | stevenson | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 23": [
+  "ended | stevenson | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 23": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666040.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666040.ts"
   ],
-  "live | al jazira v al ain fc | final | president's cup 2025/26 | fri 22 may 11:30 edt | exclusive | us: fifa+ ppv 8": [
+  "ended | dfk dainava v be1 nfa | pirma lyga 2026 | fri 22 may 11:50 edt | exclusive | us: fifa+ ppv 9": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474574.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474574.ts"
+  ],
+  "ended | al jazira v al ain fc | final | president's cup 2025/26 | fri 22 may 11:30 edt | exclusive | us: fifa+ ppv 8": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474575.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474575.ts"
   ],
-  "live | dragons fc v loto popo fc | ligue 1 2025 | fri 22 may 10:50 edt | exclusive | us: fifa+ ppv 6": [
+  "ended | dragons fc v loto popo fc | ligue 1 2025 | fri 22 may 10:50 edt | exclusive | us: fifa+ ppv 6": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474577.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474577.ts"
   ],
@@ -7678,17 +7888,33 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666061.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666061.ts"
   ],
+  "live | 2026 wiaa 2a state fastpitch softball - field 2 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 43": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666020.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666020.ts"
+  ],
+  "ended | pleasant | fri 22 may 8:55 edt | exclusive | us: nfhs ppv 22": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666041.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666041.ts"
+  ],
   "ended | lulu sun - claire liu | fri 22 may 11:28 utc | exclusive | uk: max ppv 15": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896471.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896471.ts"
   ],
-  "live | albemarle | fri 22 may 9:45 edt | exclusive | us: nfhs ppv 7": [
+  "ended | albemarle | fri 22 may 9:45 edt | exclusive | us: nfhs ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666056.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666056.ts"
   ],
-  "live | ac barracuda v unisport fc | d1 lonato 2025/26 | fri 22 may 11:20 edt | exclusive | us: fifa+ ppv 7": [
+  "ended | west charlotte | fri 22 may 8:0 edt | exclusive | us: nfhs ppv 3": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666060.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666060.ts"
+  ],
+  "ended | ac barracuda v unisport fc | d1 lonato 2025/26 | fri 22 may 11:20 edt | exclusive | us: fifa+ ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474576.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474576.ts"
+  ],
+  "ended | 2026 wiaa 2a state fastpitch softball - field 1 | fri 22 may 12:0 edt | exclusive | us: nfhs ppv 35": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666028.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666028.ts"
   ],
   "ended | richmond - essendon | fri 22 may 9:1 utc | exclusive | uk: max ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896479.ts",
@@ -7706,6 +7932,10 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474581.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474581.ts"
   ],
+  "ended | tom gentzch - roman safiullin | fri 22 may 11:34 utc | exclusive | uk: max ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896475.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896475.ts"
+  ],
   "ended | vilius gaubas - pablo llamas ruiz | fri 22 may 10:13 utc | exclusive | uk: max ppv 16": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896470.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896470.ts"
@@ -7722,21 +7952,49 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896477.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896477.ts"
   ],
-  "live | 2026 khsaa outdoor track championship day 2 | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 12": [
+  "ended | multiscreen | fri 22 may 10:54 utc | exclusive | uk: max ppv 10": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896476.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896476.ts"
+  ],
+  "ended | 2026 khsaa outdoor track championship day 2 | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666051.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666051.ts"
   ],
-  "live | 2026 ihsaa - iowa track and field championships | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 10": [
+  "ended | 2026 ihsaa - iowa track and field championships | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 10": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666053.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666053.ts"
+  ],
+  "ended | multiscreen | fri 22 may 6:54 edt | exclusive | us: max ppv 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941723.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941723.ts"
   ],
   "ended | nhl nhl tonight | fri 22 may 6:0 edt | exclusive | us: viaplay ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1126471.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1126471.ts"
   ],
+  "ended | felix gill - kyrian jacquet | fri 22 may 14:17 utc | exclusive | uk: max ppv 22": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896464.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896464.ts"
+  ],
+  "live | 2026 wiaa 2b state fastpitch softball - field 3 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 39": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666024.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666024.ts"
+  ],
+  "live | 2026 wiaa 3a state fastpitch softball | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 40": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666023.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666023.ts"
+  ],
   "ended | pierre-hugues herbert - leandro riedi | fri 22 may 11:26 utc | exclusive | uk: max ppv 13": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896473.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896473.ts"
+  ],
+  "ended | st. michel sc v revengers fc | seychelles absa premier league 2025/26 | fri 22 may 10:20 edt | exclusive | us: fifa+ ppv 4": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474579.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474579.ts"
+  ],
+  "ended | 2026 piaa boys and girls track and field championship day 1 | fri 22 may 8:55 edt | exclusive | us: nfhs ppv 4": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666059.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666059.ts"
   ],
   "ended | vuelta a burgos feminas | stage 2 | fri 22 may 12:30 utc | exclusive | uk: max ppv 17": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896469.ts",
@@ -7746,21 +8004,29 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896484.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896484.ts"
   ],
-  "live | varsity boys and girls tennis | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 11": [
+  "ended | varsity boys and girls tennis | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 11": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666052.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666052.ts"
   ],
-  "live | 2026 ahsaa 7a softball championship finals game 2 - cont. | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 24": [
+  "ended | 2026 ahsaa 7a softball championship finals game 2 - cont. | fri 22 may 10:0 edt | exclusive | us: nfhs ppv 24": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666039.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666039.ts"
   ],
-  "live | 2026 whsaa girls soccer playoffs | fri 22 may 10:58 edt | exclusive | us: nfhs ppv 17": [
+  "ended | 2026 whsaa girls soccer playoffs | fri 22 may 10:58 edt | exclusive | us: nfhs ppv 17": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666046.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666046.ts"
   ],
   "ended | emilio nava - pedro martínez | fri 22 may 11:53 utc | exclusive | uk: max ppv 14": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896472.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896472.ts"
+  ],
+  "live | 2026 wiaa 2b state fastpitch softball - field 4 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 44": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666019.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666019.ts"
+  ],
+  "ended | saudi equestrian and polo federation show jumping league final: day 1 | fri 22 may 15:45 +3 | exclusive | : shahid ppv 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762524.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762524.ts"
   ],
   "ended | gnbrvt | fri 22 may 5:1 edt | exclusive | us: nfhs ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666062.ts",
@@ -7770,7 +8036,15 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896474.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896474.ts"
   ],
-  "live | hodio fc v dadjè fc | ligue 1 2025 | fri 22 may 10:50 edt | exclusive | us: fifa+ ppv 5": [
+  "ended | fk jonava v babrungas | pirma lyga 2026 | fri 22 may 11:50 edt | exclusive | us: fifa+ ppv 10": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474573.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474573.ts"
+  ],
+  "ended | baccalaureate mass | fri 22 may 9:0 edt | exclusive | us: nfhs ppv 5": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666058.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666058.ts"
+  ],
+  "ended | hodio fc v dadjè fc | ligue 1 2025 | fri 22 may 10:50 edt | exclusive | us: fifa+ ppv 5": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474578.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474578.ts"
   ],
@@ -9538,7 +9812,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605787.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605889.ts"
   ],
-  "live event 2 - 1:30pm wow fc 30": [
+  "live event 2 - 3pm wow fc 30": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605786.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605888.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605786.ts",
@@ -9567,12 +9841,6 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605883.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605781.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605883.ts"
-  ],
-  "live event 7 - 9:30am pdra mid atlantic showdown": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605780.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605882.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605780.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605882.ts"
   ],
   "live event 8 - 5:15pm monaco ford light double down stafford": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605779.ts",
@@ -9824,9 +10092,29 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538166.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538166.ts"
   ],
+  "live | 2026 ghsa 1a div 2 baseball championship game 2 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 49": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666014.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666014.ts"
+  ],
+  "live | 2026 schsl 3a boys soccer championship | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 47": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666016.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666016.ts"
+  ],
+  "live | 2026 wiaa 2a state fastpitch softball - field 4 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 48": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666015.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666015.ts"
+  ],
+  "live | 2026 uil baseball playoffs game 2 | fri 22 may 14:0 edt | exclusive | us: nfhs ppv 50": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666013.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666013.ts"
+  ],
   "end | zavatska vs. bronzetti | all | 22-5-2026 | 3:53 (gmt) | exclusive | us: soccer ppv 8": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940149.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940149.ts"
+  ],
+  "ended | rebecca sramkova - maria lourdes carle | fri 22 may 11:49 utc | exclusive | uk: max ppv 19": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896467.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896467.ts"
   ],
   "live | canada vs. zambia | fifa women's series | exclusive | ma: dazn ppv 10": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892958.ts",
@@ -9835,6 +10123,14 @@
   "live | capitals @ penguins | nhl.tv | exclusive | ma: dazn ppv 11": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892957.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892957.ts"
+  ],
+  "end | oscar piastri | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 65": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940092.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940092.ts"
+  ],
+  "ended | veenendaal–veenendaal classic | fri 22 may 12:45 utc | exclusive | uk: max ppv 18": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896468.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896468.ts"
   ],
   "live | toronto - day 6 | rock league | exclusive | ma: dazn ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892961.ts",
@@ -10748,15 +11044,35 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940081.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940081.ts"
   ],
+  "live | rc lens vs. ogc nice | all | exclusive | us: soccer ppv 83": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940074.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940074.ts"
+  ],
+  "end | mixed on-board | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 67": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940090.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940090.ts"
+  ],
+  "end | fernando alonso | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 69": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940088.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940088.ts"
+  ],
+  "end | live weigh in-usyk vs.verhoeven | all | 22-5-2026 | 10:0 (gmt) | exclusive | us: soccer ppv 72": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940085.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940085.ts"
+  ],
   "ended | vuelta a burgos feminas | stage 2 | fri 22 may 8:30 edt | exclusive | us: max ppv 3": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941722.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941722.ts"
   ],
-  "next | big ten tournament: purdue vs. ucla | all | 22-5-2026 | 11:0 (gmt) | exclusive | us: soccer ppv 79": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940078.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940078.ts"
+  "end | kudermetova vs. wang | all | 22-5-2026 | 7:9 (gmt) | exclusive | us: soccer ppv 81": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940076.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940076.ts"
   ],
-  "next | somerset vs. hampshire hawks | all | 22-5-2026 | 10:30 (gmt) | exclusive | us: soccer ppv 75": [
+  "live | mountain west tournament: san diego state vs. new mexico | all | exclusive | us: soccer ppv 84": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940073.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940073.ts"
+  ],
+  "end | somerset vs. hampshire hawks | all | 22-5-2026 | 10:30 (gmt) | exclusive | us: soccer ppv 75": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940082.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940082.ts"
   ],
@@ -10764,7 +11080,23 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1634335.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1634335.ts"
   ],
-  "next | fiorentina vs. atalanta | all | 22-5-2026 | 11:30 (gmt) | exclusive | us: soccer ppv 80": [
+  "live | canada: sprint qualifying (sky sports) | all | exclusive | us: soccer ppv 86": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940071.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940071.ts"
+  ],
+  "end | liam lawson | all | 22-5-2026 | 9:10 (gmt) | exclusive | us: soccer ppv 49": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940108.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940108.ts"
+  ],
+  "end | indy 500 pit stop challenge | all | 22-5-2026 | 11:30 (gmt) | exclusive | us: soccer ppv 82": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940075.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940075.ts"
+  ],
+  "end | usyk vs. rico: weigh-in | all | 22-5-2026 | 9:56 (gmt) | exclusive | us: soccer ppv 71": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940086.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940086.ts"
+  ],
+  "end | fiorentina vs. atalanta | all | 22-5-2026 | 11:30 (gmt) | exclusive | us: soccer ppv 80": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940077.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940077.ts"
   ],
@@ -11008,33 +11340,53 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899996.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899996.ts"
   ],
-  "live | freestyle friday #10 | freestyle friday championship | exclusive | gb: dazn ppv 7": [
+  "end | usyk vs. rico: weigh-in | ring magazine | 2026-5-22 | 17:0 (gmt) | exclusive | gb: dazn ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899995.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899995.ts"
   ],
-  "live | hodio fc vs. dadjè fc | championnat national - benin | exclusive | gb: dazn ppv 8": [
+  "end | gabala sc vs. shafa fc | azerbaijan women's league | 2026-5-22 | 12:0 (gmt) | exclusive | gb: dazn ppv 8": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899994.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899994.ts"
   ],
-  "live | ac barracuda vs. unisport fc | championnat national - togo | exclusive | gb: dazn ppv 9": [
+  "end | freestyle friday #10 | freestyle friday championship | 2026-5-22 | 14:45 (gmt) | exclusive | gb: dazn ppv 9": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899993.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899993.ts"
   ],
-  "live | final: al jazira vs. al ain | presidents cup - united arab emirates | exclusive | gb: dazn ppv 10": [
+  "end | djoliba ac vs. usfas | première division - mali | 2026-5-22 | 16:30 (gmt) | exclusive | gb: dazn ppv 10": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899992.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899992.ts"
   ],
-  "next | fiorentina vs. atalanta | lega serie a | 2026-5-22 | 18:45 (gmt) | exclusive | gb: dazn ppv 17": [
+  "end | final: al jazira vs. al ain | presidents cup - united arab emirates | 2026-5-22 | 15:40 (gmt) | exclusive | gb: dazn ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899991.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899991.ts"
+  ],
+  "end | beiras serra da estrela gp - day 1 | beiras and serra da estrela international grand prix | 2026-5-22 | 13:45 (gmt) | exclusive | gb: dazn ppv 12": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899990.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899990.ts"
+  ],
+  "end | st. michel sc vs. revengers fc | premier league - seychelles | 2026-5-22 | 14:30 (gmt) | exclusive | gb: dazn ppv 14": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899988.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899988.ts"
+  ],
+  "end | hodio fc vs. dadjè fc | championnat national - benin | 2026-5-22 | 15:0 (gmt) | exclusive | gb: dazn ppv 15": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899987.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899987.ts"
+  ],
+  "end | dragons fc vs. loto popo fc | championnat national - benin | 2026-5-22 | 15:0 (gmt) | exclusive | gb: dazn ppv 16": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899986.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899986.ts"
+  ],
+  "end | as real vs. fc diarra | première division - mali | 2026-5-22 | 16:30 (gmt) | exclusive | gb: dazn ppv 17": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899985.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899985.ts"
+  ],
+  "end | fiorentina vs. atalanta | lega serie a | 2026-5-22 | 18:45 (gmt) | exclusive | gb: dazn ppv 18": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899984.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899984.ts"
   ],
   "next | we united fc vs. portsmouth bombers fc | dfa premier league - dominica | 2026-5-22 | 23:0 (gmt) | exclusive | gb: dazn ppv 20": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899982.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899982.ts"
-  ],
-  "live | dragons fc vs. loto popo fc | championnat national - benin | exclusive | gb: dazn ppv 23": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899979.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899979.ts"
   ],
   "end | herring vs. larrimore: weigh-in | bkfc 89 | 2026-5-22 | 2:0 (gmt) | exclusive | us: dazn ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899900.ts",
@@ -11048,17 +11400,121 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899898.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899898.ts"
   ],
+  "end | beiras serra da estrela gp - day 1 | beiras and serra da estrela international grand prix | 2026-5-22 | 13:45 (gmt) | exclusive | us: dazn ppv 5": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899897.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899897.ts"
+  ],
+  "end | st. michel sc vs. revengers fc | premier league - seychelles | 2026-5-22 | 14:30 (gmt) | exclusive | us: dazn ppv 6": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899896.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899896.ts"
+  ],
+  "end | hodio fc vs. dadjè fc | championnat national - benin | 2026-5-22 | 15:0 (gmt) | exclusive | us: dazn ppv 7": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899895.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899895.ts"
+  ],
+  "end | dragons fc vs. loto popo fc | championnat national - benin | 2026-5-22 | 15:0 (gmt) | exclusive | us: dazn ppv 8": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899894.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899894.ts"
+  ],
+  "end | gabala sc vs. shafa fc | azerbaijan women's league | 2026-5-22 | 12:0 (gmt) | exclusive | us: dazn ppv 9": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899893.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899893.ts"
+  ],
+  "end | freestyle friday #10 | freestyle friday championship | 2026-5-22 | 14:45 (gmt) | exclusive | us: dazn ppv 10": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899892.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899892.ts"
+  ],
+  "end | usyk vs. rico: weigh-in | ring magazine | 2026-5-22 | 17:0 (gmt) | exclusive | us: dazn ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899891.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899891.ts"
+  ],
   "end | anse reunion fc vs. real maldive fc | premier league - seychelles | 2026-5-22 | 10:45 (gmt) | exclusive | us: dazn ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899890.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899890.ts"
   ],
-  "next | fiorentina vs. atalanta (english español) | lega serie a | 2026-5-22 | 18:45 (gmt) | exclusive | us: dazn ppv 16": [
+  "end | final: al jazira vs. al ain | presidents cup - united arab emirates | 2026-5-22 | 15:40 (gmt) | exclusive | us: dazn ppv 14": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899888.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899888.ts"
+  ],
+  "end | djoliba ac vs. usfas | première division - mali | 2026-5-22 | 16:30 (gmt) | exclusive | us: dazn ppv 15": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899887.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899887.ts"
+  ],
+  "end | as real vs. fc diarra | première division - mali | 2026-5-22 | 16:30 (gmt) | exclusive | us: dazn ppv 16": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899886.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899886.ts"
+  ],
+  "end | fiorentina vs. atalanta (english español) | lega serie a | 2026-5-22 | 18:45 (gmt) | exclusive | us: dazn ppv 17": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899885.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899885.ts"
   ],
   "next | we united fc vs. portsmouth bombers fc | dfa premier league - dominica | 2026-5-22 | 23:0 (gmt) | exclusive | us: dazn ppv 19": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899883.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899883.ts"
+  ],
+  "next | big ten tournament: michigan vs. nebraska | all | 22-5-2026 | 15:0 (gmt) | exclusive | us: soccer ppv 114": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940043.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940043.ts"
+  ],
+  "next | numbers on the board: 5.22.26 | all | 22-5-2026 | 15:0 (gmt) | exclusive | us: soccer ppv 115": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940042.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940042.ts"
+  ],
+  "next | thunder vs. spurs | all | 22-5-2026 | 16:30 (gmt) | exclusive | us: soccer ppv 122": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940035.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940035.ts"
+  ],
+  "next | valkyries vs. fever | all | 22-5-2026 | 16:30 (gmt) | exclusive | us: soccer ppv 124": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940033.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940033.ts"
+  ],
+  "next | wings vs. dream | all | 22-5-2026 | 16:30 (gmt) | exclusive | us: soccer ppv 125": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940032.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940032.ts"
+  ],
+  "next | live: lfa 233: piersma vs. camilo (prelims) | all | 22-5-2026 | 16:30 (gmt) | exclusive | us: soccer ppv 126": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940031.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940031.ts"
+  ],
+  "next | jones vs. gualtieri | all | 22-5-2026 | 16:57 (gmt) | exclusive | us: soccer ppv 128": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940029.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940029.ts"
+  ],
+  "next | north carolina education lottery 200 | all | 22-5-2026 | 15:30 (gmt) | exclusive | us: soccer ppv 129": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940028.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940028.ts"
+  ],
+  "next | boston legacy vs. reign | all | 22-5-2026 | 17:0 (gmt) | exclusive | us: soccer ppv 131": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940026.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940026.ts"
+  ],
+  "next | pro swim series: sacramento 2 | all | 22-5-2026 | 17:0 (gmt) | exclusive | us: soccer ppv 132": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940025.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940025.ts"
+  ],
+  "next | echl hockey: fort wayne komets vs kansas city mavericks | all | 22-5-2026 | 17:5 (gmt) | exclusive | us: soccer ppv 133": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940024.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940024.ts"
+  ],
+  "next | the american rodeo semifinals | all | 22-5-2026 | 17:30 (gmt) | exclusive | us: soccer ppv 134": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940023.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940023.ts"
+  ],
+  "next | mlb big inning: 5.22.26 | all | 22-5-2026 | 17:30 (gmt) | exclusive | us: soccer ppv 136": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940021.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940021.ts"
+  ],
+  "next | live: bkfc 89 palm desert: herring vs. maness (prelims) | all | 22-5-2026 | 17:45 (gmt) | exclusive | us: soccer ppv 137": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940020.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940020.ts"
+  ],
+  "next | bkfc fight night: herring vs. larrimore | all | 22-5-2026 | 17:57 (gmt) | exclusive | us: soccer ppv 138": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940019.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940019.ts"
+  ],
+  "next | mountain west tournament: air force vs. washington state | all | 22-5-2026 | 18:0 (gmt) | exclusive | us: soccer ppv 140": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940017.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940017.ts"
   ],
   "bowling green hot rods vs asheville tourists @ may 22 7:35 pm :milb 46": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525388.ts",
@@ -11772,7 +12228,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1500738.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1500738.ts"
   ],
-  "super league plus | event 1 hull fc v toulouse olympique | betfred super league | round 10 // uk sun 3 may 2:55pm // et sun 3 may 9:55am": [
+  "superleague plus event 1 | leigh vs hull": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/712995.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/712995.ts"
   ],
@@ -21038,6 +21494,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717685.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717691.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/7236.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003618.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162233.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717691.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717685.ts",
@@ -21054,6 +21511,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1407372.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1688787.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/842690.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003618.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807860.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/294768.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803157.ts",
@@ -21456,6 +21914,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325801.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1312907.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1713697.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003264.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/262717.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717713.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717704.ts",
@@ -23000,6 +23459,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568860.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162142.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162141.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003620.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525693.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162142.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162141.ts",
@@ -23008,6 +23468,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1919441.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1159422.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1159254.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003620.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1991724.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568860.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/877438.ts",
@@ -26891,6 +27352,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1713741.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162228.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/7258.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003326.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162228.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1919429.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1980795.ts",
@@ -29106,6 +29568,7 @@
   "national geographic": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325786.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162380.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003301.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162380.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1980781.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1159372.ts",
@@ -34448,6 +34911,7 @@
   ],
   "v sport+": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1544254.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003218.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1544254.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003218.ts"
   ],
@@ -53538,6 +54002,465 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2001916.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2001916.ts"
   ],
+  "great mystery": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003531.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003531.ts"
+  ],
+  "nrk1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003292.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003292.ts"
+  ],
+  "nrk1 innlandet": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003291.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003291.ts"
+  ],
+  "nrk1 lydtekst": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003290.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003290.ts"
+  ],
+  "nrk1 midtnytt": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003289.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003289.ts"
+  ],
+  "nrk1 møre og romsdal": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003288.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003288.ts"
+  ],
+  "nrk1 nordland": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003287.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003287.ts"
+  ],
+  "nrk1 nordnytt": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003286.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003286.ts"
+  ],
+  "nrk1 rogaland": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003285.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003285.ts"
+  ],
+  "nrk1 sørlandet": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003284.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003284.ts"
+  ],
+  "nrk1 tegnspråk": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003283.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003283.ts"
+  ],
+  "nrk1 vestfold og telemark": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003282.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003282.ts"
+  ],
+  "nrk1 vestlandsrevyen": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003281.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003281.ts"
+  ],
+  "nrk1 østlandet": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003280.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003280.ts"
+  ],
+  "nrk2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003279.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003279.ts"
+  ],
+  "nrk2 lydtekst": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003278.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003278.ts"
+  ],
+  "nrk3 lydtekst": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003277.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003277.ts"
+  ],
+  "nrk3/super": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003276.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003276.ts"
+  ],
+  "tv 2 direkte": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003261.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003261.ts"
+  ],
+  "tv 2 livsstil": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003260.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003260.ts"
+  ],
+  "tv 2 nyheter": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003259.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003259.ts"
+  ],
+  "tv 2 sport 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003258.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003258.ts"
+  ],
+  "tv 2 sport 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003257.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003257.ts"
+  ],
+  "tv 2 zebra": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003256.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003256.ts"
+  ],
+  "tv 3": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003255.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003255.ts"
+  ],
+  "tv agder": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003254.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003254.ts"
+  ],
+  "tv haugaland": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003253.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003253.ts"
+  ],
+  "tv nord": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003252.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003252.ts"
+  ],
+  "tv norge": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003251.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003251.ts"
+  ],
+  "tv vest rogaland": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003249.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003249.ts"
+  ],
+  "tv vest vestland": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003248.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003248.ts"
+  ],
+  "tv østfold": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003247.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003247.ts"
+  ],
+  "tv1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003246.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565017.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/293445.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003246.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1853725.ts"
+  ],
+  "tv6": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003241.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003241.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1848789.ts"
+  ],
+  "tvl": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003238.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003238.ts"
+  ],
+  "v sport 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003232.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003232.ts"
+  ],
+  "v sport 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003231.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003231.ts"
+  ],
+  "v sport 3": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003230.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003230.ts"
+  ],
+  "v sport live 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003228.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003228.ts"
+  ],
+  "v sport live 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003227.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003227.ts"
+  ],
+  "v sport live 3": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003226.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003226.ts"
+  ],
+  "v sport live 4": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003225.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003225.ts"
+  ],
+  "v sport live 5": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003224.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003224.ts"
+  ],
+  "vgtv": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003217.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003217.ts"
+  ],
+  "vox": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003212.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1919342.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003212.ts"
+  ],
+  "akvarium": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003339.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003621.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003621.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003339.ts"
+  ],
+  "bbc nordic": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003333.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003333.ts"
+  ],
+  "discovery channel": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003328.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687087.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687013.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/293300.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1680865.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1695257.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1688809.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1688808.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003328.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986658.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609934.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609507.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609506.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847463.ts"
+  ],
+  "eurosport norge": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003321.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003321.ts"
+  ],
+  "fem": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003319.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003319.ts"
+  ],
+  "freeдом": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003315.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003607.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003607.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003315.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1523567.ts"
+  ],
+  "frikanalen": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003314.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003314.ts"
+  ],
+  "heim": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003312.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003312.ts"
+  ],
+  "naturkanal1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003300.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003300.ts"
+  ],
+  "nrk rogaland 24": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003293.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003293.ts"
+  ],
+  "peis": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003275.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003275.ts"
+  ],
+  "rex": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003273.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003273.ts"
+  ],
+  "sunnmøre live": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003268.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003268.ts"
+  ],
+  "turkishønder tv": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003262.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003262.ts"
+  ],
+  "dr 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003614.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003614.ts"
+  ],
+  "dr 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003613.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003613.ts"
+  ],
+  "dr1 syn": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003610.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003610.ts"
+  ],
+  "dr2 syn": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003609.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003609.ts"
+  ],
+  "dr ramasjang": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003612.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003612.ts"
+  ],
+  "dr tv a": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003611.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003611.ts"
+  ],
+  "dk4": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003615.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003615.ts"
+  ],
+  "see": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003593.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003593.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/846227.ts"
+  ],
+  "tv2 (bornholm)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003588.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003588.ts"
+  ],
+  "tv2 (fyn)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003587.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003587.ts"
+  ],
+  "tv2 (kosmopol)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003586.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003586.ts"
+  ],
+  "tv2 (midtvest)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003585.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003585.ts"
+  ],
+  "tv2 (nord)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003584.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003584.ts"
+  ],
+  "tv2 (syd)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003583.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003583.ts"
+  ],
+  "tv2 (øst)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003582.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003582.ts"
+  ],
+  "tv2 (østjylland)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003581.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003581.ts"
+  ],
+  "tv2 bornholm": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003580.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003580.ts"
+  ],
+  "tv2 charlie": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003579.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003579.ts"
+  ],
+  "tv2 echo": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003578.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003578.ts"
+  ],
+  "tv2 fri": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003577.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003577.ts"
+  ],
+  "tv2 kosmopol": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003576.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003576.ts"
+  ],
+  "tv2 news": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003575.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003575.ts"
+  ],
+  "tv2 oj": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003574.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003574.ts"
+  ],
+  "tv2 salto": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003573.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003573.ts"
+  ],
+  "tv2 sport x": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003571.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003571.ts"
+  ],
+  "tv2 sport": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003572.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003572.ts"
+  ],
+  "tv3 max": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003569.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003569.ts"
+  ],
+  "tv3 puls": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003568.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003568.ts"
+  ],
+  "tv3 sport": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003567.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003567.ts"
+  ],
+  "tv3+": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003566.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003566.ts"
+  ],
+  "kanal midtvest": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003606.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003606.ts"
+  ],
+  "kanal nord": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003605.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003605.ts"
+  ],
+  "kanal syd": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003604.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003604.ts"
+  ],
+  "kanal østjylland": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003603.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003603.ts"
+  ],
+  "v film action": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003562.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003562.ts"
+  ],
+  "v film family": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003561.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003561.ts"
+  ],
+  "v film hits": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003560.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003560.ts"
+  ],
+  "v series": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003558.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003558.ts"
+  ],
+  "v film premiere": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003559.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003559.ts"
+  ],
+  "viaplay sport news": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003556.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003556.ts"
+  ],
+  "cnn international": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003617.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565603.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1919435.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565098.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1979262.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003617.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/788167.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/498814.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1848866.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847470.ts"
+  ],
+  "folketinget": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003608.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003608.ts"
+  ],
+  "pejs": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003595.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003595.ts"
+  ],
+  "sport live": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003592.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003592.ts"
+  ],
+  "tv midtvest": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003590.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003590.ts"
+  ],
+  "tv syd": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003589.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003589.ts"
+  ],
+  "uptown classic": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003565.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003565.ts"
+  ],
+  "uptown music tv": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003563.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003563.ts"
+  ],
   "prime": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537489.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1537280.ts",
@@ -53807,16 +54730,6 @@
   "big brother classics": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565608.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565099.ts"
-  ],
-  "cnn international": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565603.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1919435.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565098.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1979262.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/788167.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/498814.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1848866.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847470.ts"
   ],
   "comedy shows": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565602.ts",
@@ -54117,10 +55030,6 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1991664.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015307.ts"
   ],
-  "vox": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1919342.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003212.ts"
-  ],
   "universal tv": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1667475.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855480.ts",
@@ -54413,12 +55322,6 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803170.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1461050.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609656.ts"
-  ],
-  "tv1": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1565017.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/293445.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003246.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1853725.ts"
   ],
   "prime: nba tv international": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1632703.ts",
@@ -55778,21 +56681,6 @@
   "planete+": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687090.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687016.ts"
-  ],
-  "discovery channel": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687087.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687013.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/293300.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1680865.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1695257.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1688809.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1688808.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003328.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986658.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609934.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609507.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/609506.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847463.ts"
   ],
   "discovery investigation": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1687085.ts",
@@ -57362,14 +58250,6 @@
   "tv4 play ppv": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1005966.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1704031.ts"
-  ],
-  "tv6": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003241.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1848789.ts"
-  ],
-  "freeдом": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003315.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1523567.ts"
   ],
   "tv2 play ppv": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/942844.ts",
