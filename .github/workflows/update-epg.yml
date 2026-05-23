@@ -126,9 +126,19 @@ jobs:
           # MENA : shahid.mbc.net + osn.com + rotana.net + aljazeera.com →
           #        MBC, Shahid, OSN Platinum, Rotana&ART, Al Jazeera
           SITES=(
+            # UK
             freeview.co.uk
             sky.com
+            mytelly.co.uk
+            tv24.co.uk
+            # US
             tvtv.us
+            tvpassport.com
+            directv.com
+            ontvtonight.com
+            # Sports specifics
+            nhl.com
+            # MENA
             shahid.mbc.net
             osn.com
             rotana.net
@@ -170,7 +180,7 @@ jobs:
           #   4. provider sub1 / sub2 (whatever stays uncovered)
           # Empty file:// paths from a failed grab are tolerated by build_epg
           # (fetch raises and the source is skipped).
-          PROVIDER_EPG_URL: file://${{ github.workspace }}/epg-work/bein-live.xml,${{ env.BEIN_EPG_URL }},file://${{ github.workspace }}/epg-work/iptv-org/freeview.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/sky.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/tvtv.us.xml,file://${{ github.workspace }}/epg-work/iptv-org/shahid.mbc.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/osn.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/rotana.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/aljazeera.com.xml,${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
+          PROVIDER_EPG_URL: file://${{ github.workspace }}/epg-work/bein-live.xml,${{ env.BEIN_EPG_URL }},file://${{ github.workspace }}/epg-work/iptv-org/freeview.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/sky.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/mytelly.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/tv24.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/tvtv.us.xml,file://${{ github.workspace }}/epg-work/iptv-org/tvpassport.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/directv.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/ontvtonight.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/nhl.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/shahid.mbc.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/osn.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/rotana.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/aljazeera.com.xml,${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
           # When set, build also emits a patched M3U at docs/<token>/playlist.m3u
           # The token is the access key — anyone with the URL can use the
           # subscription. Keep the URL private.
@@ -197,7 +207,8 @@ jobs:
           # players; advanced users can mix multiple sub-playlists).
           for f in docs/guide-lite.xml.gz docs/guide-bein.xml.gz \
                    docs/guide-sports.xml.gz docs/guide-ar.xml.gz \
-                   docs/guide-uk.xml.gz docs/guide-us.xml.gz; do
+                   docs/guide-uk.xml.gz docs/guide-us.xml.gz \
+                   docs/now-playing.json; do
             [ -f "$f" ] && git add "$f"
           done
           # Add the patched M3U folder (playlist.m3u + favorites.m3u +

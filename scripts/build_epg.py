@@ -2963,6 +2963,79 @@ def main():
     print(f"      dropped {dropped_channels} orphan channels, {dropped_programmes} orphan programmes")
     print(f"      final: {len(kept_channels)} channels, {len(kept_programmes)} programmes")
 
+    # ---------- LIVE marker pass (non-beIN sports) ----------
+    # bein.com programmes already carry '🔴 LIVE: ' for live broadcasts
+    # (fetch_bein_live.py emits them). Sky Sports / TNT Sports / ESPN
+    # programmes from iptv-org/epg don't — apply our own LIVE marker to
+    # match-pattern titles airing right now on sports brands.
+    print(f"[5f]  LIVE marker pass (non-beIN sports)")
+    SPORTS_BRAND_RE = re.compile(
+        rb'(?:'
+        rb'SPORT|ESPN|TNT|SKY[\s_-]*SPORT|FOX[\s_-]*SPORT|NBC[\s_-]*SPORT|CBS[\s_-]*SPORT|'
+        rb'NBA|NFL|NHL|MLB|MLS|UFC|BOXING|GOLF|TENNIS|RUGBY|CRICKET|F1|FORMULA|DAZN|'
+        rb'PREMIER\s*LEAGUE|CHAMPIONS\s*LEAGUE|LA\s*LIGA|BUNDESLIGA|SERIE\s*A|LIGUE\s*1|'
+        rb'MATCHROOM|VIAPLAY|HOTSTAR|WILLOW|EPL|UEFA|FIFA|AFC|CAFC'
+        rb')',
+        re.IGNORECASE,
+    )
+    MATCH_PATTERN_RE = re.compile(
+        # "Team A vs Team B" / "v" / "@" / "x" — typical live-match title shapes
+        rb'\b(?:vs?\.?|@|x)\s+[A-Z]', re.IGNORECASE,
+    )
+    LIVE_PREFIX = "🔴 LIVE: ".encode("utf-8")
+
+    # Identify sports channels by display-name match
+    sports_cids: set = set()
+    for cid, block in kept_channels.items():
+        dn_match = DISPLAY_NAME_RE.search(block)
+        if dn_match and SPORTS_BRAND_RE.search(dn_match.group(0)):
+            sports_cids.add(cid)
+
+    # Time bounds for "currently airing"
+    now_utc_marker = dt.datetime.now(dt.timezone.utc)
+    PROG_TIME_RE = re.compile(rb'<programme\s+start="(\d{14})[^"]*"\s+stop="(\d{14})[^"]*"')
+
+    def _parse14(b: bytes) -> "dt.datetime | None":
+        try:
+            return dt.datetime.strptime(b.decode(), "%Y%m%d%H%M%S").replace(tzinfo=dt.timezone.utc)
+        except Exception:
+            return None
+
+    live_marked = 0
+    for i, p in enumerate(kept_programmes):
+        if LIVE_PREFIX in p:
+            continue  # already marked (probably by bein.com scraper)
+        m = PROG_CHANNEL_RE.search(p)
+        if not m:
+            continue
+        cid = html.unescape(m.group(1).decode("utf-8", "replace"))
+        if cid not in sports_cids:
+            continue
+        tm = PROG_TIME_RE.search(p)
+        if not tm:
+            continue
+        start = _parse14(tm.group(1))
+        stop = _parse14(tm.group(2))
+        if not start or not stop or not (start <= now_utc_marker < stop):
+            continue
+        # Title must look like a match (contains "vs"/"v"/"@"/"x" followed by another team)
+        title_m = re.search(rb'<title[^>]*>([^<]+)</title>', p)
+        if not title_m or not MATCH_PATTERN_RE.search(title_m.group(1)):
+            continue
+        # Prefix title + add <category>Live</category>
+        new_p = p.replace(
+            b'<title lang="en">', b'<title lang="en">' + LIVE_PREFIX, 1,
+        )
+        # Add Live category only if not already present
+        if b'>Live</category>' not in new_p:
+            new_p = new_p.replace(
+                b'</title>', b'</title><category lang="en">Live</category>', 1,
+            )
+        if new_p is not p:
+            kept_programmes[i] = new_p
+            live_marked += 1
+    print(f"      live-marked {live_marked} currently-airing sports broadcasts")
+
     print(f"[6/6] writing output...")
     out_xml = out_dir / "guide.xml"
     out_gz = out_dir / "guide.xml.gz"
@@ -3091,6 +3164,12 @@ def main():
         except (ValueError, OverflowError):
             return None
     live_now_ids: set = set()
+    now_playing_records: list[dict] = []  # for docs/now-playing.json below
+    cid_display: dict[str, str] = {}      # channel id -> first display-name
+    for cid, blk in kept_channels.items():
+        dnm = re.search(rb'<display-name[^>]*>([^<]+)</display-name>', blk)
+        if dnm:
+            cid_display[cid] = html.unescape(dnm.group(1).decode("utf-8", "replace"))
     for p in kept_programmes:
         m = PROG_LIVE_RE.search(p)
         if not m:
@@ -3101,17 +3180,52 @@ def main():
             continue
         if not (start <= now_utc_now < stop):
             continue
-        title = m.group(4).strip()
-        if not title:
+        title_b = m.group(4).strip()
+        if not title_b:
             continue
         # Strip XML entities for the blank check
-        if title.lower() in (b'no epg', b'n/a', b'tba', b'tbd', b'not available'):
+        if title_b.lower() in (b'no epg', b'n/a', b'tba', b'tbd', b'not available'):
             continue
         # Channel id may be XML-escaped; keep both forms
-        cid = m.group(3)
-        live_now_ids.add(cid)
-        live_now_ids.add(html.unescape(cid.decode('utf-8', 'replace')).encode('utf-8'))
+        cid_b = m.group(3)
+        cid_str = html.unescape(cid_b.decode('utf-8', 'replace'))
+        live_now_ids.add(cid_b)
+        live_now_ids.add(cid_str.encode('utf-8'))
+        # Capture for now-playing.json (skip our own dummy fillers)
+        title_str = html.unescape(title_b.decode("utf-8", "replace"))
+        if "Programme guide unavailable" in title_str:
+            continue
+        is_live_event = title_str.startswith("🔴 LIVE")
+        now_playing_records.append({
+            "channel_id": cid_str,
+            "channel_name": cid_display.get(cid_str, cid_str),
+            "title": title_str,
+            "start_utc": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "stop_utc": stop.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "is_live_event": is_live_event,
+        })
     print(f"      {len(live_now_ids)} channels are live-now (EPG has current programme with title)")
+
+    # Write docs/now-playing.json — a public, plug-and-play summary of every
+    # channel airing real content right now. Helps power dashboards / "what's
+    # live now" widgets without parsing 10MB of XMLTV. is_live_event=true
+    # means the channel is currently airing a programme tagged 🔴 LIVE
+    # (sports broadcast).
+    import json as _json_np
+    np_payload = {
+        "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "total_channels_with_data": len(now_playing_records),
+        "total_live_events": sum(1 for r in now_playing_records if r["is_live_event"]),
+        "channels": sorted(now_playing_records, key=lambda r: (
+            0 if r["is_live_event"] else 1,  # LIVE events sorted to the top
+            r["channel_name"].lower(),
+        )),
+    }
+    np_path = out_dir / "now-playing.json"
+    np_path.write_text(_json_np.dumps(np_payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"      wrote {np_path.name} ({np_path.stat().st_size//1024} KB, "
+          f"{len(now_playing_records)} channels, "
+          f"{np_payload['total_live_events']} LIVE events)")
 
     token = os.environ.get("M3U_PATH_TOKEN", "").strip()
     if token:
