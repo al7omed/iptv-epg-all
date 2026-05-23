@@ -1303,7 +1303,11 @@ CATEGORY_REMAP = {
 # Favorites buckets.
 
 _CANONICAL_STRIP_RE = re.compile(
-    r'\s*\[[^\]]+\]\s*|'                            # [SS], [NM] etc.
+    # Source/quality tags in brackets: [SS], [8K], [UHD], [VIP] — short
+    # alphanumerics only. Preserve longer bracketed content like
+    # "[Abilene Tx]" which is the city qualifier on US local affiliates and
+    # IS a meaningful distinction.
+    r'\s*\[[A-Za-z0-9]{1,4}\]\s*|'
     r'\b(?:HEVC|UHD|8K|4K|FHD|HD|RAW|VIP|60FPS|'
     r'ORIGINAL|DOLBY\s+AUDIO|3840P|2160P|1080P|720P|'
     r'2K|FM|NM|BE|SS|SA|F)\b',
@@ -1904,13 +1908,22 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
             prov = provider_priority_rank(display)
             decorated.append((pin, q, lang, natural_key(display), prov, display, ch))
         decorated.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4]))
-        # Dedup by exact display name within a category (keep highest-quality).
+        # Dedup by CANONICAL channel name within a category (keep highest-
+        # quality). Without this, 'beIN Sports 1 RAW [8K]' and 'beIN Sports
+        # 1 HEVC [NM]' would both be emitted since they have different
+        # display names — even though they're the same logical channel and
+        # only the RAW variant should be exposed. Canonical-keyed dedup
+        # ensures RAW/VIP always wins (the list was sorted by -quality_rank
+        # above, so the first entry per canonical key IS the best one).
+        # Empty canonical falls back to display so we don't collapse a
+        # group of all-decoration names into one entry.
         dedup = []
         for tup in decorated:
-            display = tup[5]  # display is index 5 now (pin, q, lang, nat, prov, display, ch)
-            if display in seen_display_per_cat:
+            display = tup[5]
+            key = canonical_channel_name(display) or display.lower()
+            if key in seen_display_per_cat:
                 continue
-            seen_display_per_cat.add(display)
+            seen_display_per_cat.add(key)
             dedup.append(tup)
         # Emit with tvg-chno.
         chno = 1
