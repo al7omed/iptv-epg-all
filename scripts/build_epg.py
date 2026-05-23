@@ -1172,26 +1172,37 @@ CATEGORY_EMOJI = {
     "Arabic — Bahrain":                  "🇧🇭",
     "Arabic — Discovery+":               "🌍",
     "Arabic — Documentary":              "🎥",
+    "Arabic — Lifestyle":                "🎭",
     # UK
     "UK — Sport":                        "⚽",
-    "UK — TNT Sport":                    "⚽",
-    "UK — TNT Sport Event":              "🏟️",
-    "UK — Live Football PPV":            "⚽",
+    "UK — Sports PPV":                   "🏟️",
     "UK — Soccer Replay":                "⚽",
-    "UK — Amazon Prime PPV":             "🏟️",
     "UK — Sky Cinema":                   "🎬",
     "UK — BBC iPlayer":                  "📺",
     "UK — ITV X":                        "📺",
+    "UK — NOW TV Entertainment":         "🎬",
     "UK — General":                      "📺",
     "UK — News":                         "📰",
     "UK — Documentary":                  "🎥",
     "UK — Discovery+":                   "🌍",
+    # Legacy aliases kept so old display-name lookups still resolve to an
+    # emoji until any user-side cache (player favorites, etc.) catches up.
+    "UK — TNT Sport":                    "⚽",
+    "UK — TNT Sport Event":              "🏟️",
+    "UK — Live Football PPV":            "⚽",
+    "UK — Amazon Prime PPV":             "🏟️",
+    "UK — NOW TV Sport":                 "⚽",
+    "UK — Now TV Sport":                 "⚽",
+    "UK — Now TV Entertainment":         "🎬",
     # US
     "US — Sport":                        "🏈",
+    "US — NBA":                          "🏀",
+    "US — UFC PPV":                      "🥊",
+    "US — Sports PPV":                   "🏟️",
+    # Legacy aliases retained for player-cache continuity
     "US — ESPN+ PPV":                    "🏈",
     "US — NBA PPV":                      "🏀",
     "US — NBA Pass PPV":                 "🏀",
-    "US — UFC PPV":                      "🥊",
     "US — PPV Event":                    "🏟️",
     "US — Netflix PPV":                  "🎬",
     "US — DAZN PPV":                     "🥊",
@@ -1296,6 +1307,41 @@ CATEGORY_REMAP = {
     "UK| HBO MAX PPV":                   "Sports — Major Events PPV",
     "UK| PPV EVENT":                     "Sports — Major Events PPV",
     "UK| PPV EVENT ⁽ᴮᴷ⁾":                "Sports — Major Events PPV",
+
+    # ─── UK Sports consolidation (user-requested category cleanup) ───
+    # Sky Sports + TNT Sport + NOW TV Sport collapse into one bucket. Per-
+    # channel variant cap above keeps the top 3 quality variants per logical
+    # channel, so this doesn't bloat the bucket.
+    "UK| SPORT ʰᵉᵛᶜ":                    "UK — Sport",
+    "UK| SPORT ᴿᴬᵂ":                     "UK — Sport",
+    "UK| SPORT ᴴᴰ ⱽᴵᴾ":                  "UK — Sport",
+    "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ":     "UK — Sport",
+    "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ":  "UK — Sport",
+    "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ":            "UK — Sport",
+    # UK PPV events (TNT Sport Event, Live Football PPV, Amazon Prime PPV)
+    "UK| TNT SPORT EVENT":                "UK — Sports PPV",
+    "UK| LIVE FOOTBALL PPV":              "UK — Sports PPV",
+    "UK| AMAZON PRIME PPV":               "UK — Sports PPV",
+
+    # ─── Arabic Sports PPV consolidation ───
+    "AR| SPORTS PPV ᴺᴹ ⚽":                "Arabic — Sports PPV",
+    "AR| DAZN MENA PPV ⁸ᴷ":               "Arabic — Sports PPV",
+    "AR| SHAHID PPV ⚽":                   "Arabic — Sports PPV",
+
+    # ─── US NBA merge (NBA + NBA Pass) ───
+    "US| NBA PPV":                        "US — NBA",
+    "US| NBA PASS PPV ⁸ᴷ":                "US — NBA",
+    # ─── US Sports PPV (everything else PPV except UFC, which user kept) ───
+    "US| ESPN+ PPV ⱽᴵᴾ":                  "US — Sports PPV",
+    "US| PPV EVENT ⁽ᴮᴷ⁾":                 "US — Sports PPV",
+    "US| NETFLIX PPV":                    "US — Sports PPV",
+    "US| DAZN PPV":                       "US — Sports PPV",
+
+    # ─── Arabic Entertainment cleanup ───
+    "AR| WORLD OF COOKING 4K ▶ عالم الطبخ": "Arabic — Lifestyle",
+    "AR| ️ACTORS 4K ▶ الفنانون":             "Arabic — Lifestyle",
+    "AR| DISCOVERY+ ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ ديسكفري":  "Arabic — Documentary",
+    "AR| DOCUMENTARY 4K ▶ وثائقي":          "Arabic — Documentary",
 }
 
 
