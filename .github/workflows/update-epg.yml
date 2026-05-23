@@ -94,15 +94,83 @@ jobs:
           fi
           exit 0
 
+      - name: Setup Node (for iptv-org/epg scrapers)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Checkout iptv-org/epg (multi-source scraper)
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: epg-tool
+
+      - name: Install iptv-org/epg deps
+        working-directory: epg-tool
+        run: npm ci
+
+      - name: Grab UK/US/MENA EPG sources (iptv-org/epg)
+        continue-on-error: true
+        working-directory: epg-tool
+        run: |
+          set +e
+          mkdir -p ../epg-work/iptv-org
+          # Sites we pull from. Each becomes a separate XMLTV file fed into
+          # PROVIDER_EPG_URL below. Curated for coverage of channels in the
+          # user's pruned playlist that were previously dummy-only.
+          #
+          # UK   : freeview.co.uk + sky.com → BBC iPlayer, ITV X, Sky Cinema,
+          #        Sky Sports (with LIVE flags), Channel 4/5, etc.
+          # US   : tvtv.us (broad US coverage including ABC/CBS/NBC/FOX/cable)
+          # MENA : shahid.mbc.net + osn.com + rotana.net + aljazeera.com →
+          #        MBC, Shahid, OSN Platinum, Rotana&ART, Al Jazeera
+          SITES=(
+            freeview.co.uk
+            sky.com
+            tvtv.us
+            shahid.mbc.net
+            osn.com
+            rotana.net
+            aljazeera.com
+          )
+          for site in "${SITES[@]}"; do
+            # Each site has one or more *.channels.xml — grab the first one.
+            channels_file=$(ls sites/$site/*.channels.xml 2>/dev/null | head -1)
+            if [ -z "$channels_file" ]; then
+              echo "::warning::No channels.xml for $site"
+              continue
+            fi
+            out="../epg-work/iptv-org/${site}.xml"
+            echo ">>> Grabbing $site"
+            timeout 240 npm run grab --- \
+              --channels="$channels_file" \
+              --output="$out" \
+              --days=5 \
+              --maxConnections=3 \
+              --timeout=15000 2>&1 | tail -3
+            if [ -s "$out" ]; then
+              progs=$(grep -c '<programme' "$out" 2>/dev/null || echo 0)
+              echo "  $site: $(stat -c '%s' $out) bytes, $progs programmes"
+            else
+              echo "::warning::$site grab failed or empty — skipping"
+            fi
+          done
+          echo "--- final iptv-org sources ---"
+          ls -la ../epg-work/iptv-org/ 2>/dev/null || true
+          exit 0
+
       - name: Build EPG
         env:
           M3U_URL: file://${{ github.workspace }}/epg-work/m3u_sub1.m3u,file://${{ github.workspace }}/epg-work/m3u_sub2.m3u
           # Order matters — first wins on (channel,start) dedup:
           #   1. bein-live (direct bein.com scrape this build, has LIVE flags)
-          #   2. bein-epg (al7omed/bein-epg every-12h artifact — fallback)
-          #   3. provider sub1
-          #   4. provider sub2
-          PROVIDER_EPG_URL: file://${{ github.workspace }}/epg-work/bein-live.xml,${{ env.BEIN_EPG_URL }},${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
+          #   2. bein-epg (al7omed/bein-epg artifact — fallback)
+          #   3. iptv-org/epg scrapes (UK/US/MENA — channel-specific real data)
+          #   4. provider sub1 / sub2 (whatever stays uncovered)
+          # Empty file:// paths from a failed grab are tolerated by build_epg
+          # (fetch raises and the source is skipped).
+          PROVIDER_EPG_URL: file://${{ github.workspace }}/epg-work/bein-live.xml,${{ env.BEIN_EPG_URL }},file://${{ github.workspace }}/epg-work/iptv-org/freeview.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/sky.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/tvtv.us.xml,file://${{ github.workspace }}/epg-work/iptv-org/shahid.mbc.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/osn.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/rotana.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/aljazeera.com.xml,${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
           # When set, build also emits a patched M3U at docs/<token>/playlist.m3u
           # The token is the access key — anyone with the URL can use the
           # subscription. Keep the URL private.
