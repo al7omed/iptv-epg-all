@@ -160,7 +160,11 @@ jobs:
             fi
           }
           export -f grab_one
-          printf '%s\n' "${SITES[@]}" | xargs -P 4 -I {} bash -c 'grab_one "$@"' _ {}
+          # P=2: 4 concurrent caused freeview.co.uk / tv24.co.uk / tvtv.us /
+          # tvpassport.com to fail (npm/iptv-org/epg resource contention or
+          # upstream rate-limit). 2 concurrent is the sweet spot — total
+          # build time still ≤ 25 min for all 13 sites.
+          printf '%s\n' "${SITES[@]}" | xargs -P 2 -I {} bash -c 'grab_one "$@"' _ {}
           echo "--- final iptv-org sources ---"
           ls -la ../epg-work/iptv-org/ 2>/dev/null || true
           exit 0

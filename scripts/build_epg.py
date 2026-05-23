@@ -3206,26 +3206,10 @@ def main():
         })
     print(f"      {len(live_now_ids)} channels are live-now (EPG has current programme with title)")
 
-    # Write docs/now-playing.json — a public, plug-and-play summary of every
-    # channel airing real content right now. Helps power dashboards / "what's
-    # live now" widgets without parsing 10MB of XMLTV. is_live_event=true
-    # means the channel is currently airing a programme tagged 🔴 LIVE
-    # (sports broadcast).
-    import json as _json_np
-    np_payload = {
-        "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "total_channels_with_data": len(now_playing_records),
-        "total_live_events": sum(1 for r in now_playing_records if r["is_live_event"]),
-        "channels": sorted(now_playing_records, key=lambda r: (
-            0 if r["is_live_event"] else 1,  # LIVE events sorted to the top
-            r["channel_name"].lower(),
-        )),
-    }
-    np_path = out_dir / "now-playing.json"
-    np_path.write_text(_json_np.dumps(np_payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"      wrote {np_path.name} ({np_path.stat().st_size//1024} KB, "
-          f"{len(now_playing_records)} channels, "
-          f"{np_payload['total_live_events']} LIVE events)")
+    # NOTE: now-playing.json is written further below (after write_patched_m3u
+    # has run and used_ids is available) so it can be filtered to ONLY the
+    # channels actually exposed in the playlist — keeping the file small
+    # (~3,800 records vs ~58k pre-filter).
 
     token = os.environ.get("M3U_PATH_TOKEN", "").strip()
     if token:
@@ -3282,6 +3266,27 @@ def main():
         fn = write_favorites_m3u(m3u_channels, fav_out, epg_lite_link,
                                    live_now_ids=live_now_ids)
         print(f"      wrote favorites M3U at {fav_out} ({fav_out.stat().st_size//1024} KB, {fn} entries)")
+
+        # === now-playing.json (public, plug-and-play snapshot) ===
+        # Filter to ONLY channels that made it into the patched playlist
+        # (used_ids). Without this filter the file would balloon to ~18MB
+        # with 58k pre-prune channels — almost as big as the lite EPG.
+        # After filter: ~3-4k records, <1 MB.
+        import json as _json_np
+        np_filtered = [r for r in now_playing_records if r["channel_id"] in used_ids]
+        np_payload = {
+            "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "total_records": len(np_filtered),
+            "total_live_events": sum(1 for r in np_filtered if r["is_live_event"]),
+            "channels": sorted(np_filtered, key=lambda r: (
+                0 if r["is_live_event"] else 1,  # LIVE events sorted to the top
+                r["channel_name"].lower(),
+            )),
+        }
+        np_path = out_dir / "now-playing.json"
+        np_path.write_text(_json_np.dumps(np_payload, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"      wrote {np_path.name} ({np_path.stat().st_size//1024} KB, "
+              f"{len(np_filtered)} records, {np_payload['total_live_events']} LIVE events)")
 
         # === EPG lite + region splits ===
         # The full guide.xml.gz is ~47 MB. The lite version only includes the
