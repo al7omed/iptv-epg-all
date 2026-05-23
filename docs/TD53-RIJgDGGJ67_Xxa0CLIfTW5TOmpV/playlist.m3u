@@ -4754,12 +4754,11 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892958.ts
 #EXTINF:-1 tvg-id="Live | Capitals @ Penguins | NHL.TV | 8K EXCLUSIVE | MA: DAZN PPV 11" tvg-chno="10" tvg-name="Live | Capitals @ Penguins | NHL.TV | 8K Exclusive | Ma: DAZN PPV 11" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12983.png?ver=89182" group-title="🏟️ Arabic — Sports PPV",Live | Capitals @ Penguins | NHL.TV | 8K Exclusive | Ma: DAZN PPV 11
 #EXTVLCOPT:backup-url-1=http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892957.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892957.ts
-#EXTINF:-1 tvg-id="Live | Toronto - Day 6 | Rock League | 8K EXCLUSIVE | MA: DAZN PPV 7" tvg-chno="11" tvg-name="Live | Toronto - Day 6 | Rock League | 8K Exclusive | Ma: DAZN PPV 7" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12983.png?ver=89182" group-title="🏟️ Arabic — Sports PPV",Live | Toronto - Day 6 | Rock League | 8K Exclusive | Ma: DAZN PPV 7
+#EXTINF:-1 tvg-id="LIVE | SAGESSE SC VS. CENTRAL | Sat 23 May 20:30 +03 (SA) | 8K EXCLUSIVE | SA: SHAHID PPV 2" tvg-chno="11" tvg-name="Live | Sagesse Sc Vs. Central | Sat 23 May 20:30 +03 | 8K Exclusive | SA: Shahid PPV 2" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14728.png?70431" group-title="🏟️ Arabic — Sports PPV",Live | Sagesse Sc Vs. Central | Sat 23 May 20:30 +03 | 8K Exclusive | SA: Shahid PPV 2
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762523.ts
+#EXTINF:-1 tvg-id="Live | Toronto - Day 6 | Rock League | 8K EXCLUSIVE | MA: DAZN PPV 7" tvg-chno="12" tvg-name="Live | Toronto - Day 6 | Rock League | 8K Exclusive | Ma: DAZN PPV 7" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12983.png?ver=89182" group-title="🏟️ Arabic — Sports PPV",Live | Toronto - Day 6 | Rock League | 8K Exclusive | Ma: DAZN PPV 7
 #EXTVLCOPT:backup-url-1=http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892961.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892961.ts
-#EXTINF:-1 tvg-id="NEXT | SAGESSE SC VS. CENTRAL | Sat 23 May 20:30 +03 (SA) | 8K EXCLUSIVE | SA: SHAHID PPV 2" tvg-chno="12" tvg-name="Next | Sagesse Sc Vs. Central | Sat 23 May 20:30 +03 | 8K Exclusive | SA: Shahid PPV 2" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14728.png?70431" group-title="🏟️ Arabic — Sports PPV",Next | Sagesse Sc Vs. Central | Sat 23 May 20:30 +03 | 8K Exclusive | SA: Shahid PPV 2
-#EXTVLCOPT:backup-url-1=http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762523.ts
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762523.ts
 #EXTINF:-1 tvg-id="####### SHAHID PPV #######" tvg-chno="13" tvg-name="Shahid PPV" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/19/Animated-Flag-Saudi-Arabia.gif" group-title="🏟️ Arabic — Sports PPV",Shahid PPV
 #EXTVLCOPT:backup-url-1=http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1752108.ts
 #EXTVLCOPT:backup-url-2=http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762525.ts
