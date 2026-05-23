@@ -137,7 +137,12 @@ SUPERSCRIPT_CHARS = "ᴿᴬᵂᴴᴰᶠʰᵉᵛᶜᵘᵏ⁴⁶⁰⁸⁵ᵖˢ⁷�
 PREFIX_PATTERN = re.compile(
     r"^\s*(?:UK|US|AR|FR|DE|ES|IT|TR|EN|NL|PT|RU|SE|NO|FI|PL|CA|AU|NZ|IN|ZA|"
     r"MENA|VIP|NOW|NEW|BACK[ -]?UP|MAIN|EXYU|EX-YU|YU|"
-    r"GOBX|MBC|OSN|BEIN|ALL|ALL[ -]?PPV|PPV)\s*[:|]+\s*",
+    r"GOBX|MBC|OSN|BEIN|ALL|ALL[ -]?PPV|PPV|"
+    # Provider-specific source tokens used by the user's subscription
+    # (sub2/opop's SS:/BE:/8K:/NM:/FM:/SA: prefixes etc.). Strip so the
+    # normalized form matches upstream EPG channels that don't carry the
+    # provider prefix.
+    r"SS|BE|NM|FM|SA|8K|F|UHD)\s*[:|]+\s*",
     re.IGNORECASE,
 )
 
@@ -2259,11 +2264,16 @@ def main():
         kept_ids = set(kept_channels.keys())
 
     # Build map from effective_id -> M3U display name. Every M3U entry now
-    # has an effective_id (original tvg-id or auto-generated).
+    # has an effective_id (original tvg-id or auto-generated). Apply the
+    # same prettification (clean_channel_name) used when writing the patched
+    # M3U so EPG cell titles match what the user sees in their player.
     m3u_display = {}
     for ch in m3u_channels:
         tid = ch["effective_id"]
-        name = ch["tvg_name"] or ch["title"]
+        raw = ch["tvg_name"] or ch["title"]
+        name = clean_channel_name(raw) if raw else ""
+        if not name:
+            name = raw  # fallback for edge cases where cleaning produces ""
         if name and tid not in m3u_display:
             m3u_display[tid] = name
 
@@ -2692,25 +2702,43 @@ def main():
     if scrubbed or scrubbed_empty:
         print(f"      scrubbed {scrubbed} placeholder titles + {scrubbed_empty} empty titles (all replaced with channel name)")
 
-    # Full version (gzipped). Lite uncompressed version was dropped — every
-    # modern player accepts .gz, and the file would otherwise exceed GitHub
-    # Pages' 100 MB per-file limit once dummies are split into many blocks.
-    with gzip.open(out_gz, "wb", compresslevel=6) as f:
-        f.write(header)
-        for cid in sorted(kept_channels):
-            f.write(kept_channels[cid])
-            f.write(b"\n")
-        for p in kept_programmes:
-            f.write(p)
-            f.write(b"\n")
-        f.write(footer)
+    # Fill missing <desc> on every programme (real-EPG or dummy). UHF on tvOS
+    # renders programmes whose <desc> is absent or empty as "Data Unavailable"
+    # in the detail pane. Mirror the title into <desc> so the detail pane
+    # always has something to render. Cheap regex: only touches programmes
+    # that are actually missing a <desc>.
+    DESC_PRESENT_RE = re.compile(rb'<desc\b[^>]*>[^<]')
+    PROG_TITLE_TEXT_RE = re.compile(rb'<title\b[^>]*>([^<]*)</title>')
+    desc_added = 0
+    for i, p in enumerate(kept_programmes):
+        if DESC_PRESENT_RE.search(p):
+            continue
+        m = PROG_TITLE_TEXT_RE.search(p)
+        if not m:
+            continue
+        title_bytes = m.group(1).strip()
+        if not title_bytes:
+            continue
+        desc_block = b'<desc lang="en">' + title_bytes + b'</desc>'
+        # Inject just before </programme>. Falls back to no-op if the
+        # programme is somehow self-closing or otherwise unexpected.
+        if b'</programme>' in p:
+            kept_programmes[i] = p.replace(b'</programme>', desc_block + b'</programme>', 1)
+            desc_added += 1
+    if desc_added:
+        print(f"      added <desc> to {desc_added} programmes missing one (mirrors <title>)")
+
+    # NOTE: guide.xml.gz used to include ALL channels we scraped (~58k incl.
+    # ~55k channels NOT in the user's playlist). That made the file ~50MB
+    # gzipped / ~570MB uncompressed and crashed memory-constrained players
+    # like UHF on tvOS. It's now written further below alongside the lite
+    # version, filtered to playlist channels only (same content as lite),
+    # producing a ~10MB file that all players load comfortably.
 
     # Strip an old guide.xml if it was committed before this change so Pages
     # stops serving stale content.
     if out_xml.exists():
         out_xml.unlink()
-
-    print(f"      wrote {out_gz} ({out_gz.stat().st_size//1024} KB) — full data, gzipped")
 
     # Publish the non-sensitive tvg-id map. The user uses patch_m3u.py locally
     # to inject these tvg-ids into their private M3U. We do NOT publish the
@@ -2864,7 +2892,14 @@ def main():
             print(f"      wrote {out_path.name} ({out_path.stat().st_size//1024} KB, "
                   f"{len(kept_chans)} channels, {len(kept_progs)} programmes) — {label}")
 
-        # Full lite (all playlist channels)
+        # Full EPG (same playlist-filtered content as lite). Previously
+        # guide.xml.gz was the unfiltered ~50MB / ~570MB-uncompressed dump of
+        # every channel epgshare01 carries, which crashed UHF on tvOS. Now
+        # it carries only the channels actually in the playlist — identical
+        # to lite in content, kept as a separate file for backwards-compat
+        # with player configs pointing at guide.xml.gz.
+        _write_epg_subset(out_dir / "guide.xml.gz", used_ids, "full = all playlist channels")
+        # Lite (same content as full now; both are the recommended file)
         _write_epg_subset(out_dir / "guide-lite.xml.gz", used_ids, "lite = all playlist channels")
         # Per-region splits
         _write_epg_subset(out_dir / "guide-bein.xml.gz",
