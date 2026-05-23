@@ -2403,12 +2403,16 @@ def main():
         # Use the channel display name as the dummy programme title so the
         # player shows the channel's own name in the EPG cell instead of
         # rendering "No EPG" for blank/whitespace titles. XML-escape to be
-        # safe.
+        # safe. Also emit a <desc> — UHF on tvOS (and some other players)
+        # render programmes without a description as "Data Unavailable",
+        # so a placeholder desc keeps the detail pane populated.
         title_xml = html.escape(m3u_display[tid], quote=True)
+        desc_xml = title_xml + " — live channel. Programme guide unavailable."
         for s_str, e_str in block_times:
             p = (
                 f'<programme start="{s_str}" stop="{e_str}" channel="{tid_xml}">'
-                f'<title lang="en">{title_xml}</title></programme>'
+                f'<title lang="en">{title_xml}</title>'
+                f'<desc lang="en">{desc_xml}</desc></programme>'
             ).encode("utf-8")
             dummy_programmes.append(p)
 
@@ -2476,22 +2480,30 @@ def main():
                    cid_raw: str = "") -> list[bytes]:
         """Split [start, end) into BLOCK_HOURS-sized chunks of dummy programmes.
 
-        Title comes from the channel's own display-name (looked up by cid_raw)
-        so the EPG cell shows the channel name instead of being blank — which
-        many players render as 'No EPG'."""
+        Title prefers the M3U's tvg-name (cleaner, mixed-case) over the
+        provider's display-name (often the all-caps tvg-id form). Falls back
+        to the provider's display-name, then to the raw channel id. Each
+        programme also carries a <desc> — UHF on tvOS renders programmes
+        without a description as 'Data Unavailable'."""
         out = []
         cur = start
-        # Title falls back to cid_xml if we can't look up a display name.
-        title_xml = cid_to_display_xml.get(cid_raw, cid_xml) or cid_xml
-        # Ensure it's a string and XML-safe (display-name was already escaped
-        # at emit time, so just trust it here).
+        title_raw = (
+            m3u_display.get(cid_raw)
+            or html.unescape(cid_to_display_xml.get(cid_raw, ""))
+            or cid_raw
+        )
+        title_xml = html.escape(title_raw, quote=True)
+        desc_xml = title_xml + " — live channel. Programme guide unavailable."
         while cur < end:
             nxt = min(cur + dt.timedelta(hours=BLOCK_HOURS), end)
             s_str = fmt_xmltv_time(cur)
             e_str = fmt_xmltv_time(nxt)
             out.append(
-                f'<programme start="{s_str}" stop="{e_str}" channel="{cid_xml}">'
-                f'<title lang="en">{title_xml}</title></programme>'.encode("utf-8")
+                (
+                    f'<programme start="{s_str}" stop="{e_str}" channel="{cid_xml}">'
+                    f'<title lang="en">{title_xml}</title>'
+                    f'<desc lang="en">{desc_xml}</desc></programme>'
+                ).encode("utf-8")
             )
             cur = nxt
         return out
