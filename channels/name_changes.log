@@ -506,3 +506,74 @@
   VH1.us
     OLD: Vh 1 4K [US]
     NEW: Vh 1 HD [US]
+
+=== 2026-05-23T11:56:10Z — 23 channel name change(s) ===
+  beINSports1En.qa
+    OLD: beIN Sports 1 HD
+    NEW: beIN Sports 1 English RAW [UK]
+  premiersports1.uk
+    OLD: Premier Sport 1 RAW [UK]
+    NEW: Premier Sports 1 HD [NOW]
+  premiersports2.uk
+    OLD: Premier Sport 2 RAW [UK]
+    NEW: Premier Sports 2 HD [NOW]
+  skysportsaction.uk
+    OLD: Sky Sport Action RAW [UK]
+    NEW: Sky Sports Action HD [NOW]
+  skysportscricket.uk
+    OLD: Sky Sport Ckreckt RAW [UK]
+    NEW: Sky Sports Cricket HD [NOW]
+  skysportsf1.uk
+    OLD: Sky Sport F1 RAW [UK]
+    NEW: Sky Sports F1 HD [NOW]
+  skysportsfootball.uk
+    OLD: Sky Sport Football RAW [UK]
+    NEW: Sky Sports Football HD [NOW]
+  skysportsgolf.uk
+    OLD: Sky Sport Golf RAW [UK]
+    NEW: Sky Sports Golf HD [NOW]
+  skysportsmainevent.uk
+    OLD: Sky Sport Main Event RAW [UK]
+    NEW: Sky Sports Main Event HD [NOW]
+  skysportsmix.uk
+    OLD: Sky Sport Mix RAW [UK]
+    NEW: Sky Sports Mix HD [NOW]
+  skysportsnews.uk
+    OLD: Sky Sport News RAW [UK]
+    NEW: Sky Sports News Hq HD [NOW]
+  skysportspremiereleague.uk
+    OLD: Sky Sport Prime Lige RAW [UK]
+    NEW: Sky Sports Premier League HD [NOW]
+  skysportsracing.uk
+    OLD: Sky Sport Racing RAW [UK]
+    NEW: Sky Sports Racing RAW [NOW]
+  skysportstennis.uk
+    OLD: Sky Sport Tennis RAW [UK]
+    NEW: Sky Sports Tennis HD [NOW]
+  skywitness.uk
+    OLD: Sky Witness RAW [UK]
+    NEW: Sky Witness HD [NOW]
+  tntsports1.uk
+    OLD: TNT Sport 1 RAW [UK]
+    NEW: TNT Sport 1 HD [NOW]
+  tntsports2.uk
+    OLD: TNT Sport 2 RAW [UK]
+    NEW: TNT Sport 2 HD [NOW]
+  tntsports3.uk
+    OLD: TNT Sport 3 RAW [UK]
+    NEW: TNT Sport 3 HD [NOW]
+  tntsports4.uk
+    OLD: TNT Sport 4 RAW [UK]
+    NEW: TNT Sports 4 HD [NOW]
+  MUTV.uk
+    OLD: Mutv RAW [VIP]
+    NEW: Mutv RAW [UK]
+  PremierSports2.uk
+    OLD: Premier Sport 2 RAW [VIP]
+    NEW: Premier Sport 2 HD [VIP]
+  SkySportsBoxOffice.uk
+    OLD: Sky Sports Box Office RAW RAW [VIP]
+    NEW: Sky Sports Box Office HD HEVC [VIP]
+  SkySportsTennis.uk
+    OLD: Sky Sports Tennis RAW [VIP]
+    NEW: Sky Sports Tennis HD [VIP]
