@@ -609,3 +609,65 @@
   SkySportsRacing.uk
     OLD: Sky Sports Racing HEVC HD [UK]
     NEW: Sky Sports Racing RAW RAW [VIP]
+
+=== 2026-05-23T15:36:16Z — 20 channel name change(s) ===
+  skysportsaction.uk
+    OLD: Sky Sports Action HD [NOW]
+    NEW: Sky Sport Action RAW [UK]
+  skysportscricket.uk
+    OLD: Sky Sports Cricket HD [NOW]
+    NEW: Sky Sport Ckreckt RAW [UK]
+  skysportsf1.uk
+    OLD: Sky Sports F1 HD [NOW]
+    NEW: Sky Sport F1 RAW [UK]
+  skysportsfootball.uk
+    OLD: Sky Sports Football HD [NOW]
+    NEW: Sky Sport Football RAW [UK]
+  skysportsgolf.uk
+    OLD: Sky Sports Golf HD [NOW]
+    NEW: Sky Sport Golf RAW [UK]
+  skysportsmainevent.uk
+    OLD: Sky Sports Main Event HD [NOW]
+    NEW: Sky Sport Main Event RAW [UK]
+  skysportsmix.uk
+    OLD: Sky Sports Mix HD [NOW]
+    NEW: Sky Sport Mix RAW [UK]
+  skysportspremiereleague.uk
+    OLD: Sky Sports Premier League HD [NOW]
+    NEW: Sky Sport Prime Lige RAW [UK]
+  skysportsracing.uk
+    OLD: Sky Sports Racing RAW [NOW]
+    NEW: Sky Sport Racing RAW [UK]
+  skysportstennis.uk
+    OLD: Sky Sports Tennis HD [NOW]
+    NEW: Sky Sports Tennis RAW [NOW]
+  tntsports1.uk
+    OLD: TNT Sport 1 HD [NOW]
+    NEW: TNT Sport 1 RAW [UK]
+  tntsports2.uk
+    OLD: TNT Sport 2 HD [NOW]
+    NEW: TNT Sport 2 RAW [UK]
+  tntsports3.uk
+    OLD: TNT Sport 3 HD [NOW]
+    NEW: TNT Sport 3 RAW [UK]
+  tntsports4.uk
+    OLD: TNT Sports 4 HD [NOW]
+    NEW: TNT Sports 4 RAW [NOW]
+  TNTSport1.uk
+    OLD: TNT Sports 1 RAW 50 Fps [VIP]
+    NEW: TNT Sports 1 HEVC HD [UK]
+  TNTSport2.uk
+    OLD: TNT Sports 2 RAW 50 Fps [VIP]
+    NEW: TNT Sports 2 HEVC HD [UK]
+  TNTSport3.uk
+    OLD: TNT Sports 3 RAW 50 Fps [VIP]
+    NEW: TNT Sports 3 HEVC HD [UK]
+  TNTSport4.uk
+    OLD: TNT Sports 4 RAW 50 Fps [VIP]
+    NEW: TNT Sports 4 HEVC 4K [UK]
+  ##### NBA PASS PPV ⁸ᴷ #####
+    OLD: NBA Pass PPV
+    NEW: NBA Pass PPV 8K
+  NEXT | CLE - CAVALIERS VS NYK - KNICKS | Sat 23 May 19:00 EDT (US) | 8K EXCLUSIVE | US:~94e67d97
+    OLD: Next | Cle - Cavaliers Vs Nyk - Knicks | Sat 23 May 19:00 Edt | Exclusive | Us: NBA Pass PPV 1
+    NEW: Next | Cle - Cavaliers Vs Nyk - Knicks | Sat 23 May 19:00 Edt | 8K Exclusive | Us: NBA Pass PPV 1
