@@ -1908,13 +1908,28 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
             prov = provider_priority_rank(display)
             decorated.append((pin, q, lang, natural_key(display), prov, display, ch))
         decorated.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4]))
-        # Dedup by exact display name within a category (keep highest-quality).
+        # Per-canonical variant cap. Keep the user's quality options around but
+        # don't emit an unbounded list per channel.
+        #   - beIN categories: unlimited (user wants every HD+ variant of each
+        #     beIN channel kept — different sources/codecs are useful for
+        #     failover during live matches). is_acceptable_quality already
+        #     filtered out SD/LQ upstream.
+        #   - Other categories: top 3 variants per canonical (RAW + 4K + HEVC
+        #     typically). 4th+ duplicates are noise.
+        # Within each canonical's allowance, ALSO drop entries with identical
+        # display names (the original dedup).
+        variant_cap = None if is_bein_cat else 3
+        canon_count: dict = defaultdict(int)
         dedup = []
         for tup in decorated:
-            display = tup[5]  # display is index 5 now (pin, q, lang, nat, prov, display, ch)
+            display = tup[5]
             if display in seen_display_per_cat:
                 continue
+            canon = canonical_channel_name(display) or display.lower()
+            if variant_cap is not None and canon_count[canon] >= variant_cap:
+                continue
             seen_display_per_cat.add(display)
+            canon_count[canon] += 1
             dedup.append(tup)
         # Emit with tvg-chno.
         chno = 1
