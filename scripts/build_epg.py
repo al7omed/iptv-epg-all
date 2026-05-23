@@ -2511,107 +2511,6 @@ def main():
     kept_programmes.extend(backfill_added_programmes)
     print(f"      backfilled {backfilled} M3U ids (+{backfill_progs} cloned programmes)")
 
-    # ---------- bein-epg authoritative override ----------
-    # bein-epg is scraped directly from bein.com and is the source of truth
-    # for what's actually airing on each beIN channel. The user's IPTV
-    # provider (sub1/sub2) xmltv.php frequently has STALE or wrong data for
-    # the same channels (e.g. "Sevilla vs Real Madrid Week 37" listed for
-    # tonight when the actual game is "Real Madrid vs Athletic Bilbao Week
-    # 38"). Sub2 also uses different channel ids (beINSports1.qa) than
-    # bein-epg (beINSports1.qa@MENA), so the (channel, start) dedup never
-    # gets a chance to let bein-epg win.
-    #
-    # This pass: for any kept channel whose normalized display-name matches
-    # a bein-epg channel's normalized name, DROP its existing programmes and
-    # replace them with bein-epg's programmes (cloned under the kept channel
-    # id). Restricted to canonical-name match starting with "BEIN" so it
-    # only affects beIN channels.
-    if bein_epg_path and bein_epg_path.exists():
-        print(f"[5c.2]  bein-epg authoritative override")
-        bein_raw = read_xmltv(bein_epg_path)
-        # Each bein-epg channel becomes (channel_id, token_frozenset). We
-        # only keep channels whose token set contains "BEIN" so we don't
-        # accidentally override unrelated channels.
-        bein_channels: list[tuple[str, frozenset]] = []
-        bein_cid_set: set = set()
-        for b_cid, b_names, _ in iter_channels(bein_raw):
-            bein_cid_set.add(b_cid)
-            # Merge tokens across all display-name variants so 'beIN SPORTS
-            # EN 1' / 'beIN SPORTS 1 EN' / 'beIN SPORTS 1 (English)' all map
-            # to the same set {BEIN, SPORTS, EN, 1}.
-            merged: set = set()
-            for n in b_names:
-                merged |= name_tokens(n)
-            if "BEIN" in merged:
-                bein_channels.append((b_cid, frozenset(merged)))
-
-        # Collect bein-epg programmes by channel id (used to clone)
-        bein_progs_by_cid: dict[str, list[bytes]] = defaultdict(list)
-        for chan_id, block in iter_programmes(bein_raw):
-            if chan_id in bein_cid_set:
-                bein_progs_by_cid[chan_id].append(block)
-
-        def _best_bein_match(m3u_tokens: frozenset) -> "str | None":
-            """Pick the bein-epg channel whose tokens are a subset of the
-            M3U channel's tokens, preferring the MOST SPECIFIC match (more
-            shared tokens = better). Subset match guarantees that e.g. a
-            generic Arabic 'beIN SPORTS 1' (tokens {BEIN,SPORTS,1}) doesn't
-            wrongly attach to an English M3U entry whose tokens also include
-            {EN}; the English bein-epg channel {BEIN,SPORTS,EN,1} would win
-            because it has 4 tokens vs 3."""
-            best_cid = None
-            best_n = -1
-            for b_cid, b_toks in bein_channels:
-                if b_toks and b_toks.issubset(m3u_tokens) and len(b_toks) > best_n:
-                    best_cid = b_cid
-                    best_n = len(b_toks)
-            return best_cid
-
-        # For each kept channel that isn't itself a bein-epg channel, see
-        # whether its tokens contain a bein-epg channel's tokens as subset.
-        override_map: dict[str, str] = {}  # kept_cid -> bein_cid
-        for kept_cid, block in kept_channels.items():
-            if kept_cid in bein_cid_set:
-                continue  # this IS the bein-epg channel itself
-            names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
-            merged: set = set()
-            for n in names:
-                merged |= name_tokens(n)
-            if "BEIN" not in merged:
-                continue
-            best = _best_bein_match(frozenset(merged))
-            if best:
-                override_map[kept_cid] = best
-
-        if override_map:
-            # Build a byte-encoded set of target channel ids (both raw and
-            # XML-escaped forms) so we can efficiently filter kept_programmes.
-            target_cid_bytes: set = set()
-            for cid in override_map:
-                cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
-                target_cid_bytes.add(cid_b)
-                target_cid_bytes.add(cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;"))
-            before_n = len(kept_programmes)
-            kept_programmes = [
-                p for p in kept_programmes
-                if not (m := PROG_CHANNEL_RE.search(p))
-                or m.group(1) not in target_cid_bytes
-            ]
-            removed_n = before_n - len(kept_programmes)
-            # Clone bein-epg programmes to each target channel id.
-            override_programmes: list[bytes] = []
-            for kept_cid, bein_cid in override_map.items():
-                for prog in bein_progs_by_cid.get(bein_cid, []):
-                    override_programmes.append(
-                        rewrite_prog_channel(prog, bein_cid, kept_cid)
-                    )
-            kept_programmes.extend(override_programmes)
-            print(f"      bein-epg override: removed {removed_n} stale programmes; "
-                  f"applied bein-epg data to {len(override_map)} channels "
-                  f"(+{len(override_programmes)} authoritative programmes)")
-        else:
-            print(f"      bein-epg override: no name matches found (skipped)")
-
     uncovered_ids = (set(m3u_display.keys()) - kept_ids) | forced_ids
     uncovered_ids = {tid for tid in uncovered_ids if tid in m3u_display}
     print(f"      dummy entries to add: {len(uncovered_ids)} (covers every remaining M3U channel)")
@@ -2668,6 +2567,86 @@ def main():
 
     kept_programmes.extend(dummy_programmes)
     print(f"      added {dummy_count} dummy channels × {n_blocks} blocks = {len(dummy_programmes)} programmes")
+
+    # ---------- bein-epg authoritative override ----------
+    # bein-epg is scraped directly from bein.com and is the source of truth
+    # for what's actually airing on each beIN channel. We run this pass
+    # AFTER the dummy-emit pass so it can replace dummy programmes on
+    # M3U beIN channels (e.g. '8K: beIN SP⚽RTS MAX 1 AR ᴿᴬᵂ') that
+    # didn't match any provider channel by exact id or callsign, but DO
+    # match a bein-epg channel by token set (e.g. {BEIN,SPORTS,MAX,1,AR}
+    # is a superset of bein-epg's {BEIN,SPORTS,MAX,1}).
+    #
+    # Token-set match (subset + most-specific-wins) handles the
+    # English/Arabic distinction: an M3U entry tagged 'ENGLISH' / 'EN'
+    # gets routed to bein-epg's 'beIN SPORTS EN N' (English channel),
+    # everything else falls through to the Arabic 'beIN SPORTS N'.
+    if bein_epg_path and bein_epg_path.exists():
+        print(f"[5c.2]  bein-epg authoritative override (post-dummy)")
+        bein_raw = read_xmltv(bein_epg_path)
+        bein_channels: list[tuple[str, frozenset]] = []
+        bein_cid_set: set = set()
+        for b_cid, b_names, _ in iter_channels(bein_raw):
+            bein_cid_set.add(b_cid)
+            merged: set = set()
+            for n in b_names:
+                merged |= name_tokens(n)
+            if "BEIN" in merged:
+                bein_channels.append((b_cid, frozenset(merged)))
+
+        bein_progs_by_cid: dict[str, list[bytes]] = defaultdict(list)
+        for chan_id, block in iter_programmes(bein_raw):
+            if chan_id in bein_cid_set:
+                bein_progs_by_cid[chan_id].append(block)
+
+        def _best_bein_match(m3u_tokens: frozenset) -> "str | None":
+            best_cid = None
+            best_n = -1
+            for b_cid, b_toks in bein_channels:
+                if b_toks and b_toks.issubset(m3u_tokens) and len(b_toks) > best_n:
+                    best_cid = b_cid
+                    best_n = len(b_toks)
+            return best_cid
+
+        override_map: dict[str, str] = {}
+        for kept_cid, block in kept_channels.items():
+            if kept_cid in bein_cid_set:
+                continue
+            names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
+            merged: set = set()
+            for n in names:
+                merged |= name_tokens(n)
+            if "BEIN" not in merged:
+                continue
+            best = _best_bein_match(frozenset(merged))
+            if best:
+                override_map[kept_cid] = best
+
+        if override_map:
+            target_cid_bytes: set = set()
+            for cid in override_map:
+                cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
+                target_cid_bytes.add(cid_b)
+                target_cid_bytes.add(cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;"))
+            before_n = len(kept_programmes)
+            kept_programmes = [
+                p for p in kept_programmes
+                if not (m := PROG_CHANNEL_RE.search(p))
+                or m.group(1) not in target_cid_bytes
+            ]
+            removed_n = before_n - len(kept_programmes)
+            override_programmes: list[bytes] = []
+            for kept_cid, bein_cid in override_map.items():
+                for prog in bein_progs_by_cid.get(bein_cid, []):
+                    override_programmes.append(
+                        rewrite_prog_channel(prog, bein_cid, kept_cid)
+                    )
+            kept_programmes.extend(override_programmes)
+            print(f"      bein-epg override: removed {removed_n} stale programmes; "
+                  f"applied bein-epg data to {len(override_map)} channels "
+                  f"(+{len(override_programmes)} authoritative programmes)")
+        else:
+            print(f"      bein-epg override: no name matches found (skipped)")
 
     # ---------- gap-fill pass ----------
     # Channels with REAL EPG sometimes have coverage gaps (e.g. provider EPG
