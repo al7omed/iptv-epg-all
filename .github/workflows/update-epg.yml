@@ -20,7 +20,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45  # 13 iptv-org/epg grabs + build can run long
     env:
       M3U_URL_1: ${{ secrets.M3U_URL_1 }}
       M3U_URL_2: ${{ secrets.M3U_URL_2 }}
@@ -110,62 +110,57 @@ jobs:
         working-directory: epg-tool
         run: npm ci
 
-      - name: Grab UK/US/MENA EPG sources (iptv-org/epg)
+      - name: Grab UK/US/MENA EPG sources (iptv-org/epg, parallelized)
         continue-on-error: true
         working-directory: epg-tool
         run: |
           set +e
           mkdir -p ../epg-work/iptv-org
           # Sites we pull from. Each becomes a separate XMLTV file fed into
-          # PROVIDER_EPG_URL below. Curated for coverage of channels in the
-          # user's pruned playlist that were previously dummy-only.
-          #
-          # UK   : freeview.co.uk + sky.com → BBC iPlayer, ITV X, Sky Cinema,
-          #        Sky Sports (with LIVE flags), Channel 4/5, etc.
-          # US   : tvtv.us (broad US coverage including ABC/CBS/NBC/FOX/cable)
-          # MENA : shahid.mbc.net + osn.com + rotana.net + aljazeera.com →
-          #        MBC, Shahid, OSN Platinum, Rotana&ART, Al Jazeera
+          # PROVIDER_EPG_URL below. Run 4 grabs in parallel via xargs -P 4
+          # so the slowest ones (tvtv.us, tvpassport.com, etc.) don't bottleneck
+          # the build serially. Each capped at 240s.
           SITES=(
-            # UK
-            freeview.co.uk
-            sky.com
-            mytelly.co.uk
-            tv24.co.uk
-            # US
-            tvtv.us
-            tvpassport.com
-            directv.com
-            ontvtonight.com
-            # Sports specifics
-            nhl.com
-            # MENA
-            shahid.mbc.net
-            osn.com
-            rotana.net
-            aljazeera.com
+            freeview.co.uk      # UK Freeview (BBC/ITV/C4/C5)
+            sky.com             # UK Sky channels (Cinema/Sports)
+            mytelly.co.uk       # UK alternate guide
+            tv24.co.uk          # UK alternate guide
+            tvtv.us             # US broad coverage
+            tvpassport.com      # US comprehensive
+            directv.com         # US DirecTV native
+            ontvtonight.com     # Multi-region guide
+            nhl.com             # NHL games
+            shahid.mbc.net      # MBC Shahid
+            osn.com             # OSN
+            rotana.net          # Rotana
+            aljazeera.com       # Al Jazeera news
           )
-          for site in "${SITES[@]}"; do
-            # Each site has one or more *.channels.xml — grab the first one.
+          grab_one() {
+            local site="$1"
+            local channels_file
             channels_file=$(ls sites/$site/*.channels.xml 2>/dev/null | head -1)
             if [ -z "$channels_file" ]; then
               echo "::warning::No channels.xml for $site"
-              continue
+              return 0
             fi
-            out="../epg-work/iptv-org/${site}.xml"
-            echo ">>> Grabbing $site"
+            local out="../epg-work/iptv-org/${site}.xml"
             timeout 240 npm run grab --- \
               --channels="$channels_file" \
               --output="$out" \
               --days=5 \
               --maxConnections=3 \
-              --timeout=15000 2>&1 | tail -3
+              --timeout=15000 >"/tmp/grab-${site}.log" 2>&1
             if [ -s "$out" ]; then
+              local progs
               progs=$(grep -c '<programme' "$out" 2>/dev/null || echo 0)
-              echo "  $site: $(stat -c '%s' $out) bytes, $progs programmes"
+              echo "OK  $site: $(stat -c '%s' "$out") bytes, $progs programmes"
             else
-              echo "::warning::$site grab failed or empty — skipping"
+              echo "FAIL $site: empty/missing — last log lines:"
+              tail -3 "/tmp/grab-${site}.log" 2>/dev/null || true
             fi
-          done
+          }
+          export -f grab_one
+          printf '%s\n' "${SITES[@]}" | xargs -P 4 -I {} bash -c 'grab_one "$@"' _ {}
           echo "--- final iptv-org sources ---"
           ls -la ../epg-work/iptv-org/ 2>/dev/null || true
           exit 0
