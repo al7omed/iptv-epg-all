@@ -174,13 +174,20 @@ _NORMALIZE_DECORATIVE_RE = re.compile(
     r"[\U0001F300-\U0001FAFF☀-➿]"
 )
 _NORMALIZE_SPORTS_FIX_RE = re.compile(r"\bSP\s*RTS\b", re.IGNORECASE)
-_NORMALIZE_LANG_TOKEN_RE = re.compile(
-    # Standalone language tokens used as audio-track qualifiers. Strip so a
-    # tvg-name like "BEIN SPORTS 1 ENGLISH" matches the bein.com/bein-epg
-    # "beIN SPORTS 1" canonical name. Only whole-word matches.
-    r"\b(?:ENGLISH|ARABIC|FRENCH|GERMAN|SPANISH|ITALIAN|TURKISH|HINDI|"
-    r"HEBREW|PERSIAN|FARSI|EN|AR|FR|DE|ES|IT|TR)\b",
-    re.IGNORECASE,
+# Normalise long language words to their short codes so 'ENGLISH'/'EN' both
+# end up as 'EN' (etc.). We KEEP the language tag in the normalized form so
+# 'beIN Sports 1 ENGLISH' doesn't collide with the Arabic 'beIN Sports 1'.
+# The bein-epg override pass uses a token-set matcher that handles position
+# differences ('BEIN SPORTS EN 1' vs 'BEIN SPORTS 1 EN').
+_NORMALIZE_LANG_MAP = (
+    (re.compile(r"\bENGLISH\b", re.IGNORECASE), "EN"),
+    (re.compile(r"\bARABIC\b", re.IGNORECASE), "AR"),
+    (re.compile(r"\bFRENCH\b", re.IGNORECASE), "FR"),
+    (re.compile(r"\bGERMAN\b", re.IGNORECASE), "DE"),
+    (re.compile(r"\bSPANISH\b", re.IGNORECASE), "ES"),
+    (re.compile(r"\bITALIAN\b", re.IGNORECASE), "IT"),
+    (re.compile(r"\bTURKISH\b", re.IGNORECASE), "TR"),
+    (re.compile(r"\bPORTUGUESE\b", re.IGNORECASE), "PT"),
 )
 
 
@@ -196,9 +203,10 @@ def normalize_name(s: str) -> str:
     s = _NORMALIZE_DECORATIVE_RE.sub("", s)
     # Restore "Sports" from "SP RTS" / "SPRTS" leftovers after glyph removal
     s = _NORMALIZE_SPORTS_FIX_RE.sub("Sports", s)
-    # Strip standalone language tokens (audio-track qualifiers — not part of
-    # the canonical channel identity for our matching purposes).
-    s = _NORMALIZE_LANG_TOKEN_RE.sub("", s)
+    # Normalize long language words to short codes (kept in result — they
+    # distinguish e.g. 'beIN Sports 1 EN' (English) from 'beIN Sports 1' (Ar))
+    for pat, short in _NORMALIZE_LANG_MAP:
+        s = pat.sub(short, s)
     # Strip prefixes like "US:", "UK:"
     s = PREFIX_PATTERN.sub("", s)
     # Strip parenthesized qualifiers like (D), (H), (A), (S) at the end
@@ -209,6 +217,35 @@ def normalize_name(s: str) -> str:
     s = s.upper()
     s = re.sub(r"[^A-Z0-9]+", "", s)
     return s
+
+
+# Token-set helpers used by the bein-epg override pass below. They operate on
+# the same input as normalize_name but return a frozenset of identifying
+# tokens so position differences ('beIN SPORTS EN 1' vs 'BEIN SP⚽RTS 1
+# ENGLISH') match correctly.
+_BEIN_TOKEN_DROP = frozenset({
+    "HD", "FHD", "UHD", "SD", "HEVC", "RAW", "VIP", "60FPS", "ORIGINAL",
+    "DOLBY", "AUDIO", "3840P", "2160P", "1080P", "720P", "2K", "4K", "8K",
+    "MAIN", "BACKUP", "EVENT", "EVENTS", "LIVE", "PLATINUM", "MIRROR",
+    "FEED", "MULTI", "PLUS1", "TIMESHIFT",
+})
+
+
+def name_tokens(s: str) -> frozenset:
+    """Identifying tokens for a channel name, position-independent.
+    Used by the bein-epg override matcher."""
+    if not s:
+        return frozenset()
+    s = re.sub(r"^[#*=\-_\s]+|[#*=\-_\s]+$", "", s)
+    s = re.sub(f"[{SUPERSCRIPT_CHARS}]+", "", s)
+    s = _NORMALIZE_DECORATIVE_RE.sub("", s)
+    s = _NORMALIZE_SPORTS_FIX_RE.sub("Sports", s)
+    for pat, short in _NORMALIZE_LANG_MAP:
+        s = pat.sub(short, s)
+    s = PREFIX_PATTERN.sub("", s)
+    s = s.upper()
+    tokens = re.findall(r"[A-Z0-9]+", s)
+    return frozenset(t for t in tokens if t not in _BEIN_TOKEN_DROP and t)
 
 
 def extract_callsign(name: str) -> str | None:
@@ -2484,35 +2521,59 @@ def main():
     if bein_epg_path and bein_epg_path.exists():
         print(f"[5c.2]  bein-epg authoritative override")
         bein_raw = read_xmltv(bein_epg_path)
-        # Build bein-epg's normalized-name -> channel_id map. Only "beIN..."
-        # channels qualify (skip random uuid-only channels with no name).
-        bein_nn_to_cid: dict[str, str] = {}
+        # Each bein-epg channel becomes (channel_id, token_frozenset). We
+        # only keep channels whose token set contains "BEIN" so we don't
+        # accidentally override unrelated channels.
+        bein_channels: list[tuple[str, frozenset]] = []
         bein_cid_set: set = set()
         for b_cid, b_names, _ in iter_channels(bein_raw):
             bein_cid_set.add(b_cid)
+            # Merge tokens across all display-name variants so 'beIN SPORTS
+            # EN 1' / 'beIN SPORTS 1 EN' / 'beIN SPORTS 1 (English)' all map
+            # to the same set {BEIN, SPORTS, EN, 1}.
+            merged: set = set()
             for n in b_names:
-                nn = normalize_name(n)
-                if nn and nn.startswith("BEIN"):
-                    bein_nn_to_cid.setdefault(nn, b_cid)
+                merged |= name_tokens(n)
+            if "BEIN" in merged:
+                bein_channels.append((b_cid, frozenset(merged)))
+
         # Collect bein-epg programmes by channel id (used to clone)
         bein_progs_by_cid: dict[str, list[bytes]] = defaultdict(list)
         for chan_id, block in iter_programmes(bein_raw):
             if chan_id in bein_cid_set:
                 bein_progs_by_cid[chan_id].append(block)
 
+        def _best_bein_match(m3u_tokens: frozenset) -> "str | None":
+            """Pick the bein-epg channel whose tokens are a subset of the
+            M3U channel's tokens, preferring the MOST SPECIFIC match (more
+            shared tokens = better). Subset match guarantees that e.g. a
+            generic Arabic 'beIN SPORTS 1' (tokens {BEIN,SPORTS,1}) doesn't
+            wrongly attach to an English M3U entry whose tokens also include
+            {EN}; the English bein-epg channel {BEIN,SPORTS,EN,1} would win
+            because it has 4 tokens vs 3."""
+            best_cid = None
+            best_n = -1
+            for b_cid, b_toks in bein_channels:
+                if b_toks and b_toks.issubset(m3u_tokens) and len(b_toks) > best_n:
+                    best_cid = b_cid
+                    best_n = len(b_toks)
+            return best_cid
+
         # For each kept channel that isn't itself a bein-epg channel, see
-        # whether its normalized name matches a bein-epg channel. If so,
-        # mark for override.
+        # whether its tokens contain a bein-epg channel's tokens as subset.
         override_map: dict[str, str] = {}  # kept_cid -> bein_cid
         for kept_cid, block in kept_channels.items():
             if kept_cid in bein_cid_set:
                 continue  # this IS the bein-epg channel itself
             names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
+            merged: set = set()
             for n in names:
-                nn = normalize_name(n)
-                if nn and nn in bein_nn_to_cid:
-                    override_map[kept_cid] = bein_nn_to_cid[nn]
-                    break
+                merged |= name_tokens(n)
+            if "BEIN" not in merged:
+                continue
+            best = _best_bein_match(frozenset(merged))
+            if best:
+                override_map[kept_cid] = best
 
         if override_map:
             # Build a byte-encoded set of target channel ids (both raw and
