@@ -76,12 +76,33 @@ jobs:
           fi
           exit 0
 
+      - name: Fetch live beIN TV-guide from bein.com (with LIVE flags)
+        continue-on-error: true
+        run: |
+          set +e
+          # Direct scrape of bein.com/en/tv-guide — captures the LIVE badge
+          # bein.com puts on currently-airing broadcasts. Higher priority
+          # than al7omed/bein-epg (every-12h) because this runs each build.
+          if python3 scripts/fetch_bein_live.py -o epg-work/bein-live.xml -d 5 2> /tmp/bein-live.err; then
+            echo "bein-live: $(stat -c '%s' epg-work/bein-live.xml) bytes"
+            head -1 /tmp/bein-live.err
+            tail -5 /tmp/bein-live.err
+          else
+            echo "::warning::fetch_bein_live failed; build continues with bein-epg.github.io fallback"
+            cat /tmp/bein-live.err
+            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><tv></tv>" > epg-work/bein-live.xml
+          fi
+          exit 0
+
       - name: Build EPG
         env:
           M3U_URL: file://${{ github.workspace }}/epg-work/m3u_sub1.m3u,file://${{ github.workspace }}/epg-work/m3u_sub2.m3u
-          # Order matters: bein-epg first (highest fidelity for beIN MENA),
-          # then provider EPGs. First wins on (channel,start) collisions.
-          PROVIDER_EPG_URL: ${{ env.BEIN_EPG_URL }},${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
+          # Order matters — first wins on (channel,start) dedup:
+          #   1. bein-live (direct bein.com scrape this build, has LIVE flags)
+          #   2. bein-epg (al7omed/bein-epg every-12h artifact — fallback)
+          #   3. provider sub1
+          #   4. provider sub2
+          PROVIDER_EPG_URL: file://${{ github.workspace }}/epg-work/bein-live.xml,${{ env.BEIN_EPG_URL }},${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
           # When set, build also emits a patched M3U at docs/<token>/playlist.m3u
           # The token is the access key — anyone with the URL can use the
           # subscription. Keep the URL private.

@@ -2277,17 +2277,25 @@ def main():
 
     print(f"[3/6] fetching provider EPG sources ({len(provider_urls)})...")
     provider_paths = []
-    bein_epg_path = None  # remembered for the override pass below
+    bein_epg_path = None  # remembered for the override pass below — FIRST bein source wins
     for idx, p_url in enumerate(provider_urls):
         try:
             p = workdir / f"provider_{idx}.xml"
             fetch(p_url, p)
             provider_paths.append((f"provider_{idx}", p))
             print(f"      OK provider[{idx}]: {p.stat().st_size//1024} KB")
-            # Mark the bein-epg URL specially — its data is authoritative for
-            # beIN Sports channels and gets re-applied as an override below.
-            if "bein-epg" in p_url or "bein_epg" in p_url:
+            # Mark any bein-source URL as the authoritative source for the
+            # override pass below. The FIRST such source in PROVIDER_EPG_URL
+            # wins — so the workflow puts fetch_bein_live.py's fresh output
+            # FIRST (it has LIVE flags), then the al7omed/bein-epg
+            # github.io artifact as a fallback. Either URL/path containing
+            # 'bein-live' or 'bein-epg' qualifies.
+            if bein_epg_path is None and (
+                "bein-live" in p_url or "bein_live" in p_url
+                or "bein-epg" in p_url or "bein_epg" in p_url
+            ):
                 bein_epg_path = p
+                print(f"      → recognised as authoritative beIN source")
         except Exception as e:
             print(f"      FAIL provider[{idx}]: {e}")
 
