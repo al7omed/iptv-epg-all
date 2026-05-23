@@ -323,6 +323,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562511.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003229.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1562511.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2004240.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2003229.ts"
   ],
   "v sport motor": [
@@ -16428,11 +16429,11 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1851113.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1851113.ts"
   ],
-  "(flo 481) | (2025-11-1 16:2:30)": [
+  "(flo 481) | [hockey|2025 sherbrooke phoenix vs chicoutimi sagueneens home] (2025-11-1 16:2:30)": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1661268.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1661268.ts"
   ],
-  "(flo 920) | (2025-11-2 14:0:10)": [
+  "(flo 920) | [fc|2025 uah vs spring hill college _ women`s] (2025-11-2 14:0:10)": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1660829.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1660829.ts"
   ],
@@ -22992,6 +22993,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1677907.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1680874.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1680873.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2004236.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807810.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986620.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1523535.ts",
@@ -24180,13 +24182,17 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430318.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430318.ts"
   ],
-  "abc 2": [
+  "abc 2 [atlanta]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430264.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430264.ts"
+  ],
+  "abc 2 [baltimore]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430263.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430265.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430264.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430265.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430263.ts"
+  ],
+  "abc 2 [baton rouge]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430265.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430265.ts"
   ],
   "abc 3 (kota) rapid city": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1574921.ts",
@@ -24196,11 +24202,13 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/538469.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/538469.ts"
   ],
-  "abc 3": [
+  "abc 3 [pensacola]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430262.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430261.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430261.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430262.ts"
+  ],
+  "abc 3 [shreveport]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430261.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430261.ts"
   ],
   "abc 3 wsil": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430324.ts",
@@ -24214,11 +24222,13 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430314.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430314.ts"
   ],
-  "abc 4": [
+  "abc 4 [charleston]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430260.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430259.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430259.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430260.ts"
+  ],
+  "abc 4 [honolulu]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430259.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430259.ts"
   ],
   "abc 5 (wcvb) boston": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430312.ts",
@@ -24228,10 +24238,12 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430311.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430311.ts"
   ],
-  "abc 5": [
+  "abc 5 [oklahoma city]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430258.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430258.ts"
+  ],
+  "abc 5 [st. paul]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430257.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430258.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430257.ts"
   ],
   "abc 6 (wpvi) philadelphia": [
@@ -24246,7 +24258,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1312365.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1312365.ts"
   ],
-  "abc 6": [
+  "abc 6 [augusta]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430256.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430256.ts"
   ],
@@ -24278,14 +24290,20 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430303.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430303.ts"
   ],
-  "abc 7": [
+  "abc 7 [buffalo]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430254.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430254.ts"
+  ],
+  "abc 7 [el paso]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430253.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430253.ts"
+  ],
+  "abc 7 [fort myers]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430252.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430252.ts"
+  ],
+  "abc 7 [sarasota]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430251.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430253.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430254.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430252.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430251.ts"
   ],
   "abc 7 little rock arabic (katv)": [
@@ -24324,15 +24342,21 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/700061.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/700061.ts"
   ],
-  "abc 9": [
+  "abc 9 [charlotte]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430247.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430247.ts"
+  ],
+  "abc 9 [manchester]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430248.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430248.ts"
+  ],
+  "abc 9 [syracuse]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430246.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430249.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430248.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430249.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430247.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430246.ts"
+  ],
+  "abc 9 [tucson]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430249.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430249.ts"
   ],
   "abc 10 (kake) wichita": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1604179.ts",
@@ -24360,7 +24384,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/411638.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/411638.ts"
   ],
-  "abc 11": [
+  "abc 11 [raleigh]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430244.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430244.ts"
   ],
@@ -24408,10 +24432,12 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/576880.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/576880.ts"
   ],
-  "abc 13": [
+  "abc 13 [hampton roads]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430243.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430243.ts"
+  ],
+  "abc 13 [las vegas]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430241.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430243.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430241.ts"
   ],
   "abc 13 lynchburg va (wset)": [
@@ -24442,7 +24468,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/697181.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/697181.ts"
   ],
-  "abc 20": [
+  "abc 20 [gainesville]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430239.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430239.ts"
   ],
@@ -24470,7 +24496,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/759623.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/759623.ts"
   ],
-  "abc 25": [
+  "abc 25 [disctrict of columbia]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430237.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430237.ts"
   ],
@@ -24478,15 +24504,17 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1171091.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1171091.ts"
   ],
-  "abc 26": [
+  "abc 26 [new orleans]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430236.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430236.ts"
   ],
-  "abc 27": [
+  "abc 27 [harrisburg]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430235.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430234.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430234.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430235.ts"
+  ],
+  "abc 27 [madison]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430234.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430234.ts"
   ],
   "abc 27 wtxl tallahassee": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1569089.ts",
@@ -24504,15 +24532,15 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1588482.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1588482.ts"
   ],
-  "abc 33/40": [
+  "abc 33/40 [birmingham]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430232.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430232.ts"
   ],
-  "abc 36": [
+  "abc 36 [lexington]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430231.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430231.ts"
   ],
-  "abc 45": [
+  "abc 45 [winston-salem]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430230.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430230.ts"
   ],
@@ -24628,12 +24656,9 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429717.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429717.ts"
   ],
-  "abc": [
+  "abc [new york]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430266.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325773.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325773.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430266.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847498.ts"
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430266.ts"
   ],
   "abc news": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/430328.ts",
@@ -25596,38 +25621,43 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1253154.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1253154.ts"
   ],
-  "cw 5": [
+  "cw 5 [palm springs]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429631.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429631.ts"
   ],
-  "cw 8": [
+  "cw 8 [missoula]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429630.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429630.ts"
   ],
-  "cw 11": [
+  "cw 11 [seattle]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429628.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/498755.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429628.ts"
   ],
-  "cw 13": [
+  "cw 13 [laredo]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429627.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429627.ts"
   ],
-  "cw 17": [
+  "cw 17 [jacksonville]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429626.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429626.ts"
   ],
-  "cw 18": [
+  "cw 18 [charlotte]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429623.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429623.ts"
+  ],
+  "cw 18 [daytona beach]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429624.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429624.ts"
+  ],
+  "cw 18 [milwaukee]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429622.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429622.ts"
+  ],
+  "cw 18 [orlando]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429621.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429624.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429623.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429622.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429621.ts"
   ],
-  "cw 19": [
+  "cw 19 [tulsa]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429620.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429620.ts"
   ],
@@ -25635,7 +25665,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429619.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429619.ts"
   ],
-  "cw 22": [
+  "cw 22 [montgomery]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429618.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429618.ts"
   ],
@@ -25647,21 +25677,21 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429617.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429617.ts"
   ],
-  "cw 26": [
+  "cw 26 [chicago]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429616.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429616.ts"
   ],
-  "cw 29": [
+  "cw 29 [kansas city]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429615.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429614.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429615.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429614.ts"
   ],
-  "cw 33": [
+  "cw 33 [las vegas]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429613.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429613.ts"
   ],
-  "cw 35": [
+  "cw 35 [san antonio]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429612.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429612.ts"
   ],
@@ -25673,51 +25703,57 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/755267.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/755267.ts"
   ],
-  "cw 39": [
+  "cw 39 [miami]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429610.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429610.ts"
   ],
-  "cw 44": [
+  "cw 44 [san francisco]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429608.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429608.ts"
+  ],
+  "cw 44 [st. petersburg]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429609.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429609.ts"
+  ],
+  "cw 44 [tampa]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429607.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429609.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429608.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429607.ts"
   ],
-  "cw 46": [
+  "cw 46 [fort myers]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429606.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429606.ts"
   ],
-  "cw 50": [
+  "cw 50 [detroit]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429605.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429605.ts"
   ],
-  "cw 53": [
+  "cw 53 [columbus]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429604.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429604.ts"
   ],
-  "cw 54": [
+  "cw 54 [baltimore]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429603.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429603.ts"
   ],
-  "cw 56": [
+  "cw 56 [boston]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429602.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429601.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429602.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429601.ts"
   ],
-  "cw 57": [
+  "cw 57 [philadelphia]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429600.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429600.ts"
   ],
-  "cw 58": [
+  "cw 58 [nashville]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429598.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429599.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429599.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429598.ts"
   ],
-  "cw 69": [
+  "cw 58 [louisville]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429599.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429599.ts"
+  ],
+  "cw 69 [atlanta]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429597.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429597.ts"
   ],
@@ -29123,7 +29159,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429465.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429465.ts"
   ],
-  "fox 2": [
+  "fox 2 [san francisco]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429335.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429335.ts"
   ],
@@ -29151,15 +29187,17 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429403.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429403.ts"
   ],
-  "fox 5": [
+  "fox 5 [las vegas]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429332.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429332.ts"
+  ],
+  "fox 5 [san diego]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429334.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429333.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429334.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429333.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429332.ts"
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429333.ts"
   ],
-  "fox 5 plus": [
+  "fox 5 plus [washington]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429331.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429331.ts"
   ],
@@ -29183,7 +29221,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429375.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/654917.ts"
   ],
-  "fox 7": [
+  "fox 7 [austin]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429330.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429330.ts"
   ],
@@ -29199,7 +29237,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429372.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429372.ts"
   ],
-  "fox 8": [
+  "fox 8 [greensboro]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429329.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429329.ts"
   ],
@@ -29213,7 +29251,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429370.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429369.ts"
   ],
-  "fox 9 plus": [
+  "fox 9 plus [minneapolis]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429328.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429328.ts"
   ],
@@ -29221,13 +29259,15 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429493.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429493.ts"
   ],
-  "fox 10": [
+  "fox 10 [alabama]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429327.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429327.ts"
+  ],
+  "fox 10 [mobile]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429326.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429327.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429326.ts"
   ],
-  "fox 10 xtra": [
+  "fox 10 xtra [phoenix]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429325.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429325.ts"
   ],
@@ -29273,17 +29313,19 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429481.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429481.ts"
   ],
-  "fox 13": [
+  "fox 13 [albuquerque]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429324.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429324.ts"
+  ],
+  "fox 13 [seattle]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429323.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429324.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429323.ts"
   ],
   "fox 14 (kfox) el paso": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429480.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429480.ts"
   ],
-  "fox 14": [
+  "fox 14 [jackson]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429322.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429322.ts"
   ],
@@ -29329,7 +29371,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429469.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429469.ts"
   ],
-  "fox 19": [
+  "fox 19 [cincinnati]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429321.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429321.ts"
   ],
@@ -29341,11 +29383,13 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429464.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429464.ts"
   ],
-  "fox 21": [
+  "fox 21 [asheville]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429320.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429319.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429319.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429320.ts"
+  ],
+  "fox 21 [greenville sc]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429319.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429319.ts"
   ],
   "fox 22 (wsbt) south bend": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429463.ts",
@@ -29383,7 +29427,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429456.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429456.ts"
   ],
-  "fox 24": [
+  "fox 24 [fort smith]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429318.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429318.ts"
   ],
@@ -29441,19 +29485,19 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429441.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429441.ts"
   ],
-  "fox 29": [
+  "fox 29 [buffalo]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429317.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429317.ts"
+  ],
+  "fox 29 [palm beach]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429316.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324926.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324926.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429317.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429316.ts"
   ],
   "fox 30 (wfox) jacksonville": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429440.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429440.ts"
   ],
-  "fox 30": [
+  "fox 30 [meridian ms]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429315.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429315.ts"
   ],
@@ -29489,7 +29533,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429433.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429433.ts"
   ],
-  "fox 35 plus": [
+  "fox 35 plus [orlando]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429314.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429314.ts"
   ],
@@ -29523,7 +29567,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429422.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429422.ts"
   ],
-  "fox 41": [
+  "fox 41 [yakima]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429313.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429313.ts"
   ],
@@ -29549,7 +29593,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429417.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429416.ts"
   ],
-  "fox 43": [
+  "fox 43 [harrisburg]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429312.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429312.ts"
   ],
@@ -29565,7 +29609,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429413.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429413.ts"
   ],
-  "fox 44": [
+  "fox 44 [evansville]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429311.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429311.ts"
   ],
@@ -29581,7 +29625,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429410.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429410.ts"
   ],
-  "fox 46": [
+  "fox 46 [charlotte]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429310.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429310.ts"
   ],
@@ -29619,7 +29663,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429399.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429399.ts"
   ],
-  "fox 51": [
+  "fox 51 [gainesville]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429308.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429308.ts"
   ],
@@ -29669,7 +29713,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429385.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429385.ts"
   ],
-  "fox 61": [
+  "fox 61 [hartford]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429307.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429307.ts"
   ],
@@ -29679,7 +29723,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429384.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429383.ts"
   ],
-  "fox 62": [
+  "fox 62 [youngstown]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429306.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429306.ts"
   ],
@@ -29687,7 +29731,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429382.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429382.ts"
   ],
-  "fox 64": [
+  "fox 64 [providence]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429305.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429305.ts"
   ],
@@ -29943,47 +29987,85 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1782812.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1782812.ts"
   ],
-  "fox net": [
+  "fox net [abilene tx]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429523.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429543.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429542.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429541.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429540.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429539.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429538.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429537.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429536.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429535.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429534.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429533.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429532.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429531.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429530.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429529.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429528.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429527.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429525.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429524.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429543.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429542.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429541.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429540.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429539.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429538.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429537.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429536.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429535.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429534.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429533.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429532.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429531.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429530.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429529.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429528.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429527.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429525.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429524.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429523.ts"
+  ],
+  "fox net [aplena]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429543.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429543.ts"
+  ],
+  "fox net [binghampton ny]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429542.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429542.ts"
+  ],
+  "fox net [charles la]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429541.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429541.ts"
+  ],
+  "fox net [charlottesville va]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429540.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429540.ts"
+  ],
+  "fox net [clarksburg wv]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429539.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429539.ts"
+  ],
+  "fox net [dothan al]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429538.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429538.ts"
+  ],
+  "fox net [harrisonburg va]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429537.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429537.ts"
+  ],
+  "fox net [lubbock tx]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429536.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429536.ts"
+  ],
+  "fox net [marquette mi]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429535.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429535.ts"
+  ],
+  "fox net [medford or]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429534.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429534.ts"
+  ],
+  "fox net [minot md]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429533.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429533.ts"
+  ],
+  "fox net [panama city fl]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429532.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429532.ts"
+  ],
+  "fox net [parkersburg]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429531.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429531.ts"
+  ],
+  "fox net [presque isle me]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429530.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429530.ts"
+  ],
+  "fox net [rapid city]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429529.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429529.ts"
+  ],
+  "fox net [san angelo tx]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429528.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429528.ts"
+  ],
+  "fox net [sherman tx]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429527.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429527.ts"
+  ],
+  "fox net [wausau]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429525.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429525.ts"
+  ],
+  "fox net [wilmington nc]": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429524.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429524.ts"
   ],
   "fox soccer plus": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/429583.ts",
@@ -31816,6 +31898,11 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/412464.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/412464.ts"
   ],
+  "abc": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325773.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325773.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847498.ts"
+  ],
   "bbc world news": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325846.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1713756.ts",
@@ -32002,6 +32089,10 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/412467.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/412467.ts"
   ],
+  "fox 29": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324926.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/324926.ts"
+  ],
   "fox 61 hartford (wtic)": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/412465.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/412465.ts"
@@ -32170,7 +32261,7 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/926250.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/610835.ts"
   ],
-  "spectrum sportsnet": [
+  "spectrum sportsnet [la dodgers]": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/437220.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/437220.ts"
   ],
@@ -57141,6 +57232,23 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1005966.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1704031.ts"
   ],
+  "viasat history": [
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2004239.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807788.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803063.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986562.ts"
+  ],
+  "viasat explore": [
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2004238.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807789.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986563.ts"
+  ],
+  "viasat nature": [
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2004237.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807786.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803062.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986561.ts"
+  ],
   "tv2 play ppv": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/942844.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1702735.ts"
@@ -57245,20 +57353,6 @@
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807794.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803064.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1847390.ts"
-  ],
-  "viasat explore": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807789.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986563.ts"
-  ],
-  "viasat history": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807788.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803063.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986562.ts"
-  ],
-  "viasat nature": [
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1807786.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1803062.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1986561.ts"
   ],
   "rtk 1": [
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1816732.ts",

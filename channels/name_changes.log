@@ -1,0 +1,254 @@
+
+=== 2026-05-23T11:27:59Z — 84 channel name change(s) ===
+  beINSports1.qa
+    OLD: beIN Sports 1 HEVC [8K]
+    NEW: beIN Sports 1 RAW [8K]
+  beINSports2.qa
+    OLD: beIN Sports 2 HEVC [8K]
+    NEW: beIN Sports 2 RAW [8K]
+  beINSports3.qa
+    OLD: beIN Sports 3 HD [8K]
+    NEW: beIN Sports 3 RAW [8K]
+  beINSports4.qa
+    OLD: beIN Sports 4 HEVC [8K]
+    NEW: beIN Sports 4 RAW [8K]
+  beINSports5.qa
+    OLD: beIN Sports 5 HEVC [8K]
+    NEW: beIN Sports 5 RAW [8K]
+  beINSports6.qa
+    OLD: beIN Sports 6 HEVC [8K]
+    NEW: beIN Sports 6 RAW [8K]
+  beINSports7.qa
+    OLD: beIN Sports 7 HEVC [8K]
+    NEW: beIN Sports 7 RAW [8K]
+  beINSports8.qa
+    OLD: beIN Sports 8 HEVC [8K]
+    NEW: beIN Sports 8 RAW [8K]
+  beINSports9.qa
+    OLD: beIN Sports 9 HEVC [8K]
+    NEW: beIN Sports 9 RAW [8K]
+  beINSportsNews.qa
+    OLD: beIN Sports News HD [8K]
+    NEW: beIN Sports News RAW [8K]
+  beINSports1En.qa
+    OLD: beIN Sports 1 HD
+    NEW: beIN Sports 1 English RAW [8K]
+  beINSportsXtra1.qa
+    OLD: beIN Sports 1 Xtra HEVC [8K]
+    NEW: beIN Sports 1 Xtra RAW [8K]
+  beINSportsXtra2.qa
+    OLD: beIN Sports 2 Xtra HEVC [8K]
+    NEW: beIN Sports 2 Xtra RAW [8K]
+  beINSportsXtra3.qa
+    OLD: beIN Sports 3 Xtra HEVC [8K]
+    NEW: beIN Sports 3 Xtra RAW [8K]
+  hubpremier2.sg
+    OLD: Hub Premier 2 UHD 3840p [SG]
+    NEW: Hub Premier 2 RAW [SG]
+  AlKassTwo.qa
+    OLD: Al Kass 2 HD [SPO]
+    NEW: Al Kass 2 4K [SPO]
+  AlKassFour.qa
+    OLD: Al Kass 4 HD [SPO]
+    NEW: Al Kass 4 4K [SPO]
+  DubaiRacing.ae
+    OLD: Dubai Racing 1 TV HD [SPO]
+    NEW: Dubai Racing 1 TV 4K [SPO]
+  SharjahSport.ae
+    OLD: Sharjah Sport HD [SPO]
+    NEW: Sharjah Sport 4K [SPO]
+  MBC2En.ae
+    OLD: MBC 2 HD [AR]
+    NEW: MBC 2 4K [AR]
+  MBC4.sa
+    OLD: MBC 4 HD [AR]
+    NEW: MBC 4 4K [AR]
+  MBC5.ae
+    OLD: MBC 5 HD [AR]
+    NEW: MBC 5 4K [AR]
+  MBCActionEn.sa
+    OLD: MBC Action [AR]
+    NEW: MBC Action 4K [AR]
+  MBCIraq.iq
+    OLD: MBC Iraq [AR]
+    NEW: MBC Iraq 4K [AR]
+  MBCMaxEn.ae
+    OLD: MBC MAX [AR]
+    NEW: MBC MAX 4K [AR]
+  RotanaCinema.eg
+    OLD: Rotana Cinema Egypt HD [AR]
+    NEW: Rotana Cinema Egypt 4K [AR]
+  RotanaClassic.eg
+    OLD: Rotana Classic HD [AR]
+    NEW: Rotana Classic 4K [AR]
+  RotanaAflam.eg
+    OLD: Rotana Comedy HD [AR]
+    NEW: Rotana Comedy 4K [AR]
+  RotanaKhalijiah.eg
+    OLD: Rotana Khalijeah HD [AR]
+    NEW: Rotana Khalijeah 4K [AR]
+  NationalGeographicAbuDhabi.ae
+    OLD: Abu Dhabi Natioanl Geo HD [AR]
+    NEW: Abu Dhabi Natioanl Geo 4K [AR]
+  SkySportsF1.uk
+    OLD: Sky Sports Darts HEVC HD [UK]
+    NEW: Sky Sports Darts HEVC 4K [UK]
+  SkySportsAction.uk
+    OLD: Sky Sports Action HEVC HD [UK]
+    NEW: Sky Sports Action RAW [VIP]
+  SkySportsBoxOffice.uk
+    OLD: Sky Sports Box Office RAW RAW [VIP]
+    NEW: Sky Sports Box Office RAW [VIP]
+  SkySportsCricket.uk
+    OLD: Sky Sports Cricket HEVC HD [UK]
+    NEW: Sky Sports Cricket RAW [VIP]
+  SkySportsFootball.uk
+    OLD: Sky Sports Football HEVC HD [UK]
+    NEW: Sky Sports Football RAW [VIP]
+  SkySportsGolf.uk
+    OLD: Sky Sports Golf HEVC HD [UK]
+    NEW: Sky Sports Golf RAW [VIP]
+  SkySportsMix.uk
+    OLD: Sky Sports Mix HEVC HD [UK]
+    NEW: Sky Sports Mix RAW [VIP]
+  SkySportsNews.uk
+    OLD: Sky Sports News HEVC HD [UK]
+    NEW: Sky Sports News RAW [VIP]
+  SkySportsPremiereLeague.uk
+    OLD: Sky Sports Premier League HEVC HD [UK]
+    NEW: Sky Sports Premier League RAW [VIP]
+  SkySportsRacing.uk
+    OLD: Sky Sports Racing HEVC HD [UK]
+    NEW: Sky Sports Racing RAW [VIP]
+  ViaplaySports1.uk
+    OLD: Viaplay 1 HEVC HD [UK]
+    NEW: Viaplay 1 HEVC 4K [UK]
+  ViaplaySports2.uk
+    OLD: Viaplay 2 HEVC HD [UK]
+    NEW: Viaplay 2 HEVC 4K [UK]
+  SkyArts.uk
+    OLD: Sky Arts HEVC HD [UK]
+    NEW: Sky Arts HEVC 4K [UK]
+  SkyAtlantic.uk
+    OLD: Sky Atlantic HEVC HD [UK]
+    NEW: Sky Atlantic HEVC 4K [UK]
+  SkyCinemaAnimation.uk
+    OLD: Sky Cinema Animation HEVC HD [UK]
+    NEW: Sky Cinema Animation HEVC 4K [UK]
+  SkyCinemaComedy.uk
+    OLD: Sky Cinema Comedy HEVC HD [UK]
+    NEW: Sky Cinema Comedy HEVC 4K [UK]
+  SkyCinemaDrama.uk
+    OLD: Sky Cinema Drama/Christmas HEVC HD [UK]
+    NEW: Sky Cinema Drama/Christmas HEVC 4K [UK]
+  SkyCinemaFamily.uk
+    OLD: Sky Cinema Family HEVC HD [UK]
+    NEW: Sky Cinema Family HEVC 4K [UK]
+  SkyCinemaGreats.uk
+    OLD: Sky Cinema Greats HEVC HD [UK]
+    NEW: Sky Cinema Greats HEVC 4K [UK]
+  SkyCinemaHits.uk
+    OLD: Sky Cinema Hits HEVC HD [UK]
+    NEW: Sky Cinema Hits HEVC 4K [UK]
+  SkyCinemaPremiere.uk
+    OLD: Sky Cinema Premier HEVC HD [UK]
+    NEW: Sky Cinema Premier HEVC 4K [UK]
+  SkyCinemaSciFiHorror.uk
+    OLD: Sky Cinema Scifi/Horror HEVC HD [UK]
+    NEW: Sky Cinema Scifi/Horror HEVC 4K [UK]
+  SkyCinemaThriller.uk
+    OLD: Sky Cinema Thriller HEVC HD [UK]
+    NEW: Sky Cinema Thriller HEVC 4K [UK]
+  SkyComedy.uk
+    OLD: Sky Comedy HEVC HD [UK]
+    NEW: Sky Comedy HEVC 4K [UK]
+  SkyCrime.uk
+    OLD: Sky Crime HEVC HD [UK]
+    NEW: Sky Crime HEVC 4K [UK]
+  SkyKids.uk
+    OLD: Sky Kids HEVC HD [UK]
+    NEW: Sky Kids HEVC 4K [UK]
+  SkyNature.uk
+    OLD: Sky Nature HEVC HD [UK]
+    NEW: Sky Nature HEVC 4K [UK]
+  SkyShowcase.uk
+    OLD: Sky Showcase HEVC HD [UK]
+    NEW: Sky Showcase HEVC 4K [UK]
+  SkyWitness.uk
+    OLD: Sky Witness HEVC HD [UK]
+    NEW: Sky Witness HEVC 4K [UK]
+  Alibi.uk
+    OLD: Alibi HEVC HD [UK]
+    NEW: Alibi HEVC 4K [UK]
+  BBC1.uk
+    OLD: BBC 1 HEVC HD [UK]
+    NEW: BBC 1 HEVC 4K [UK]
+  BBC2.uk
+    OLD: BBC 2 HEVC HD [UK]
+    NEW: BBC 2 HEVC 4K [UK]
+  Channel4.uk
+    OLD: Channel 4 HEVC HD [UK]
+    NEW: Channel 4 HEVC 4K [UK]
+  Channel5.uk
+    OLD: Channel 5 HEVC HD [UK]
+    NEW: Channel 5 HEVC 4K [UK]
+  E4.uk
+    OLD: E4 HEVC HD [UK]
+    NEW: E4 HEVC 4K [UK]
+  Film4.uk
+    OLD: Film 4 HEVC HD [UK]
+    NEW: Film 4 HEVC 4K [UK]
+  ITV1.uk
+    OLD: ITV 1 HEVC HD [UK]
+    NEW: ITV 1 HEVC 4K [UK]
+  ITV2.uk
+    OLD: ITV 2 HEVC HD [UK]
+    NEW: ITV 2 HEVC 4K [UK]
+  ITV3.uk
+    OLD: ITV 3 HEVC HD [UK]
+    NEW: ITV 3 HEVC 4K [UK]
+  ITV4.uk
+    OLD: ITV 4 HEVC HD [UK]
+    NEW: ITV 4 HEVC 4K [UK]
+  More4.uk
+    OLD: More 4 HEVC HD [UK]
+    NEW: More 4 HEVC 4K [UK]
+  BBCNews.uk
+    OLD: BBC News HEVC HD [UK]
+    NEW: BBC News HEVC 4K [UK]
+  GBNews.uk
+    OLD: Gb News HEVC HD [UK]
+    NEW: Gb News HEVC 4K [UK]
+  SkyNews.uk
+    OLD: Sky News HEVC HD [UK]
+    NEW: Sky News HEVC 4K [UK]
+  BloombergTV.uk
+    OLD: Bloomberg HEVC HD [UK]
+    NEW: Bloomberg HEVC 4K [UK]
+  NatGeoWild.uk
+    OLD: Nat Geo Wild HEVC HD [UK]
+    NEW: Nat Geo Wild HEVC 4K [UK]
+  NatGeo.uk
+    OLD: National Geo HEVC HD [UK]
+    NEW: National Geo HEVC 4K [UK]
+  NewEnglandSportsNetwork.us
+    OLD: Nesn [US]
+    NEW: Nesn Boston HD [US]
+  FoxSports1.us
+    OLD: FOX Sports 1 [US]
+    NEW: FOX Sports 1 4K [US]
+  FoxSports2.us
+    OLD: FOX Sports 2 HD [US]
+    NEW: FOX Sports 2 4K [US]
+  KTHV.us
+    OLD: CBS 11 Little Rock Arabic (KTHV) [US]
+    NEW: CBS 11 Little Rock Arabic (KTHV) HD [US]
+  cnn.us
+    OLD: Cnn HD [US]
+    NEW: Cnn 4K [US]
+  TNT.us
+    OLD: TNT HD [US]
+    NEW: TNT West 4K [US]
+  VH1.us
+    OLD: Vh 1 HD [US]
+    NEW: Vh 1 4K [US]
