@@ -1094,17 +1094,21 @@ ALLOWED_CATEGORIES_ORDER = [
 
     # ───────────── 6. UK — sports ─────────────
     "UK| SPORT ʰᵉᵛᶜ",
+    "UK| SPORT ᴿᴬᵂ",  # plain RAW (Sky Sports Darts/Main/Premier League/News RAW + TNT 1-4 RAW + Viaplay)
+    "UK| SPORT ᴴᴰ ⱽᴵᴾ",  # VIP HD tier (Sky Sports News/MAIN, Premier League VIP)
     "UK| SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
     "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
     "UK| TNT SPORT EVENT",
     "UK| LIVE FOOTBALL PPV",
     "UK| SOCCER REPLAY ᴿᴬᵂ",
+    "UK| NOW TV SPORT ᴴᴰ/ᴿᴬᵂ",  # NOW TV Sport (Sky channels via NOW)
     "UK| AMAZON PRIME PPV",
 
     # ───────────── 7. UK — live channels + cinema ─────────────
     "UK| SKY CINEMA ʰᵉᵛᶜ",
     "UK| BBC IPLAYER ᴿᴬᵂ",
     "UK| ITV X VIP",
+    "UK| NOW TV ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ",  # NOW TV Entertainment (Sky Atlantic/Comedy/Crime live)
 
     # ───────────── 8. UK — general / news / documentary ─────────────
     "UK| GENERAL ʰᵉᵛᶜ",
