@@ -2240,12 +2240,17 @@ def main():
 
     print(f"[3/6] fetching provider EPG sources ({len(provider_urls)})...")
     provider_paths = []
+    bein_epg_path = None  # remembered for the override pass below
     for idx, p_url in enumerate(provider_urls):
         try:
             p = workdir / f"provider_{idx}.xml"
             fetch(p_url, p)
             provider_paths.append((f"provider_{idx}", p))
             print(f"      OK provider[{idx}]: {p.stat().st_size//1024} KB")
+            # Mark the bein-epg URL specially — its data is authoritative for
+            # beIN Sports channels and gets re-applied as an override below.
+            if "bein-epg" in p_url or "bein_epg" in p_url:
+                bein_epg_path = p
         except Exception as e:
             print(f"      FAIL provider[{idx}]: {e}")
 
@@ -2460,6 +2465,83 @@ def main():
             backfill_progs += 1
     kept_programmes.extend(backfill_added_programmes)
     print(f"      backfilled {backfilled} M3U ids (+{backfill_progs} cloned programmes)")
+
+    # ---------- bein-epg authoritative override ----------
+    # bein-epg is scraped directly from bein.com and is the source of truth
+    # for what's actually airing on each beIN channel. The user's IPTV
+    # provider (sub1/sub2) xmltv.php frequently has STALE or wrong data for
+    # the same channels (e.g. "Sevilla vs Real Madrid Week 37" listed for
+    # tonight when the actual game is "Real Madrid vs Athletic Bilbao Week
+    # 38"). Sub2 also uses different channel ids (beINSports1.qa) than
+    # bein-epg (beINSports1.qa@MENA), so the (channel, start) dedup never
+    # gets a chance to let bein-epg win.
+    #
+    # This pass: for any kept channel whose normalized display-name matches
+    # a bein-epg channel's normalized name, DROP its existing programmes and
+    # replace them with bein-epg's programmes (cloned under the kept channel
+    # id). Restricted to canonical-name match starting with "BEIN" so it
+    # only affects beIN channels.
+    if bein_epg_path and bein_epg_path.exists():
+        print(f"[5c.2]  bein-epg authoritative override")
+        bein_raw = read_xmltv(bein_epg_path)
+        # Build bein-epg's normalized-name -> channel_id map. Only "beIN..."
+        # channels qualify (skip random uuid-only channels with no name).
+        bein_nn_to_cid: dict[str, str] = {}
+        bein_cid_set: set = set()
+        for b_cid, b_names, _ in iter_channels(bein_raw):
+            bein_cid_set.add(b_cid)
+            for n in b_names:
+                nn = normalize_name(n)
+                if nn and nn.startswith("BEIN"):
+                    bein_nn_to_cid.setdefault(nn, b_cid)
+        # Collect bein-epg programmes by channel id (used to clone)
+        bein_progs_by_cid: dict[str, list[bytes]] = defaultdict(list)
+        for chan_id, block in iter_programmes(bein_raw):
+            if chan_id in bein_cid_set:
+                bein_progs_by_cid[chan_id].append(block)
+
+        # For each kept channel that isn't itself a bein-epg channel, see
+        # whether its normalized name matches a bein-epg channel. If so,
+        # mark for override.
+        override_map: dict[str, str] = {}  # kept_cid -> bein_cid
+        for kept_cid, block in kept_channels.items():
+            if kept_cid in bein_cid_set:
+                continue  # this IS the bein-epg channel itself
+            names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
+            for n in names:
+                nn = normalize_name(n)
+                if nn and nn in bein_nn_to_cid:
+                    override_map[kept_cid] = bein_nn_to_cid[nn]
+                    break
+
+        if override_map:
+            # Build a byte-encoded set of target channel ids (both raw and
+            # XML-escaped forms) so we can efficiently filter kept_programmes.
+            target_cid_bytes: set = set()
+            for cid in override_map:
+                cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
+                target_cid_bytes.add(cid_b)
+                target_cid_bytes.add(cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;"))
+            before_n = len(kept_programmes)
+            kept_programmes = [
+                p for p in kept_programmes
+                if not (m := PROG_CHANNEL_RE.search(p))
+                or m.group(1) not in target_cid_bytes
+            ]
+            removed_n = before_n - len(kept_programmes)
+            # Clone bein-epg programmes to each target channel id.
+            override_programmes: list[bytes] = []
+            for kept_cid, bein_cid in override_map.items():
+                for prog in bein_progs_by_cid.get(bein_cid, []):
+                    override_programmes.append(
+                        rewrite_prog_channel(prog, bein_cid, kept_cid)
+                    )
+            kept_programmes.extend(override_programmes)
+            print(f"      bein-epg override: removed {removed_n} stale programmes; "
+                  f"applied bein-epg data to {len(override_map)} channels "
+                  f"(+{len(override_programmes)} authoritative programmes)")
+        else:
+            print(f"      bein-epg override: no name matches found (skipped)")
 
     uncovered_ids = (set(m3u_display.keys()) - kept_ids) | forced_ids
     uncovered_ids = {tid for tid in uncovered_ids if tid in m3u_display}
