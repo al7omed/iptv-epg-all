@@ -2648,6 +2648,107 @@ def main():
         else:
             print(f"      bein-epg override: no name matches found (skipped)")
 
+    # ---------- generic dummy-rescue pass ----------
+    # For every M3U channel still showing only dummy programmes (no real
+    # EPG ever bound to it), search ALL provider/upstream sources for the
+    # MOST-SPECIFIC token-set match and clone its programmes under our
+    # kept_cid. This finally lights up channels whose tvg-id format made
+    # them invisible to the strict normalize_name backfill earlier
+    # (e.g. 'UK: BBC ONE ᴿᴬᵂ' vs iptv-org/epg's 'BBCOne.uk' / 'BBC One').
+    print(f"[5c.3]  generic dummy rescue (token-set match across all sources)")
+
+    # Identify dummy-only channels by examining kept_programmes:
+    # - non-dummies don't have 'Programme guide unavailable' in their desc
+    # - dummies emitted by us all carry that marker
+    DUMMY_MARKER = b"Programme guide unavailable"
+    real_prog_ids: set = set()
+    for p in kept_programmes:
+        if DUMMY_MARKER in p:
+            continue
+        m = PROG_CHANNEL_RE.search(p)
+        if m:
+            cid = html.unescape(m.group(1).decode("utf-8", "replace"))
+            real_prog_ids.add(cid)
+    dummy_only_cids = [cid for cid in kept_channels if cid not in real_prog_ids]
+    print(f"      candidate channels (dummy-only): {len(dummy_only_cids)}")
+
+    # Build a master list of (source_cid, token_set, programme_list) from
+    # ALL provider + upstream paths. Re-reads files but cheap and keeps the
+    # pass self-contained.
+    src_channels: list[tuple[str, frozenset]] = []
+    src_progs: dict[str, list[bytes]] = defaultdict(list)
+    for src_name, src_path in provider_paths + upstream_paths:
+        try:
+            raw = read_xmltv(src_path)
+        except Exception as e:
+            print(f"      skip {src_name}: {e}")
+            continue
+        for c_cid, c_names, _ in iter_channels(raw):
+            merged: set = set()
+            for n in c_names:
+                merged |= name_tokens(n)
+            # Need at least 2 identifying tokens (e.g. {BBC, ONE}); single-
+            # token channels like just {ONE} or {BEIN} match too loosely.
+            if len(merged) < 2:
+                continue
+            src_channels.append((c_cid, frozenset(merged)))
+        for chan_id, block in iter_programmes(raw):
+            src_progs[chan_id].append(block)
+    print(f"      source candidates: {len(src_channels)} channels, "
+          f"{sum(len(v) for v in src_progs.values())} programmes")
+
+    # Match each dummy channel to its most-specific source-channel candidate.
+    rescue_map: dict[str, str] = {}
+    for kept_cid in dummy_only_cids:
+        block = kept_channels[kept_cid]
+        names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
+        merged: set = set()
+        for n in names:
+            merged |= name_tokens(n)
+        if len(merged) < 2:
+            continue
+        kept_tokens = frozenset(merged)
+        best_cid = None
+        best_n = -1
+        for s_cid, s_toks in src_channels:
+            if s_cid == kept_cid:
+                continue
+            # Subset: every source token must appear in the M3U channel's
+            # tokens. Then prefer the candidate with the MOST tokens shared
+            # (most-specific wins) so 'BBC News' (3 tokens) beats 'BBC'
+            # (1 token) for an M3U 'BBC News HD'.
+            if s_toks.issubset(kept_tokens) and len(s_toks) > best_n and src_progs.get(s_cid):
+                best_cid = s_cid
+                best_n = len(s_toks)
+        if best_cid:
+            rescue_map[kept_cid] = best_cid
+
+    if rescue_map:
+        # Drop the dummy programmes for these channels, swap in cloned
+        # source programmes. Building byte-encoded target ids both raw and
+        # XML-escaped (kept_programmes has them XML-escaped).
+        target_cid_bytes: set = set()
+        for cid in rescue_map:
+            cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
+            target_cid_bytes.add(cid_b)
+            target_cid_bytes.add(cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;"))
+        before_n = len(kept_programmes)
+        kept_programmes = [
+            p for p in kept_programmes
+            if not (m := PROG_CHANNEL_RE.search(p))
+            or m.group(1) not in target_cid_bytes
+        ]
+        removed_n = before_n - len(kept_programmes)
+        rescued_progs: list[bytes] = []
+        for kept_cid, src_cid in rescue_map.items():
+            for prog in src_progs.get(src_cid, []):
+                rescued_progs.append(rewrite_prog_channel(prog, src_cid, kept_cid))
+        kept_programmes.extend(rescued_progs)
+        print(f"      rescued {len(rescue_map)} channels "
+              f"(removed {removed_n} dummies, +{len(rescued_progs)} real programmes)")
+    else:
+        print(f"      no rescue matches (all dummy-only channels stay as dummies)")
+
     # ---------- gap-fill pass ----------
     # Channels with REAL EPG sometimes have coverage gaps (e.g. provider EPG
     # is missing a programme for "now" but has entries before and after).
