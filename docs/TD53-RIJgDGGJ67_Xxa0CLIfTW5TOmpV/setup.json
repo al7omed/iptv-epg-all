@@ -12,7 +12,7 @@
   "tvg_id_map": "https://al7omed.github.io/iptv-epg-all/tvg-id-map.tsv",
   "channel_count": 4139,
   "favorites_count": 283,
-  "generated_utc": "2026-05-23T18:23:06Z",
+  "generated_utc": "2026-05-23T18:40:28Z",
   "timezone": "GMT+3 (user local)",
   "build_cron": "every hour at :15",
   "health_check_cron": "Sundays 03:00 UTC"
