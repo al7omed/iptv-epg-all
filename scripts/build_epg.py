@@ -167,14 +167,38 @@ def _strip_us_callsign_suffix(cs: str) -> str:
     return re.sub(r"-(?:DT|LD|LP|CD|CA|TV)\d?$", "", cs)
 
 
+_NORMALIZE_DECORATIVE_RE = re.compile(
+    # User's sub2 provider sprinkles decorative emoji INSIDE channel names
+    # (notably ⚽ between "SP" and "RTS" — "SP⚽RTS" instead of "SPORTS").
+    # Strip those so the surrounding letters collapse to a normal word.
+    r"[\U0001F300-\U0001FAFF☀-➿]"
+)
+_NORMALIZE_SPORTS_FIX_RE = re.compile(r"\bSP\s*RTS\b", re.IGNORECASE)
+_NORMALIZE_LANG_TOKEN_RE = re.compile(
+    # Standalone language tokens used as audio-track qualifiers. Strip so a
+    # tvg-name like "BEIN SPORTS 1 ENGLISH" matches the bein.com/bein-epg
+    # "beIN SPORTS 1" canonical name. Only whole-word matches.
+    r"\b(?:ENGLISH|ARABIC|FRENCH|GERMAN|SPANISH|ITALIAN|TURKISH|HINDI|"
+    r"HEBREW|PERSIAN|FARSI|EN|AR|FR|DE|ES|IT|TR)\b",
+    re.IGNORECASE,
+)
+
+
 def normalize_name(s: str) -> str:
     """Aggressive normalization for fuzzy matching. Returns '' for empty/junk."""
     if not s:
         return ""
     # Strip surrounding hash-borders (####### NAME #######)
     s = re.sub(r"^[#*=\-_\s]+|[#*=\-_\s]+$", "", s)
-    # Strip unicode superscripts
+    # Strip unicode superscripts (ᴿᴬᵂ, ᴴᴰ, ⁸ᴷ, etc.)
     s = re.sub(f"[{SUPERSCRIPT_CHARS}]+", "", s)
+    # Strip decorative emoji that sneak INTO words (⚽ in SP⚽RTS)
+    s = _NORMALIZE_DECORATIVE_RE.sub("", s)
+    # Restore "Sports" from "SP RTS" / "SPRTS" leftovers after glyph removal
+    s = _NORMALIZE_SPORTS_FIX_RE.sub("Sports", s)
+    # Strip standalone language tokens (audio-track qualifiers — not part of
+    # the canonical channel identity for our matching purposes).
+    s = _NORMALIZE_LANG_TOKEN_RE.sub("", s)
     # Strip prefixes like "US:", "UK:"
     s = PREFIX_PATTERN.sub("", s)
     # Strip parenthesized qualifiers like (D), (H), (A), (S) at the end
