@@ -1167,15 +1167,21 @@ ALLOWED_CATEGORIES_ORDER = [
 
     # ───────────── 7. UK — live channels + cinema ─────────────
     "UK| SKY CINEMA ʰᵉᵛᶜ",
+    "UK| SKY CINEMA ᴴᴰ/ᴿᴬᵂ",  # HD/RAW Sky Cinema (Sky Atlantic / Comedy / Drama)
     "UK| BBC IPLAYER ᴿᴬᵂ",
     "UK| ITV X VIP",
     "UK| NOW TV ENTERTAINMENT ᴴᴰ/ᴿᴬᵂ",  # NOW TV Entertainment (Sky Atlantic/Comedy/Crime live)
 
-    # ───────────── 8. UK — general / news / documentary ─────────────
+    # ───────────── 8. UK — general / news / documentary / kids ─────────────
     "UK| GENERAL ʰᵉᵛᶜ",
+    "UK| GENERAL ᴴᴰ/ᴿᴬᵂ",        # BBC One/Two/Three/Four + ITV +1s / Channel 4 etc.
     "UK| NEWS ʰᵉᵛᶜ",
+    "UK| NEWS ᴴᴰ/ᴿᴬᵂ",           # BBC News HD, DW News, BBC Parliament
     "UK| DOCUMENTARY ʰᵉᵛᶜ",
+    "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",    # Discovery +1, Investigation Discovery +1
     "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
+    "UK| KIDS ʰᵉᵛᶜ",             # Sky Kids HEVC / Nick HEVC / Disney Jr HEVC
+    "UK| KIDS ᴴᴰ/ᴿᴬᵂ",           # Disney Channel / Nickelodeon / Cartoon Network
 
     # ───────────── 9. US — sports + events ─────────────
     "US| SPORT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
@@ -1243,6 +1249,7 @@ CATEGORY_EMOJI = {
     "UK — ITV X":                        "📺",
     "UK — NOW TV Entertainment":         "🎬",
     "UK — General":                      "📺",
+    "UK — Kids":                         "🧒",
     "UK — News":                         "📰",
     "UK — Documentary":                  "🎥",
     "UK — Discovery+":                   "🌍",
