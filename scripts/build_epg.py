@@ -3164,12 +3164,6 @@ def main():
         except (ValueError, OverflowError):
             return None
     live_now_ids: set = set()
-    now_playing_records: list[dict] = []  # for docs/now-playing.json below
-    cid_display: dict[str, str] = {}      # channel id -> first display-name
-    for cid, blk in kept_channels.items():
-        dnm = re.search(rb'<display-name[^>]*>([^<]+)</display-name>', blk)
-        if dnm:
-            cid_display[cid] = html.unescape(dnm.group(1).decode("utf-8", "replace"))
     for p in kept_programmes:
         m = PROG_LIVE_RE.search(p)
         if not m:
@@ -3188,28 +3182,9 @@ def main():
             continue
         # Channel id may be XML-escaped; keep both forms
         cid_b = m.group(3)
-        cid_str = html.unescape(cid_b.decode('utf-8', 'replace'))
         live_now_ids.add(cid_b)
-        live_now_ids.add(cid_str.encode('utf-8'))
-        # Capture for now-playing.json (skip our own dummy fillers)
-        title_str = html.unescape(title_b.decode("utf-8", "replace"))
-        if "Programme guide unavailable" in title_str:
-            continue
-        is_live_event = title_str.startswith("🔴 LIVE")
-        now_playing_records.append({
-            "channel_id": cid_str,
-            "channel_name": cid_display.get(cid_str, cid_str),
-            "title": title_str,
-            "start_utc": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "stop_utc": stop.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "is_live_event": is_live_event,
-        })
+        live_now_ids.add(html.unescape(cid_b.decode('utf-8', 'replace')).encode('utf-8'))
     print(f"      {len(live_now_ids)} channels are live-now (EPG has current programme with title)")
-
-    # NOTE: now-playing.json is written further below (after write_patched_m3u
-    # has run and used_ids is available) so it can be filtered to ONLY the
-    # channels actually exposed in the playlist — keeping the file small
-    # (~3,800 records vs ~58k pre-filter).
 
     token = os.environ.get("M3U_PATH_TOKEN", "").strip()
     if token:
@@ -3267,36 +3242,26 @@ def main():
                                    live_now_ids=live_now_ids)
         print(f"      wrote favorites M3U at {fav_out} ({fav_out.stat().st_size//1024} KB, {fn} entries)")
 
-        # === now-playing.json (public, plug-and-play snapshot) ===
-        # Filter to ONLY channels that made it into the patched playlist
-        # (used_ids). Without this filter the file would balloon to ~18MB
-        # with 58k pre-prune channels — almost as big as the lite EPG.
-        # After filter: ~3-4k records, <1 MB.
-        import json as _json_np
-        np_filtered = [r for r in now_playing_records if r["channel_id"] in used_ids]
-        np_payload = {
-            "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "total_records": len(np_filtered),
-            "total_live_events": sum(1 for r in np_filtered if r["is_live_event"]),
-            "channels": sorted(np_filtered, key=lambda r: (
-                0 if r["is_live_event"] else 1,  # LIVE events sorted to the top
-                r["channel_name"].lower(),
-            )),
-        }
-        np_path = out_dir / "now-playing.json"
-        np_path.write_text(_json_np.dumps(np_payload, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"      wrote {np_path.name} ({np_path.stat().st_size//1024} KB, "
-              f"{len(np_filtered)} records, {np_payload['total_live_events']} LIVE events)")
-
-        # === EPG lite + region splits ===
-        # The full guide.xml.gz is ~47 MB. The lite version only includes the
-        # channels actually exposed in the playlist (much faster cold-start).
-        # Region-specific files (guide-bein, guide-uk, guide-us, guide-ar,
-        # guide-sports) let advanced users mix multiple sub-playlists with
-        # tiny EPG payloads.
+        # === EPG outputs (just two: full + lite) ===
+        # Both are filtered to playlist channels (used_ids). 'Full' has the
+        # entire schedule the build collected (every programme on every
+        # channel, full metadata). 'Lite' is the next 24 hours only —
+        # smaller and faster for memory-constrained players to load on
+        # cold start. The hourly rebuild keeps lite's 24h window fresh.
+        # Currently-airing programmes carry the '🔴 LIVE:' prefix in both
+        # files (no separate now-playing file needed — players can read
+        # live status straight from the EPG).
         prog_chan_re = re.compile(rb'channel="([^"]+)"')
 
-        def _write_epg_subset(out_path: Path, want_ids: set[str], label: str) -> None:
+        # Pre-compute the 'next 24h' window for lite (UTC).
+        _lite_window_start = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=1)
+        _lite_window_stop = _lite_window_start + dt.timedelta(hours=25)
+        _lite_start_str = _lite_window_start.strftime("%Y%m%d%H%M%S").encode("ascii")
+        _lite_stop_str = _lite_window_stop.strftime("%Y%m%d%H%M%S").encode("ascii")
+        _prog_time_re = re.compile(rb'<programme\s+start="(\d{14})[^"]*"\s+stop="(\d{14})[^"]*"')
+
+        def _write_epg_subset(out_path: Path, want_ids: set[str], label: str,
+                              time_filter: bool = False) -> None:
             if not want_ids:
                 return
             want_bytes = {i.encode("utf-8") for i in want_ids}
@@ -3315,10 +3280,19 @@ def main():
                     kept_chans.append(kept_channels[cid])
                     kept_chan_ids.add(cid_b)
                     kept_chan_ids.add(cid_escaped)
-            kept_progs = [
-                p for p in kept_programmes
-                if (m := prog_chan_re.search(p)) and m.group(1) in kept_chan_ids
-            ]
+            kept_progs = []
+            for p in kept_programmes:
+                m = prog_chan_re.search(p)
+                if not m or m.group(1) not in kept_chan_ids:
+                    continue
+                if time_filter:
+                    tm = _prog_time_re.search(p)
+                    if not tm:
+                        continue
+                    # Keep programmes that overlap [_lite_start, _lite_stop)
+                    if tm.group(2) <= _lite_start_str or tm.group(1) >= _lite_stop_str:
+                        continue
+                kept_progs.append(p)
             with gzip.open(out_path, "wb", compresslevel=6) as f:
                 f.write(header)
                 for block in kept_chans:
@@ -3331,27 +3305,13 @@ def main():
             print(f"      wrote {out_path.name} ({out_path.stat().st_size//1024} KB, "
                   f"{len(kept_chans)} channels, {len(kept_progs)} programmes) — {label}")
 
-        # Full EPG (same playlist-filtered content as lite). Previously
-        # guide.xml.gz was the unfiltered ~50MB / ~570MB-uncompressed dump of
-        # every channel epgshare01 carries, which crashed UHF on tvOS. Now
-        # it carries only the channels actually in the playlist — identical
-        # to lite in content, kept as a separate file for backwards-compat
-        # with player configs pointing at guide.xml.gz.
-        _write_epg_subset(out_dir / "guide.xml.gz", used_ids, "full = all playlist channels")
-        # Lite (same content as full now; both are the recommended file)
-        _write_epg_subset(out_dir / "guide-lite.xml.gz", used_ids, "lite = all playlist channels")
-        # Per-region splits
-        _write_epg_subset(out_dir / "guide-bein.xml.gz",
-                          used_ids_by_region.get("bein", set()), "beIN only")
-        _write_epg_subset(out_dir / "guide-sports.xml.gz",
-                          used_ids_by_region.get("sports", set()), "Sports — bucket only")
-        _write_epg_subset(out_dir / "guide-ar.xml.gz",
-                          used_ids_by_region.get("ar", set()) | used_ids_by_region.get("bein", set()),
-                          "Arabic (incl. beIN MENA)")
-        _write_epg_subset(out_dir / "guide-uk.xml.gz",
-                          used_ids_by_region.get("uk", set()), "UK only")
-        _write_epg_subset(out_dir / "guide-us.xml.gz",
-                          used_ids_by_region.get("us", set()), "US only")
+        # Full EPG — every programme for every playlist channel, ~5-day window.
+        _write_epg_subset(out_dir / "guide.xml.gz", used_ids,
+                          "full = playlist channels, full schedule")
+        # Lite EPG — same channels, only programmes overlapping the next 24h.
+        _write_epg_subset(out_dir / "guide-lite.xml.gz", used_ids,
+                          "lite = playlist channels, next 24h only",
+                          time_filter=True)
 
         # === Subscribe bundle: setup.json + README.txt + QR SVG ===
         # Helps onboarding a new device: one URL/QR can be scanned/copied
@@ -3362,11 +3322,6 @@ def main():
             "favorites": f"{pages_base}/{token}/favorites.m3u",
             "epg_full": f"{pages_base}/guide.xml.gz",
             "epg_lite_recommended": f"{pages_base}/guide-lite.xml.gz",
-            "epg_bein": f"{pages_base}/guide-bein.xml.gz",
-            "epg_sports": f"{pages_base}/guide-sports.xml.gz",
-            "epg_arabic": f"{pages_base}/guide-ar.xml.gz",
-            "epg_uk": f"{pages_base}/guide-uk.xml.gz",
-            "epg_us": f"{pages_base}/guide-us.xml.gz",
             "failover_data": f"{pages_base}/{token}/failover.json",
             "tvg_id_map": f"{pages_base}/tvg-id-map.tsv",
             "channel_count": n,
@@ -3392,16 +3347,8 @@ def main():
             "-" * 50,
             f"Playlist:  {setup_payload['playlist']}",
             f"Favorites: {setup_payload['favorites']}",
-            f"EPG (recommended, smaller, faster): {setup_payload['epg_lite_recommended']}",
-            "",
-            "REGION-SPECIFIC EPG (advanced — mix multiple sub-playlists)",
-            "-" * 50,
-            f"beIN MENA only: {setup_payload['epg_bein']}",
-            f"Sports cats:    {setup_payload['epg_sports']}",
-            f"Arabic (+beIN): {setup_payload['epg_arabic']}",
-            f"UK only:        {setup_payload['epg_uk']}",
-            f"US only:        {setup_payload['epg_us']}",
-            f"All channels:   {setup_payload['epg_full']}",
+            f"EPG (lite — next 24h, ~2MB, recommended): {setup_payload['epg_lite_recommended']}",
+            f"EPG (full — entire schedule, ~11MB):      {setup_payload['epg_full']}",
             "",
             "DATA",
             "-" * 50,

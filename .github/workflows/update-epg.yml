@@ -212,7 +212,12 @@ jobs:
 
       - name: Ensure stale files stay purged
         run: |
-          rm -f docs/playlist.m3u docs/guide.xml
+          # Files that used to be published but were dropped — delete from
+          # docs/ so the next push removes them from Pages.
+          rm -f docs/playlist.m3u docs/guide.xml \
+                docs/now-playing.json \
+                docs/guide-bein.xml.gz docs/guide-sports.xml.gz \
+                docs/guide-ar.xml.gz docs/guide-uk.xml.gz docs/guide-us.xml.gz
 
       - name: Commit and push
         env:
@@ -220,14 +225,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/guide.xml.gz docs/tvg-id-map.tsv
-          # EPG lite + region-specific EPG splits (smaller, faster for
-          # players; advanced users can mix multiple sub-playlists).
-          for f in docs/guide-lite.xml.gz docs/guide-bein.xml.gz \
+          git add docs/guide.xml.gz docs/guide-lite.xml.gz docs/tvg-id-map.tsv
+          # Stage deletes for any deprecated files (region splits +
+          # now-playing.json — replaced by lite EPG's 24h window with
+          # 🔴 LIVE markers).
+          for f in docs/now-playing.json docs/guide-bein.xml.gz \
                    docs/guide-sports.xml.gz docs/guide-ar.xml.gz \
-                   docs/guide-uk.xml.gz docs/guide-us.xml.gz \
-                   docs/now-playing.json; do
-            [ -f "$f" ] && git add "$f"
+                   docs/guide-uk.xml.gz docs/guide-us.xml.gz; do
+            git rm --cached --ignore-unmatch "$f" >/dev/null 2>&1 || true
           done
           # Add the patched M3U folder (playlist.m3u + favorites.m3u +
           # failover.json + setup.json + README.txt + playlist-qr.svg).
