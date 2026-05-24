@@ -121,19 +121,24 @@ jobs:
           # so the slowest ones (tvtv.us, tvpassport.com, etc.) don't bottleneck
           # the build serially. Each capped at 240s.
           SITES=(
-            freeview.co.uk      # UK Freeview (BBC/ITV/C4/C5)
-            sky.com             # UK Sky channels (Cinema/Sports)
-            mytelly.co.uk       # UK alternate guide
-            tv24.co.uk          # UK alternate guide
-            tvtv.us             # US broad coverage
-            tvpassport.com      # US comprehensive
-            directv.com         # US DirecTV native
-            ontvtonight.com     # Multi-region guide
+            # UK
+            sky.com             # UK Sky channels (Cinema/Sports) — fast
+            mytelly.co.uk       # UK alternate guide — fast
+            tv24.co.uk          # UK alternate guide — fast
+            # US
+            directv.com         # US DirecTV native — fast
+            ontvtonight.com     # Multi-region guide — fast
+            # Sports specifics
             nhl.com             # NHL games
+            # MENA
             shahid.mbc.net      # MBC Shahid
             osn.com             # OSN
             rotana.net          # Rotana
             aljazeera.com       # Al Jazeera news
+            # NOTE: tvtv.us is HTTP-403-banned, tvpassport.com has 96k
+            # channels (uncrabbable in CI), freeview.co.uk has 1760
+            # channel-regions and times out partway through. Dropped here
+            # — sky.com covers most UK channels we care about.
           )
           grab_one() {
             local site="$1"
@@ -169,20 +174,34 @@ jobs:
           ls -la ../epg-work/iptv-org/ 2>/dev/null || true
           exit 0
 
+      - name: Compose PROVIDER_EPG_URL (only existing files)
+        id: provider_urls
+        run: |
+          set -euo pipefail
+          # Build the comma-separated provider URL list, skipping any
+          # iptv-org/epg grab that failed (empty/missing XML file). Order:
+          #   1. bein-live (direct bein.com scrape, has LIVE flags)
+          #   2. bein-epg (al7omed/bein-epg github artifact)
+          #   3. iptv-org/epg outputs that exist on disk
+          #   4. provider sub1, sub2
+          urls=()
+          urls+=("file://${GITHUB_WORKSPACE}/epg-work/bein-live.xml")
+          urls+=("${BEIN_EPG_URL}")
+          for f in epg-work/iptv-org/*.xml; do
+            [ -s "$f" ] && urls+=("file://${GITHUB_WORKSPACE}/${f}")
+          done
+          # Provider 1 + 2 (CSV)
+          if [ -n "${PROVIDER_EPG_URL_1:-}" ]; then urls+=("${PROVIDER_EPG_URL_1}"); fi
+          if [ -n "${PROVIDER_EPG_URL_2:-}" ]; then urls+=("${PROVIDER_EPG_URL_2}"); fi
+          # Join with commas
+          IFS=','; joined="${urls[*]}"
+          echo "Final PROVIDER_EPG_URL has $(echo "$joined" | tr ',' '\n' | wc -l) sources"
+          echo "url=$joined" >> "$GITHUB_OUTPUT"
+
       - name: Build EPG
         env:
           M3U_URL: file://${{ github.workspace }}/epg-work/m3u_sub1.m3u,file://${{ github.workspace }}/epg-work/m3u_sub2.m3u
-          # Order matters — first wins on (channel,start) dedup:
-          #   1. bein-live (direct bein.com scrape this build, has LIVE flags)
-          #   2. bein-epg (al7omed/bein-epg artifact — fallback)
-          #   3. iptv-org/epg scrapes (UK/US/MENA — channel-specific real data)
-          #   4. provider sub1 / sub2 (whatever stays uncovered)
-          # Empty file:// paths from a failed grab are tolerated by build_epg
-          # (fetch raises and the source is skipped).
-          PROVIDER_EPG_URL: file://${{ github.workspace }}/epg-work/bein-live.xml,${{ env.BEIN_EPG_URL }},file://${{ github.workspace }}/epg-work/iptv-org/freeview.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/sky.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/mytelly.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/tv24.co.uk.xml,file://${{ github.workspace }}/epg-work/iptv-org/tvtv.us.xml,file://${{ github.workspace }}/epg-work/iptv-org/tvpassport.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/directv.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/ontvtonight.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/nhl.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/shahid.mbc.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/osn.com.xml,file://${{ github.workspace }}/epg-work/iptv-org/rotana.net.xml,file://${{ github.workspace }}/epg-work/iptv-org/aljazeera.com.xml,${{ secrets.PROVIDER_EPG_URL_1 }},${{ secrets.PROVIDER_EPG_URL_2 }}
-          # When set, build also emits a patched M3U at docs/<token>/playlist.m3u
-          # The token is the access key — anyone with the URL can use the
-          # subscription. Keep the URL private.
+          PROVIDER_EPG_URL: ${{ steps.provider_urls.outputs.url }}
           M3U_PATH_TOKEN: ${{ secrets.M3U_PATH_TOKEN }}
         run: python3 scripts/build_epg.py
 
