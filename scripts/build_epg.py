@@ -2319,15 +2319,18 @@ def main():
             print(f"      FAIL provider[{idx}]: {e}")
 
     print(f"[4/6] filtering and merging channels...")
-    # Output: build channel and programme dicts keyed by channel id.
+    # Output: build channel block dict keyed by channel id. The set of kept
+    # channel ids is ALWAYS `kept_channels.keys()` — there is no separate
+    # `kept_ids` to drift out of sync. Membership checks use `cid in
+    # kept_channels`, set operations use `kept_channels.keys()` (dict_keys
+    # view supports `-` and `|`).
     # Provider EPGs take priority in the order configured (first wins).
     kept_channels: dict[str, bytes] = {}
-    kept_ids: set[str] = set()
     source_stats = {}
 
     for src_name, p_path in provider_paths:
         raw = read_xmltv(p_path)
-        before = len(kept_ids)
+        before = len(kept_channels)
         skipped_auto = 0
         for cid, names, block in iter_channels(raw):
             # Skip provider channels whose id ends with .auto — these are stale
@@ -2336,30 +2339,28 @@ def main():
             if cid.endswith(".auto"):
                 skipped_auto += 1
                 continue
-            if cid not in kept_ids:
+            if cid not in kept_channels:
                 kept_channels[cid] = block
-                kept_ids.add(cid)
-        added = len(kept_ids) - before
+        added = len(kept_channels) - before
         source_stats[src_name] = added
         suffix = f" (skipped {skipped_auto} stale .auto echoes)" if skipped_auto else ""
         print(f"      {src_name}: +{added} channels{suffix}")
 
     for name, path in upstream_paths:
         raw = read_xmltv(path)
-        before = len(kept_ids)
+        before = len(kept_channels)
         count = 0
         for cid, names, block in iter_channels(raw):
             count += 1
-            if cid in kept_ids:
+            if cid in kept_channels:
                 continue  # already have it from provider
             if channel_matches(cid, names, tvg_ids, norm_names, callsigns):
                 kept_channels[cid] = block
-                kept_ids.add(cid)
-        added = len(kept_ids) - before
+        added = len(kept_channels) - before
         source_stats[name] = added
         print(f"      {name}: scanned={count}, added={added}")
 
-    print(f"      total kept channels: {len(kept_ids)}")
+    print(f"      total kept channels: {len(kept_channels)}")
 
     print(f"[5/6] filtering and merging programmes...")
     kept_programmes: list[bytes] = []
@@ -2369,7 +2370,7 @@ def main():
         raw = read_xmltv(p_path)
         n = 0
         for chan_id, block in iter_programmes(raw):
-            if chan_id in kept_ids:
+            if chan_id in kept_channels:
                 kept_programmes.append(block)
                 n += 1
         prog_count_by_source[src_name] = n
@@ -2378,7 +2379,7 @@ def main():
         raw = read_xmltv(path)
         n = 0
         for chan_id, block in iter_programmes(raw):
-            if chan_id in kept_ids:
+            if chan_id in kept_channels:
                 kept_programmes.append(block)
                 n += 1
         prog_count_by_source[name] = n
@@ -2419,7 +2420,6 @@ def main():
         ]
         removed = before - len(kept_programmes)
         print(f"      removed {removed} programmes from overridden channels")
-        kept_ids = set(kept_channels.keys())
 
     # Build map from effective_id -> M3U display name. Every M3U entry now
     # has an effective_id (original tvg-id or auto-generated). Apply the
@@ -2502,7 +2502,7 @@ def main():
     backfill_added_programmes: list[bytes] = []
     for ch in m3u_channels:
         tid = ch["effective_id"]
-        if tid in kept_ids or tid in forced_ids:
+        if tid in kept_channels or tid in forced_ids:
             continue
         candidate_cid = None
         for nm in (ch["tvg_name"], ch["title"]):
@@ -2522,7 +2522,6 @@ def main():
         m3u_name = ch["tvg_name"] or ch["title"] or tid
         new_block = clone_channel_for_m3u(src_block, tid, m3u_name)
         kept_channels[tid] = new_block
-        kept_ids.add(tid)
         backfilled += 1
         for src_prog in progs_by_chan.get(candidate_cid, []):
             backfill_added_programmes.append(rewrite_prog_channel(src_prog, candidate_cid, tid))
@@ -2530,16 +2529,17 @@ def main():
     kept_programmes.extend(backfill_added_programmes)
     print(f"      backfilled {backfilled} M3U ids (+{backfill_progs} cloned programmes)")
 
-    uncovered_ids = (set(m3u_display.keys()) - kept_ids) | forced_ids
+    uncovered_ids = (set(m3u_display.keys()) - kept_channels.keys()) | forced_ids
     uncovered_ids = {tid for tid in uncovered_ids if tid in m3u_display}
     print(f"      dummy entries to add: {len(uncovered_ids)} (covers every remaining M3U channel)")
 
     # Generate dummy programme blocks. Many IPTV players (UHF on tvOS, some
     # TiviMate builds) refuse to render programmes longer than ~24h and show
-    # "data unavailable" instead. So we emit 4-hour blocks for 8 days = 48
-    # blocks per channel. Snapped to GMT+3 hour boundaries.
-    BLOCK_HOURS = 4
-    DAYS_AHEAD = 5  # was 8 — cut to ease memory pressure on tvOS
+    # "data unavailable" instead. So we emit 4-hour blocks for 5 days = 30
+    # blocks per channel. Snapped to GMT+3 hour boundaries. See CONFIG at
+    # top of file for tuning.
+    BLOCK_HOURS = CONFIG["BLOCK_HOURS"]
+    DAYS_AHEAD = CONFIG["DAYS_AHEAD"]
     now_utc = dt.datetime.now(dt.timezone.utc)
     local_now = now_utc + USER_TZ_OFFSET
     local_midnight = local_now.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -2563,10 +2563,9 @@ def main():
         ch_block = (
             b'<channel id="' + tid_xml.encode("utf-8") + b'">' + dn + b'</channel>'
         )
-        # Key by RAW tid (not extracted from escaped XML bytes) to keep
-        # kept_ids consistent with the rest of the pipeline.
+        # Key by RAW tid (not extracted from escaped XML bytes) so the
+        # `cid in kept_channels` checks elsewhere work without escaping.
         kept_channels[tid] = ch_block
-        kept_ids.add(tid)
         dummy_count += 1
         # Use the channel display name as the dummy programme title so the
         # player shows the channel's own name in the EPG cell instead of
@@ -2642,17 +2641,21 @@ def main():
                 override_map[kept_cid] = best
 
         if override_map:
-            target_cid_bytes: set = set()
-            for cid in override_map:
-                cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
-                target_cid_bytes.add(cid_b)
-                target_cid_bytes.add(cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;"))
+            # Compare in DECODED (unescaped) form to avoid silent misses when
+            # the in-XML channel attr uses a different entity form than what
+            # we'd guess (&amp; vs &#38; vs &#x26;).
+            target_cids_unescaped: set = set(override_map.keys())
             before_n = len(kept_programmes)
-            kept_programmes = [
-                p for p in kept_programmes
-                if not (m := PROG_CHANNEL_RE.search(p))
-                or m.group(1) not in target_cid_bytes
-            ]
+            new_kept: list[bytes] = []
+            for p in kept_programmes:
+                m = PROG_CHANNEL_RE.search(p)
+                if not m:
+                    new_kept.append(p); continue
+                cid_decoded = html.unescape(m.group(1).decode("utf-8", "replace"))
+                if cid_decoded in target_cids_unescaped:
+                    continue  # drop — will be replaced below
+                new_kept.append(p)
+            kept_programmes = new_kept
             removed_n = before_n - len(kept_programmes)
             override_programmes: list[bytes] = []
             for kept_cid, bein_cid in override_map.items():
@@ -2743,20 +2746,21 @@ def main():
             rescue_map[kept_cid] = best_cid
 
     if rescue_map:
-        # Drop the dummy programmes for these channels, swap in cloned
-        # source programmes. Building byte-encoded target ids both raw and
-        # XML-escaped (kept_programmes has them XML-escaped).
-        target_cid_bytes: set = set()
-        for cid in rescue_map:
-            cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
-            target_cid_bytes.add(cid_b)
-            target_cid_bytes.add(cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;"))
+        # Drop the dummy programmes for these channels by comparing in
+        # DECODED form — kept_programmes' channel-attr may be encoded
+        # with any XML entity flavour, and html.unescape normalises them.
+        target_cids_unescaped: set = set(rescue_map.keys())
         before_n = len(kept_programmes)
-        kept_programmes = [
-            p for p in kept_programmes
-            if not (m := PROG_CHANNEL_RE.search(p))
-            or m.group(1) not in target_cid_bytes
-        ]
+        new_kept: list[bytes] = []
+        for p in kept_programmes:
+            m = PROG_CHANNEL_RE.search(p)
+            if not m:
+                new_kept.append(p); continue
+            cid_decoded = html.unescape(m.group(1).decode("utf-8", "replace"))
+            if cid_decoded in target_cids_unescaped:
+                continue
+            new_kept.append(p)
+        kept_programmes = new_kept
         removed_n = before_n - len(kept_programmes)
         rescued_progs: list[bytes] = []
         for kept_cid, src_cid in rescue_map.items():
@@ -2812,12 +2816,18 @@ def main():
     TIME_PARSE_RE = re.compile(r"(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(?:\s*([+-]\d{4}|Z))?")
 
     def parse_xmltv(s: str) -> dt.datetime:
+        """Parse an XMLTV timestamp 'YYYYMMDDHHMMSS [+-]HHMM'.
+        Raises ValueError on malformed input — callers MUST handle this
+        (don't let one bad timestamp crash the whole build)."""
         m = TIME_PARSE_RE.match(s)
         if not m:
-            return None
+            raise ValueError(f"unparseable XMLTV timestamp: {s!r}")
         y, mo, d, h, mi, sec = (int(m.group(i)) for i in range(1, 7))
         offset_str = m.group(7) or "+0000"
-        t = dt.datetime(y, mo, d, h, mi, sec, tzinfo=dt.timezone.utc)
+        try:
+            t = dt.datetime(y, mo, d, h, mi, sec, tzinfo=dt.timezone.utc)
+        except ValueError as e:
+            raise ValueError(f"invalid date components in {s!r}: {e}")
         if offset_str == "Z":
             return t
         sign = 1 if offset_str[0] == "+" else -1
@@ -2827,18 +2837,23 @@ def main():
     series_stop_utc = series_start_utc + dt.timedelta(days=DAYS_AHEAD)
 
     ch_progs: dict[str, list] = defaultdict(list)
+    bad_ts_count = 0
     for p in kept_programmes:
         m = PROG_TIMES_RE.search(p)
         if not m:
             continue
-        start = parse_xmltv(m.group(1).decode())
-        stop = parse_xmltv(m.group(2).decode())
-        if start is None or stop is None:
+        try:
+            start = parse_xmltv(m.group(1).decode())
+            stop = parse_xmltv(m.group(2).decode())
+        except ValueError:
+            bad_ts_count += 1
             continue
         # html.unescape because channel attr in XML may have &amp;/&#x27; that
-        # need decoding to match the raw Python form in kept_ids.
+        # need decoding to match the raw Python form in kept_channels.
         cid = html.unescape(m.group(3).decode("utf-8", "replace"))
         ch_progs[cid].append((start, stop))
+    if bad_ts_count:
+        print(f"      skipped {bad_ts_count} programmes with malformed timestamps")
 
     # Build a fast lookup: channel id (raw) → first display-name text.
     # Used by gap_blocks to set a sensible title for filler programmes (the
@@ -2892,10 +2907,10 @@ def main():
     gap_fill_programmes: list[bytes] = []
     channels_with_gaps = 0
     fully_empty = 0
-    # Iterate ALL channels in kept_ids, not just those with programmes — a
-    # channel can land in kept_ids via backfill from a provider channel that
+    # Iterate ALL channels in kept_channels, not just those with programmes — a
+    # channel can land in kept_channels via backfill from a provider channel that
     # had zero programmes, leaving the .auto id with no schedule data.
-    for cid in kept_ids:
+    for cid in kept_channels:
         items = ch_progs.get(cid, [])
         items.sort(key=lambda x: x[0])
         cid_xml = html.escape(cid, quote=True)
@@ -3000,14 +3015,13 @@ def main():
 
     before_ch = len(kept_channels)
     kept_channels = {cid: blk for cid, blk in kept_channels.items() if cid in m3u_id_set}
-    kept_ids = set(kept_channels.keys())
     dropped_channels = before_ch - len(kept_channels)
 
     before_prog = len(kept_programmes)
     new_progs = []
     for p in kept_programmes:
         m = PROG_CHANNEL_RE.search(p)
-        if m and html.unescape(m.group(1).decode("utf-8", "replace")) in kept_ids:
+        if m and html.unescape(m.group(1).decode("utf-8", "replace")) in kept_channels:
             new_progs.append(p)
     kept_programmes = new_progs
     dropped_programmes = before_prog - len(kept_programmes)
