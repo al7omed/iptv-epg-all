@@ -113,6 +113,30 @@ jobs:
         working-directory: epg-tool
         run: npm ci
 
+      - name: Curate iptv-org/epg channels.xml for big-tail sites
+        continue-on-error: true
+        run: |
+          set +e
+          # freeview.co.uk (1.7k), tvtv.us (2.3k), tvpassport.com (19k)
+          # default channels.xml files are too big to grab in CI's 240s
+          # per-site budget. Filter them down to ~300 channels each that
+          # actually appear in our M3U using the same name-matching
+          # primitives as the build (norm-name + token-set subset).
+          for site in freeview.co.uk tvtv.us tvpassport.com; do
+            src="epg-tool/sites/$site/$site.channels.xml"
+            if [ ! -f "$src" ]; then
+              echo "::warning::no $src to curate"
+              continue
+            fi
+            cp "$src" "$src.full"  # keep original for diagnostics
+            python3 scripts/curate_iptv_org_channels.py \
+              --m3u epg-work/m3u_sub1.m3u \
+              --m3u epg-work/m3u_sub2.m3u \
+              --src "$src.full" \
+              --out "$src" \
+              --max-channels 300 2>&1 | sed "s/^/  $site: /"
+          done
+
       - name: Grab UK/US/MENA EPG sources (iptv-org/epg, parallelized)
         continue-on-error: true
         working-directory: epg-tool
@@ -121,16 +145,19 @@ jobs:
           mkdir -p ../epg-work/iptv-org
           # Sites we pull from. Each becomes a separate XMLTV file fed into
           # PROVIDER_EPG_URL below. Run 4 grabs in parallel via xargs -P 4
-          # so the slowest ones (tvtv.us, tvpassport.com, etc.) don't bottleneck
-          # the build serially. Each capped at 240s.
+          # so the slowest ones don't bottleneck the build serially. Each
+          # capped at 240s.
           SITES=(
             # UK
             sky.com             # UK Sky channels (Cinema/Sports) — fast
             mytelly.co.uk       # UK alternate guide — fast
             tv24.co.uk          # UK alternate guide — fast
+            freeview.co.uk      # UK Freeview (curated)
             # US
             directv.com         # US DirecTV native — fast
             ontvtonight.com     # Multi-region guide — fast
+            tvtv.us             # US Spectrum/cable guide (curated)
+            tvpassport.com      # US broad guide (curated)
             # Sports specifics
             nhl.com             # NHL games
             # MENA
@@ -138,10 +165,10 @@ jobs:
             osn.com             # OSN
             rotana.net          # Rotana
             aljazeera.com       # Al Jazeera news
-            # NOTE: tvtv.us is HTTP-403-banned, tvpassport.com has 96k
-            # channels (uncrabbable in CI), freeview.co.uk has 1760
-            # channel-regions and times out partway through. Dropped here
-            # — sky.com covers most UK channels we care about.
+            # NOTE: freeview.co.uk / tvtv.us / tvpassport.com are re-enabled
+            # because the "Curate iptv-org/epg channels.xml" step above
+            # trims their channels.xml to ~300 entries matched against our
+            # M3U, so each grab now fits inside the 240s budget.
           )
           grab_one() {
             local site="$1"
