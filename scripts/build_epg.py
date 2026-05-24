@@ -35,8 +35,30 @@ import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
 
-# User-local timezone for snapping dummy programme blocks to a clean midnight.
-USER_TZ_OFFSET = dt.timedelta(hours=3)  # GMT+3
+# ─── CONFIG ─────────────────────────────────────────────────────────────────
+# All site-specific / tunable knobs. Override with environment variables of
+# the same name where applicable.
+CONFIG = {
+    # Timezone offset for the user (used to snap dummy programme blocks to a
+    # clean midnight). Override with USER_TZ_OFFSET_HOURS env var
+    # (e.g. '0' for UTC, '-5' for US East).
+    "USER_TZ_OFFSET_HOURS": int(os.environ.get("USER_TZ_OFFSET_HOURS", "3")),
+    # Maximum length of an XMLTV channel id before truncating + hash-suffix.
+    "MAX_ID_LEN": 96,
+    # Dummy-programme block size in hours (used when a channel has no real EPG
+    # data — players reject programmes longer than ~24h).
+    "BLOCK_HOURS": 4,
+    # How many days ahead to populate dummies (was 8; cut to ease memory).
+    "DAYS_AHEAD": 5,
+    # Favorites M3U per-section caps so 'Tonight' / 'Pinned' don't bloat.
+    "FAVORITES_SECTION_CAP": {
+        "Favorites — Tonight": 30,
+        "Favorites — Pinned": 50,
+    },
+}
+# Convenience aliases — call-sites unchanged.
+USER_TZ_OFFSET = dt.timedelta(hours=CONFIG["USER_TZ_OFFSET_HOURS"])
+MAX_ID_LEN = CONFIG["MAX_ID_LEN"]
 
 
 # ---------------- display-name variants ----------------
@@ -334,9 +356,6 @@ def auto_tvg_id(channel: dict) -> str:
     # Append a 4-char hash for stability across name collisions
     h = hashlib.md5(name.encode("utf-8")).hexdigest()[:4]
     return f"{s}-{h}.auto"
-
-
-MAX_ID_LEN = 96
 
 
 def _shorten_id(s: str) -> str:
@@ -1697,11 +1716,8 @@ def write_favorites_m3u(m3u_channels, dest: Path, epg_url: str,
     out = [f'#EXTM3U x-tvg-url="{epg_url}"']
     written = 0
     section_log: list[tuple[str, int]] = []
-    # Per-section cap so 'Tonight' (live PPV) can't bloat to hundreds.
-    SECTION_CAP = {
-        "Favorites — Tonight": 30,
-        "Favorites — Pinned": 50,
-    }
+    # Per-section cap (from CONFIG) so 'Tonight' (live PPV) can't bloat.
+    SECTION_CAP = CONFIG["FAVORITES_SECTION_CAP"]
     for section in FAVORITES_SECTION_ORDER:
         items = best.get(section, [])
         if not items:
@@ -1839,8 +1855,7 @@ def write_patched_m3u(m3u_channels, dest: Path, epg_url: str,
         if cur is None or score > cur[0]:
             url_best[url] = (score, ch)
     m3u_channels = [ch for _, ch in url_best.values()] + no_url
-    url_dedup_dropped = sum(1 for ch in m3u_channels if ch is None)  # 0 by construction
-    print(f"      M3U URL dedup: kept {len(url_best)} unique URLs from {len(url_best)+0} entries (+ {len(no_url)} without URL)")
+    print(f"      M3U URL dedup: kept {len(url_best)} unique URLs (+ {len(no_url)} without URL)")
 
     by_cat: dict[str, list] = defaultdict(list)
     for ch in m3u_channels:

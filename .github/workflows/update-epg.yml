@@ -94,17 +94,20 @@ jobs:
           fi
           exit 0
 
-      - name: Setup Node (for iptv-org/epg scrapers)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Checkout iptv-org/epg (multi-source scraper)
         uses: actions/checkout@v4
         with:
           repository: iptv-org/epg
           ref: master
           path: epg-tool
+          fetch-depth: 1   # shallow clone — saves ~1GB / build
+
+      - name: Setup Node (for iptv-org/epg scrapers)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'    # cache node_modules across builds — saves 5-10 min/build
+          cache-dependency-path: 'epg-tool/package-lock.json'
 
       - name: Install iptv-org/epg deps
         working-directory: epg-tool
@@ -172,6 +175,18 @@ jobs:
           printf '%s\n' "${SITES[@]}" | xargs -P 2 -I {} bash -c 'grab_one "$@"' _ {}
           echo "--- final iptv-org sources ---"
           ls -la ../epg-work/iptv-org/ 2>/dev/null || true
+          # Threshold check: fail the step if too many grabs failed.
+          # iptv-org/epg sites often have transient 4xx/5xx — we tolerate
+          # up to 4 misses out of the configured count.
+          SURVIVED=$(ls -1 ../epg-work/iptv-org/*.xml 2>/dev/null | xargs -I {} bash -c '[ -s "{}" ] && echo "{}"' | wc -l)
+          TOTAL=${#SITES[@]}
+          MIN_REQUIRED=$((TOTAL - 4))
+          if [ "$MIN_REQUIRED" -lt 6 ]; then MIN_REQUIRED=6; fi
+          echo "iptv-org grab survivors: $SURVIVED / $TOTAL  (min required: $MIN_REQUIRED)"
+          if [ "$SURVIVED" -lt "$MIN_REQUIRED" ]; then
+            echo "::error::Too few iptv-org/epg grabs succeeded ($SURVIVED < $MIN_REQUIRED) — aborting"
+            exit 1
+          fi
           exit 0
 
       - name: Compose PROVIDER_EPG_URL (only existing files)
@@ -205,10 +220,21 @@ jobs:
           M3U_PATH_TOKEN: ${{ secrets.M3U_PATH_TOKEN }}
         run: python3 scripts/build_epg.py
 
-      - name: Stats
+      - name: Stats + smoke test
         run: |
           echo "guide.xml.gz:   $(stat -c '%s' docs/guide.xml.gz) bytes"
+          echo "guide-lite.xml.gz: $(stat -c '%s' docs/guide-lite.xml.gz) bytes"
           echo "tvg-id-map.tsv: $(stat -c '%s' docs/tvg-id-map.tsv) bytes"
+          # Smoke-test the artifacts so a corrupted build fails CI instead
+          # of shipping a broken EPG.
+          FULL_PROGS=$(gunzip -c docs/guide.xml.gz | grep -c '<programme' || true)
+          LITE_PROGS=$(gunzip -c docs/guide-lite.xml.gz | grep -c '<programme' || true)
+          echo "guide.xml.gz programmes: $FULL_PROGS"
+          echo "guide-lite.xml.gz programmes: $LITE_PROGS"
+          if [ "$FULL_PROGS" -lt 50000 ] || [ "$LITE_PROGS" -lt 10000 ]; then
+            echo "::error::Suspiciously low programme counts (full=$FULL_PROGS lite=$LITE_PROGS)"
+            exit 1
+          fi
 
       - name: Ensure stale files stay purged
         run: |
@@ -247,16 +273,40 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
+            # Stash the staged changes so we can re-apply them after a soft
+            # reset (used by the retry loop on push rejection).
+            STASH_LIST="$(mktemp)"
+            git diff --staged --name-only > "$STASH_LIST"
             git commit -m "Update unified EPG + M3U $(date -u +%Y-%m-%dT%H:%MZ)"
-            # Retry-with-rebase loop — handles the race when a manual push
-            # lands between this run's checkout and its `git push`. Up to
-            # 5 attempts with 5s backoff.
+            # Retry-with-reset-soft loop. On push rejection:
+            #   1. Save the commit message
+            #   2. Fetch latest remote main
+            #   3. Soft-reset to remote main (working-tree files preserved)
+            #   4. Re-stage all the same paths
+            #   5. Recommit (now on top of fresh remote)
+            #   6. Retry push
+            # Never merges, never hits binary-file conflicts.
+            COMMIT_MSG="Update unified EPG + M3U $(date -u +%Y-%m-%dT%H:%MZ)"
             for attempt in 1 2 3 4 5; do
               if git push; then
                 echo "push OK (attempt $attempt)"; break
               fi
-              echo "push rejected, rebasing onto remote main (attempt $attempt)..."
-              git pull --rebase origin main || { echo "rebase failed"; exit 1; }
+              echo "push rejected (attempt $attempt) — soft-resetting onto remote main..."
+              git fetch origin main || { echo "fetch failed"; exit 1; }
+              git reset --soft origin/main
+              # Re-stage everything that was in the original commit
+              while IFS= read -r path; do
+                if [ -e "$path" ]; then
+                  git add -- "$path"
+                else
+                  git rm --cached --ignore-unmatch -- "$path" >/dev/null 2>&1 || true
+                fi
+              done < "$STASH_LIST"
+              if git diff --staged --quiet; then
+                echo "no diff vs new remote — nothing to push"; break
+              fi
+              git commit -m "$COMMIT_MSG"
               sleep 5
             done
+            rm -f "$STASH_LIST"
           fi
