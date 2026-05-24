@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-24T09:33:02Z",
+  "generated_utc": "2026-05-24T09:52:12Z",
   "total_records": 3828,
   "total_live_events": 156,
   "channels": [
@@ -2116,14 +2116,6 @@
       "is_live_event": false
     },
     {
-      "channel_id": "AlJazeeraEnglish.uk",
-      "channel_name": "Al Jazeera English",
-      "title": "Counting the Cost",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
       "channel_id": "SPO: Al Kass 6 4K (LIVE EVENT ONLY)",
       "channel_name": "Al Kass 6 4K (Live Event Only) [SPO]",
       "title": "Jarayd",
@@ -2206,9 +2198,9 @@
     {
       "channel_id": "UK: ALL ACTION MOVIES CHANNEL ᴴᴰ",
       "channel_name": "All Action Movies Channel HD [UK]",
-      "title": "The Hunger Games",
-      "start_utc": "2026-05-24T07:22:08Z",
-      "stop_utc": "2026-05-24T09:37:08Z",
+      "title": "Wrath Of Man",
+      "start_utc": "2026-05-24T09:37:08Z",
+      "stop_utc": "2026-05-24T11:37:08Z",
       "is_live_event": false
     },
     {
@@ -2772,38 +2764,6 @@
       "is_live_event": false
     },
     {
-      "channel_id": "AlKassThree.qa",
-      "channel_name": "AR - AL KASS 3 HEVC",
-      "title": "Arab Club Champions Cup",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "AlKassTwo.qa",
-      "channel_name": "AR - ALKASS 2 LQ",
-      "title": "Ostudio Al Khayl",
-      "start_utc": "2026-05-24T08:45:00Z",
-      "stop_utc": "2026-05-24T11:30:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "AlKassFour.qa",
-      "channel_name": "AR - ALKASS 4 LQ",
-      "title": "Dawry Al Darajah Al Thanya Al Qatary",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T11:30:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "AlKassFive.qa",
-      "channel_name": "AR - ALKASS 5 LQ",
-      "title": "HORSE RACE STUDIO",
-      "start_utc": "2026-05-24T08:45:00Z",
-      "stop_utc": "2026-05-24T11:30:00Z",
-      "is_live_event": false
-    },
-    {
       "channel_id": "NationalGeographicAbuDhabi.ae",
       "channel_name": "AR: ABU DHABI NATIOANL GEO 4K",
       "title": "Waves",
@@ -2833,6 +2793,38 @@
       "title": "Al Duhail vs Qatar Club - Qatar Stars League 2025/26 - W11",
       "start_utc": "2026-05-24T09:00:00Z",
       "stop_utc": "2026-05-24T11:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "AlKassTwo.qa",
+      "channel_name": "AR: ALKASS 2 LQ",
+      "title": "Ostudio Al Khayl",
+      "start_utc": "2026-05-24T08:45:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "AlKassThree.qa",
+      "channel_name": "AR: ALKASS 3 LQ",
+      "title": "Arab Club Champions Cup",
+      "start_utc": "2026-05-24T09:30:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "AlKassFour.qa",
+      "channel_name": "AR: ALKASS 4 LQ",
+      "title": "Dawry Al Darajah Al Thanya Al Qatary",
+      "start_utc": "2026-05-24T09:00:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "AlKassFive.qa",
+      "channel_name": "AR: ALKASS 5 LQ",
+      "title": "HORSE RACE STUDIO",
+      "start_utc": "2026-05-24T08:45:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
       "is_live_event": false
     },
     {
@@ -2942,9 +2934,9 @@
     {
       "channel_id": "MBC3.ae",
       "channel_name": "AR: MBC 3 HD",
-      "title": "Trulli Tales الموسم 2 الحلقة 31",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:43:00Z",
+      "title": "Trulli Tales الموسم 2 الحلقة 32",
+      "start_utc": "2026-05-24T09:43:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -2953,14 +2945,6 @@
       "title": "No title available",
       "start_utc": "2026-05-24T09:30:00Z",
       "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "MBC5.ae",
-      "channel_name": "AR: MBC 5 HD",
-      "title": "No title available",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T11:04:00Z",
       "is_live_event": false
     },
     {
@@ -3031,7 +3015,7 @@
       "channel_id": "AR: MBC Drama+ HD",
       "channel_name": "AR: MBC Drama+ HD",
       "title": "سدف",
-      "start_utc": "2026-05-24T09:00:00Z",
+      "start_utc": "2026-05-24T09:01:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
@@ -3190,17 +3174,17 @@
     {
       "channel_id": "AR: Wanasah 4K",
       "channel_name": "AR: Wanasah 4K",
-      "title": "Wanasah 4K [AR]",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T13:00:00Z",
+      "title": "أحباب",
+      "start_utc": "2026-05-24T06:58:00Z",
+      "stop_utc": "2026-05-24T12:07:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "AR: Wanasah HD",
       "channel_name": "AR: Wanasah HD",
-      "title": "Wanasah HD [AR]",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T13:00:00Z",
+      "title": "أحباب",
+      "start_utc": "2026-05-24T06:58:00Z",
+      "stop_utc": "2026-05-24T12:07:00Z",
       "is_live_event": false
     },
     {
@@ -3217,6 +3201,78 @@
       "title": "Arabic",
       "start_utc": "2026-05-24T09:00:00Z",
       "stop_utc": "2026-05-24T13:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasport1.ba",
+      "channel_name": "Arena Sport 1 FHD BA",
+      "title": "Chelsea - Manchester City",
+      "start_utc": "2026-05-24T08:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasport2.ba",
+      "channel_name": "Arena Sport 2 FHD BA",
+      "title": "Playoff",
+      "start_utc": "2026-05-24T08:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasport3.ba",
+      "channel_name": "Arena Sport 3 FHD BA",
+      "title": "Dinamo - Lokomotiva",
+      "start_utc": "2026-05-24T08:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasport4.ba",
+      "channel_name": "Arena Sport 4 FHD BA",
+      "title": "Paris - PSG",
+      "start_utc": "2026-05-24T08:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasport5.ba",
+      "channel_name": "Arena Sport 5 FHD BA",
+      "title": "Japan Live stage 5",
+      "start_utc": "2026-05-24T09:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasport6.ba",
+      "channel_name": "Arena Sport 6 FHD BA",
+      "title": "Sporting Rivalries",
+      "start_utc": "2026-05-24T09:30:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasportpremium1.ba",
+      "channel_name": "Arena Sport Premium 1 FHD BA",
+      "title": "Uživo: Šangaj, četvrtfinala",
+      "start_utc": "2026-05-24T07:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasportpremium2.ba",
+      "channel_name": "Arena Sport Premium 2 FHD BA",
+      "title": "AS Roma - Lazio",
+      "start_utc": "2026-05-24T08:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "arenasportpremium3.ba",
+      "channel_name": "Arena Sport Premium 3 FHD BA",
+      "title": "Celta Vigo - Sevilla",
+      "start_utc": "2026-05-24T08:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -3654,9 +3710,9 @@
     {
       "channel_id": "UK: BBC RADIO THREE COUNTIES ᴿᴬᵂ",
       "channel_name": "BBC Radio Three Counties RAW [UK]",
-      "title": "..programmes start at 7.00pm",
-      "start_utc": "2026-05-24T04:30:00Z",
-      "stop_utc": "2026-05-24T10:30:00Z",
+      "title": "This Is BBC THREE",
+      "start_utc": "2026-05-24T02:50:00Z",
+      "stop_utc": "2026-05-24T10:50:00Z",
       "is_live_event": false
     },
     {
@@ -4220,78 +4276,6 @@
       "is_live_event": false
     },
     {
-      "channel_id": "arenasportpremium1.ba",
-      "channel_name": "BH: ARENA PREMIUM 1 ᴿᴬᵂ",
-      "title": "Uživo: Šangaj, četvrtfinala",
-      "start_utc": "2026-05-24T07:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasportpremium2.ba",
-      "channel_name": "BH: ARENA PREMIUM 2 ᴿᴬᵂ",
-      "title": "AS Roma - Lazio",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasportpremium3.ba",
-      "channel_name": "BH: ARENA PREMIUM 3 ᴿᴬᵂ",
-      "title": "Celta Vigo - Sevilla",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasport1.ba",
-      "channel_name": "BH: ARENA SPORT 1 ᴿᴬᵂ",
-      "title": "Chelsea - Manchester City",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasport2.ba",
-      "channel_name": "BH: ARENA SPORT 2 ᴿᴬᵂ",
-      "title": "Playoff",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasport3.ba",
-      "channel_name": "BH: ARENA SPORT 3 ᴿᴬᵂ",
-      "title": "Dinamo - Lokomotiva",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasport4.ba",
-      "channel_name": "BH: ARENA SPORT 4 ᴿᴬᵂ",
-      "title": "Paris - PSG",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasport5.ba",
-      "channel_name": "BH: ARENA SPORT 5 ᴿᴬᵂ",
-      "title": "Japan Live stage 5",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
-      "channel_id": "arenasport6.ba",
-      "channel_name": "BH: ARENA SPORT 6 ᴿᴬᵂ",
-      "title": "Sporting Rivalries",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
-      "is_live_event": false
-    },
-    {
       "channel_id": "GO: BIG 12",
       "channel_name": "Big 12 [GO]",
       "title": "Big 12 [GO]",
@@ -4422,23 +4406,23 @@
     {
       "channel_id": "AF: CANAL+ SPORT 4 ᴿᴬᵂ",
       "channel_name": "Canal+ Sport 4 RAW [AF]",
-      "title": "Piłka nożna: PKO BP Ekstraklasa: Jagiellonia Białystok - KGHM Zagłębie Lubin",
-      "start_utc": "2026-05-24T07:15:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "Witaj w akademii",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:30:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "AF: CANAL+ SPORT 5 ᴿᴬᵂ",
       "channel_name": "Canal+ Sport 5 RAW [AF]",
-      "title": "The Big Pete",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "Żużel: Metalkas 2. Ekstraliga - mecz: Polonia Piła - ZKS Stal Rzeszów",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T12:30:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "AF: CANAL+ SPORT ᴿᴬᵂ",
       "channel_name": "Canal+ Sport RAW [AF]",
-      "title": "Rugby : Super Rugby Pacific",
+      "title": "Hurricanes / Highlanders",
       "start_utc": "2026-05-24T09:31:00Z",
       "stop_utc": "2026-05-24T11:08:00Z",
       "is_live_event": false
@@ -4671,16 +4655,16 @@
       "channel_id": "CITY: ABC KMGH DENVER ᴿᴬᵂ",
       "channel_name": "CITY: ABC KMGH DENVER ᴿᴬᵂ",
       "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "CITY: ABC KOMO SEATTLE ᴿᴬᵂ",
       "channel_name": "CITY: ABC KOMO SEATTLE ᴿᴬᵂ",
-      "title": "Seattle Refined",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "The Aging Brain",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -4742,9 +4726,9 @@
     {
       "channel_id": "CITY: ABC WFAA MIAMI ᴿᴬᵂ",
       "channel_name": "CITY: ABC WFAA MIAMI ᴿᴬᵂ",
-      "title": "Natural Blood Pressure Management",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "title": "News 8 Update",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -4838,9 +4822,9 @@
     {
       "channel_id": "CITY: CBS KIRO SEATTLE ᴿᴬᵂ",
       "channel_name": "CITY: CBS KIRO SEATTLE ᴿᴬᵂ",
-      "title": "The Aging Brain",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Rateescape: Stop Overpaying for Cellular",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -4862,9 +4846,9 @@
     {
       "channel_id": "CITY: CBS KPIX SAN FRANCISCO ᴿᴬᵂ",
       "channel_name": "CITY: CBS KPIX SAN FRANCISCO ᴿᴬᵂ",
-      "title": "Secret to More Energy, Better Focus & Restful Sleep",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Game Time With Boomer Esiason - Kyle Busch",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -5510,9 +5494,9 @@
     {
       "channel_id": "CITY: NBC KUSA DENVER ᴿᴬᵂ",
       "channel_name": "CITY: NBC KUSA DENVER ᴿᴬᵂ",
-      "title": "Entertainment Tonight",
-      "start_utc": "2026-05-24T08:33:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "The American Athlete",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -5758,9 +5742,9 @@
     {
       "channel_id": "CITY: PBS WKLE PHOENIX ᴿᴬᵂ",
       "channel_name": "CITY: PBS WKLE PHOENIX ᴿᴬᵂ",
-      "title": "Vegesaurs - Hatchling",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "Mia & Codie - Coding by the Recipe",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -8135,8 +8119,8 @@
       "channel_id": "GO: AMC",
       "channel_name": "GO: AMC",
       "title": "Comic Book Men",
-      "start_utc": "2026-05-24T09:23:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:06:00Z",
       "is_live_event": false
     },
     {
@@ -8287,8 +8271,8 @@
       "channel_id": "GO: BOOMERANG",
       "channel_name": "GO: BOOMERANG",
       "title": "Looney Tunes",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -8463,8 +8447,8 @@
       "channel_id": "GO: CURIOSITY NOW",
       "channel_name": "GO: CURIOSITY NOW",
       "title": "Underwater Wonders of the National Parks",
-      "start_utc": "2026-05-24T09:09:00Z",
-      "stop_utc": "2026-05-24T09:38:00Z",
+      "start_utc": "2026-05-24T09:38:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -8855,8 +8839,8 @@
       "channel_id": "GO: GOLFPASS",
       "channel_name": "GO: GOLFPASS",
       "title": "Playing Lessons",
-      "start_utc": "2026-05-24T09:17:00Z",
-      "stop_utc": "2026-05-24T09:42:00Z",
+      "start_utc": "2026-05-24T09:42:00Z",
+      "stop_utc": "2026-05-24T10:07:00Z",
       "is_live_event": false
     },
     {
@@ -8918,9 +8902,9 @@
     {
       "channel_id": "GO: HBO2 EAST",
       "channel_name": "GO: HBO2 EAST",
-      "title": "The Yogurt Shop Murders",
-      "start_utc": "2026-05-24T07:58:00Z",
-      "stop_utc": "2026-05-24T09:36:00Z",
+      "title": "Battle of the Sexes",
+      "start_utc": "2026-05-24T09:36:00Z",
+      "stop_utc": "2026-05-24T11:40:00Z",
       "is_live_event": false
     },
     {
@@ -9087,8 +9071,8 @@
       "channel_id": "GO: MAGELLANTV WILDEST",
       "channel_name": "GO: MAGELLANTV WILDEST",
       "title": "Secrets of Wild Australia",
-      "start_utc": "2026-05-24T08:52:00Z",
-      "stop_utc": "2026-05-24T09:51:00Z",
+      "start_utc": "2026-05-24T09:51:00Z",
+      "stop_utc": "2026-05-24T10:50:00Z",
       "is_live_event": false
     },
     {
@@ -9335,8 +9319,8 @@
       "channel_id": "GO: NICKTOONS",
       "channel_name": "GO: NICKTOONS",
       "title": "SpongeBob SquarePants",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -9430,9 +9414,9 @@
     {
       "channel_id": "GO: POWERNATION",
       "channel_name": "GO: POWERNATION",
-      "title": "Detroit Muscle - Finally Looks Like a Dart Again",
-      "start_utc": "2026-05-24T09:18:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "Under the Hood - Mustang Brothers",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:02:00Z",
       "is_live_event": false
     },
     {
@@ -9670,9 +9654,9 @@
     {
       "channel_id": "GO: STARZ ENCORE EAST",
       "channel_name": "GO: STARZ ENCORE EAST",
-      "title": "I Want Someone to Eat Cheese With",
-      "start_utc": "2026-05-24T08:23:00Z",
-      "stop_utc": "2026-05-24T09:47:00Z",
+      "title": "Exit the Dragon, Enter the Tiger",
+      "start_utc": "2026-05-24T09:47:00Z",
+      "stop_utc": "2026-05-24T11:09:00Z",
       "is_live_event": false
     },
     {
@@ -9686,9 +9670,9 @@
     {
       "channel_id": "GO: STARZ ENCORE SUSPENSE",
       "channel_name": "GO: STARZ ENCORE SUSPENSE",
-      "title": "Naked Singularity",
-      "start_utc": "2026-05-24T07:59:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "Before I Fall",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T11:12:00Z",
       "is_live_event": false
     },
     {
@@ -9742,9 +9726,9 @@
     {
       "channel_id": "GO: SWERVE COMBAT",
       "channel_name": "GO: SWERVE COMBAT",
-      "title": "Fighter Showcase: Michael Venom Page - Part 3",
-      "start_utc": "2026-05-24T08:14:00Z",
-      "stop_utc": "2026-05-24T09:37:00Z",
+      "title": "RUF 66: MMA At Its Best",
+      "start_utc": "2026-05-24T09:37:00Z",
+      "stop_utc": "2026-05-24T11:55:00Z",
       "is_live_event": false
     },
     {
@@ -9799,8 +9783,8 @@
       "channel_id": "GO: TEENNICK",
       "channel_name": "GO: TEENNICK",
       "title": "The Loud House",
-      "start_utc": "2026-05-24T09:12:00Z",
-      "stop_utc": "2026-05-24T09:36:00Z",
+      "start_utc": "2026-05-24T09:36:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -9950,9 +9934,9 @@
     {
       "channel_id": "GO: TV ONE",
       "channel_name": "GO: TV ONE",
-      "title": "Zuhr Prayer Live from Kabah",
-      "start_utc": "2026-05-24T09:18:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "Documentary - Zam zam",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -10070,9 +10054,9 @@
     {
       "channel_id": "GOBX: AL THAQAFEYA ᴴᴰ",
       "channel_name": "GOBX: AL THAQAFEYA ᴴᴰ",
-      "title": "Al Duhail vs Qatar Club - Qatar Stars League 2025/26 - W11",
+      "title": "اثنينية الرياض",
       "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T11:00:00Z",
+      "stop_utc": "2026-05-24T10:30:00Z",
       "is_live_event": false
     },
     {
@@ -10087,8 +10071,8 @@
       "channel_id": "GOBX: BLIPPI AND FRIENDS ᴴᴰ",
       "channel_name": "GOBX: BLIPPI AND FRIENDS ᴴᴰ",
       "title": "بليبي",
-      "start_utc": "2026-05-24T09:25:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:32:00Z",
       "is_live_event": false
     },
     {
@@ -10103,8 +10087,8 @@
       "channel_id": "GOBX: INSIGHTTV ᴴᴰ",
       "channel_name": "GOBX: INSIGHTTV ᴴᴰ",
       "title": "The Trail",
-      "start_utc": "2026-05-24T09:15:00Z",
-      "stop_utc": "2026-05-24T09:42:00Z",
+      "start_utc": "2026-05-24T09:42:00Z",
+      "stop_utc": "2026-05-24T10:09:00Z",
       "is_live_event": false
     },
     {
@@ -10142,17 +10126,17 @@
     {
       "channel_id": "GOBX: MBC 3 ᴴᴰ",
       "channel_name": "GOBX: MBC 3 ᴴᴰ",
-      "title": "Trulli Tales الموسم 2 الحلقة 31",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:43:00Z",
+      "title": "حكايات ترولي",
+      "start_utc": "2026-05-24T09:44:00Z",
+      "stop_utc": "2026-05-24T10:01:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "GOBX: MBC 3 ᴿᴬᵂ",
       "channel_name": "GOBX: MBC 3 ᴿᴬᵂ",
-      "title": "Trulli Tales الموسم 2 الحلقة 31",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:43:00Z",
+      "title": "حكايات ترولي",
+      "start_utc": "2026-05-24T09:44:00Z",
+      "stop_utc": "2026-05-24T10:01:00Z",
       "is_live_event": false
     },
     {
@@ -10174,17 +10158,17 @@
     {
       "channel_id": "GOBX: MBC 5 ᴴᴰ",
       "channel_name": "GOBX: MBC 5 ᴴᴰ",
-      "title": "جوقة عزيزة الموسم 1 الحلقة 4",
-      "start_utc": "2026-05-24T09:07:00Z",
-      "stop_utc": "2026-05-24T09:44:00Z",
+      "title": "ولاد العم",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:24:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "GOBX: MBC 5 ᴿᴬᵂ",
       "channel_name": "GOBX: MBC 5 ᴿᴬᵂ",
-      "title": "جوقة عزيزة الموسم 1 الحلقة 4",
-      "start_utc": "2026-05-24T09:07:00Z",
-      "stop_utc": "2026-05-24T09:44:00Z",
+      "title": "ولاد العم",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:24:00Z",
       "is_live_event": false
     },
     {
@@ -10206,9 +10190,9 @@
     {
       "channel_id": "GOBX: MBC BOLLYWOOD ᴿᴬᵂ",
       "channel_name": "GOBX: MBC BOLLYWOOD ᴿᴬᵂ",
-      "title": "لحن القلوب موسم 1 حلقة 40",
-      "start_utc": "2026-05-24T08:59:00Z",
-      "stop_utc": "2026-05-24T09:39:00Z",
+      "title": "أمنية وإن تحققت موسم 1 حلقة 790",
+      "start_utc": "2026-05-24T09:39:00Z",
+      "stop_utc": "2026-05-24T10:14:00Z",
       "is_live_event": false
     },
     {
@@ -10223,7 +10207,7 @@
       "channel_id": "GOBX: MBC DRAMA ᴴᴰ",
       "channel_name": "GOBX: MBC DRAMA ᴴᴰ",
       "title": "سدف",
-      "start_utc": "2026-05-24T09:00:00Z",
+      "start_utc": "2026-05-24T09:01:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
@@ -10231,7 +10215,7 @@
       "channel_id": "GOBX: MBC DRAMA ᴿᴬᵂ",
       "channel_name": "GOBX: MBC DRAMA ᴿᴬᵂ",
       "title": "سدف",
-      "start_utc": "2026-05-24T09:00:00Z",
+      "start_utc": "2026-05-24T09:01:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
@@ -10239,7 +10223,7 @@
       "channel_id": "GOBX: MBC DRAMA+ ᴴᴰ",
       "channel_name": "GOBX: MBC DRAMA+ ᴴᴰ",
       "title": "سدف",
-      "start_utc": "2026-05-24T09:00:00Z",
+      "start_utc": "2026-05-24T09:01:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
@@ -10247,7 +10231,7 @@
       "channel_id": "GOBX: MBC DRAMA+ ᴿᴬᵂ",
       "channel_name": "GOBX: MBC DRAMA+ ᴿᴬᵂ",
       "title": "سدف",
-      "start_utc": "2026-05-24T09:00:00Z",
+      "start_utc": "2026-05-24T09:01:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
@@ -10262,7 +10246,7 @@
     {
       "channel_id": "GOBX: MBC IRAQ ᴴᴰ",
       "channel_name": "GOBX: MBC IRAQ ᴴᴰ",
-      "title": "باهار موسم 1 حلقة 44",
+      "title": "باهار",
       "start_utc": "2026-05-24T09:30:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
@@ -10270,7 +10254,7 @@
     {
       "channel_id": "GOBX: MBC IRAQ ᴿᴬᵂ",
       "channel_name": "GOBX: MBC IRAQ ᴿᴬᵂ",
-      "title": "باهار موسم 1 حلقة 44",
+      "title": "باهار",
       "start_utc": "2026-05-24T09:30:00Z",
       "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
@@ -10294,17 +10278,17 @@
     {
       "channel_id": "GOBX: MBC MASR 2 ᴴᴰ",
       "channel_name": "GOBX: MBC MASR 2 ᴴᴰ",
-      "title": "وأزهر الحب موسم 1 حلقة 4",
-      "start_utc": "2026-05-24T09:01:00Z",
-      "stop_utc": "2026-05-24T09:43:00Z",
+      "title": "وأزهر الحب",
+      "start_utc": "2026-05-24T08:50:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "GOBX: MBC MASR 2 ᴿᴬᵂ",
       "channel_name": "GOBX: MBC MASR 2 ᴿᴬᵂ",
-      "title": "وأزهر الحب موسم 1 حلقة 4",
-      "start_utc": "2026-05-24T09:01:00Z",
-      "stop_utc": "2026-05-24T09:43:00Z",
+      "title": "وأزهر الحب",
+      "start_utc": "2026-05-24T08:50:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -10318,17 +10302,17 @@
     {
       "channel_id": "GOBX: MOTORVISION ᴴᴰ",
       "channel_name": "GOBX: MOTORVISION ᴴᴰ",
-      "title": "رالي 2025",
-      "start_utc": "2026-05-24T09:20:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "بيرفكت رايد",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:15:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "GOBX: RED BULL TV ᴴᴰ",
       "channel_name": "GOBX: RED BULL TV ᴴᴰ",
       "title": "Reel Rock",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:47:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T09:52:00Z",
       "is_live_event": false
     },
     {
@@ -10407,8 +10391,16 @@
       "channel_id": "GOBX: ZOOMOO ᴴᴰ",
       "channel_name": "GOBX: ZOOMOO ᴴᴰ",
       "title": "Jelly Jamm",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
+      "channel_id": "MBC5.ae",
+      "channel_name": "GOBX| MBC 5 FHD",
+      "title": "No title available",
+      "start_utc": "2026-05-24T09:44:00Z",
+      "stop_utc": "2026-05-24T11:04:00Z",
       "is_live_event": false
     },
     {
@@ -15438,9 +15430,9 @@
     {
       "channel_id": "boomerang.uk",
       "channel_name": "NOW: BOOMERANG ᴴᴰ",
-      "title": "Scooby-Doo! and Krypto, Too! (2023)",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Grizzy and the Lemmings",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -15510,9 +15502,9 @@
     {
       "channel_id": "SkyAction.uk",
       "channel_name": "NOW: SKY ACTION ᴴᴰ",
-      "title": "Prisoner of War",
-      "start_utc": "2026-05-24T07:50:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "The Scorpion King",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
       "is_live_event": false
     },
     {
@@ -15590,17 +15582,17 @@
     {
       "channel_id": "skydrama.uk",
       "channel_name": "NOW: SKY DRAMA ᴴᴰ",
-      "title": "Drift (2023)",
-      "start_utc": "2026-05-24T07:55:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "title": "Night Call (2024)",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "skygreats.uk",
       "channel_name": "NOW: SKY GREATS ᴴᴰ",
-      "title": "First Knight (1995)",
-      "start_utc": "2026-05-24T07:35:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "Lethal Weapon (1987)",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T11:45:00Z",
       "is_live_event": false
     },
     {
@@ -15654,9 +15646,9 @@
     {
       "channel_id": "skysportsplus.uk",
       "channel_name": "NOW: SKY SPORTS+ ᴴᴰ",
-      "title": "The Sunday Supplement",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "IPL",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T14:00:00Z",
       "is_live_event": false
     },
     {
@@ -15678,9 +15670,9 @@
     {
       "channel_id": "skysport1.nz",
       "channel_name": "NZ: SKY SPORT 1 ᴿᴬᵂ",
-      "title": "PGA Tour",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Indian Premier League",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T14:00:00Z",
       "is_live_event": false
     },
     {
@@ -15734,9 +15726,9 @@
     {
       "channel_id": "skysport9.nz",
       "channel_name": "NZ: SKY SPORT 9 ᴿᴬᵂ",
-      "title": "T100 Triathlon World Tour",
-      "start_utc": "2026-05-24T05:45:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "World Surf League Championship Tour",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:15:00Z",
       "is_live_event": false
     },
     {
@@ -15871,23 +15863,23 @@
       "channel_id": "OSN: BLIPPI AND FRIENDS ᴿᴬᵂ",
       "channel_name": "OSN: BLIPPI AND FRIENDS ᴿᴬᵂ",
       "title": "بليبي",
-      "start_utc": "2026-05-24T09:25:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:32:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "OSN: BLOOMBERG ᴿᴬᵂ",
       "channel_name": "OSN: BLOOMBERG ᴿᴬᵂ",
-      "title": "Bloomberg Investigates",
+      "title": "Bloomberg RAW [OSN]",
       "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
+      "stop_utc": "2026-05-24T13:00:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "OSN: CARTOON NETWORK ᴿᴬᵂ",
       "channel_name": "OSN: CARTOON NETWORK ᴿᴬᵂ",
       "title": "The Amazing World of Gumball",
-      "start_utc": "2026-05-24T09:30:00Z",
+      "start_utc": "2026-05-24T09:31:00Z",
       "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
@@ -15990,9 +15982,9 @@
     {
       "channel_id": "OSN: HISTORY ᴿᴬᵂ",
       "channel_name": "OSN: HISTORY ᴿᴬᵂ",
-      "title": "إينشنت إيانز",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "أنشنت إليينز",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:30:00Z",
       "is_live_event": false
     },
     {
@@ -16014,17 +16006,17 @@
     {
       "channel_id": "OSN: MOTORVISION+ ᴿᴬᵂ",
       "channel_name": "OSN: MOTORVISION+ ᴿᴬᵂ",
-      "title": "رالي 2025",
-      "start_utc": "2026-05-24T09:20:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "بيرفكت رايد",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:15:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "OSN: MOVIES ACTION ᴿᴬᵂ",
       "channel_name": "OSN: MOVIES ACTION ᴿᴬᵂ",
-      "title": "The Hunger Games",
-      "start_utc": "2026-05-24T07:22:08Z",
-      "stop_utc": "2026-05-24T09:37:08Z",
+      "title": "Wrath Of Man",
+      "start_utc": "2026-05-24T09:37:08Z",
+      "stop_utc": "2026-05-24T11:37:08Z",
       "is_live_event": false
     },
     {
@@ -16286,9 +16278,9 @@
     {
       "channel_id": "PPV EVENT 03: PFL Brussels (5.23 1:30 PM ET)",
       "channel_name": "PPV Event 03: Pfl Brussels (5.23 1:30 Pm Et)",
-      "title": "Bargain Loving Brits in the Sun Cutdowns",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Happy Campers: The Caravan Park",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:35:00Z",
       "is_live_event": false
     },
     {
@@ -17502,9 +17494,9 @@
     {
       "channel_id": "hubsports5.sg",
       "channel_name": "SG: HUB SPORTS 5 ᴿᴬᵂ",
-      "title": "End of Transmission",
-      "start_utc": "2026-05-24T06:00:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "TATA Indian Premier League 2026 M69: Mumbai Indians vs Rajasthan Royals :M69: Mumbai Indians vs Rajasthan Royals",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T14:00:00Z",
       "is_live_event": false
     },
     {
@@ -17590,9 +17582,9 @@
     {
       "channel_id": "skyaction.uk",
       "channel_name": "Sky Action",
-      "title": "Prisoner Of War (2025)",
-      "start_utc": "2026-05-24T07:50:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "The Scorpion King",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
       "is_live_event": false
     },
     {
@@ -17662,17 +17654,17 @@
     {
       "channel_id": "SkyCinemaDrama.uk",
       "channel_name": "Sky Cinema Drama UK",
-      "title": "Drift",
-      "start_utc": "2026-05-24T07:55:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "title": "Night Call",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "SkyCinemaGreats.uk",
       "channel_name": "Sky Cinema Greats UK",
-      "title": "First Knight",
-      "start_utc": "2026-05-24T07:35:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "Lethal Weapon",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T11:45:00Z",
       "is_live_event": false
     },
     {
@@ -17687,8 +17679,8 @@
       "channel_id": "espn2.nz",
       "channel_name": "SKY ESPN 2 ᴿᴬᵂ",
       "title": "Stanley Cup Playoffs",
-      "start_utc": "2026-05-24T08:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
+      "start_utc": "2026-05-24T09:00:00Z",
+      "stop_utc": "2026-05-24T11:00:00Z",
       "is_live_event": false
     },
     {
@@ -17734,9 +17726,9 @@
     {
       "channel_id": "skysportsf1.uk",
       "channel_name": "Sky Sports F1",
-      "title": "F1 Academy: Race 2",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "Tribute to Alex Zanardi",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -19118,7 +19110,7 @@
     {
       "channel_id": "US: TENNIS CHANNEL PLUS 4",
       "channel_name": "Tennis Channel Plus 4 [US]",
-      "title": "Live: Sunday Brunch",
+      "title": "Sunday Brunch",
       "start_utc": "2026-05-24T09:00:00Z",
       "stop_utc": "2026-05-24T12:00:00Z",
       "is_live_event": false
@@ -20204,6 +20196,14 @@
       "is_live_event": false
     },
     {
+      "channel_id": "AlJazeeraEnglish.uk",
+      "channel_name": "UK - Al Jazeera English",
+      "title": "Counting the Cost",
+      "start_utc": "2026-05-24T09:30:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
+      "is_live_event": false
+    },
+    {
       "channel_id": "SkyCinemaFamily.uk",
       "channel_name": "UK - Sky Cinema Family",
       "title": "Bee Movie",
@@ -20318,9 +20318,9 @@
     {
       "channel_id": "UK: BBC CBEEBIES ᴿᴬᵂ",
       "channel_name": "UK: BBC CBEEBIES ᴿᴬᵂ",
-      "title": "Blue",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "title": "Nikhil & Jay",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T09:55:00Z",
       "is_live_event": false
     },
     {
@@ -20342,9 +20342,9 @@
     {
       "channel_id": "UK: BBC FOUR ᴿᴬᵂ",
       "channel_name": "UK: BBC FOUR ᴿᴬᵂ",
-      "title": "..programmes start at 7.00pm",
-      "start_utc": "2026-05-24T04:30:00Z",
-      "stop_utc": "2026-05-24T10:30:00Z",
+      "title": "This Is BBC Four",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T13:50:00Z",
       "is_live_event": false
     },
     {
@@ -20902,9 +20902,9 @@
     {
       "channel_id": "UK: BBC THREE ᴿᴬᵂ",
       "channel_name": "UK: BBC THREE ᴿᴬᵂ",
-      "title": "..programmes start at 7.00pm",
-      "start_utc": "2026-05-24T04:30:00Z",
-      "stop_utc": "2026-05-24T10:30:00Z",
+      "title": "This Is BBC THREE",
+      "start_utc": "2026-05-24T02:50:00Z",
+      "stop_utc": "2026-05-24T10:50:00Z",
       "is_live_event": false
     },
     {
@@ -20951,8 +20951,8 @@
       "channel_id": "Channel5.uk",
       "channel_name": "UK: CHANNEL 5 4K ◉",
       "title": "Happy Campers",
-      "start_utc": "2026-05-24T08:35:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:35:00Z",
       "is_live_event": false
     },
     {
@@ -21118,9 +21118,9 @@
     {
       "channel_id": "UK: HISTORY HEVC 4K",
       "channel_name": "UK: HISTORY HEVC 4K",
-      "title": "إينشنت إيانز",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "أنشنت إليينز",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T10:30:00Z",
       "is_live_event": false
     },
     {
@@ -21174,17 +21174,17 @@
     {
       "channel_id": "ITV4.uk",
       "channel_name": "UK: ITV 4 HD ◉",
-      "title": "The Car Years",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "British Touring Car Championship Live",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T17:05:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "UK: ITV 4 ᴴᴰ",
       "channel_name": "UK: ITV 4 ᴴᴰ",
-      "title": "The Car Years",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "British Touring Car Championship \t\t\t\t\t\t\t\t\t\t\t\tLIVE",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T17:05:00Z",
       "is_live_event": false
     },
     {
@@ -21294,9 +21294,9 @@
     {
       "channel_id": "UK: SKY CINEMA ACTION HEVC HD",
       "channel_name": "UK: SKY CINEMA ACTION HEVC HD",
-      "title": "Prisoner Of War (2025)",
-      "start_utc": "2026-05-24T07:50:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "The Scorpion King",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T11:30:00Z",
       "is_live_event": false
     },
     {
@@ -21430,9 +21430,9 @@
     {
       "channel_id": "UK: SKY SPORTS DARTS  ᵁᴴᴰ ³⁸⁴⁰ᴾ",
       "channel_name": "UK: SKY SPORTS DARTS  ᵁᴴᴰ ³⁸⁴⁰ᴾ",
-      "title": "F1 Academy",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:50:00Z",
+      "title": "Tribute to Alex Zanardi",
+      "start_utc": "2026-05-24T09:50:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -21686,9 +21686,9 @@
     {
       "channel_id": "ViaplaySports2.uk",
       "channel_name": "UK: VIAPLAY 2 HEVC 4K",
-      "title": "A Clean Sheet: Gabe Landeskog",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Formel 1 Highlights",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:40:00Z",
       "is_live_event": false
     },
     {
@@ -21742,9 +21742,9 @@
     {
       "channel_id": "news7whdh.us",
       "channel_name": "US: 7NEWS BOSTON (WHDH) HD",
-      "title": "Joint Relief Revolution",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Rateescape: Stop Overpaying for Cellular",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -21807,8 +21807,8 @@
       "channel_id": "US: ABC (KMGH)",
       "channel_name": "US: ABC (KMGH)",
       "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -21838,9 +21838,9 @@
     {
       "channel_id": "US: ABC (KOMO)",
       "channel_name": "US: ABC (KOMO)",
-      "title": "Seattle Refined",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "The Aging Brain",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -21886,9 +21886,9 @@
     {
       "channel_id": "US: ABC (WFAA)",
       "channel_name": "US: ABC (WFAA)",
-      "title": "Natural Blood Pressure Management",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "title": "News 8 Update",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -22126,9 +22126,9 @@
     {
       "channel_id": "US: ABC 15 (WPDE) FLORENCE",
       "channel_name": "US: ABC 15 (WPDE) FLORENCE",
-      "title": "The Aging Brain",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Paid Programming",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -22318,9 +22318,9 @@
     {
       "channel_id": "US: ABC 4 (KOMO) SEATTLE HD",
       "channel_name": "US: ABC 4 (KOMO) SEATTLE HD",
-      "title": "Seattle Refined",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "The Aging Brain",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -22399,8 +22399,8 @@
       "channel_id": "KMGH.us",
       "channel_name": "US: ABC 7 (KMGH) DENVER HD",
       "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -22446,9 +22446,9 @@
     {
       "channel_id": "WFAA.us",
       "channel_name": "US: ABC 8 (WFAA) DALLAS HD",
-      "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:10:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "title": "News 8 Update",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -22726,9 +22726,9 @@
     {
       "channel_id": "US: BLOOMBERG HD",
       "channel_name": "US: BLOOMBERG HD",
-      "title": "Bloomberg Investigates",
+      "title": "Bloomberg HD [US]",
       "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T10:00:00Z",
+      "stop_utc": "2026-05-24T13:00:00Z",
       "is_live_event": false
     },
     {
@@ -22822,9 +22822,9 @@
     {
       "channel_id": "US: CBS (KPIX) SAN FRANCISCO CALIFORNIA",
       "channel_name": "US: CBS (KPIX) SAN FRANCISCO CALIFORNIA",
-      "title": "Secret to More Energy, Better Focus & Restful Sleep",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Game Time With Boomer Esiason - Kyle Busch",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -22942,9 +22942,9 @@
     {
       "channel_id": "KOIN.us",
       "channel_name": "US: CBS (WGME) PORTLAND MAINE",
-      "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Ambulance bills could lead to bankruptcy. Protect yourself now!",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -23678,7 +23678,7 @@
     {
       "channel_id": "US: CBS 22 (WYOU) SCRANTON HD",
       "channel_name": "US: CBS 22 (WYOU) SCRANTON HD",
-      "title": "Grace & Truth Ministries",
+      "title": "Paid Programming",
       "start_utc": "2026-05-24T09:30:00Z",
       "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
@@ -23806,9 +23806,9 @@
     {
       "channel_id": "WREG.us",
       "channel_name": "US: CBS 3 (WREG) MEMPHIS HD",
-      "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:06:00Z",
-      "stop_utc": "2026-05-24T09:36:00Z",
+      "title": "Ambulance bills could lead to bankruptcy. Protect yourself now!",
+      "start_utc": "2026-05-24T09:36:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -24110,9 +24110,9 @@
     {
       "channel_id": "KPIX.us",
       "channel_name": "US: CBS 5 (KPIX) SAN FRANCISCO HD",
-      "title": "Secret to More Energy, Better Focus & Restful Sleep",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Game Time With Boomer Esiason",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -24150,9 +24150,9 @@
     {
       "channel_id": "US: CBS 5 (WNEM) BAY CITY HD",
       "channel_name": "US: CBS 5 (WNEM) BAY CITY HD",
-      "title": "Relieve your foot pain with WalkFit!",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Paid Programming",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -24206,9 +24206,9 @@
     {
       "channel_id": "US: CBS 6 (KOIN) PORTLAND HD",
       "channel_name": "US: CBS 6 (KOIN) PORTLAND HD",
-      "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Ambulance bills could lead to bankruptcy. Protect yourself now!",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -24278,17 +24278,17 @@
     {
       "channel_id": "US: CBS 7 (KIRO) SEATTLE HD",
       "channel_name": "US: CBS 7 (KIRO) SEATTLE HD",
-      "title": "The Aging Brain",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Rateescape: Stop Overpaying for Cellular",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "US: CBS 7 (KOAM) JOPLIN HD",
       "channel_name": "US: CBS 7 (KOAM) JOPLIN HD",
       "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -24358,17 +24358,17 @@
     {
       "channel_id": "US: CBS 8 (KLAS) LAS VEGAS HD",
       "channel_name": "US: CBS 8 (KLAS) LAS VEGAS HD",
-      "title": "Fast: Home Rescue - Lala's Land",
-      "start_utc": "2026-05-24T08:35:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "8 News Now Overnight",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "US: CBS 8 (KLST) SAN ANGELO HD",
       "channel_name": "US: CBS 8 (KLST) SAN ANGELO HD",
-      "title": "AgDay",
-      "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Machinery Pete",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -24518,9 +24518,9 @@
     {
       "channel_id": "US: CIRCLE TV HD",
       "channel_name": "US: CIRCLE TV HD",
-      "title": "The Abduction",
-      "start_utc": "2026-05-24T08:51:00Z",
-      "stop_utc": "2026-05-24T09:41:00Z",
+      "title": "Local Programming",
+      "start_utc": "2026-05-24T02:48:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -24639,8 +24639,8 @@
       "channel_id": "US: CW (KVCW)",
       "channel_name": "US: CW (KVCW)",
       "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -25494,9 +25494,9 @@
     {
       "channel_id": "US: FOX 2 (KHON) HONOLULU HD",
       "channel_name": "US: FOX 2 (KHON) HONOLULU HD",
-      "title": "Fear Factor: House of Fear - Stuck",
-      "start_utc": "2026-05-24T08:35:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "9-1-1 - Future Tense",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:35:00Z",
       "is_live_event": false
     },
     {
@@ -26254,9 +26254,9 @@
     {
       "channel_id": "KHON.us",
       "channel_name": "US: FOX HARTFORD (WTIC)",
-      "title": "Fear Factor: House of Fear",
-      "start_utc": "2026-05-24T08:35:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "9-1-1",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:35:00Z",
       "is_live_event": false
     },
     {
@@ -26340,7 +26340,7 @@
       "is_live_event": false
     },
     {
-      "channel_id": "US: FOX SPORTS ARIZONA HD",
+      "channel_id": "FOXSports.us",
       "channel_name": "US: FOX SPORTS ARIZONA HD",
       "title": "FOX Sports Arizona HD [US]",
       "start_utc": "2026-05-24T09:00:00Z",
@@ -26348,7 +26348,7 @@
       "is_live_event": false
     },
     {
-      "channel_id": "FOXSports.us",
+      "channel_id": "US: FOX SPORTS ARIZONA HD",
       "channel_name": "US: FOX SPORTS ARIZONA HD",
       "title": "FOX Sports Arizona HD [US]",
       "start_utc": "2026-05-24T09:00:00Z",
@@ -26447,8 +26447,8 @@
       "channel_id": "US: Game Show Central",
       "channel_name": "US: Game Show Central",
       "title": "Game Show Central",
-      "start_utc": "2026-05-24T08:16:00Z",
-      "stop_utc": "2026-05-24T12:00:00Z",
+      "start_utc": "2026-05-24T04:00:00Z",
+      "stop_utc": "2026-05-24T15:07:00Z",
       "is_live_event": false
     },
     {
@@ -26614,9 +26614,9 @@
     {
       "channel_id": "US: KIRO 7 NEWS",
       "channel_name": "US: KIRO 7 NEWS",
-      "title": "The Aging Brain",
-      "start_utc": "2026-05-24T09:05:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Rateescape: Stop Overpaying for Cellular",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:05:00Z",
       "is_live_event": false
     },
     {
@@ -27598,9 +27598,9 @@
     {
       "channel_id": "US: NBC 17 (KGET) BAKERSFIELD (D) ᴿᴬᵂ",
       "channel_name": "US: NBC 17 (KGET) BAKERSFIELD (D) ᴿᴬᵂ",
-      "title": "Open House NYC - Presents: George to the Rescue -- Zaki",
-      "start_utc": "2026-05-24T09:06:00Z",
-      "stop_utc": "2026-05-24T09:34:00Z",
+      "title": "Fast: Home Rescue - Vintage Country",
+      "start_utc": "2026-05-24T09:34:00Z",
+      "stop_utc": "2026-05-24T10:30:00Z",
       "is_live_event": false
     },
     {
@@ -27750,9 +27750,9 @@
     {
       "channel_id": "US: NBC 21 (KNBN) RAPID CITY (D) ᴿᴬᵂ",
       "channel_name": "US: NBC 21 (KNBN) RAPID CITY (D) ᴿᴬᵂ",
-      "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:06:00Z",
-      "stop_utc": "2026-05-24T09:36:00Z",
+      "title": "OFF AIR",
+      "start_utc": "2026-05-24T09:36:00Z",
+      "stop_utc": "2026-05-24T11:00:00Z",
       "is_live_event": false
     },
     {
@@ -27830,9 +27830,9 @@
     {
       "channel_id": "US: NBC 24 (KSEE) FRESNO/VISALIA (D) ᴿᴬᵂ",
       "channel_name": "US: NBC 24 (KSEE) FRESNO/VISALIA (D) ᴿᴬᵂ",
-      "title": "Paid Programming",
-      "start_utc": "2026-05-24T09:03:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "1st Look - Destination Türkiye's Turquoise Coast",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T10:02:00Z",
       "is_live_event": false
     },
     {
@@ -27910,9 +27910,9 @@
     {
       "channel_id": "US: NBC 3 (KCRA) SACRAMENTO (A) ᴿᴬᵂ",
       "channel_name": "US: NBC 3 (KCRA) SACRAMENTO (A) ᴿᴬᵂ",
-      "title": "Pain Relief Revealed",
-      "start_utc": "2026-05-24T08:33:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "1st Look - Destination Türkiye's Turquoise Coast",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T10:02:00Z",
       "is_live_event": false
     },
     {
@@ -28566,9 +28566,9 @@
     {
       "channel_id": "US: NBC 6 (KMIR) PALM SPRINGS (H) ᴿᴬᵂ",
       "channel_name": "US: NBC 6 (KMIR) PALM SPRINGS (H) ᴿᴬᵂ",
-      "title": "Open House NYC - Presents: George to the Rescue -- Zaki",
-      "start_utc": "2026-05-24T09:07:00Z",
-      "stop_utc": "2026-05-24T09:35:00Z",
+      "title": "Paid Programming",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -28830,9 +28830,9 @@
     {
       "channel_id": "US: NBC 8 (KULR) BILLINGS (D) ᴿᴬᵂ",
       "channel_name": "US: NBC 8 (KULR) BILLINGS (D) ᴿᴬᵂ",
-      "title": "Chicago Fire - A Closer Eye",
-      "start_utc": "2026-05-24T08:33:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "Family Feud Favorites",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T10:03:00Z",
       "is_live_event": false
     },
     {
@@ -28878,17 +28878,17 @@
     {
       "channel_id": "US: NBC 9 (KTSM) EL PASO (H) ᴿᴬᵂ",
       "channel_name": "US: NBC 9 (KTSM) EL PASO (H) ᴿᴬᵂ",
-      "title": "Expedition Texas",
-      "start_utc": "2026-05-24T09:03:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "Paid Programming",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T10:03:00Z",
       "is_live_event": false
     },
     {
       "channel_id": "US: NBC 9 (KUSA) DENVER (H) ᴿᴬᵂ",
       "channel_name": "US: NBC 9 (KUSA) DENVER (H) ᴿᴬᵂ",
-      "title": "Entertainment Tonight",
-      "start_utc": "2026-05-24T08:33:00Z",
-      "stop_utc": "2026-05-24T09:33:00Z",
+      "title": "The American Athlete",
+      "start_utc": "2026-05-24T09:33:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -29343,8 +29343,8 @@
       "channel_id": "US: RED BULL TV HD",
       "channel_name": "US: RED BULL TV HD",
       "title": "Reel Rock",
-      "start_utc": "2026-05-24T09:30:00Z",
-      "stop_utc": "2026-05-24T09:47:00Z",
+      "start_utc": "2026-05-24T09:35:00Z",
+      "stop_utc": "2026-05-24T09:52:00Z",
       "is_live_event": false
     },
     {
@@ -29382,8 +29382,8 @@
     {
       "channel_id": "US: RT NEWS HD",
       "channel_name": "US: RT NEWS HD",
-      "title": "Current Affairs Round Up",
-      "start_utc": "2026-05-24T09:00:00Z",
+      "title": "The Camilla Tominey Show",
+      "start_utc": "2026-05-24T08:30:00Z",
       "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
@@ -29454,9 +29454,9 @@
     {
       "channel_id": "US: SPECTRUM NEWS 1 - (KENTUCKY) - COVINGTON ᴴᴰ",
       "channel_name": "US: SPECTRUM NEWS 1 - (KENTUCKY) - COVINGTON ᴴᴰ",
-      "title": "Your Morning News on Spectrum News 1 - Kentucky",
+      "title": "Weekend Edition of Inside the Issues",
       "start_utc": "2026-05-24T09:00:00Z",
-      "stop_utc": "2026-05-24T13:00:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -29550,7 +29550,7 @@
     {
       "channel_id": "US: SPECTRUM NEWS 1 OHIO ᴴᴰ",
       "channel_name": "US: SPECTRUM NEWS 1 OHIO ᴴᴰ",
-      "title": "All Sides",
+      "title": "Weekend Edition of Inside the Issues",
       "start_utc": "2026-05-24T09:00:00Z",
       "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
@@ -29743,8 +29743,8 @@
       "channel_id": "US: TEEN NICK",
       "channel_name": "US: TEEN NICK",
       "title": "The Loud House",
-      "start_utc": "2026-05-24T09:12:00Z",
-      "stop_utc": "2026-05-24T09:36:00Z",
+      "start_utc": "2026-05-24T09:36:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -29831,8 +29831,8 @@
       "channel_id": "TVOne.us",
       "channel_name": "US: TV ONE HD",
       "title": "Love That Girl",
-      "start_utc": "2026-05-24T09:20:00Z",
-      "stop_utc": "2026-05-24T09:40:00Z",
+      "start_utc": "2026-05-24T09:40:00Z",
+      "stop_utc": "2026-05-24T10:00:00Z",
       "is_live_event": false
     },
     {
@@ -29950,9 +29950,9 @@
     {
       "channel_id": "FL: VIASAT SPORT 2 SUOMI ᴿᴬᵂ",
       "channel_name": "Viasat Sport 2 Suomi RAW [FL]",
-      "title": "Настольный теннис Женщины. Лига Чемпионов 2025/26. Финал Четырех. 1-й полуфинал. Картахена (Испания) - Метц (Фр",
-      "start_utc": "2026-05-24T07:15:00Z",
-      "stop_utc": "2026-05-24T09:45:00Z",
+      "title": "Настольный теннис Женщины. Лига Чемпионов 2025/26. Финал Четырех. 2-й полуфинал.Тарнобжег (Польша) - Берлин ис",
+      "start_utc": "2026-05-24T09:45:00Z",
+      "stop_utc": "2026-05-24T12:50:00Z",
       "is_live_event": false
     },
     {
