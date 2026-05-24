@@ -1,23 +1,15 @@
 IPTV — Auto-generated playlist + EPG bundle
 ==================================================
 
-Generated: 2026-05-24T09:52:26Z
+Generated: 2026-05-24T10:28:26Z
 Channels: 4140    Favorites: 253
 
 MAIN URLS (paste into your player)
 --------------------------------------------------
 Playlist:  https://al7omed.github.io/iptv-epg-all/TD53-RIJgDGGJ67_Xxa0CLIfTW5TOmpV/playlist.m3u
 Favorites: https://al7omed.github.io/iptv-epg-all/TD53-RIJgDGGJ67_Xxa0CLIfTW5TOmpV/favorites.m3u
-EPG (recommended, smaller, faster): https://al7omed.github.io/iptv-epg-all/guide-lite.xml.gz
-
-REGION-SPECIFIC EPG (advanced — mix multiple sub-playlists)
---------------------------------------------------
-beIN MENA only: https://al7omed.github.io/iptv-epg-all/guide-bein.xml.gz
-Sports cats:    https://al7omed.github.io/iptv-epg-all/guide-sports.xml.gz
-Arabic (+beIN): https://al7omed.github.io/iptv-epg-all/guide-ar.xml.gz
-UK only:        https://al7omed.github.io/iptv-epg-all/guide-uk.xml.gz
-US only:        https://al7omed.github.io/iptv-epg-all/guide-us.xml.gz
-All channels:   https://al7omed.github.io/iptv-epg-all/guide.xml.gz
+EPG (lite — next 24h, ~2MB, recommended): https://al7omed.github.io/iptv-epg-all/guide-lite.xml.gz
+EPG (full — entire schedule, ~11MB):      https://al7omed.github.io/iptv-epg-all/guide.xml.gz
 
 DATA
 --------------------------------------------------
