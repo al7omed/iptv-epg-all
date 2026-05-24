@@ -1180,8 +1180,6 @@ ALLOWED_CATEGORIES_ORDER = [
     "UK| DOCUMENTARY ʰᵉᵛᶜ",
     "UK| DOCUMENTARY ᴴᴰ/ᴿᴬᵂ",    # Discovery +1, Investigation Discovery +1
     "UK| DISCOVERY+ ᴴᴰ/ᴿᴬᵂ",
-    "UK| KIDS ʰᵉᵛᶜ",             # Sky Kids HEVC / Nick HEVC / Disney Jr HEVC
-    "UK| KIDS ᴴᴰ/ᴿᴬᵂ",           # Disney Channel / Nickelodeon / Cartoon Network
 
     # ───────────── 9. US — sports + events ─────────────
     "US| SPORT ᴴᴰ/ᴿᴬᵂ ⁶⁰ᶠᵖˢ",
@@ -1249,7 +1247,6 @@ CATEGORY_EMOJI = {
     "UK — ITV X":                        "📺",
     "UK — NOW TV Entertainment":         "🎬",
     "UK — General":                      "📺",
-    "UK — Kids":                         "🧒",
     "UK — News":                         "📰",
     "UK — Documentary":                  "🎥",
     "UK — Discovery+":                   "🌍",
@@ -2755,6 +2752,38 @@ def main():
               f"(removed {removed_n} dummies, +{len(rescued_progs)} real programmes)")
     else:
         print(f"      no rescue matches (all dummy-only channels stay as dummies)")
+
+    # ---------- English-only filter ----------
+    # User policy: every programme TITLE/DESC must be English. Provider /
+    # upstream / rescue sources sometimes route Arabic-only schedule data
+    # to non-Arabic channels (the obvious case: 'UK — History Channel'
+    # ends up with Arabic OSN-MENA titles because that's the only feed
+    # containing 'History' for that canonical name). Drop programmes
+    # whose title contains Arabic / Hebrew / CJK / Cyrillic script chunks
+    # — the gap-fill pass below will replace them with English dummies
+    # using the channel's display-name.
+    print(f"[5c.4]  English-only filter")
+    NON_ENGLISH_TITLE_RE = re.compile(
+        # Match a <title> element whose text contains any of:
+        #   • Arabic block U+0600-U+06FF      → UTF-8 [\xD8-\xDB][\x80-\xBF]
+        #   • Hebrew block U+0590-U+05FF      → UTF-8 \xD7[\x90-\xBF]
+        #   • Cyrillic block U+0400-U+04FF    → UTF-8 [\xD0-\xD3][\x80-\xBF]
+        #   • CJK Unified U+4E00-U+9FFF       → UTF-8 [\xE4-\xE9][\x80-\xBF][\x80-\xBF]
+        #     (start byte 0xE4-0xE9 covers most CJK; narrower than 0xE2-0xEF
+        #      so it skips em-dash / typographic punctuation we DO use)
+        rb'<title\b[^>]*>[^<]*(?:'
+        rb'[\xd0-\xd3][\x80-\xbf]'              # Cyrillic
+        rb'|\xd7[\x90-\xbf]'                     # Hebrew
+        rb'|[\xd8-\xdb][\x80-\xbf]'              # Arabic + Persian/Farsi
+        rb'|[\xe4-\xe9][\x80-\xbf][\x80-\xbf]'   # CJK
+        rb')',
+        re.IGNORECASE,
+    )
+    before_n = len(kept_programmes)
+    kept_programmes = [p for p in kept_programmes if not NON_ENGLISH_TITLE_RE.search(p)]
+    dropped_n = before_n - len(kept_programmes)
+    print(f"      dropped {dropped_n} programmes with non-English titles "
+          f"(Arabic/Hebrew/CJK/Cyrillic in <title>) — gap-fill will replace")
 
     # ---------- gap-fill pass ----------
     # Channels with REAL EPG sometimes have coverage gaps (e.g. provider EPG
