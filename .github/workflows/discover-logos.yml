@@ -1,0 +1,73 @@
+name: Discover channel logos
+
+# Weekly refresh of channels/logo_overrides.tsv with newly-discovered
+# high-res logos from TVMaze + Wikipedia. The hourly update-epg.yml
+# workflow consumes that file as-is — this one just appends new entries.
+
+on:
+  schedule:
+    # Sundays at 06:00 UTC (off-peak; doesn't collide with hourly EPG)
+    - cron: '0 6 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discover-logos
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      M3U_URL_1: ${{ secrets.M3U_URL_1 }}
+      M3U_URL_2: ${{ secrets.M3U_URL_2 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch live M3U sources
+        run: |
+          mkdir -p epg-work
+          set +e
+          curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
+            "$M3U_URL_1" -o epg-work/m3u_sub1.m3u
+          curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
+            "$M3U_URL_2" -o epg-work/m3u_sub2.m3u || \
+            echo "#EXTM3U" > epg-work/m3u_sub2.m3u
+          echo "sub1: $(grep -c '^#EXTINF' epg-work/m3u_sub1.m3u) channels"
+          echo "sub2: $(grep -c '^#EXTINF' epg-work/m3u_sub2.m3u) channels"
+
+      - name: Run discover_logos
+        run: |
+          # Cap lookups per run so we don't smash TVMaze/Wikipedia in case
+          # the M3U has grown massively. The cap auto-resumes on the next
+          # weekly run from where we left off (existing entries are skipped).
+          python3 scripts/discover_logos.py --limit 1500
+
+      - name: Commit + push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet channels/logo_overrides.tsv; then
+            echo "No new logos discovered this week"
+            exit 0
+          fi
+          git add channels/logo_overrides.tsv
+          git commit -m "Auto-discover new channel logos $(date -u +%Y-%m-%d)"
+          for attempt in 1 2 3 4 5; do
+            if git push; then echo "push OK"; break; fi
+            git fetch origin main
+            git reset --soft origin/main
+            git add channels/logo_overrides.tsv
+            git diff --staged --quiet && { echo "no diff vs main"; break; }
+            git commit -m "Auto-discover new channel logos $(date -u +%Y-%m-%d)"
+            sleep 5
+          done
