@@ -5050,11 +5050,19 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1954312.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1954312.ts"
   ],
-  "next | mx2 race 2 | sun 24 may 14:0 utc | exclusive | uk: mxgp ppv 3": [
+  "ended | mx2 race 1 | sun 24 may 11:0 utc | exclusive | uk: mxgp ppv 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538591.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538591.ts"
+  ],
+  "ended | mxgp race 1 | sun 24 may 12:0 utc | exclusive | uk: mxgp ppv 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538590.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538590.ts"
+  ],
+  "ended | mx2 race 2 | sun 24 may 14:0 utc | exclusive | uk: mxgp ppv 3": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538589.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538589.ts"
   ],
-  "next | mxgp race 2 | sun 24 may 15:0 utc | exclusive | uk: mxgp ppv 4": [
+  "ended | mxgp race 2 | sun 24 may 15:0 utc | exclusive | uk: mxgp ppv 4": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538588.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538588.ts"
   ],
@@ -5062,27 +5070,123 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1627858.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1627858.ts"
   ],
-  "live | karen khachanov - arthur gea | sun 24 may 4:55 edt | exclusive | us: max ppv 4": [
+  "live | sporting gijón vs. almeria | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 17": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924713.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924713.ts"
+  ],
+  "next | big east baseball championship (championship (if necessary)) | sun 24 may 13:0 edt | exclusive | us: espn+ ppv 18": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924712.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924712.ts"
+  ],
+  "next | the cj cup byron nelson: featured hole #14 (final round) | sun 24 may 13:0 edt | exclusive | us: espn+ ppv 19": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924711.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924711.ts"
+  ],
+  "next | the cj cup byron nelson: spieth featured group (final round) | sun 24 may 13:0 edt | exclusive | us: espn+ ppv 20": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924710.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924710.ts"
+  ],
+  "next | the cj cup byron nelson: featured hole #17 (final round) | sun 24 may 13:0 edt | exclusive | us: espn+ ppv 21": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924709.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924709.ts"
+  ],
+  "next | the cj cup byron nelson: finau featured group (final round) | sun 24 may 13:0 edt | exclusive | us: espn+ ppv 22": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924708.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924708.ts"
+  ],
+  "next | little rock vs. eastern illinois (championship (if necessary)) | sun 24 may 13:0 edt | exclusive | us: espn+ ppv 23": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924707.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924707.ts"
+  ],
+  "next | sun belt baseball championship (championship) | sun 24 may 14:0 edt | exclusive | us: espn+ ppv 26": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924704.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924704.ts"
+  ],
+  "next | southern illinois vs. uic (championship) | sun 24 may 14:0 edt | exclusive | us: espn+ ppv 27": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924703.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924703.ts"
+  ],
+  "next | longwood vs. south carolina upstate (championship) | sun 24 may 14:0 edt | exclusive | us: espn+ ppv 28": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924702.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924702.ts"
+  ],
+  "next | ncaa women's lacrosse championships trophy presentation | sun 24 may 14:0 edt | exclusive | us: espn+ ppv 29": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924701.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924701.ts"
+  ],
+  "next | fairleigh dickinson vs. long island university (game 7 (if necessary)) | sun 24 may 14:30 edt | exclusive | us: espn+ ppv 30": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924700.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924700.ts"
+  ],
+  "next | american conference baseball championship trophy presentation (trophy presentation) | sun 24 may 15:0 edt | exclusive | us: espn+ ppv 32": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924698.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924698.ts"
+  ],
+  "next | big west baseball championship (championship game (if necessary)) | sun 24 may 15:0 edt | exclusive | us: espn+ ppv 33": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924697.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924697.ts"
+  ],
+  "next | 2026 wsl championship tour: corona cero new zealand pro | sun 24 may 15:30 edt | exclusive | us: espn+ ppv 34": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924696.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924696.ts"
+  ],
+  "next | chicago hounds vs. seattle seawolves | sun 24 may 16:0 edt | exclusive | us: espn+ ppv 35": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924695.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924695.ts"
+  ],
+  "next | big south baseball championship (championship game - if necessary) | sun 24 may 16:0 edt | exclusive | us: espn+ ppv 36": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924694.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924694.ts"
+  ],
+  "next | maac baseball championship (championship (if necessary)) | sun 24 may 16:0 edt | exclusive | us: espn+ ppv 37": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924693.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924693.ts"
+  ],
+  "next | njcaa baseball tournament (elimination game) | sun 24 may 16:0 edt | exclusive | us: espn+ ppv 38": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924692.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924692.ts"
+  ],
+  "next | bay fc vs. chicago stars | sun 24 may 17:0 edt | exclusive | us: espn+ ppv 39": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924691.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924691.ts"
+  ],
+  "next | uic vs. southern illinois (championship (if necessary)) | sun 24 may 17:30 edt | exclusive | us: espn+ ppv 40": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924690.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924690.ts"
+  ],
+  "next | calgary wild fc vs. halifax tides fc | sun 24 may 18:55 edt | exclusive | us: espn+ ppv 41": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924689.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924689.ts"
+  ],
+  "live | rhode island vs. vcu (championship) | sun 24 may 12:1 edt | exclusive | us: espn+ ppv 42": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924688.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924688.ts"
+  ],
+  "next | harford community college vs. seminole state (elimination game) | sun 24 may 16:0 edt | exclusive | us: espn+ ppv 43": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924687.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924687.ts"
+  ],
+  "ended | karen khachanov - arthur gea | sun 24 may 4:55 edt | exclusive | us: max ppv 4": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941721.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941721.ts"
   ],
-  "live | lucia bronzetti - marie bouzková | sun 24 may 4:55 edt | exclusive | us: max ppv 5": [
+  "ended | lucia bronzetti - marie bouzková | sun 24 may 4:55 edt | exclusive | us: max ppv 5": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941720.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941720.ts"
   ],
-  "live | miomir kecmanovic - fábián marozsán | sun 24 may 4:55 edt | exclusive | us: max ppv 6": [
+  "ended | miomir kecmanovic - fábián marozsán | sun 24 may 4:55 edt | exclusive | us: max ppv 6": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941719.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941719.ts"
   ],
-  "live | alejandro davidovich - damir džumhur | sun 24 may 4:55 edt | exclusive | us: max ppv 7": [
+  "ended | alejandro davidovich - damir džumhur | sun 24 may 4:55 edt | exclusive | us: max ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941718.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941718.ts"
   ],
-  "live | pablo llamas ruiz - thiago tirante | sun 24 may 4:55 edt | exclusive | us: max ppv 8": [
+  "ended | pablo llamas ruiz - thiago tirante | sun 24 may 4:55 edt | exclusive | us: max ppv 8": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941717.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941717.ts"
   ],
-  "live | lilli tagger - wang xinyu | sun 24 may 4:55 edt | exclusive | us: max ppv 9": [
+  "ended | lilli tagger - wang xinyu | sun 24 may 4:55 edt | exclusive | us: max ppv 9": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941716.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941716.ts"
   ],
@@ -5090,69 +5194,109 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941715.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941715.ts"
   ],
-  "live | ajla tomljanovic vs. caty mcnally | sun 24 may 5:0 edt | exclusive | us: max ppv 11": [
+  "ended | ajla tomljanovic vs. caty mcnally | sun 24 may 5:0 edt | exclusive | us: max ppv 11": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941714.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941714.ts"
   ],
-  "live | uci cross-country olympic world cup | women elite | nové město | sun 24 may 5:30 edt | exclusive | us: max ppv 12": [
+  "ended | uci cross-country olympic world cup | women elite | nové město | sun 24 may 5:30 edt | exclusive | us: max ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941713.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941713.ts"
   ],
-  "live | sinja kraus - belinda bencic | sun 24 may 5:55 edt | exclusive | us: max ppv 13": [
+  "ended | sinja kraus - belinda bencic | sun 24 may 5:55 edt | exclusive | us: max ppv 13": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941712.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941712.ts"
   ],
-  "live | kyrian jacquet - marco trungelliti | sun 24 may 6:29 edt | exclusive | us: max ppv 18": [
+  "ended | danka kovinic - wang xiyu | sun 24 may 7:40 edt | exclusive | us: max ppv 16": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941709.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941709.ts"
+  ],
+  "ended | hailey baptiste (26) vs. barbora krejcikova | sun 24 may 8:10 edt | exclusive | us: max ppv 17": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941708.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941708.ts"
+  ],
+  "ended | kyrian jacquet - marco trungelliti | sun 24 may 6:29 edt | exclusive | us: max ppv 18": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941707.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941707.ts"
   ],
-  "live | katie volynets - clara burel | sun 24 may 6:36 edt | exclusive | us: max ppv 20": [
+  "ended | tereza valentová - magda linette | sun 24 may 7:56 edt | exclusive | us: max ppv 19": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941706.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941706.ts"
+  ],
+  "ended | katie volynets - clara burel | sun 24 may 6:36 edt | exclusive | us: max ppv 20": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941705.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941705.ts"
   ],
-  "live | tomáš machác - zizou bergs | sun 24 may 6:24 edt | exclusive | us: max ppv 21": [
+  "ended | tomáš machác - zizou bergs | sun 24 may 6:24 edt | exclusive | us: max ppv 21": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941704.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941704.ts"
   ],
-  "next | vuelta a burgos feminas | stage 4 | sun 24 may 8:30 edt | exclusive | us: max ppv 27": [
+  "live | francesca jones - beatriz haddad maia | sun 24 may 9:24 edt | exclusive | us: max ppv 22": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941703.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941703.ts"
+  ],
+  "ended | anna blinkova - yuliia starodubtseva | sun 24 may 7:27 edt | exclusive | us: max ppv 24": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941701.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941701.ts"
+  ],
+  "ended | multiscreen | sun 24 may 7:54 edt | exclusive | us: max ppv 25": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941700.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941700.ts"
+  ],
+  "ended | vuelta a burgos feminas | stage 4 | sun 24 may 8:30 edt | exclusive | us: max ppv 27": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941698.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941698.ts"
   ],
-  "next | uci cross-country olympic world cup | men elite | nové město | sun 24 may 8:30 edt | exclusive | us: max ppv 28": [
+  "ended | uci cross-country olympic world cup | men elite | nové město | sun 24 may 8:30 edt | exclusive | us: max ppv 28": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941697.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941697.ts"
   ],
-  "next | antwerp port epic | sun 24 may 9:0 edt | exclusive | us: max ppv 30": [
+  "ended | benjamin bonzi - alexander zverev | sun 24 may 7:50 edt | exclusive | us: max ppv 29": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941696.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941696.ts"
+  ],
+  "live | antwerp port epic | sun 24 may 9:0 edt | exclusive | us: max ppv 30": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941695.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941695.ts"
   ],
-  "next | taylor fritz (26) vs. nishesh baravareddy | sun 24 may 10:0 edt | exclusive | us: max ppv 31": [
+  "live | taylor fritz (26) vs. nishesh baravareddy | sun 24 may 10:0 edt | exclusive | us: max ppv 31": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941694.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941694.ts"
   ],
-  "next | federico cinà - reilly opelka | sun 24 may 8:59 edt | exclusive | us: max ppv 32": [
+  "live | federico cinà - reilly opelka | sun 24 may 8:36 edt | exclusive | us: max ppv 32": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941693.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941693.ts"
-  ],
-  "next | joao fonseca (28) vs. luka pavlovic | sun 24 may 12:30 edt | exclusive | us: max ppv 33": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941692.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941692.ts"
   ],
   "next | novak djokovic (3) vs. giovanni mpetshi perricard | sun 24 may 14:0 edt | exclusive | us: max ppv 34": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941691.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941691.ts"
   ],
-  "next | taylor fritz (7) vs. nishesh baravareddy | sun 24 may 10:0 edt | exclusive | us: max ppv 35": [
+  "live | taylor fritz (7) vs. nishesh baravareddy | sun 24 may 10:0 edt | exclusive | us: max ppv 35": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941690.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941690.ts"
   ],
-  "next | magdalena frech - elena-gabriela ruse | sun 24 may 8:54 edt | exclusive | us: max ppv 38": [
+  "live | sofia kenin - peyton stearns | sun 24 may 12:23 edt | exclusive | us: max ppv 37": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941688.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941688.ts"
+  ],
+  "live | magdalena frech - elena-gabriela ruse | sun 24 may 9:56 edt | exclusive | us: max ppv 38": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941687.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941687.ts"
   ],
-  "next | titouan droguet - jakub menšík | sun 24 may 9:6 edt | exclusive | us: max ppv 40": [
+  "live | michael zheng - dino prižmic | sun 24 may 9:16 edt | exclusive | us: max ppv 39": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941686.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941686.ts"
+  ],
+  "ended | titouan droguet - jakub menšík | sun 24 may 8:29 edt | exclusive | us: max ppv 40": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941685.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941685.ts"
+  ],
+  "next | columbus vs. atlanta | sun 24 may 16:30 edt | exclusive | us: mls ppv 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1021728.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1021728.ts"
+  ],
+  "next | miami vs. philadelphia | sun 24 may 19:0 edt | exclusive | us: mls ppv 2": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1021727.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1021727.ts"
   ],
   "next | nhl vegas - colorado | sun 24 may 20:5 edt | exclusive | us: viaplay ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1126470.ts",
@@ -7241,11 +7385,11 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1500741.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1500741.ts"
   ],
-  "dirtvision 1 : cedar lake speedway 6:30 pm": [
+  "dirtvision 1 : weedsport speedway 4:45 pm": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605372.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605372.ts"
   ],
-  "dirtvision 2 : knoxville raceway 7:15 pm": [
+  "dirtvision 2 : huset's speedway 7:15 pm": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605371.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605371.ts"
   ],
@@ -7305,23 +7449,27 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525383.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525383.ts"
   ],
-  "next | crystal palace vs. arsenal | all | 24-5-2026 | 7:0 (gmt) | exclusive | us: soccer ppv 23": [
+  "live | crystal palace vs. arsenal | all | exclusive | us: soccer ppv 23": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940134.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940134.ts"
   ],
-  "next | nottingham forest vs. bournemouth | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 32": [
+  "live | nottingham forest vs. bournemouth | all | exclusive | us: soccer ppv 32": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940125.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940125.ts"
+  ],
+  "end | kovinić vs. wang | all | 24-5-2026 | 4:35 (gmt) | exclusive | us: soccer ppv 30": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940127.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940127.ts"
   ],
   "end | australia vs. malawi | fifa women's series | 2026-4-11 | 11:0 (gmt) | exclusive | ma: dazn ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892967.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892967.ts"
   ],
-  "next | ifl cup: new mexico vs. orlando | all | 24-5-2026 | 9:0 (gmt) | exclusive | us: soccer ppv 68": [
+  "live | ifl cup: new mexico vs. orlando | all | exclusive | us: soccer ppv 68": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940089.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940089.ts"
   ],
-  "next | vallelunga - race 4 | all | 24-5-2026 | 6:40 (gmt) | exclusive | us: soccer ppv 54": [
+  "end | vallelunga - race 4 | all | 24-5-2026 | 6:40 (gmt) | exclusive | us: soccer ppv 54": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940103.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940103.ts"
   ],
@@ -7333,25 +7481,29 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899901.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899901.ts"
   ],
-  "live | tagger vs. wang | all | exclusive | us: soccer ppv 14": [
+  "end | tagger vs. wang | all | 24-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 14": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940143.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940143.ts"
+  ],
+  "end | valentova vs. linette | all | 24-5-2026 | 4:51 (gmt) | exclusive | us: soccer ppv 40": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940117.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940117.ts"
+  ],
+  "next | argentine primera division soccer | all | 24-5-2026 | 11:15 (gmt) | exclusive | us: soccer ppv 94": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940063.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940063.ts"
   ],
   "end | hokkaido nippon-ham fighters vs. fukuoka softbank hawks | all | 24-5-2026 | 21:55 (gmt) | exclusive | us: soccer ppv 6": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940151.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940151.ts"
   ],
-  "next | manchester city vs. aston villa | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 24": [
+  "live | manchester city vs. aston villa | all | exclusive | us: soccer ppv 24": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940133.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940133.ts"
   ],
-  "next | brighton vs. manchester united | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 25": [
+  "live | brighton vs. manchester united | all | exclusive | us: soccer ppv 25": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940132.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940132.ts"
-  ],
-  "next | north carolina education lottery 200 | all | 24-5-2026 | 7:0 (gmt) | exclusive | us: soccer ppv 60": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940097.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940097.ts"
   ],
   "end | michael zheng - dino prižmic | all | 24-5-2026 | 6:55 (gmt) | exclusive | us: soccer ppv 48": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940109.ts",
@@ -7361,7 +7513,11 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1900000.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1900000.ts"
   ],
-  "next | fulham vs. newcastle | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 28": [
+  "next | canada: race (sky sports) | all | 24-5-2026 | 11:30 (gmt) | exclusive | us: soccer ppv 95": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940062.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940062.ts"
+  ],
+  "live | fulham vs. newcastle | all | exclusive | us: soccer ppv 28": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940129.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940129.ts"
   ],
@@ -7369,27 +7525,51 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940154.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940154.ts"
   ],
-  "next | joventut vs. cb san pablo burgos | all | 24-5-2026 | 8:45 (gmt) | exclusive | us: soccer ppv 63": [
+  "next | mlb sunday stretch: 5.24.26 | all | 24-5-2026 | 11:30 (gmt) | exclusive | us: soccer ppv 96": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940061.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940061.ts"
+  ],
+  "live | joventut vs. cb san pablo burgos | all | exclusive | us: soccer ppv 63": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940094.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940094.ts"
   ],
-  "live | indian premier league 2026 - 69th match - mumbai indians vs rajasthan royals | all | exclusive | us: soccer ppv 7": [
+  "end | red bull cliff diving 2026: round 1 - bali | all | 24-5-2026 | 4:57 (gmt) | exclusive | us: soccer ppv 52": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940105.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940105.ts"
+  ],
+  "end | bolton wanderers vs. stockport county | all | 24-5-2026 | 4:25 (gmt) | exclusive | us: soccer ppv 31": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940126.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940126.ts"
+  ],
+  "live | frenchęch vs. ruse | all | exclusive | us: soccer ppv 37": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940120.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940120.ts"
+  ],
+  "end | indian premier league 2026 - 69th match - mumbai indians vs rajasthan royals | all | 24-5-2026 | 2:0 (gmt) | exclusive | us: soccer ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940150.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940150.ts"
+  ],
+  "live | live: soudal open day 4 | all | exclusive | us: soccer ppv 18": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940139.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940139.ts"
   ],
   "end | federico cinà - reilly opelka | all | 24-5-2026 | 6:55 (gmt) | exclusive | us: soccer ppv 41": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940116.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940116.ts"
   ],
+  "live | raducanu vs. sierra | all | exclusive | us: soccer ppv 45": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940112.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940112.ts"
+  ],
   "end | pablo llamas ruiz - thiago tirante | all | 24-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 16": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940141.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940141.ts"
   ],
-  "next | antwerp port epic ladies - women's road race | all | 24-5-2026 | 6:0 (gmt) | exclusive | us: soccer ppv 58": [
+  "end | antwerp port epic ladies - women's road race | all | 24-5-2026 | 6:0 (gmt) | exclusive | us: soccer ppv 58": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940099.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940099.ts"
   ],
-  "next | burnley vs. wolves | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 27": [
+  "live | burnley vs. wolves | all | exclusive | us: soccer ppv 27": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940130.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940130.ts"
   ],
@@ -7397,11 +7577,11 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940144.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940144.ts"
   ],
-  "live | stage 15 | all | exclusive | us: soccer ppv 21": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940136.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940136.ts"
+  "end | bronzetti vs. bouzková | all | 24-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940146.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940146.ts"
   ],
-  "next | kolkata knight riders vs. delhi capitals | all | 24-5-2026 | 7:0 (gmt) | exclusive | us: soccer ppv 46": [
+  "live | kolkata knight riders vs. delhi capitals | all | exclusive | us: soccer ppv 46": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940111.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940111.ts"
   ],
@@ -7421,15 +7601,19 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892964.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892964.ts"
   ],
-  "next | sunderland vs. chelsea | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 26": [
+  "next | goal zone: championship sunday | all | 24-5-2026 | 10:0 (gmt) | exclusive | us: soccer ppv 78": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940079.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940079.ts"
+  ],
+  "live | sunderland vs. chelsea | all | exclusive | us: soccer ppv 26": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940131.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940131.ts"
   ],
-  "live | kraus vs. bencic | all | exclusive | us: soccer ppv 15": [
+  "end | kraus vs. bencic | all | 24-5-2026 | 2:50 (gmt) | exclusive | us: soccer ppv 15": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940142.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940142.ts"
   ],
-  "next | andreeva vs. ferro | all | 24-5-2026 | 7:55 (gmt) | exclusive | us: soccer ppv 44": [
+  "live | andreeva vs. ferro | all | exclusive | us: soccer ppv 44": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940113.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940113.ts"
   ],
@@ -7437,7 +7621,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940153.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940153.ts"
   ],
-  "live | volynets vs. burel | all | exclusive | us: soccer ppv 42": [
+  "end | volynets vs. burel | all | 24-5-2026 | 3:31 (gmt) | exclusive | us: soccer ppv 42": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940115.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940115.ts"
   ],
@@ -7449,19 +7633,27 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892965.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892965.ts"
   ],
-  "next | napoli vs. udinese | all | 24-5-2026 | 8:45 (gmt) | exclusive | us: soccer ppv 62": [
+  "live | napoli vs. udinese | all | exclusive | us: soccer ppv 62": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940095.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940095.ts"
   ],
-  "live | t20 blast 2026 - middlesex vs surrey | all | exclusive | us: soccer ppv 56": [
+  "end | kostyuk vs. selekhmeteva | all | 24-5-2026 | 1:50 (gmt) | exclusive | us: soccer ppv 10": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940147.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940147.ts"
+  ],
+  "live | jones vs. haddad maia | all | exclusive | us: soccer ppv 35": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940122.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940122.ts"
+  ],
+  "end | t20 blast 2026 - middlesex vs surrey | all | 24-5-2026 | 3:30 (gmt) | exclusive | us: soccer ppv 56": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940101.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940101.ts"
   ],
-  "next | spurs vs. everton | all | 24-5-2026 | 8:0 (gmt) | exclusive | us: soccer ppv 61": [
+  "live | spurs vs. everton | all | exclusive | us: soccer ppv 61": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940096.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940096.ts"
   ],
-  "next | silverstone - race 2 | all | 24-5-2026 | 5:45 (gmt) | exclusive | us: soccer ppv 55": [
+  "end | silverstone - race 2 | all | 24-5-2026 | 5:45 (gmt) | exclusive | us: soccer ppv 55": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940102.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940102.ts"
   ],
@@ -7473,23 +7665,31 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940152.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940152.ts"
   ],
-  "next | juventus vs. roma | all | 24-5-2026 | 8:55 (gmt) | exclusive | us: soccer ppv 64": [
+  "live | juventus vs. roma | all | exclusive | us: soccer ppv 64": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940093.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940093.ts"
+  ],
+  "live | kenin vs. stearns | all | exclusive | us: soccer ppv 38": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940119.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940119.ts"
   ],
   "end | north queensland cowboys vs. south sydney rabbitohs | all | 24-5-2026 | 23:3 (gmt) | exclusive | us: soccer ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940156.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940156.ts"
   ],
-  "next | goal rush: championship sunday | all | 24-5-2026 | 7:50 (gmt) | exclusive | us: soccer ppv 29": [
+  "end | blinkova vs. starodubtseva | all | 24-5-2026 | 4:22 (gmt) | exclusive | us: soccer ppv 34": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940123.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940123.ts"
+  ],
+  "live | goal rush: championship sunday | all | exclusive | us: soccer ppv 29": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940128.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940128.ts"
   ],
-  "next | beiras serra da estrela gp - day 3 | all | 24-5-2026 | 6:40 (gmt) | exclusive | us: soccer ppv 51": [
+  "live | beiras serra da estrela gp - day 3 | all | exclusive | us: soccer ppv 51": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940106.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940106.ts"
   ],
-  "next | parma vs. sassuolo | all | 24-5-2026 | 5:45 (gmt) | exclusive | us: soccer ppv 36": [
+  "end | parma vs. sassuolo | all | 24-5-2026 | 6:0 (gmt) | exclusive | us: soccer ppv 36": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940121.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940121.ts"
   ],
@@ -7533,15 +7733,19 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666057.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666057.ts"
   ],
-  "live | dirchalish fc v neftchi pfc | azerbaijan women's league 2025/26 | sun 24 may 5:50 edt | exclusive | us: fifa+ ppv 1": [
+  "live | fairleigh dickinson vs. long island university (game 6) | sun 24 may 11:0 edt | exclusive | us: espn+ ppv 7": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924723.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924723.ts"
+  ],
+  "ended | dirchalish fc v neftchi pfc | azerbaijan women's league 2025/26 | sun 24 may 5:50 edt | exclusive | us: fifa+ ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474582.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474582.ts"
   ],
-  "next | courtland | sun 24 may 12:30 edt | exclusive | us: nfhs ppv 2": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666061.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666061.ts"
+  "live | las palmas vs. zaragoza | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924719.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924719.ts"
   ],
-  "next | antwerp port epic | sun 24 may 13:0 utc | exclusive | uk: max ppv 15": [
+  "live | antwerp port epic | sun 24 may 13:0 utc | exclusive | uk: max ppv 15": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896471.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896471.ts"
   ],
@@ -7553,25 +7757,49 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666060.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666060.ts"
   ],
+  "ended | motojunior | catalunya | sun 24 may 13:45 utc | exclusive | uk: max ppv 4": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896482.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896482.ts"
+  ],
+  "live | the cj cup byron nelson: main feed (final round) | sun 24 may 7:45 edt | exclusive | us: espn+ ppv 1": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924729.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924729.ts"
+  ],
   "ended | golden trail | sun 24 may 2:30 edt | exclusive | us: max ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941724.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941724.ts"
   ],
-  "live | uci cross-country olympic world cup | women elite | nové město | sun 24 may 9:30 utc | exclusive | uk: max ppv 5": [
+  "ended | uci cross-country olympic world cup | women elite | nové město | sun 24 may 9:30 utc | exclusive | uk: max ppv 5": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896481.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896481.ts"
   ],
-  "live | fk transinvest v fk gintra | moterų a lyga 2026 | sun 24 may 6:50 edt | exclusive | us: fifa+ ppv 2": [
+  "ended | fk transinvest v fk gintra | moterų a lyga 2026 | sun 24 may 6:50 edt | exclusive | us: fifa+ ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474581.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474581.ts"
+  ],
+  "live | miami dade vs. lsu-eunice (first round) | sun 24 may 12:0 edt | exclusive | us: espn+ ppv 8": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924722.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924722.ts"
+  ],
+  "ended | men's boulder | semi-final | sun 24 may 8:0 utc | exclusive | uk: max ppv 3": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896483.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896483.ts"
   ],
   "ended | western bulldogs - melbourne | sun 24 may 4:56 utc | exclusive | uk: max ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896485.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896485.ts"
   ],
-  "live | jumping | aachen | sun 24 may 10:30 utc | exclusive | uk: max ppv 6": [
+  "ended | jumping | aachen | sun 24 may 10:30 utc | exclusive | uk: max ppv 6": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896480.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896480.ts"
+  ],
+  "ended | multiscreen | sun 24 may 11:54 utc | exclusive | uk: max ppv 9": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896477.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896477.ts"
+  ],
+  "live | erc | sun 24 may 15:0 utc | exclusive | uk: max ppv 10": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896476.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896476.ts"
   ],
   "next | carrington | sun 24 may 14:55 edt | exclusive | us: nfhs ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666051.ts",
@@ -7581,7 +7809,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666053.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666053.ts"
   ],
-  "live | james duckworth - gabriel diallo | sun 24 may 4:55 edt | exclusive | us: max ppv 2": [
+  "ended | james duckworth - gabriel diallo | sun 24 may 4:55 edt | exclusive | us: max ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941723.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941723.ts"
   ],
@@ -7593,7 +7821,7 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896464.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896464.ts"
   ],
-  "next | mafco fc v chitipa united | fdh bank premiership | sun 24 may 8:20 edt | exclusive | us: fifa+ ppv 4": [
+  "ended | mafco fc v chitipa united | fdh bank premiership | sun 24 may 8:20 edt | exclusive | us: fifa+ ppv 4": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474579.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474579.ts"
   ],
@@ -7613,31 +7841,47 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666046.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666046.ts"
   ],
-  "next | uci cross-country olympic world cup | men elite | nové město | sun 24 may 12:30 utc | exclusive | uk: max ppv 14": [
+  "ended | uci cross-country olympic world cup | men elite | nové město | sun 24 may 12:30 utc | exclusive | uk: max ppv 14": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896472.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896472.ts"
   ],
-  "next | homenetmen beirut vs. al riyadi | sun 24 may 16:45 +3 | exclusive | : shahid ppv 1": [
+  "live | homenetmen beirut vs. al riyadi | sun 24 may 16:45 +3 | exclusive | : shahid ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762524.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762524.ts"
   ],
-  "next | coal ridge | sun 24 may 11:45 edt | exclusive | us: nfhs ppv 1": [
+  "ended | creighton vs. st. john's (championship) | sun 24 may 8:57 edt | exclusive | us: espn+ ppv 3": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924727.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924727.ts"
+  ],
+  "live | coal ridge | sun 24 may 11:45 edt | exclusive | us: nfhs ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666062.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666062.ts"
   ],
-  "next | vuelta a burgos feminas | stage 4 | sun 24 may 12:30 utc | exclusive | uk: max ppv 12": [
+  "ended | vuelta a burgos feminas | stage 4 | sun 24 may 12:30 utc | exclusive | uk: max ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896474.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896474.ts"
+  ],
+  "live | troy vs. #8 southern miss (if necessary) | sun 24 may 10:0 edt | exclusive | us: espn+ ppv 6": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924724.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924724.ts"
+  ],
+  "live | the cj cup byron nelson: tom kim clanton featured groups | sun 24 may 9:0 edt | exclusive | us: espn+ ppv 4": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924726.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924726.ts"
+  ],
+  "live | the cj cup byron nelson: jordan spieth marquee group (final round) | sun 24 may 9:30 edt | exclusive | us: espn+ ppv 5": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924725.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924725.ts"
   ],
   "next | away vs. msgr. mcclancy | sun 24 may 13:0 edt | exclusive | us: nfhs ppv 5": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666058.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1666058.ts"
   ],
-  "next | mighty wanderers v silver strikers fc | fdh bank premiership | sun 24 may 8:20 edt | exclusive | us: fifa+ ppv 5": [
+  "ended | mighty wanderers v silver strikers fc | fdh bank premiership | sun 24 may 8:20 edt | exclusive | us: fifa+ ppv 5": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474578.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474578.ts"
   ],
-  "next | civil service united v karonga united | fdh bank premiership | sun 24 may 8:20 edt | exclusive | us: fifa+ ppv 3": [
+  "ended | civil service united v karonga united | fdh bank premiership | sun 24 may 8:20 edt | exclusive | us: fifa+ ppv 3": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474580.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1474580.ts"
   ],
@@ -9663,13 +9907,21 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538166.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1538166.ts"
   ],
-  "live | men's women's first round | all | exclusive | us: soccer ppv 8": [
+  "live | english español-valladolid vs. deportivo la coruña | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 10": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924720.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924720.ts"
+  ],
+  "end | men's women's first round | all | 24-5-2026 | 2:0 (gmt) | exclusive | us: soccer ppv 8": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940149.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940149.ts"
   ],
   "next | torino - juventus | sun 24 may 18:30 utc | exclusive | uk: max ppv 19": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896467.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896467.ts"
+  ],
+  "live | english español-malaga cf vs. racing santander | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 15": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924715.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924715.ts"
   ],
   "live | canada vs. zambia | fifa women's series | exclusive | ma: dazn ppv 10": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892958.ts",
@@ -9679,17 +9931,33 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892957.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892957.ts"
   ],
-  "next | mlp from dallas | all | 24-5-2026 | 9:0 (gmt) | exclusive | us: soccer ppv 65": [
+  "live | mlp from dallas | all | exclusive | us: soccer ppv 65": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940092.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940092.ts"
   ],
-  "next | men's boulder | final | sun 24 may 16:0 utc | exclusive | uk: max ppv 18": [
+  "live | men's boulder | final | sun 24 may 16:0 utc | exclusive | uk: max ppv 18": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896468.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896468.ts"
+  ],
+  "live | valladolid vs. deportivo la coruna | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 9": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924721.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924721.ts"
+  ],
+  "live | english español-las palmas vs. zaragoza | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 12": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924718.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924718.ts"
+  ],
+  "live | english español-sporting gijón vs. almería | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 13": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924717.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924717.ts"
   ],
   "live | toronto - day 6 | rock league | exclusive | ma: dazn ppv 7": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892961.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1892961.ts"
+  ],
+  "live | laliga hypermotion round 41 multigoal show | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 14": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924716.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924716.ts"
   ],
   "tennis: hamad medjedovic vs yannick hanfmann @ may 24 12:30 pm :tennis 35": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1501833.ts",
@@ -10599,41 +10867,73 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525421.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525421.ts"
   ],
-  "next | mlp dallas-day 3 | all | 24-5-2026 | 9:0 (gmt) | exclusive | us: soccer ppv 67": [
+  "next | bassols ribera vs. arango | all | 24-5-2026 | 10:56 (gmt) | exclusive | us: soccer ppv 83": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940074.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940074.ts"
+  ],
+  "live | mlp dallas-day 3 | all | exclusive | us: soccer ppv 67": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940090.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940090.ts"
   ],
-  "next | sint-truiden vs. mechelen | all | 24-5-2026 | 9:19 (gmt) | exclusive | us: soccer ppv 69": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940088.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940088.ts"
+  "next | cremonese vs. como | all | 24-5-2026 | 10:55 (gmt) | exclusive | us: soccer ppv 89": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940068.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940068.ts"
   ],
-  "live | marta kostyuk - oksana selekhmeteva | sun 24 may 4:55 edt | exclusive | us: max ppv 3": [
+  "ended | marta kostyuk - oksana selekhmeteva | sun 24 may 4:55 edt | exclusive | us: max ppv 3": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941722.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/941722.ts"
+  ],
+  "next | milan vs. cagliari | all | 24-5-2026 | 10:55 (gmt) | exclusive | us: soccer ppv 88": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940069.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940069.ts"
+  ],
+  "next | kc current vs. thorns | all | 24-5-2026 | 10:0 (gmt) | exclusive | us: soccer ppv 81": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940076.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940076.ts"
+  ],
+  "next | torino vs. juventus | all | 24-5-2026 | 10:55 (gmt) | exclusive | us: soccer ppv 87": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940070.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940070.ts"
+  ],
+  "next | us open: singles doubles finals | all | 24-5-2026 | 11:0 (gmt) | exclusive | us: soccer ppv 93": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940064.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940064.ts"
+  ],
+  "next | efremova vs. cîrstea | all | 24-5-2026 | 10:41 (gmt) | exclusive | us: soccer ppv 73": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940084.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940084.ts"
   ],
   "next | cremonese - como | sun 24 may 18:30 utc | exclusive | uk: max ppv 20": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896466.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896466.ts"
   ],
-  "next | club brugge vs. gent | all | 24-5-2026 | 9:19 (gmt) | exclusive | us: soccer ppv 70": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940087.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940087.ts"
-  ],
   "next | sas - spurs vs okc - thunder | sun 24 may 19:0 edt | exclusive | us: nba pass ppv 1": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1634335.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1634335.ts"
   ],
-  "next | vuelta a burgos feminas: women's individual - stage 4 | all | 24-5-2026 | 5:30 (gmt) | exclusive | us: soccer ppv 49": [
+  "next | lecce vs. genoa | all | 24-5-2026 | 10:55 (gmt) | exclusive | us: soccer ppv 86": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940071.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940071.ts"
+  ],
+  "end | vuelta a burgos feminas: women's individual - stage 4 | all | 24-5-2026 | 5:30 (gmt) | exclusive | us: soccer ppv 49": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940108.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940108.ts"
   ],
-  "next | union saint-gilloise vs. anderlecht | all | 24-5-2026 | 9:19 (gmt) | exclusive | us: soccer ppv 71": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940086.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940086.ts"
+  "live | malaga cf vs. racing santander | sun 24 may 12:20 edt | exclusive | us: espn+ ppv 16": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924714.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924714.ts"
+  ],
+  "next | verona vs. roma | all | 24-5-2026 | 10:55 (gmt) | exclusive | us: soccer ppv 90": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940067.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940067.ts"
   ],
   "next | athletics @ san diego padres | sun 24 may 20:0 utc | exclusive | uk: max ppv 21": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896465.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1896465.ts"
+  ],
+  "next | the golazo show | all | 24-5-2026 | 10:55 (gmt) | exclusive | us: soccer ppv 85": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940072.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1940072.ts"
   ],
   "netflix 1 ( @30fps) events only": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1831617.ts",
@@ -10871,141 +11171,105 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899996.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899996.ts"
   ],
-  "live | fk transinvest vs. fk gintra | women's a league | exclusive | gb: dazn ppv 10": [
+  "live | beiras serra da estrela gp - day 3 | beiras and serra da estrela international grand prix | exclusive | gb: dazn ppv 10": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899992.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899992.ts"
   ],
-  "next | red bull cliff diving 2026: round 1 - bali | red bull tv | 2026-5-24 | 12:0 (gmt) | exclusive | gb: dazn ppv 14": [
+  "next | fc san nicolas vs. caravel | division di honor - aruba | 2026-5-24 | 20:0 (gmt) | exclusive | gb: dazn ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899991.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899991.ts"
+  ],
+  "live | entente ii vs. as otr | championnat national - togo | exclusive | gb: dazn ppv 13": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899989.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899989.ts"
+  ],
+  "end | red bull cliff diving 2026: round 1 - bali | red bull tv | 2026-5-24 | 12:0 (gmt) | exclusive | gb: dazn ppv 14": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899988.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899988.ts"
   ],
-  "next | mighty mukuru wanderers fc vs. silver strikers | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 15": [
+  "end | dirchalish fc vs. neftchi pfc | azerbaijan women's league | 2026-5-24 | 10:0 (gmt) | exclusive | gb: dazn ppv 15": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899987.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899987.ts"
   ],
-  "next | masters fc vs. dedza dynamos fc | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 16": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899986.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899986.ts"
-  ],
-  "next | mafco fc vs. chitipa united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 17": [
+  "end | parma vs. sassuolo | lega serie a | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 17": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899985.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899985.ts"
   ],
-  "next | civil service united vs. karonga united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 18": [
+  "live | as gbohloe-su vs. asc kara | championnat national - togo | exclusive | gb: dazn ppv 18": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899984.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899984.ts"
   ],
-  "next | johor darul ta'zim fc ii vs. imigresen fc ii | liga a1 | 2026-5-24 | 12:45 (gmt) | exclusive | gb: dazn ppv 20": [
+  "live | as uam vs. asn nigelec | nigerien coupe nationale | exclusive | gb: dazn ppv 20": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899982.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899982.ts"
   ],
-  "next | parma vs. sassuolo | lega serie a | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 21": [
+  "live | napoli vs. udinese | lega serie a | exclusive | gb: dazn ppv 21": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899981.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899981.ts"
   ],
-  "next | silverstone - race 2 | ferrari challenge uk | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 22": [
+  "next | estrella vs. river plate aruba | division di honor - aruba | 2026-5-24 | 22:0 (gmt) | exclusive | gb: dazn ppv 22": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899980.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899980.ts"
   ],
-  "next | manzini sea birds fc vs. nsingizini hotspurs fc | premier league - eswatini | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 23": [
+  "end | fk transinvest vs. fk gintra | women's a league | 2026-5-24 | 11:0 (gmt) | exclusive | gb: dazn ppv 23": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899979.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899979.ts"
   ],
-  "next | beiras serra da estrela gp - day 3 | beiras and serra da estrela international grand prix | 2026-5-24 | 13:40 (gmt) | exclusive | gb: dazn ppv 24": [
+  "end | silverstone - race 2 | ferrari challenge uk | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 24": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899978.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899978.ts"
   ],
-  "next | zandvoort - race 2 | formula regional european championship | 2026-5-24 | 14:45 (gmt) | exclusive | gb: dazn ppv 26": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899976.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899976.ts"
+  "end | mighty mukuru wanderers fc vs. silver strikers | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 27": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899975.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899975.ts"
   ],
-  "next | entente ii vs. as otr | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | gb: dazn ppv 29": [
+  "end | mafco fc vs. chitipa united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 28": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899974.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899974.ts"
+  ],
+  "end | deportivo la guaira fc vs. caracas fc | primera division femenino | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 29": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899973.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899973.ts"
   ],
-  "next | as gbohloe-su vs. asc kara | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | gb: dazn ppv 30": [
+  "end | manzini sea birds fc vs. nsingizini hotspurs fc | premier league - eswatini | 2026-5-24 | 13:0 (gmt) | exclusive | gb: dazn ppv 30": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899972.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899972.ts"
   ],
-  "next | semassi fc vs. asko fc | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | gb: dazn ppv 31": [
+  "live | joventut vs. cb san pablo burgos | liga acb | exclusive | gb: dazn ppv 31": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899971.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899971.ts"
   ],
-  "next | as binah vs. fc espoir | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | gb: dazn ppv 32": [
+  "live | heaven eleven vs. watanga fc | lfa first division - liberia | exclusive | gb: dazn ppv 32": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899970.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899970.ts"
   ],
-  "next | as uam vs. asn nigelec | nigerien coupe nationale | 2026-5-24 | 15:45 (gmt) | exclusive | gb: dazn ppv 33": [
+  "live | discoveries vs. bea mountain | lfa first division - liberia | exclusive | gb: dazn ppv 33": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899969.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899969.ts"
   ],
-  "next | napoli vs. udinese | lega serie a | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 34": [
+  "live | fc fassell vs. borough fc | lfa first division - liberia | exclusive | gb: dazn ppv 34": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899968.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899968.ts"
   ],
-  "next | joventut vs. cb san pablo burgos | liga acb | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 35": [
+  "live | kozaf vs. as sonabel | ligue 1 - burkina faso | exclusive | gb: dazn ppv 35": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899967.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899967.ts"
   ],
-  "next | heaven eleven vs. watanga fc | lfa first division - liberia | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 37": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899965.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899965.ts"
+  "end | zandvoort - race 2 | formula regional european championship | 2026-5-24 | 14:45 (gmt) | exclusive | gb: dazn ppv 36": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899966.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899966.ts"
   ],
-  "next | discoveries vs. bea mountain | lfa first division - liberia | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 38": [
+  "live | union saint-gilloise vs. anderlecht | jupiler pro league | exclusive | gb: dazn ppv 38": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899964.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899964.ts"
   ],
-  "next | fc fassell vs. borough fc | lfa first division - liberia | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 39": [
+  "live | sint-truiden vs. mechelen | jupiler pro league | exclusive | gb: dazn ppv 39": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899963.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899963.ts"
   ],
-  "next | kozaf vs. as sonabel | ligue 1 - burkina faso | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 40": [
+  "live | club brugge vs. gent | jupiler pro league | exclusive | gb: dazn ppv 40": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899962.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899962.ts"
-  ],
-  "next | us bougouni vs. onze createurs | première division - mali | 2026-5-24 | 16:0 (gmt) | exclusive | gb: dazn ppv 41": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899961.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899961.ts"
-  ],
-  "next | union saint-gilloise vs. anderlecht | jupiler pro league | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 42": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899960.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899960.ts"
-  ],
-  "next | sint-truiden vs. mechelen | jupiler pro league | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 43": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899959.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899959.ts"
-  ],
-  "next | club brugge vs. gent | jupiler pro league | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 44": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899958.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899958.ts"
-  ],
-  "next | hapoel hadera u19 vs. hapoel nof hagalil .c | israel - liga noar leumit u19 | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 45": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899957.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899957.ts"
-  ],
-  "next | kamboi eagles fc vs. diamond stars fc | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 46": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899956.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899956.ts"
-  ],
-  "next | east end lions fc vs. wusum stars fc | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 47": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899955.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899955.ts"
-  ],
-  "next | bai bureh warriors fc vs. star sports academy | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 48": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899954.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899954.ts"
-  ],
-  "next | bhantal fc vs. luawa fc | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 49": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899953.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899953.ts"
-  ],
-  "next | fc malicoura vs. stade malien | première division - mali | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 51": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899951.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899951.ts"
-  ],
-  "next | afrique football elite vs. binga fc | première division - mali | 2026-5-24 | 16:30 (gmt) | exclusive | gb: dazn ppv 52": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899950.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899950.ts"
   ],
   "next | sb benfica vs. udib | liga orange guinea-bissau | 2026-5-24 | 16:45 (gmt) | exclusive | gb: dazn ppv 53": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899949.ts",
@@ -11071,9 +11335,21 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899927.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899927.ts"
   ],
-  "live | dirchalish fc vs. neftchi pfc | azerbaijan women's league | exclusive | gb: dazn ppv 76": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899926.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899926.ts"
+  "live | semassi fc vs. asko fc | championnat national - togo | exclusive | gb: dazn ppv 77": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899925.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899925.ts"
+  ],
+  "live | as binah vs. fc espoir | championnat national - togo | exclusive | gb: dazn ppv 78": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899924.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899924.ts"
+  ],
+  "live | us bougouni vs. onze createurs | première division - mali | exclusive | gb: dazn ppv 79": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899923.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899923.ts"
+  ],
+  "end | civil service united vs. karonga united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | gb: dazn ppv 80": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899922.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899922.ts"
   ],
   "end | britannia vs. dakota | division di honor - aruba | 2026-5-24 | 0:30 (gmt) | exclusive | us: dazn ppv 2": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899900.ts",
@@ -11095,133 +11371,53 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899896.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899896.ts"
   ],
-  "next | red bull cliff diving 2026: round 1 - bali | red bull tv | 2026-5-24 | 12:0 (gmt) | exclusive | us: dazn ppv 12": [
+  "next | fc san nicolas vs. caravel | division di honor - aruba | 2026-5-24 | 20:0 (gmt) | exclusive | us: dazn ppv 11": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899891.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899891.ts"
+  ],
+  "end | dirchalish fc vs. neftchi pfc | azerbaijan women's league | 2026-5-24 | 10:0 (gmt) | exclusive | us: dazn ppv 12": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899890.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899890.ts"
   ],
-  "next | mighty mukuru wanderers fc vs. silver strikers | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 13": [
+  "next | estrella vs. river plate aruba | division di honor - aruba | 2026-5-24 | 22:0 (gmt) | exclusive | us: dazn ppv 13": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899889.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899889.ts"
   ],
-  "next | masters fc vs. dedza dynamos fc | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 14": [
+  "end | fk transinvest vs. fk gintra | women's a league | 2026-5-24 | 11:0 (gmt) | exclusive | us: dazn ppv 14": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899888.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899888.ts"
   ],
-  "next | mafco fc vs. chitipa united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 15": [
+  "end | silverstone - race 2 | ferrari challenge uk | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 15": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899887.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899887.ts"
   ],
-  "next | civil service united vs. karonga united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 16": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899886.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899886.ts"
+  "end | mighty mukuru wanderers fc vs. silver strikers | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 17": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899885.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899885.ts"
   ],
-  "next | johor darul ta'zim fc ii vs. imigresen fc ii | liga a1 | 2026-5-24 | 12:45 (gmt) | exclusive | us: dazn ppv 18": [
+  "end | mafco fc vs. chitipa united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 18": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899884.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899884.ts"
   ],
-  "next | parma vs. sassuolo (english español) | lega serie a | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 19": [
+  "end | civil service united vs. karonga united | fdh bank premiership - malawi | 2026-5-24 | 12:30 (gmt) | exclusive | us: dazn ppv 19": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899883.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899883.ts"
   ],
-  "next | silverstone - race 2 | ferrari challenge uk | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 20": [
+  "end | parma vs. sassuolo (english español) | lega serie a | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 20": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899882.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899882.ts"
   ],
-  "next | manzini sea birds fc vs. nsingizini hotspurs fc | premier league - eswatini | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 21": [
+  "end | red bull cliff diving 2026: round 1 - bali | red bull tv | 2026-5-24 | 12:0 (gmt) | exclusive | us: dazn ppv 21": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899881.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899881.ts"
   ],
-  "next | beiras serra da estrela gp - day 3 | beiras and serra da estrela international grand prix | 2026-5-24 | 13:40 (gmt) | exclusive | us: dazn ppv 22": [
+  "end | deportivo la guaira fc vs. caracas fc | primera division femenino | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 22": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899880.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899880.ts"
   ],
-  "next | entente ii vs. as otr | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | us: dazn ppv 26": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899876.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899876.ts"
-  ],
-  "next | as gbohloe-su vs. asc kara | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | us: dazn ppv 27": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899875.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899875.ts"
-  ],
-  "next | semassi fc vs. asko fc | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | us: dazn ppv 28": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899874.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899874.ts"
-  ],
-  "next | as binah vs. fc espoir | championnat national - togo | 2026-5-24 | 15:30 (gmt) | exclusive | us: dazn ppv 29": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899873.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899873.ts"
-  ],
-  "next | as uam vs. asn nigelec | nigerien coupe nationale | 2026-5-24 | 15:45 (gmt) | exclusive | us: dazn ppv 30": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899872.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899872.ts"
-  ],
-  "next | napoli vs. udinese (english español) | lega serie a | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 31": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899871.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899871.ts"
-  ],
-  "next | joventut vs. cb san pablo burgos | liga endesa | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 32": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899870.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899870.ts"
-  ],
-  "next | heaven eleven vs. watanga fc | lfa first division - liberia | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 34": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899868.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899868.ts"
-  ],
-  "next | discoveries vs. bea mountain | lfa first division - liberia | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 35": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899867.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899867.ts"
-  ],
-  "next | fc fassell vs. borough fc | lfa first division - liberia | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 36": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899866.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899866.ts"
-  ],
-  "next | kozaf vs. as sonabel | ligue 1 - burkina faso | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 37": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899865.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899865.ts"
-  ],
-  "next | us bougouni vs. onze createurs | première division - mali | 2026-5-24 | 16:0 (gmt) | exclusive | us: dazn ppv 38": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899864.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899864.ts"
-  ],
-  "next | union saint-gilloise vs. anderlecht | jupiler pro league | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 39": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899863.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899863.ts"
-  ],
-  "next | sint-truiden vs. mechelen | jupiler pro league | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 40": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899862.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899862.ts"
-  ],
-  "next | club brugge vs. gent | jupiler pro league | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 41": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899861.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899861.ts"
-  ],
-  "next | hapoel hadera u19 vs. hapoel nof hagalil .c | israel - liga noar leumit u19 | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 42": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899860.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899860.ts"
-  ],
-  "next | kamboi eagles fc vs. diamond stars fc | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 43": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899859.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899859.ts"
-  ],
-  "next | east end lions fc vs. wusum stars fc | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 44": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899858.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899858.ts"
-  ],
-  "next | bai bureh warriors fc vs. star sports academy | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 45": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899857.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899857.ts"
-  ],
-  "next | bhantal fc vs. luawa fc | premier league - sierra leone | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 46": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899856.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899856.ts"
-  ],
-  "next | fc malicoura vs. stade malien | première division - mali | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 48": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899854.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899854.ts"
-  ],
-  "next | afrique football elite vs. binga fc | première division - mali | 2026-5-24 | 16:30 (gmt) | exclusive | us: dazn ppv 49": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899853.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899853.ts"
+  "end | manzini sea birds fc vs. nsingizini hotspurs fc | premier league - eswatini | 2026-5-24 | 13:0 (gmt) | exclusive | us: dazn ppv 23": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899879.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899879.ts"
   ],
   "next | sb benfica vs. udib | liga orange guinea-bissau | 2026-5-24 | 16:45 (gmt) | exclusive | us: dazn ppv 50": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1899852.ts",
@@ -11403,73 +11599,103 @@
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525422.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1525422.ts"
   ],
-  "ppv event 1: usyk vs. rico (5.23 11:0 am et)": [
+  "ppv event 1: the chaos supernationals (5.24 10:30 am et)": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855358.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855430.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855358.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855430.ts"
   ],
-  "ppv event 2: usyk vs. rico (5.23 11:0 am et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855357.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855429.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855357.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855429.ts"
+  "ppv event 9: weedsport speedway (5.24 4:45 pm et)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855350.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855422.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855350.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855422.ts"
   ],
-  "ppv event 3: pfl brussels (5.23 1:30 pm et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855356.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855428.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855356.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855428.ts"
-  ],
-  "ppv event 4: apfc ifl 1 (5.23 11:30 am et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855355.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855427.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855355.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855427.ts"
-  ],
-  "ppv event 5: fight to win 316 sao paulo (5.23 3:30 pm et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855354.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855426.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855354.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855426.ts"
-  ],
-  "ppv event 6: tnt going off big time (5.23 2:30 pm et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855353.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855425.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855353.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855425.ts"
-  ],
-  "ppv event 7: efw 5 (5.23 7:0 pm et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855352.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855424.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855352.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855424.ts"
-  ],
-  "ppv event 8: wwe saturday nights main event (5.23 8:0 pm et)": [
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855351.ts",
-    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855423.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855351.ts",
-    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855423.ts"
-  ],
-  "ppv event 10: lucas oil show me 100 (5.23 6:30 pm et)": [
+  "ppv event 10: husets speedway (5.24 7:15 pm et)": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855349.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855421.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855349.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855421.ts"
   ],
-  "ppv event 22: cedar lake speedway (5.23 6:30 pm et)": [
+  "ppv event 11: coca-cola 600 charlotte motor speedway (5.24 6:0 pm et)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855348.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855420.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855348.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855420.ts"
+  ],
+  "ppv event 12: aew double or nothing (5.24 8:0 pm et)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855347.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855419.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855347.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855419.ts"
+  ],
+  "ppv event 13: bash for cash (5.24 12:0 pm et)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855346.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855418.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855346.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855418.ts"
+  ],
+  "ppv event 14: lucas oil show me 100 (5.24 6:30 pm et)": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855345.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855417.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855345.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855417.ts"
+  ],
+  "ppv event 15": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855344.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855416.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855344.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855416.ts"
+  ],
+  "ppv event 16": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855343.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855415.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855343.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855415.ts"
+  ],
+  "ppv event 17": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855342.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855414.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855342.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855414.ts"
+  ],
+  "ppv event 18": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855341.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855413.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855341.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855413.ts"
+  ],
+  "ppv event 19": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855340.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855412.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855340.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855412.ts"
+  ],
+  "ppv event 20": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855339.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855411.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855339.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855411.ts"
+  ],
+  "ppv event 21": [
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855338.ts",
+    "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855410.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855338.ts",
+    "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855410.ts"
+  ],
+  "ppv event 22": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855337.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855409.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855337.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855409.ts"
   ],
-  "ppv event 23: knoxville raceway (5.23 7:15 pm et)": [
+  "ppv event 23": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855336.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855408.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855336.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855408.ts"
   ],
-  "ppv event 24: bash for cash (5.23 6:0 pm et)": [
+  "ppv event 24": [
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855335.ts",
     "http://cf.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855407.ts",
     "http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1855335.ts",
