@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tv generator-info-name="test-fixture">
+  <channel id="bbcone.uk"><display-name lang="en">BBC One</display-name></channel>
+  <channel id="bbctwo.uk"><display-name lang="en">BBC Two</display-name></channel>
+  <channel id="espn.us"><display-name lang="en">ESPN</display-name></channel>
+  <channel id="beinsports1.qa"><display-name lang="en">beIN Sports 1</display-name></channel>
+  <channel id="beinsports2.qa"><display-name lang="en">beIN Sports 2</display-name></channel>
+  <channel id="skysports1.uk"><display-name lang="en">Sky Sports Premier League</display-name></channel>
+  <channel id="skycinema1.uk"><display-name lang="en">Sky Cinema Premiere</display-name></channel>
+  <channel id="discovery.us"><display-name lang="en">Discovery</display-name></channel>
+  <channel id="natgeo.us"><display-name lang="en">National Geographic</display-name></channel>
+  <channel id="cnn.us"><display-name lang="en">CNN</display-name></channel>
+  <channel id="foxnews.us"><display-name lang="en">FOX News</display-name></channel>
+  <channel id="aljazeera.qa"><display-name lang="en">Al Jazeera English</display-name></channel>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="bbcone.uk"><title lang="en">BBC News</title><desc lang="en">Latest news, sport and weather.</desc></programme>
+  <programme start="20260524190000 +0000" stop="20260524200000 +0000" channel="bbcone.uk"><title lang="en">EastEnders</title><desc lang="en">Drama from Walford.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="bbctwo.uk"><title lang="en">University Challenge</title><desc lang="en">The quiz show with Amol Rajan.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524200000 +0000" channel="espn.us"><title lang="en">SportsCenter</title><desc lang="en">Sports news.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524203000 +0000" channel="beinsports1.qa"><title lang="en">UEFA Champions League: Real Madrid vs Barcelona</title><desc lang="en">El Clásico in the round of 16.</desc></programme>
+  <programme start="20260524203000 +0000" stop="20260524223000 +0000" channel="beinsports1.qa"><title lang="en">Premier League Highlights</title><desc lang="en">Weekend highlights.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524200000 +0000" channel="beinsports2.qa"><title lang="en">La Liga: Atlético vs Sevilla</title><desc lang="en">La Liga match.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524200000 +0000" channel="skysports1.uk"><title lang="en">Premier League: Arsenal vs Liverpool</title><desc lang="en">Premier League match.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524200000 +0000" channel="skycinema1.uk"><title lang="en">Oppenheimer</title><desc lang="en">Christopher Nolan's biopic.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="discovery.us"><title lang="en">MythBusters</title><desc lang="en">Adam &amp; Jamie test myths.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="natgeo.us"><title lang="en">Wild Africa</title><desc lang="en">Documentary about African wildlife.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="cnn.us"><title lang="en">Anderson Cooper 360</title><desc lang="en">News analysis.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="foxnews.us"><title lang="en">Hannity</title><desc lang="en">Conservative talk show.</desc></programme>
+  <programme start="20260524180000 +0000" stop="20260524190000 +0000" channel="aljazeera.qa"><title lang="en">Inside Story</title><desc lang="en">In-depth news analysis.</desc></programme>
+</tv>

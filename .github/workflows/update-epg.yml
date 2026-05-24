@@ -296,6 +296,11 @@ jobs:
           if [ -f channels/name_changes.log ]; then
             git add channels/name_changes.log
           fi
+          # TVMaze enrichment cache (commit so the next build reuses
+          # lookups instead of re-querying ~2000 titles every run).
+          if [ -f channels/.epg_metadata_cache.json ]; then
+            git add channels/.epg_metadata_cache.json
+          fi
           git rm --cached --ignore-unmatch docs/guide.xml docs/playlist.m3u >/dev/null 2>&1 || true
           if git diff --staged --quiet; then
             echo "No changes to commit"

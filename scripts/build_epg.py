@@ -3257,6 +3257,26 @@ def main():
             live_marked += 1
     print(f"      live-marked {live_marked} currently-airing sports broadcasts")
 
+    # ---------- TVMaze metadata enrichment ----------
+    # For every non-LIVE programme on a movie/series/entertainment channel,
+    # look up TVMaze (free, no auth) by title and inject <icon> (poster) +
+    # <credits><actor> (cast). Cached forever (negative cache 14d). Default
+    # cap of 2000 lookups per build keeps the build under 8 extra minutes.
+    # Opt-out: set env var ENRICH_EPG=0 (debug / faster local runs).
+    enrich_enabled = os.environ.get("ENRICH_EPG", "1") != "0"
+    if enrich_enabled:
+        print(f"[5g]  TVMaze metadata enrichment (movies/series/entertainment)")
+        try:
+            from enrich_epg import enrich_programme_blocks  # local module
+            max_lookups = int(os.environ.get("ENRICH_EPG_MAX_LOOKUPS", "2000"))
+            kept_programmes = enrich_programme_blocks(
+                kept_programmes, kept_channels, max_lookups=max_lookups,
+            )
+        except Exception as e:
+            print(f"      enrichment failed: {e!r} — continuing without it")
+    else:
+        print(f"[5g]  TVMaze enrichment skipped (ENRICH_EPG=0)")
+
     print(f"[6/6] writing output...")
     out_xml = out_dir / "guide.xml"
     out_gz = out_dir / "guide.xml.gz"
