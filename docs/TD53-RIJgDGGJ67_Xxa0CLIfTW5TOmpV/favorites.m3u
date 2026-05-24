@@ -197,49 +197,65 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762628.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/321892.ts
 #EXTINF:-1 tvg-id="TS" tvg-chno="64" tvg-name="Cgtn English Documentary [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/377.png" group-title="Favorites — Documentaries",Cgtn English Documentary [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/4465.ts
-#EXTINF:-1 tvg-id="PlaneteJustice.fr" tvg-chno="65" tvg-name="Crime Investigation HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/7953.jpg?53935" group-title="Favorites — Documentaries",Crime Investigation HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717710.ts
+#EXTINF:-1 tvg-id="TS" tvg-chno="65" tvg-name="Crime Investigation 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/7953.jpg?81264" group-title="Favorites — Documentaries",Crime Investigation 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162377.ts
 #EXTINF:-1 tvg-id="UK: DISCOVERY PLUS 4K" tvg-chno="66" tvg-name="Discovery Plus 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12219.jpg?89049" group-title="Favorites — Documentaries",Discovery Plus 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/910033.ts
 #EXTINF:-1 tvg-id="#### DISCOVERY+ HD/4K ####" tvg-chno="67" tvg-name="Discovery+ HD/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Documentaries",Discovery+ HD/4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015422.ts
-#EXTINF:-1 tvg-id="###### DOCUMENTARY TV ######" tvg-chno="68" tvg-name="Documentary TV" tvg-logo="" group-title="Favorites — Documentaries",Documentary TV
+#EXTINF:-1 tvg-id="#### DOCUMENTARY HD/4K ####" tvg-chno="68" tvg-name="Documentary HD/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Documentaries",Documentary HD/4K
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015421.ts
+#EXTINF:-1 tvg-id="###### DOCUMENTARY TV ######" tvg-chno="69" tvg-name="Documentary TV" tvg-logo="" group-title="Favorites — Documentaries",Documentary TV
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/251795.ts
-#EXTINF:-1 tvg-id="AR: MBC DOCUMENTARY 4K" tvg-chno="69" tvg-name="MBC Documentary 4K [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12440.png?43972" group-title="Favorites — Documentaries",MBC Documentary 4K [AR]
+#EXTINF:-1 tvg-id="AR: MBC DOCUMENTARY 4K" tvg-chno="70" tvg-name="MBC Documentary 4K [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12440.png?43972" group-title="Favorites — Documentaries",MBC Documentary 4K [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/840629.ts
-#EXTINF:-1 tvg-id="### UK DOCUMENTARY HEVC/4K ###" tvg-chno="70" tvg-name="UK Documentary HEVC/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Documentaries",UK Documentary HEVC/4K
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717712.ts
-#EXTINF:-1 tvg-id="animalplanet.us" tvg-chno="71" tvg-name="Animal Planet West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/626.png?93518" group-title="Favorites — Documentaries",Animal Planet West HD [US]
+#EXTINF:-1 tvg-id="NatGeo.uk" tvg-chno="71" tvg-name="National Geographic 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/616.png?39036" group-title="Favorites — Documentaries",National Geographic 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162380.ts
+#EXTINF:-1 tvg-id="NatGeoWild.uk" tvg-chno="72" tvg-name="National Geographic Wild 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/625.png?91005" group-title="Favorites — Documentaries",National Geographic Wild 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162381.ts
+#EXTINF:-1 tvg-id="animalplanet.us" tvg-chno="73" tvg-name="Animal Planet West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/626.png?93518" group-title="Favorites — Documentaries",Animal Planet West HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325844.ts
-#EXTINF:-1 tvg-id="US: DISCOVERY EAST HD" tvg-chno="72" tvg-name="Discovery East HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery East HD [US]
+#EXTINF:-1 tvg-id="TS" tvg-chno="74" tvg-name="BBC Earth HD [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3982.png?33746" group-title="Favorites — Documentaries",BBC Earth HD [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/414042.ts
+#EXTINF:-1 tvg-id="US: DISCOVERY EAST HD" tvg-chno="75" tvg-name="Discovery East HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery East HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1453212.ts
-#EXTINF:-1 tvg-id="DiscoveryFamily.us" tvg-chno="73" tvg-name="Discovery Family HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6308.jpg?18025" group-title="Favorites — Documentaries",Discovery Family HD [US]
+#EXTINF:-1 tvg-id="DiscoveryFamily.us" tvg-chno="76" tvg-name="Discovery Family HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6308.jpg?18025" group-title="Favorites — Documentaries",Discovery Family HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325776.ts
-#EXTINF:-1 tvg-id="US: DISCOVERY SCIENCE HD" tvg-chno="74" tvg-name="Discovery Science HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/620.jpg?1168" group-title="Favorites — Documentaries",Discovery Science HD [US]
+#EXTINF:-1 tvg-id="US: DISCOVERY SCIENCE HD" tvg-chno="77" tvg-name="Discovery Science HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/620.jpg?1168" group-title="Favorites — Documentaries",Discovery Science HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325774.ts
-#EXTINF:-1 tvg-id="DiscoveryChannel.us" tvg-chno="75" tvg-name="Discovery West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery West HD [US]
+#EXTINF:-1 tvg-id="DiscoveryChannel.us" tvg-chno="78" tvg-name="Discovery West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?34720" group-title="Favorites — Documentaries",Discovery West HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325855.ts
-#EXTINF:-1 tvg-id="NatGeo.us" tvg-chno="76" tvg-name="National Geographic HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6151.png?10667" group-title="Favorites — Documentaries",National Geographic HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325786.ts
-#EXTINF:-1 tvg-id="NatGeoWild.us" tvg-chno="77" tvg-name="National Geographic Wild HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1395.png?40753" group-title="Favorites — Documentaries",National Geographic Wild HD [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325785.ts
-#EXTINF:-1 tvg-id="US: PBS HD" tvg-chno="78" tvg-name="Pbs HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12149.jpg?93627" group-title="Favorites — Documentaries",Pbs HD [US]
+#EXTINF:-1 tvg-id="US: PBS HD" tvg-chno="79" tvg-name="Pbs HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12149.jpg?93627" group-title="Favorites — Documentaries",Pbs HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325811.ts
-#EXTINF:-1 tvg-id="US: RT DOCUMENTARY HD" tvg-chno="79" tvg-name="Rt Documentary HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3898.jpeg?32640" group-title="Favorites — Documentaries",Rt Documentary HD [US]
+#EXTINF:-1 tvg-id="US: RT DOCUMENTARY HD" tvg-chno="80" tvg-name="Rt Documentary HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3898.jpeg?32640" group-title="Favorites — Documentaries",Rt Documentary HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325929.ts
-#EXTINF:-1 tvg-id="SmithsonianChannel.us" tvg-chno="80" tvg-name="Smithsonian Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3051.png?53674" group-title="Favorites — Documentaries",Smithsonian Channel West HD [US]
+#EXTINF:-1 tvg-id="SmithsonianChannel.us" tvg-chno="81" tvg-name="Smithsonian Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3051.png?53674" group-title="Favorites — Documentaries",Smithsonian Channel West HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325902.ts
-#EXTINF:-1 tvg-id="TravelChannel.us" tvg-chno="81" tvg-name="Travel Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3081.jpg?83728" group-title="Favorites — Documentaries",Travel Channel West HD [US]
+#EXTINF:-1 tvg-id="TravelChannel.us" tvg-chno="82" tvg-name="Travel Channel West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3081.jpg?83728" group-title="Favorites — Documentaries",Travel Channel West HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325882.ts
-#EXTINF:-1 tvg-id="UK: DISCOVERY HISTORY +1" tvg-chno="82" tvg-name="Discovery History +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12219.jpg?89049" group-title="Favorites — Documentaries",Discovery History +1 [UK]
+#EXTINF:-1 tvg-id="TS" tvg-chno="83" tvg-name="Crime Investigation +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/7953.jpg?81264" group-title="Favorites — Documentaries",Crime Investigation +1 [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/402156.ts
+#EXTINF:-1 tvg-id="DiscoveryChannel.uk" tvg-chno="84" tvg-name="Discovery +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?21210" group-title="Favorites — Documentaries",Discovery +1 [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162393.ts
+#EXTINF:-1 tvg-id="UK: DISCOVERY HISTORY +1" tvg-chno="85" tvg-name="Discovery History +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12219.jpg?89049" group-title="Favorites — Documentaries",Discovery History +1 [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/707007.ts
-#EXTINF:-1 tvg-id="DiscoveryHistory.uk" tvg-chno="83" tvg-name="Discovery History [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12219.jpg?89049" group-title="Favorites — Documentaries",Discovery History [UK]
+#EXTINF:-1 tvg-id="DiscoveryHistory.uk" tvg-chno="86" tvg-name="Discovery History [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12219.jpg?89049" group-title="Favorites — Documentaries",Discovery History [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/262725.ts
-#EXTINF:-1 tvg-id="DiscoveryTurbo.uk" tvg-chno="84" tvg-name="Discovery Turbo [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6165.jpg?61364" group-title="Favorites — Documentaries",Discovery Turbo [UK]
+#EXTINF:-1 tvg-id="TS" tvg-chno="87" tvg-name="Discovery Turbo +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/618.jpg?21210" group-title="Favorites — Documentaries",Discovery Turbo +1 [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/402152.ts
+#EXTINF:-1 tvg-id="DiscoveryTurbo.uk" tvg-chno="88" tvg-name="Discovery Turbo [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6165.jpg?61364" group-title="Favorites — Documentaries",Discovery Turbo [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/262727.ts
-#EXTINF:-1 tvg-id="MilitaryHistory.us" tvg-chno="85" tvg-name="Military History [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/621.jpg?2038" group-title="Favorites — Documentaries",Military History [US]
+#EXTINF:-1 tvg-id="TS" tvg-chno="89" tvg-name="Investigation Discovery +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/10583.png?49361" group-title="Favorites — Documentaries",Investigation Discovery +1 [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/402153.ts
+#EXTINF:-1 tvg-id="MilitaryHistory.us" tvg-chno="90" tvg-name="Military History [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/621.jpg?2038" group-title="Favorites — Documentaries",Military History [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325869.ts
-#EXTINF:-1 tvg-id="US: TLC WEST" tvg-chno="86" tvg-name="TLC West [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1421.png?86039" group-title="Favorites — Documentaries",TLC West [US]
+#EXTINF:-1 tvg-id="TS" tvg-chno="91" tvg-name="National Geographic +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6620.png?67556" group-title="Favorites — Documentaries",National Geographic +1 [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/402155.ts
+#EXTINF:-1 tvg-id="PBSAmerica.uk" tvg-chno="92" tvg-name="Pbs America [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12149.jpg?1808" group-title="Favorites — Documentaries",Pbs America [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162315.ts
+#EXTINF:-1 tvg-id="HistoryChannel.uk" tvg-chno="93" tvg-name="Sky History +1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12188.jpg?19713" group-title="Favorites — Documentaries",Sky History +1 [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/751652.ts
+#EXTINF:-1 tvg-id="US: TLC WEST" tvg-chno="94" tvg-name="TLC West [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1421.png?86039" group-title="Favorites — Documentaries",TLC West [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325894.ts
 #EXTINF:-1 tvg-id="GO: BBC NEWS" tvg-chno="1" tvg-name="BBC News [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — News",BBC News [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568860.ts
@@ -265,12 +281,16 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1820474.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1527686.ts
 #EXTINF:-1 tvg-id="SkyNews.uk" tvg-chno="12" tvg-name="Sky News HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3124.jpg?78087" group-title="Favorites — News",Sky News HEVC 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/717697.ts
-#EXTINF:-1 tvg-id="AlJazeeraEnglish.uk" tvg-chno="13" tvg-name="Al Jazeera English [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/3367.jpg?18634" group-title="Favorites — News",Al Jazeera English [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325829.ts
-#EXTINF:-1 tvg-id="US: BBC WORLD NEWS" tvg-chno="14" tvg-name="BBC World News [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/192.png?ver=81217" group-title="Favorites — News",BBC World News [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325846.ts
-#EXTINF:-1 tvg-id="Euronews.us" tvg-chno="15" tvg-name="Euronews [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12044.jpg?99035" group-title="Favorites — News",Euronews [US]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/436117.ts
+#EXTINF:-1 tvg-id="AlJazeeraEnglish.uk" tvg-chno="13" tvg-name="Al Jazeera English HD [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1182.jpg?84513" group-title="Favorites — News",Al Jazeera English HD [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162148.ts
+#EXTINF:-1 tvg-id="BBCWorldNews.uk" tvg-chno="14" tvg-name="BBC World News HD [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/364.png?20760" group-title="Favorites — News",BBC World News HD [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162143.ts
+#EXTINF:-1 tvg-id="BloombergTV.uk" tvg-chno="15" tvg-name="Bloomberg EU [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/11569.jpg?14373" group-title="Favorites — News",Bloomberg EU [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162146.ts
+#EXTINF:-1 tvg-id="TS" tvg-chno="16" tvg-name="Dw News [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/221.png?87196" group-title="Favorites — News",Dw News [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/483652.ts
+#EXTINF:-1 tvg-id="EuroNews.uk" tvg-chno="17" tvg-name="Euronews [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/418.png?91286" group-title="Favorites — News",Euronews [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162156.ts
 #EXTINF:-1 tvg-id="GOBX: MBC 4 ᴿᴬᵂ" tvg-chno="1" tvg-name="MBC 4 RAW [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",MBC 4 RAW [GOBX]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762680.ts
 #EXTINF:-1 tvg-id="GOBX: MBC ACTION ᴿᴬᵂ" tvg-chno="2" tvg-name="MBC Action RAW [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",MBC Action RAW [GOBX]
@@ -331,45 +351,55 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/527379.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/136066.ts
 #EXTINF:-1 tvg-id="SPO: ON SPORT MAX 4K" tvg-chno="30" tvg-name="On Sport MAX 4K [SPO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14910.png?82084" group-title="Favorites — Movies & Series",On Sport MAX 4K [SPO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1842033.ts
-#EXTINF:-1 tvg-id="skyaction.uk" tvg-chno="31" tvg-name="Sky Cinema Action HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6475.jpg?982" group-title="Favorites — Movies & Series",Sky Cinema Action HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639174.ts
-#EXTINF:-1 tvg-id="SkyCinemaAnimation.uk" tvg-chno="32" tvg-name="Sky Cinema Animation HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12173.jpg?14567" group-title="Favorites — Movies & Series",Sky Cinema Animation HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639173.ts
-#EXTINF:-1 tvg-id="SkyCinemaComedy.uk" tvg-chno="33" tvg-name="Sky Cinema Comedy HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6492.jpg?46729" group-title="Favorites — Movies & Series",Sky Cinema Comedy HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639175.ts
-#EXTINF:-1 tvg-id="SkyCinemaDrama.uk" tvg-chno="34" tvg-name="Sky Cinema Drama/Christmas HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12172.jpg?43168" group-title="Favorites — Movies & Series",Sky Cinema Drama/Christmas HEVC 4K [UK]
+#EXTINF:-1 tvg-id="UK: SKY CINEMA ACTION 4K" tvg-chno="31" tvg-name="Sky Cinema Action 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Action 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162330.ts
+#EXTINF:-1 tvg-id="SkyCinemaAnimation.uk" tvg-chno="32" tvg-name="Sky Cinema Animation 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Animation 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162337.ts
+#EXTINF:-1 tvg-id="SkyCinemaComedy.uk" tvg-chno="33" tvg-name="Sky Cinema Comedy 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Comedy 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162331.ts
+#EXTINF:-1 tvg-id="SkyCinemaDrama.uk" tvg-chno="34" tvg-name="Sky Cinema Drama 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Drama 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162335.ts
+#EXTINF:-1 tvg-id="SkyCinemaDrama.uk" tvg-chno="35" tvg-name="Sky Cinema Drama/Christmas HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12172.jpg?43168" group-title="Favorites — Movies & Series",Sky Cinema Drama/Christmas HEVC 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639176.ts
-#EXTINF:-1 tvg-id="SkyCinemaFamily.uk" tvg-chno="35" tvg-name="Sky Cinema Family HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12184.jpg?55624" group-title="Favorites — Movies & Series",Sky Cinema Family HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639177.ts
-#EXTINF:-1 tvg-id="SkyCinemaGreats.uk" tvg-chno="36" tvg-name="Sky Cinema Greats HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6466.png?24948" group-title="Favorites — Movies & Series",Sky Cinema Greats HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639178.ts
-#EXTINF:-1 tvg-id="SkyCinemaHits.uk" tvg-chno="37" tvg-name="Sky Cinema Hits HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12176.png?22884" group-title="Favorites — Movies & Series",Sky Cinema Hits HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639179.ts
-#EXTINF:-1 tvg-id="SkyCinemaPremiere.uk" tvg-chno="38" tvg-name="Sky Cinema Premier HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6463.jpg?90528" group-title="Favorites — Movies & Series",Sky Cinema Premier HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639180.ts
-#EXTINF:-1 tvg-id="SkyCinemaSciFiHorror.uk" tvg-chno="39" tvg-name="Sky Cinema Scifi/Horror HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?62024" group-title="Favorites — Movies & Series",Sky Cinema Scifi/Horror HEVC 4K [UK]
+#EXTINF:-1 tvg-id="SkyCinemaFamily.uk" tvg-chno="36" tvg-name="Sky Cinema Family 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Family 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162348.ts
+#EXTINF:-1 tvg-id="SkyCinemaGreats.uk" tvg-chno="37" tvg-name="Sky Cinema Greats 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Greats 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162339.ts
+#EXTINF:-1 tvg-id="#### SKY CINEMA HD/4K ####" tvg-chno="38" tvg-name="Sky Cinema HD/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Movies & Series",Sky Cinema HD/4K
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015420.ts
+#EXTINF:-1 tvg-id="SkyCinemaHits.uk" tvg-chno="39" tvg-name="Sky Cinema Hits 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Hits 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162342.ts
+#EXTINF:-1 tvg-id="SkyCinemaPremiere.uk" tvg-chno="40" tvg-name="Sky Cinema Premier 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Premier 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162345.ts
+#EXTINF:-1 tvg-id="SkyCinemaSciFiHorror.uk" tvg-chno="41" tvg-name="Sky Cinema Scifi Horror 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Scifi Horror 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162351.ts
+#EXTINF:-1 tvg-id="SkyCinemaSciFiHorror.uk" tvg-chno="42" tvg-name="Sky Cinema Scifi/Horror HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?62024" group-title="Favorites — Movies & Series",Sky Cinema Scifi/Horror HEVC 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639181.ts
-#EXTINF:-1 tvg-id="UK: SKY CINEMA SELECT/FEEL GOOD HEVC 4K" tvg-chno="40" tvg-name="Sky Cinema Select/Feel Good HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6469.jpg?92001" group-title="Favorites — Movies & Series",Sky Cinema Select/Feel Good HEVC 4K [UK]
+#EXTINF:-1 tvg-id="UK: SKY CINEMA SELECT/FEEL GOOD HEVC 4K" tvg-chno="43" tvg-name="Sky Cinema Select/Feel Good HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6469.jpg?92001" group-title="Favorites — Movies & Series",Sky Cinema Select/Feel Good HEVC 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639182.ts
-#EXTINF:-1 tvg-id="SkyCinemaThriller.uk" tvg-chno="41" tvg-name="Sky Cinema Thriller HEVC 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12182.jpg?8761" group-title="Favorites — Movies & Series",Sky Cinema Thriller HEVC 4K [UK]
-http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639183.ts
-#EXTINF:-1 tvg-id="GOBX: STARZ PLAY SERIES ᴴᴰ" tvg-chno="42" tvg-name="Starz Play Series HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Starz Play Series HD [GOBX]
+#EXTINF:-1 tvg-id="SkyCinemaThriller.uk" tvg-chno="44" tvg-name="Sky Cinema Thriller 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Thriller 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162346.ts
+#EXTINF:-1 tvg-id="GOBX: STARZ PLAY SERIES ᴴᴰ" tvg-chno="45" tvg-name="Starz Play Series HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Starz Play Series HD [GOBX]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762648.ts
-#EXTINF:-1 tvg-id="FX.us" tvg-chno="43" tvg-name="FX West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",FX West HD [US]
+#EXTINF:-1 tvg-id="FX.us" tvg-chno="46" tvg-name="FX West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",FX West HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325860.ts
-#EXTINF:-1 tvg-id="FXX.us" tvg-chno="44" tvg-name="Fxx West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",Fxx West HD [US]
+#EXTINF:-1 tvg-id="FXX.us" tvg-chno="47" tvg-name="Fxx West HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8228.jpeg?17349" group-title="Favorites — Movies & Series",Fxx West HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325861.ts
-#EXTINF:-1 tvg-id="HBOComedy.us" tvg-chno="45" tvg-name="HBO Comedy HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8226.jpg?82955" group-title="Favorites — Movies & Series",HBO Comedy HD [US]
+#EXTINF:-1 tvg-id="HBOComedy.us" tvg-chno="48" tvg-name="HBO Comedy HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8226.jpg?82955" group-title="Favorites — Movies & Series",HBO Comedy HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325975.ts
-#EXTINF:-1 tvg-id="US: MGM HD" tvg-chno="46" tvg-name="MGM HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8527.png?46535" group-title="Favorites — Movies & Series",MGM HD [US]
+#EXTINF:-1 tvg-id="US: MGM HD" tvg-chno="49" tvg-name="MGM HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8527.png?46535" group-title="Favorites — Movies & Series",MGM HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325886.ts
-#EXTINF:-1 tvg-id="US: SHOWTIME BET HD" tvg-chno="47" tvg-name="Showtime Bet HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8130.jpg?86612" group-title="Favorites — Movies & Series",Showtime Bet HD [US]
+#EXTINF:-1 tvg-id="US: SHOWTIME BET HD" tvg-chno="50" tvg-name="Showtime Bet HD [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/8130.jpg?86612" group-title="Favorites — Movies & Series",Showtime Bet HD [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325932.ts
-#EXTINF:-1 tvg-id="AMC.us" tvg-chno="48" tvg-name="AMC Plus [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1114.png?6385" group-title="Favorites — Movies & Series",AMC Plus [US]
+#EXTINF:-1 tvg-id="TS" tvg-chno="51" tvg-name="Sky Cinema Select HD [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6469.jpg?ver=79267" group-title="Favorites — Movies & Series",Sky Cinema Select HD [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/501280.ts
+#EXTINF:-1 tvg-id="TS" tvg-chno="52" tvg-name="Sky Cinema Superheroes HD [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Superheroes HD [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162341.ts
+#EXTINF:-1 tvg-id="AMC.us" tvg-chno="53" tvg-name="AMC Plus [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1114.png?6385" group-title="Favorites — Movies & Series",AMC Plus [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/325934.ts
-#EXTINF:-1 tvg-id="F1: MAX VERSTAPPEN | RED BULL RACING | VER" tvg-chno="49" tvg-name="MAX Verstappen | Red Bull Racing | Ver [F1]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14426.png?ver=1517" group-title="Favorites — Movies & Series",MAX Verstappen | Red Bull Racing | Ver [F1]
+#EXTINF:-1 tvg-id="F1: MAX VERSTAPPEN | RED BULL RACING | VER" tvg-chno="54" tvg-name="MAX Verstappen | Red Bull Racing | Ver [F1]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14426.png?ver=1517" group-title="Favorites — Movies & Series",MAX Verstappen | Red Bull Racing | Ver [F1]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1854040.ts
-#EXTINF:-1 tvg-id="US: MUSIC CHOICE  MAX" tvg-chno="50" tvg-name="Music Choice MAX [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/11484.png?43629" group-title="Favorites — Movies & Series",Music Choice MAX [US]
+#EXTINF:-1 tvg-id="US: MUSIC CHOICE  MAX" tvg-chno="55" tvg-name="Music Choice MAX [US]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/11484.png?43629" group-title="Favorites — Movies & Series",Music Choice MAX [US]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/668552.ts
 #EXTINF:-1 tvg-id="SkySportsF1.uk" tvg-chno="1" tvg-name="Sky Sports F1 4K & 3840p [VIP]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/120/11977.jpg?40915" group-title="Favorites — General Sports",Sky Sports F1 4K & 3840p [VIP]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1290247.ts
@@ -505,3 +535,9 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568685.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568684.ts
 #EXTINF:-1 tvg-id="nickelodeon.uk" tvg-chno="10" tvg-name="Nickelodeon RAW [NOW]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/5990.jpg?18307" group-title="Favorites — Kids",Nickelodeon RAW [NOW]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1527656.ts
+#EXTINF:-1 tvg-id="BBC4.uk" tvg-chno="11" tvg-name="BBC 4 / Cbeebies 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12018.jpg?74474" group-title="Favorites — Kids",BBC 4 / Cbeebies 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162102.ts
+#EXTINF:-1 tvg-id="BBC1.uk" tvg-chno="12" tvg-name="Cbbc 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13012.jpg?83523" group-title="Favorites — Kids",Cbbc 4K [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162116.ts
+#EXTINF:-1 tvg-id="TS" tvg-chno="13" tvg-name="BBC 3 / Cbbc HD [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12033.jpg?67015" group-title="Favorites — Kids",BBC 3 / Cbbc HD [UK]
+http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162100.ts
