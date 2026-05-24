@@ -1,0 +1,22 @@
+# Manual channel-id aliases.
+#
+# When automatic matching (callsign / normalized-name / token-set) can't
+# pin upstream EPG data to one of your M3U channels, add a line here:
+#
+#   <m3u_effective_id><TAB><upstream_channel_id>
+#
+# Example: if your M3U has a channel with tvg-id `BBC.One.Local.uk` and the
+# upstream iptv-org/epg source emits programmes against id `bbc1.uk@LDN`,
+# the line below routes upstream data to your channel:
+#
+#   BBC.One.Local.uk	bbc1.uk@LDN
+#
+# Notes:
+#   * One alias per line. Comments start with '#'.
+#   * The fields are TAB-separated (single tab character).
+#   * Upstream id is matched against the channel-id of any provider /
+#     iptv-org/epg source.
+#   * Aliases are applied during the backfill pass — they take priority
+#     over automatic callsign / name-based matching, so use sparingly to
+#     fix hard-to-pin cases (Arabic-script channels, region splits, etc.).
+#   * Append-only: order doesn't matter.

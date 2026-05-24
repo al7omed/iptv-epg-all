@@ -2177,11 +2177,26 @@ def fetch(url: str, dest: Path):
     raise RuntimeError(f"failed to fetch {url}: {last_err}")
 
 
+_xmltv_cache: dict[str, bytes] = {}
+
+
 def read_xmltv(path: Path) -> bytes:
-    """Read possibly gzipped XMLTV from disk, return raw bytes."""
+    """Read possibly gzipped XMLTV from disk, return raw bytes.
+
+    Cached by absolute path. Each provider/upstream file gets read in 2-3
+    different passes (channel iter + programme iter + rescue re-read). With
+    the cache, each file's disk read + gzip decompress happens once. Saves
+    ~30-60s per build on a ~15-source build. Cache lives for one main()
+    invocation — main() doesn't loop, so no memory creep across runs.
+    """
+    key = str(path.resolve())
+    cached = _xmltv_cache.get(key)
+    if cached is not None:
+        return cached
     raw = path.read_bytes()
     if raw[:2] == b"\x1f\x8b":
-        return gzip.decompress(raw)
+        raw = gzip.decompress(raw)
+    _xmltv_cache[key] = raw
     return raw
 
 
@@ -2243,6 +2258,35 @@ def _split_csv(env_value: str) -> list[str]:
     return [s.strip() for s in (env_value or "").split(",") if s.strip()]
 
 
+def load_aliases() -> dict[str, str]:
+    """Parse channels/aliases.tsv into {upstream_cid: m3u_effective_id}.
+
+    Lines starting with '#' or blank are ignored. Each non-comment line is
+    TAB-separated: `<m3u_effective_id><TAB><upstream_channel_id>`. The
+    return dict is keyed by upstream id (the form used by source feeds)
+    so backfill can look up "what should this upstream channel be rewritten
+    to" in O(1).
+    """
+    path = Path("channels/aliases.tsv")
+    out: dict[str, str] = {}
+    if not path.exists():
+        return out
+    bad = 0
+    for raw in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split("\t")
+        if len(parts) != 2 or not parts[0] or not parts[1]:
+            bad += 1
+            continue
+        m3u_id, up_id = parts[0].strip(), parts[1].strip()
+        out[up_id] = m3u_id
+    if bad:
+        print(f"      aliases.tsv: skipped {bad} malformed lines")
+    return out
+
+
 def main():
     m3u_urls = _split_csv(os.environ.get("M3U_URL", ""))
     if not m3u_urls:
@@ -2275,6 +2319,16 @@ def main():
     # Include auto-generated effective ids in the matcher set so an upstream
     # source with that exact id (rare) still binds.
     tvg_ids |= {ch["effective_id"] for ch in m3u_channels}
+    # Manual aliases: maps upstream channel id → M3U effective id. Used in
+    # the backfill pass to force-pin tricky channels that auto-matching
+    # can't reach (Arabic-script names, region splits, provider-prefixed
+    # ids, etc.). Aliased upstream ids also count as "kept" for the first-
+    # pass channel_matches check below, so their channel blocks survive
+    # to the backfill pass even if no other matcher would keep them.
+    alias_map = load_aliases()
+    tvg_ids |= set(alias_map.keys())
+    if alias_map:
+        print(f"      manual aliases loaded: {len(alias_map)} mappings")
     print(f"      index: {len(tvg_ids)} tvg-ids (incl. effective), {len(norm_names)} norm-names, {len(callsigns)} US callsigns")
 
     print(f"[2/6] fetching upstream EPGs from epgshare01...")
@@ -2443,6 +2497,11 @@ def main():
     print(f"[5c]  backfill pass (rewire upstream data to M3U effective ids)")
     backfill_cs: dict[str, str] = {}
     backfill_nn: dict[str, str] = {}
+    backfill_tokens: dict[str, frozenset] = {}  # kept_cid -> its token set
+    # Token reverse-index: token -> list of kept_cids carrying that token.
+    # Used by the token-set fallback so we don't scan every kept_channel for
+    # each M3U entry that fell through callsign/norm-name match.
+    backfill_token_idx: dict[str, list[str]] = defaultdict(list)
     for cid, block in kept_channels.items():
         names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
         for n in names:
@@ -2455,6 +2514,16 @@ def main():
         cid_cs = _strip_us_callsign_suffix(cid.split(".")[0].upper())
         if 3 <= len(cid_cs) <= 5 and cid_cs[0] in ("K", "W"):
             backfill_cs.setdefault(cid_cs, cid)
+        # Build token set (across all display-names) for the token-set
+        # fallback. Skip channels with <2 distinct tokens (too generic).
+        merged_toks: set = set()
+        for n in names:
+            merged_toks |= name_tokens(n)
+        if len(merged_toks) >= 2:
+            tok_fs = frozenset(merged_toks)
+            backfill_tokens[cid] = tok_fs
+            for t in tok_fs:
+                backfill_token_idx[t].append(cid)
 
     progs_by_chan: dict[str, list[bytes]] = {}
     for p in kept_programmes:
@@ -2497,7 +2566,26 @@ def main():
         )
         return out
 
+    # Reverse alias index for backfill: m3u_effective_id -> upstream cid
+    # the user manually pinned to it. Built once so the inner loop is O(1).
+    alias_rev: dict[str, str] = {}
+    for up_cid, m3u_id in alias_map.items():
+        # Only honour aliases where the upstream cid actually survived the
+        # earlier filter passes (i.e. its block is in kept_channels). If
+        # the alias targets a cid we never kept, log + skip.
+        if up_cid in kept_channels:
+            alias_rev[m3u_id] = up_cid
+    if alias_map and len(alias_rev) < len(alias_map):
+        missing = set(alias_map.values()) - set(alias_rev.keys())
+        if missing:
+            print(f"      aliases.tsv: {len(missing)} M3U ids' aliased "
+                  f"upstream not found in kept_channels (skipped)")
+
     backfilled = 0
+    backfilled_alias = 0
+    backfilled_cs = 0
+    backfilled_nn = 0
+    backfilled_tok = 0
     backfill_progs = 0
     backfill_added_programmes: list[bytes] = []
     for ch in m3u_channels:
@@ -2505,17 +2593,66 @@ def main():
         if tid in kept_channels or tid in forced_ids:
             continue
         candidate_cid = None
-        for nm in (ch["tvg_name"], ch["title"]):
-            if not nm:
-                continue
-            cs = extract_callsign(nm)
-            if cs and cs in backfill_cs:
-                candidate_cid = backfill_cs[cs]
-                break
-            nn = normalize_name(nm)
-            if nn and nn in backfill_nn:
-                candidate_cid = backfill_nn[nn]
-                break
+        # 1. Manual alias (user-pinned). Always wins.
+        if tid in alias_rev:
+            candidate_cid = alias_rev[tid]
+            backfilled_alias += 1
+        # 2. Callsign match.
+        if not candidate_cid:
+            for nm in (ch["tvg_name"], ch["title"]):
+                if not nm:
+                    continue
+                cs = extract_callsign(nm)
+                if cs and cs in backfill_cs:
+                    candidate_cid = backfill_cs[cs]
+                    backfilled_cs += 1
+                    break
+        # 3. Normalised-name exact match.
+        if not candidate_cid:
+            for nm in (ch["tvg_name"], ch["title"]):
+                if not nm:
+                    continue
+                nn = normalize_name(nm)
+                if nn and nn in backfill_nn:
+                    candidate_cid = backfill_nn[nn]
+                    backfilled_nn += 1
+                    break
+        # 4. Token-set fallback. Find the kept channel whose token set is
+        #    a subset of this M3U entry's tokens AND has the most tokens
+        #    shared (most-specific wins). This rescues provider-prefixed
+        #    M3U entries that normalize chops too aggressively
+        #    (e.g. 'SS: beIN 4K 1080P EVENT ONLY' -> {BEIN,1080P,EVENT,ONLY}
+        #    matched against upstream 'beIN SPORTS 1' -> {BEIN,SPORTS,1}).
+        if not candidate_cid:
+            merged_m3u_toks: set = set()
+            for nm in (ch["tvg_name"], ch["title"]):
+                if nm:
+                    merged_m3u_toks |= name_tokens(nm)
+            if len(merged_m3u_toks) >= 2:
+                m3u_toks = frozenset(merged_m3u_toks)
+                # Candidate kept_cids: any whose tokens intersect with ours
+                cand_cids: set[str] = set()
+                for t in m3u_toks:
+                    cand_cids.update(backfill_token_idx.get(t, ()))
+                best_cid = None
+                best_n = -1
+                for ccid in cand_cids:
+                    if ccid in (tid,):
+                        continue
+                    c_toks = backfill_tokens.get(ccid)
+                    if not c_toks:
+                        continue
+                    # Source tokens must be subset of M3U tokens. Among
+                    # all such candidates, pick the one with most tokens
+                    # (most-specific wins).
+                    if (c_toks.issubset(m3u_toks)
+                            and len(c_toks) > best_n
+                            and progs_by_chan.get(ccid)):
+                        best_cid = ccid
+                        best_n = len(c_toks)
+                if best_cid:
+                    candidate_cid = best_cid
+                    backfilled_tok += 1
         if not candidate_cid:
             continue
         src_block = kept_channels[candidate_cid]
@@ -2527,7 +2664,10 @@ def main():
             backfill_added_programmes.append(rewrite_prog_channel(src_prog, candidate_cid, tid))
             backfill_progs += 1
     kept_programmes.extend(backfill_added_programmes)
-    print(f"      backfilled {backfilled} M3U ids (+{backfill_progs} cloned programmes)")
+    print(f"      backfilled {backfilled} M3U ids "
+          f"(alias={backfilled_alias}, callsign={backfilled_cs}, "
+          f"name={backfilled_nn}, tokens={backfilled_tok}) "
+          f"(+{backfill_progs} cloned programmes)")
 
     uncovered_ids = (set(m3u_display.keys()) - kept_channels.keys()) | forced_ids
     uncovered_ids = {tid for tid in uncovered_ids if tid in m3u_display}
@@ -2719,6 +2859,15 @@ def main():
     print(f"      source candidates: {len(src_channels)} channels, "
           f"{sum(len(v) for v in src_progs.values())} programmes")
 
+    # Build a token reverse-index so the per-dummy-channel inner loop only
+    # walks candidates that share at least one token, not all 5-15k upstream
+    # channels. Cuts the O(n²) rescue scan to O(n × avg_candidates_per_token)
+    # which in practice is 30-50x faster on this corpus.
+    src_token_to_idx: dict[str, list[int]] = defaultdict(list)
+    for idx, (_cid, toks) in enumerate(src_channels):
+        for t in toks:
+            src_token_to_idx[t].append(idx)
+
     # Match each dummy channel to its most-specific source-channel candidate.
     rescue_map: dict[str, str] = {}
     for kept_cid in dummy_only_cids:
@@ -2730,9 +2879,16 @@ def main():
         if len(merged) < 2:
             continue
         kept_tokens = frozenset(merged)
+        # Candidate-set: any src_channel sharing at least one token. Built
+        # by union-ing token reverse-index entries (cheap — most kept_tokens
+        # match <100 src indices each).
+        candidate_idxs: set[int] = set()
+        for t in kept_tokens:
+            candidate_idxs.update(src_token_to_idx.get(t, ()))
         best_cid = None
         best_n = -1
-        for s_cid, s_toks in src_channels:
+        for i in candidate_idxs:
+            s_cid, s_toks = src_channels[i]
             if s_cid == kept_cid:
                 continue
             # Subset: every source token must appear in the M3U channel's
