@@ -248,5 +248,15 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update unified EPG + M3U $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
+            # Retry-with-rebase loop — handles the race when a manual push
+            # lands between this run's checkout and its `git push`. Up to
+            # 5 attempts with 5s backoff.
+            for attempt in 1 2 3 4 5; do
+              if git push; then
+                echo "push OK (attempt $attempt)"; break
+              fi
+              echo "push rejected, rebasing onto remote main (attempt $attempt)..."
+              git pull --rebase origin main || { echo "rebase failed"; exit 1; }
+              sleep 5
+            done
           fi
