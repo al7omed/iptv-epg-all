@@ -263,6 +263,20 @@ jobs:
             exit 1
           fi
 
+      - name: Notify on channel renames (optional)
+        continue-on-error: true
+        env:
+          RENAME_WEBHOOK_URL: ${{ secrets.RENAME_WEBHOOK_URL }}
+        run: |
+          # Silent no-op if the secret isn't configured. If it is, POSTs
+          # the most recent rename block from channels/name_changes.log
+          # to the webhook (Discord / Slack / generic JSON auto-detected).
+          if [ -z "$RENAME_WEBHOOK_URL" ]; then
+            echo "RENAME_WEBHOOK_URL not configured — skipping rename notification"
+            exit 0
+          fi
+          python3 scripts/notify_renames.py
+
       - name: Ensure stale files stay purged
         run: |
           # Files that used to be published but were dropped — delete from
@@ -310,10 +324,16 @@ jobs:
             STASH_LIST="$(mktemp)"
             git diff --staged --name-only > "$STASH_LIST"
             git commit -m "Update unified EPG + M3U $(date -u +%Y-%m-%dT%H:%MZ)"
-            # Retry-with-reset-soft loop. On push rejection:
+            # Retry-with-reset-mixed loop. On push rejection:
             #   1. Save the commit message
             #   2. Fetch latest remote main
-            #   3. Soft-reset to remote main (working-tree files preserved)
+            #   3. Mixed-reset to remote main (HEAD + INDEX match remote,
+            #      working-tree preserved). MIXED is critical here: --soft
+            #      would keep our stale pre-checkout INDEX which deletes
+            #      files that landed in main between our checkout and push
+            #      (e.g. new test files). With --mixed the index matches
+            #      latest origin, then we re-stage only our changed paths
+            #      on top of that fresh baseline.
             #   4. Re-stage all the same paths
             #   5. Recommit (now on top of fresh remote)
             #   6. Retry push
@@ -323,9 +343,9 @@ jobs:
               if git push; then
                 echo "push OK (attempt $attempt)"; break
               fi
-              echo "push rejected (attempt $attempt) — soft-resetting onto remote main..."
+              echo "push rejected (attempt $attempt) — mixed-resetting onto remote main..."
               git fetch origin main || { echo "fetch failed"; exit 1; }
-              git reset --soft origin/main
+              git reset --mixed origin/main
               # Re-stage everything that was in the original commit
               while IFS= read -r path; do
                 if [ -e "$path" ]; then
