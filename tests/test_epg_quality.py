@@ -133,3 +133,25 @@ class TestStripNonLatinId:
 
     def test_empty_input(self):
         assert strip_non_latin_id('') == ''
+
+
+class TestSwedishDetection:
+    def test_swedish_feed_scores_high(self):
+        # Real titles from the wrongly-bound Swedish Nat Geo Wild feed.
+        progs = [_prog(t) for t in [
+            "Den otroliga dr Pol", "Det vilda Filippinerna",
+            "Det vilda Taiwan - Djungelön", "En tonårsleopards dagbok",
+            "Kattkrig: Lejon vs gepard", "Komododrakarna",
+            "Lejonbröder: Från ungar till kungar", "Världens största vithaj",
+        ]]
+        assert non_english_title_ratio(progs) >= 0.4
+
+    def test_english_with_den_and_till_not_flagged(self):
+        # 'Den'/'Till' appear in English titles too — the channel-level
+        # ratio must absorb the occasional hit.
+        progs = [_prog(t) for t in [
+            "Den of Thieves", "Till Death Us Do Part", "Match of the Day",
+            "The Chase", "News at Ten", "Top Gear", "Question Time",
+            "Countdown", "The One Show", "Doctor Who",
+        ]]
+        assert non_english_title_ratio(progs) < 0.25

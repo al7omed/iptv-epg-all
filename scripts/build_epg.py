@@ -293,7 +293,10 @@ _NON_LATIN_SCRIPT_RE = re.compile(
 )
 _ACCENTED_LATIN_RE = re.compile(rb'[\xc3-\xc5][\x80-\xbf]')
 _NON_EN_STOPWORD_RE = re.compile(
-    rb'(?i)(?:^|[^a-z])(?:del?|la|los|las|el|les|une|und|der|das|di|il)(?:[^a-z]|$)'
+    rb'(?i)(?:^|[^a-z])(?:'
+    rb'del?|la|los|las|el|les|une|und|der|das|di|il'   # Romance/German
+    rb'|det|den|och|till|med|av|og|ett'                # Swedish/Norwegian/Danish
+    rb')(?:[^a-z]|$)'
 )
 _TITLE_TEXT_RE = re.compile(rb'<title\b[^>]*>([^<]*)</title>')
 
@@ -2718,7 +2721,7 @@ def main():
     def _bf_lang_ok(cid: str) -> bool:
         ok = _bf_lang_cache.get(cid)
         if ok is None:
-            ok = non_english_title_ratio(progs_by_chan.get(cid, [])) < 0.3
+            ok = non_english_title_ratio(progs_by_chan.get(cid, [])) < 0.25
             _bf_lang_cache[cid] = ok
         return ok
 
@@ -2984,7 +2987,7 @@ def main():
             progs_by_cid_scrub[cid].append(p)
     bad_lang_cids: set = set()
     for cid, plist in progs_by_cid_scrub.items():
-        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.45:
+        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.4:
             bad_lang_cids.add(cid)
     if bad_lang_cids:
         before_n = len(kept_programmes)
@@ -3052,7 +3055,7 @@ def main():
     def _rescue_lang_ok(cid: str) -> bool:
         ok = _rescue_lang_cache.get(cid)
         if ok is None:
-            ok = non_english_title_ratio(src_progs.get(cid, [])) < 0.3
+            ok = non_english_title_ratio(src_progs.get(cid, [])) < 0.25
             _rescue_lang_cache[cid] = ok
         return ok
 
