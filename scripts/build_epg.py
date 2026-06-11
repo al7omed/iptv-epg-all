@@ -418,6 +418,25 @@ def _shorten_id(s: str) -> str:
     return s[: MAX_ID_LEN - 9].rstrip() + "~" + h
 
 
+# Non-Latin script ranges (str level): Cyrillic, Hebrew, Arabic (+supplement,
+# extended, presentation forms), CJK. EPG output must be free of these — the
+# user's policy is English-only EPG (M3U channel NAMES may keep Arabic, ids
+# and EPG text may not).
+_NON_LATIN_SCRIPT_STR_RE = re.compile(
+    r'[Ѐ-ӿ֐-׿؀-ۿݐ-ݿ'
+    r'ࢠ-ࣿ一-鿿ﭐ-﷿ﹰ-﻿]+'
+)
+
+
+def strip_non_latin_id(s: str) -> str:
+    """Remove non-Latin-script chunks from a channel id and tidy whitespace.
+    Returns '' if nothing identifying remains (caller falls back)."""
+    if not s:
+        return ""
+    s = _NON_LATIN_SCRIPT_STR_RE.sub(" ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
 def find_degenerate_tvg_ids(m3u_channels) -> set:
     """Detect provider tvg-ids that are FLAGS, not channel identities.
 
@@ -477,10 +496,16 @@ def assign_effective_ids(m3u_channels):
     auto_count = 0
     name_count = 0
     for ch in m3u_channels:
+        # Ids must be non-Latin-script-free (English-only EPG policy): the
+        # effective id lands in BOTH the patched M3U and the EPG file, and
+        # the orphan-prune whitelist includes tvg_id — sanitize the field
+        # itself so every downstream consumer sees the same clean id.
+        ch["tvg_id"] = strip_non_latin_id(ch["tvg_id"]) if ch["tvg_id"] else ch["tvg_id"]
+        name_id = strip_non_latin_id(ch["tvg_name"]) if ch["tvg_name"] else ""
         if ch["tvg_id"] and ch["tvg_id"] not in degenerate:
             ch["effective_id"] = _shorten_id(ch["tvg_id"])
-        elif ch["tvg_name"]:
-            ch["effective_id"] = _shorten_id(ch["tvg_name"])
+        elif name_id:
+            ch["effective_id"] = _shorten_id(name_id)
             name_count += 1
         else:
             ch["effective_id"] = _shorten_id(auto_tvg_id(ch))
@@ -3157,6 +3182,30 @@ def main():
         desc_scrubbed += 1
     print(f"      replaced {desc_scrubbed} non-English <desc> with the programme title")
 
+    # Any OTHER leaf element carrying non-English script gets dropped whole —
+    # observed: <category lang="ar">دراما</category> genre tags riding on
+    # programmes whose title/desc are English. Categories, sub-titles, actor
+    # credits etc. are optional decoration; removing them is lossless for the
+    # guide grid. (title = programme dropped above; desc = replaced above.)
+    NON_ENGLISH_LEAF_RE = re.compile(
+        rb'<(?!title\b|desc\b)([a-zA-Z][a-zA-Z-]*)\b[^>]*>'
+        rb'[^<]*(?:'
+        rb'[\xd0-\xd3][\x80-\xbf]'              # Cyrillic
+        rb'|\xd7[\x90-\xbf]'                     # Hebrew
+        rb'|[\xd8-\xdb][\x80-\xbf]'              # Arabic + Persian/Farsi
+        rb'|[\xe4-\xe9][\x80-\xbf][\x80-\xbf]'   # CJK
+        rb')[^<]*</\1>'
+    )
+    leaf_scrubbed = 0
+    for i, p in enumerate(kept_programmes):
+        if not _NON_LATIN_SCRIPT_RE.search(p):
+            continue
+        new_p, n = NON_ENGLISH_LEAF_RE.subn(b'', p)
+        if n:
+            kept_programmes[i] = new_p
+            leaf_scrubbed += n
+    print(f"      stripped {leaf_scrubbed} non-English side elements (category/sub-title/...)")
+
     # ---------- gap-fill pass ----------
     # Channels with REAL EPG sometimes have coverage gaps (e.g. provider EPG
     # is missing a programme for "now" but has entries before and after).
@@ -3380,6 +3429,36 @@ def main():
     dropped_programmes = before_prog - len(kept_programmes)
     print(f"      dropped {dropped_channels} orphan channels, {dropped_programmes} orphan programmes")
     print(f"      final: {len(kept_channels)} channels, {len(kept_programmes)} programmes")
+
+    # Channel blocks kept verbatim from provider EPGs can carry non-English
+    # display-names (e.g. '#### DISCOVERY+ ديسكفري ####'). Ids are already
+    # sanitized at assignment; scrub the display-name texts too so no
+    # non-Latin script reaches the output. Empty-after-scrub names are
+    # dropped (other display-name variants remain).
+    _DN_ELEM_RE = re.compile(rb'<display-name\b[^>]*>([^<]*)</display-name>')
+    dn_scrubbed = 0
+    for cid, blk in list(kept_channels.items()):
+        if not _NON_LATIN_SCRIPT_RE.search(blk):
+            continue
+
+        def _fix_dn(m: re.Match) -> bytes:
+            nonlocal_text = m.group(1)
+            if not _NON_LATIN_SCRIPT_RE.search(nonlocal_text):
+                return m.group(0)
+            txt = nonlocal_text.decode("utf-8", "replace")
+            cleaned = strip_non_latin_id(html.unescape(txt))
+            if not cleaned.strip("#*=-_~ "):
+                return b''
+            return (b'<display-name>'
+                    + html.escape(cleaned, quote=True).encode("utf-8")
+                    + b'</display-name>')
+
+        new_blk, n = _DN_ELEM_RE.subn(_fix_dn, blk)
+        if n and new_blk != blk:
+            kept_channels[cid] = new_blk
+            dn_scrubbed += 1
+    if dn_scrubbed:
+        print(f"      scrubbed non-English display-names in {dn_scrubbed} channel blocks")
 
     # ---------- LIVE marker pass (non-beIN sports) ----------
     # bein.com programmes already carry '🔴 LIVE: ' for live broadcasts

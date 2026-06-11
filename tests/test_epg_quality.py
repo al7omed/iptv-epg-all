@@ -115,3 +115,21 @@ class TestNonEnglishTitleRatio:
 
     def test_empty_input(self):
         assert non_english_title_ratio([]) == 0.0
+
+
+from build_epg import strip_non_latin_id
+
+
+class TestStripNonLatinId:
+    def test_arabic_removed_from_id(self):
+        assert strip_non_latin_id('#### DISCOVERY+ ديسكفري #####') == '#### DISCOVERY+ #####'
+
+    def test_plain_ascii_untouched(self):
+        assert strip_non_latin_id('SkySportsF1.uk') == 'SkySportsF1.uk'
+        assert strip_non_latin_id('UK: BBC ONE HD') == 'UK: BBC ONE HD'
+
+    def test_pure_arabic_becomes_empty(self):
+        assert strip_non_latin_id('قناة العربية') == ''
+
+    def test_empty_input(self):
+        assert strip_non_latin_id('') == ''
