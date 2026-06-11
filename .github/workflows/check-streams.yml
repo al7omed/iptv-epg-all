@@ -25,8 +25,8 @@ jobs:
       XTREAM_USER: ${{ secrets.XTREAM_USER_2 }}
       XTREAM_PASS: ${{ secrets.XTREAM_PASS_2 }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Fetch sub2 if needed

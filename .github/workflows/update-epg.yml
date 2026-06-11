@@ -32,22 +32,59 @@ jobs:
       BEIN_EPG_URL: https://al7omed.github.io/bein-epg/guide.xml
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Install Python deps
         run: pip install --quiet qrcode
 
-      - name: Fetch sub1 M3U (direct)
+      - name: Fetch sub1 M3U (best-effort, Xtream API fallback)
+        continue-on-error: true
         run: |
+          set +e
           mkdir -p epg-work
-          curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
-            "$M3U_URL_1" -o epg-work/m3u_sub1.m3u
-          echo "sub1: $(grep -c '^#EXTINF' epg-work/m3u_sub1.m3u) channels"
+          ok=0
+          if curl -fsSL --max-time 90 -A "VLC/3.0.18 LibVLC/3.0.18" \
+              "$M3U_URL_1" -o epg-work/m3u_sub1.m3u; then
+            echo "sub1 direct OK"
+            ok=1
+          else
+            echo "sub1 direct returned non-2xx; trying Xtream API..."
+            # No dedicated XTREAM_*_1 secrets — derive host/user/pass from
+            # the get.php-style M3U URL so the player_api fallback works
+            # for sub1 too (mirrors the sub2 fallback below).
+            eval "$(python3 - <<'PY'
+          import os, shlex, urllib.parse
+          u = urllib.parse.urlsplit(os.environ.get("M3U_URL_1", ""))
+          q = urllib.parse.parse_qs(u.query)
+          host = f"{u.scheme}://{u.netloc}" if u.scheme and u.netloc else ""
+          print("XH=%s XU=%s XP=%s" % (
+              shlex.quote(host),
+              shlex.quote((q.get("username") or [""])[0]),
+              shlex.quote((q.get("password") or [""])[0]),
+          ))
+          PY
+            )"
+            if [ -n "$XH" ] && [ -n "$XU" ] && \
+               XTREAM_HOST="$XH" XTREAM_USER="$XU" XTREAM_PASS="$XP" \
+               python3 scripts/synth_m3u_from_xtream.py > epg-work/m3u_sub1.m3u 2> /tmp/synth1.err; then
+              echo "sub1 synth OK"
+              ok=1
+            else
+              echo "sub1 synth failed:"
+              cat /tmp/synth1.err 2>/dev/null || true
+              echo "#EXTM3U" > epg-work/m3u_sub1.m3u
+              echo "::warning::sub1 M3U could not be fetched; build continues with sub2 only"
+            fi
+          fi
+          if [ "$ok" = "1" ]; then
+            echo "sub1: $(grep -c '^#EXTINF' epg-work/m3u_sub1.m3u) channels"
+          fi
+          exit 0
 
       - name: Fetch sub2 M3U (best-effort, soft-fails on CF block)
         continue-on-error: true
@@ -76,6 +113,21 @@ jobs:
           fi
           exit 0
 
+      - name: Verify at least one M3U source is alive
+        run: |
+          S1=$(grep -c '^#EXTINF' epg-work/m3u_sub1.m3u 2>/dev/null || true)
+          S2=$(grep -c '^#EXTINF' epg-work/m3u_sub2.m3u 2>/dev/null || true)
+          S1=${S1:-0}; S2=${S2:-0}
+          ALIVE=0
+          [ "$S1" -gt 0 ] && ALIVE=$((ALIVE+1))
+          [ "$S2" -gt 0 ] && ALIVE=$((ALIVE+1))
+          echo "sub1=$S1 channels, sub2=$S2 channels, sources alive=$ALIVE"
+          echo "SUBS_ALIVE=$ALIVE" >> "$GITHUB_ENV"
+          if [ "$ALIVE" -eq 0 ]; then
+            echo "::error::Both M3U subscriptions are unreachable. Most likely the subscriptions expired or the provider rotated the URLs — verify them in a browser/VLC and update the M3U_URL_1 / M3U_URL_2 secrets."
+            exit 1
+          fi
+
       - name: Fetch live beIN TV-guide from bein.com (with LIVE flags)
         continue-on-error: true
         run: |
@@ -95,7 +147,7 @@ jobs:
           exit 0
 
       - name: Checkout iptv-org/epg (multi-source scraper)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: iptv-org/epg
           ref: master
@@ -103,7 +155,7 @@ jobs:
           fetch-depth: 1   # shallow clone — saves ~1GB / build
 
       - name: Setup Node (for iptv-org/epg scrapers)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'npm'    # cache node_modules across builds — saves 5-10 min/build
@@ -258,10 +310,23 @@ jobs:
           LITE_PROGS=$(gunzip -c docs/guide-lite.xml.gz | grep -c '<programme' || true)
           echo "guide.xml.gz programmes: $FULL_PROGS"
           echo "guide-lite.xml.gz programmes: $LITE_PROGS"
-          if [ "$FULL_PROGS" -lt 50000 ] || [ "$LITE_PROGS" -lt 10000 ]; then
+          # Thresholds were calibrated for both subscriptions feeding the
+          # build; with one source dead the channel count roughly halves,
+          # so relax rather than block a legitimate single-source build.
+          FULL_MIN=50000; LITE_MIN=10000
+          if [ "${SUBS_ALIVE:-2}" -lt 2 ]; then
+            FULL_MIN=15000; LITE_MIN=3000
+            echo "Only one M3U source alive — relaxed thresholds (full>=$FULL_MIN lite>=$LITE_MIN)"
+          fi
+          if [ "$FULL_PROGS" -lt "$FULL_MIN" ] || [ "$LITE_PROGS" -lt "$LITE_MIN" ]; then
             echo "::error::Suspiciously low programme counts (full=$FULL_PROGS lite=$LITE_PROGS)"
             exit 1
           fi
+          # Freshness marker — first thing to check when a player shows
+          # "data unavailable": a stale built_at_utc means builds stopped.
+          cat > docs/build-info.json <<EOF
+          {"built_at_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)", "m3u_sources_alive": ${SUBS_ALIVE:-2}, "programmes_full": $FULL_PROGS, "programmes_lite": $LITE_PROGS}
+          EOF
 
       - name: Notify on channel renames (optional)
         continue-on-error: true
@@ -293,6 +358,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/guide.xml.gz docs/guide-lite.xml.gz docs/tvg-id-map.tsv
+          git add docs/build-info.json
           # Stage deletes for any deprecated files (region splits +
           # now-playing.json — replaced by lite EPG's 24h window with
           # 🔴 LIVE markers).
@@ -362,3 +428,22 @@ jobs:
             done
             rm -f "$STASH_LIST"
           fi
+
+      - name: Notify webhook on build failure (optional)
+        if: failure()
+        continue-on-error: true
+        env:
+          RENAME_WEBHOOK_URL: ${{ secrets.RENAME_WEBHOOK_URL }}
+        run: |
+          # Reuses the rename webhook so a dead build pings Discord/Slack
+          # instead of silently going stale for weeks.
+          if [ -z "$RENAME_WEBHOOK_URL" ]; then
+            echo "RENAME_WEBHOOK_URL not configured — skipping failure notification"
+            exit 0
+          fi
+          MSG="❌ iptv-epg-all build failed: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          case "$RENAME_WEBHOOK_URL" in
+            *discord.com/api/webhooks*) PAYLOAD="{\"content\": \"$MSG\"}";;
+            *) PAYLOAD="{\"text\": \"$MSG\"}";;
+          esac
+          curl -fsS -X POST -H 'Content-Type: application/json' -d "$PAYLOAD" "$RENAME_WEBHOOK_URL" || true
