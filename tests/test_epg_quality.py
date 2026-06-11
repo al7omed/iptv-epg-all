@@ -1,0 +1,117 @@
+"""Unit tests for the EPG-correctness heuristics added 2026-06:
+degenerate shared tvg-ids, TimeShift junk filler, and the non-English
+language scoring used by the backfill/rescue guards and the
+wrong-language binding scrub."""
+import pytest
+
+from build_epg import (
+    JUNK_PROG_TITLE_RE,
+    find_degenerate_tvg_ids,
+    non_english_title_ratio,
+)
+
+
+def _ch(tvg_id, name):
+    return {"tvg_id": tvg_id, "tvg_name": name, "title": name}
+
+
+class TestFindDegenerateTvgIds:
+    def test_flag_id_shared_by_unrelated_channels(self):
+        # Mirrors the real 'TS' case: one id stamped on totally unrelated
+        # channels (provider timeshift/catch-up flag).
+        names = [
+            "UK: BBC 3 4K", "UK: ITV LONDON 4K", "UK: FILM 4 4K",
+            "UK: MORE 4 4K", "AR: 2M Monde", "AFR: Sahel TV",
+            "UK: FOOD NETWORK +1", "UK: HGTV +1", "US: DAYSTAR HD",
+            "UK: PARAMOUNT HD", "National Geographic +1 [UK]",
+            "UK: BBC Earth HD",
+        ]
+        chans = [_ch("TS", n) for n in names]
+        assert find_degenerate_tvg_ids(chans) == {"TS"}
+
+    def test_keep_quality_variant_group(self):
+        # SkySportsCricket.uk shared by 14 variants of the SAME channel —
+        # a brand token (SKY) is common to all, so the id is legitimate.
+        names = [
+            "UK: SKY SPORTS CRICKET HD", "UK: SKY SPORTS CRICKET HEVC 4K",
+            "UK: SKY SPORTS CRICKET HEVC HD", "UK: SKY SPORTS CRICKET SD",
+            "SKYGO: SKY SPORT CRICKET 4K", "SKYGO: SKY SPORT CRICKET HD",
+            "UK: SKY SPORTS CRICKET RAW", "UK: SKY SPORTS CRICKET VIP",
+            "UK: SKY SPORTS CRICKET FHD", "UK: SKY SPORTS CRICKET UHD",
+            "UK: SKY SPORTS CRICKET 8K", "UK: SKY SPORTS CRICKET",
+        ]
+        chans = [_ch("SkySportsCricket.uk", n) for n in names]
+        assert find_degenerate_tvg_ids(chans) == set()
+
+    def test_small_groups_never_flagged(self):
+        # <10 entries sharing an id is normal (quality variants).
+        chans = [_ch("NatGeo.uk", n) for n in
+                 ["National Geo HEVC 4K [UK]", "National Geographic 4K [UK]",
+                  "National Geo HEVC HD [UK]"]]
+        assert find_degenerate_tvg_ids(chans) == set()
+
+    def test_empty_tvg_ids_ignored(self):
+        chans = [_ch("", f"Channel {i}") for i in range(20)]
+        assert find_degenerate_tvg_ids(chans) == set()
+
+
+class TestJunkProgTitleRe:
+    @pytest.mark.parametrize("block", [
+        b'<programme channel="TS"><title>TimeShift 13</title>'
+        b'<desc>TimeShift For Time 13 </desc></programme>',
+        b'<programme channel="x"><title lang="en">timeshift 7</title></programme>',
+        b'<programme channel="x"><title> Time Shift 22</title></programme>',
+    ])
+    def test_matches_filler(self, block):
+        assert JUNK_PROG_TITLE_RE.search(block)
+
+    @pytest.mark.parametrize("block", [
+        # Real programmes about time travel must NOT be dropped.
+        b'<programme channel="x"><title>The Time Shifters</title></programme>',
+        b'<programme channel="x"><title>Doctor Who</title></programme>',
+        # 'TimeShift' only in desc (not title) is not the filler pattern.
+        b'<programme channel="x"><title>News</title><desc>TimeShift</desc></programme>',
+    ])
+    def test_keeps_real_programmes(self, block):
+        assert not JUNK_PROG_TITLE_RE.search(block)
+
+
+def _prog(title: str) -> bytes:
+    return ('<programme channel="x"><title>%s</title></programme>' % title).encode("utf-8")
+
+
+class TestNonEnglishTitleRatio:
+    def test_english_feed_scores_low(self):
+        progs = [_prog(t) for t in [
+            "World's Deadliest", "Air Crash Investigation", "Drain the Oceans",
+            "Vikings: The Rise and Fall", "Hunt for the Giant Squid",
+            "Savage Kingdom", "Yukon Vet", "To Catch a Smuggler",
+        ]]
+        assert non_english_title_ratio(progs) < 0.3
+
+    def test_spanish_feed_scores_high(self):
+        # Real titles observed on the wrongly-bound Spanish Nat Geo feed.
+        progs = [_prog(t) for t in [
+            "Hermanos leones: de cachorros a reyes",
+            "Jaguar: icono de la jungla de Guyana",
+            "Felinos insólitos", "Safari letal",
+            "Los secretos de la selva", "El reino del puma",
+        ]]
+        assert non_english_title_ratio(progs) >= 0.45
+
+    def test_arabic_feed_scores_high_unless_latin_only(self):
+        progs = [_prog(t) for t in ["مسلسل الليل", "برنامج الصباح", "نشرة الأخبار", "فيلم السهرة"]]
+        assert non_english_title_ratio(progs) == 1.0
+        assert non_english_title_ratio(progs, latin_only=True) == 0.0
+
+    def test_occasional_accent_tolerated(self):
+        # One Pokémon in an otherwise-English feed must not flag the channel.
+        progs = [_prog(t) for t in [
+            "Pokémon Horizons", "Breaking News", "Match of the Day",
+            "The Chase", "Countdown", "News at Ten", "Question Time",
+            "Top Gear",
+        ]]
+        assert non_english_title_ratio(progs) < 0.3
+
+    def test_empty_input(self):
+        assert non_english_title_ratio([]) == 0.0

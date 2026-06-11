@@ -322,6 +322,15 @@ jobs:
             echo "::error::Suspiciously low programme counts (full=$FULL_PROGS lite=$LITE_PROGS)"
             exit 1
           fi
+          # EPG quality regression guards: provider 'TimeShift N' filler and
+          # non-English (Arabic-script) leakage must not reach the output.
+          JUNK=$(gunzip -c docs/guide-lite.xml.gz | grep -oi 'TimeShift' | wc -l | tr -d ' ')
+          ARABIC=$(gunzip -c docs/guide-lite.xml.gz | grep -oP '[\x{0600}-\x{06FF}]' | wc -l | tr -d ' ')
+          echo "guide-lite quality: TimeShift occurrences=$JUNK, Arabic-script chars=$ARABIC"
+          if [ "$JUNK" -gt 50 ] || [ "$ARABIC" -gt 50 ]; then
+            echo "::error::EPG quality regression in guide-lite (TimeShift=$JUNK, Arabic chars=$ARABIC)"
+            exit 1
+          fi
           # Freshness marker — first thing to check when a player shows
           # "data unavailable": a stale built_at_utc means builds stopped.
           cat > docs/build-info.json <<EOF

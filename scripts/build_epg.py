@@ -270,6 +270,57 @@ def name_tokens(s: str) -> frozenset:
     return frozenset(t for t in tokens if t not in _BEIN_TOKEN_DROP and t)
 
 
+# ---------------- junk-programme + language heuristics ----------------
+# Filler programmes some Xtream panels emit for channels they have no real
+# data for: hour-blocks titled 'TimeShift 13' / desc 'TimeShift For Time 13'.
+# They must be dropped at INGEST — if they survive they occupy the channel's
+# EPG slot and block the backfill/rescue passes from wiring in real data.
+JUNK_PROG_TITLE_RE = re.compile(
+    rb'<title\b[^>]*>\s*Time\s*-?\s*Shift\b', re.IGNORECASE
+)
+
+# Byte-level signals that text is not English. Two tiers:
+#   non-Latin scripts (Arabic/Hebrew/Cyrillic/CJK) — same blocks the
+#   English-only title filter drops;
+#   accented Latin (à-ÿ, Latin Extended-A) + high-precision Romance/Germanic
+#   stopwords — catches Spanish/French/Portuguese/etc., which are Latin
+#   script and invisible to the script-based filter.
+_NON_LATIN_SCRIPT_RE = re.compile(
+    rb'[\xd0-\xd3][\x80-\xbf]'                 # Cyrillic
+    rb'|\xd7[\x90-\xbf]'                       # Hebrew
+    rb'|[\xd8-\xdb][\x80-\xbf]'                # Arabic + Persian/Farsi
+    rb'|[\xe4-\xe9][\x80-\xbf][\x80-\xbf]'     # CJK
+)
+_ACCENTED_LATIN_RE = re.compile(rb'[\xc3-\xc5][\x80-\xbf]')
+_NON_EN_STOPWORD_RE = re.compile(
+    rb'(?i)(?:^|[^a-z])(?:del?|la|los|las|el|les|une|und|der|das|di|il)(?:[^a-z]|$)'
+)
+_TITLE_TEXT_RE = re.compile(rb'<title\b[^>]*>([^<]*)</title>')
+
+
+def non_english_title_ratio(progs, sample: int = 40,
+                            latin_only: bool = False) -> float:
+    """Fraction of sampled programme blocks whose <title> shows non-English
+    signals. English feeds score ~0 (the odd 'Pokémon' or 'La La Land');
+    Spanish/French/Arabic feeds score 0.3+. With latin_only=True only the
+    accent/stopword signals count — used by the wrong-language scrub, which
+    leaves non-Latin-script titles to the per-programme English-only filter.
+    """
+    hits = 0
+    n = 0
+    for p in progs[:sample]:
+        m = _TITLE_TEXT_RE.search(p)
+        if not m or not m.group(1).strip():
+            continue
+        n += 1
+        t = m.group(1)
+        if _ACCENTED_LATIN_RE.search(t) or _NON_EN_STOPWORD_RE.search(t):
+            hits += 1
+        elif not latin_only and _NON_LATIN_SCRIPT_RE.search(t):
+            hits += 1
+    return hits / n if n else 0.0
+
+
 def extract_callsign(name: str) -> str | None:
     """Extract a US broadcast callsign from a channel name. Handles two forms:
        'NBC 4 (KNBC) LOS ANGELES' -> 'KNBC'
@@ -367,11 +418,50 @@ def _shorten_id(s: str) -> str:
     return s[: MAX_ID_LEN - 9].rstrip() + "~" + h
 
 
+def find_degenerate_tvg_ids(m3u_channels) -> set:
+    """Detect provider tvg-ids that are FLAGS, not channel identities.
+
+    Some Xtream panels stamp the same epg_channel_id on hundreds of unrelated
+    channels (observed: 'TS' — their timeshift/catch-up marker — on 444
+    channels from BBC Three to Sahel TV). Every channel sharing such an id
+    collapses onto ONE EPG channel and they all inherit each other's (junk)
+    programmes.
+
+    Heuristic: an id is degenerate when ≥10 channels share it AND no single
+    name-token is common to at least half of them. Legitimate shared ids are
+    quality-variant groups ('SkySportsCricket.uk' ×14) where a brand token
+    (SKY) appears in every variant; degenerate ids join channels with nothing
+    in common.
+    """
+    by_id: dict[str, list[str]] = defaultdict(list)
+    for ch in m3u_channels:
+        if ch["tvg_id"]:
+            by_id[ch["tvg_id"]].append(ch["tvg_name"] or ch["title"] or "")
+    degenerate = set()
+    for tid, names in by_id.items():
+        if len(names) < 10:
+            continue
+        token_sets = [name_tokens(n) for n in names]
+        token_sets = [t for t in token_sets if t]
+        if len(token_sets) < 10:
+            continue
+        counts: dict[str, int] = defaultdict(int)
+        for ts in token_sets:
+            for t in ts:
+                counts[t] += 1
+        majority = max(counts.values()) / len(token_sets) if counts else 0.0
+        if majority < 0.5:
+            degenerate.add(tid)
+    return degenerate
+
+
 def assign_effective_ids(m3u_channels):
     """Set 'effective_id' on every M3U channel.
 
     Priority:
-      1. M3U's tvg-id, if set
+      1. M3U's tvg-id, if set — UNLESS it's a degenerate shared id (see
+         find_degenerate_tvg_ids); those are provider flags, not identities,
+         and would collapse unrelated channels onto one EPG channel.
       2. M3U's tvg-name verbatim, if set — many players (Kodi pvr.iptvsimple,
          and apparently UHF) fall back to tvg-name as the EPG lookup key when
          tvg-id is empty. They look for <channel id="<tvg-name>">. So we use
@@ -380,10 +470,14 @@ def assign_effective_ids(m3u_channels):
 
     Long ids are capped at MAX_ID_LEN to avoid parser issues.
     """
+    degenerate = find_degenerate_tvg_ids(m3u_channels)
+    if degenerate:
+        ex = ", ".join(sorted(degenerate)[:5])
+        print(f"      degenerate shared tvg-ids neutralized: {len(degenerate)} ({ex})")
     auto_count = 0
     name_count = 0
     for ch in m3u_channels:
-        if ch["tvg_id"]:
+        if ch["tvg_id"] and ch["tvg_id"] not in degenerate:
             ch["effective_id"] = _shorten_id(ch["tvg_id"])
         elif ch["tvg_name"]:
             ch["effective_id"] = _shorten_id(ch["tvg_name"])
@@ -2419,12 +2513,16 @@ def main():
     print(f"[5/6] filtering and merging programmes...")
     kept_programmes: list[bytes] = []
     prog_count_by_source = {}
+    junk_dropped = 0
 
     for src_name, p_path in provider_paths:
         raw = read_xmltv(p_path)
         n = 0
         for chan_id, block in iter_programmes(raw):
             if chan_id in kept_channels:
+                if JUNK_PROG_TITLE_RE.search(block):
+                    junk_dropped += 1
+                    continue
                 kept_programmes.append(block)
                 n += 1
         prog_count_by_source[src_name] = n
@@ -2434,9 +2532,14 @@ def main():
         n = 0
         for chan_id, block in iter_programmes(raw):
             if chan_id in kept_channels:
+                if JUNK_PROG_TITLE_RE.search(block):
+                    junk_dropped += 1
+                    continue
                 kept_programmes.append(block)
                 n += 1
         prog_count_by_source[name] = n
+    if junk_dropped:
+        print(f"      dropped {junk_dropped} junk filler programmes (TimeShift) at ingest")
 
     # Dedupe by (channel, start) — provider EPG was added first, so its
     # programmes win when the same slot appears in multiple sources.
@@ -2581,6 +2684,19 @@ def main():
             print(f"      aliases.tsv: {len(missing)} M3U ids' aliased "
                   f"upstream not found in kept_channels (skipped)")
 
+    # Language guard: never auto-bind a source whose programme titles are
+    # mostly non-English (provider feeds reuse names like 'Nat Geo Wild' for
+    # their Spanish/Arabic variants — name matching can't tell them apart,
+    # content language can). Manual aliases bypass this (user knows best).
+    _bf_lang_cache: dict[str, bool] = {}
+
+    def _bf_lang_ok(cid: str) -> bool:
+        ok = _bf_lang_cache.get(cid)
+        if ok is None:
+            ok = non_english_title_ratio(progs_by_chan.get(cid, [])) < 0.3
+            _bf_lang_cache[cid] = ok
+        return ok
+
     backfilled = 0
     backfilled_alias = 0
     backfilled_cs = 0
@@ -2603,7 +2719,7 @@ def main():
                 if not nm:
                     continue
                 cs = extract_callsign(nm)
-                if cs and cs in backfill_cs:
+                if cs and cs in backfill_cs and _bf_lang_ok(backfill_cs[cs]):
                     candidate_cid = backfill_cs[cs]
                     backfilled_cs += 1
                     break
@@ -2613,7 +2729,7 @@ def main():
                 if not nm:
                     continue
                 nn = normalize_name(nm)
-                if nn and nn in backfill_nn:
+                if nn and nn in backfill_nn and _bf_lang_ok(backfill_nn[nn]):
                     candidate_cid = backfill_nn[nn]
                     backfilled_nn += 1
                     break
@@ -2647,7 +2763,8 @@ def main():
                     # (most-specific wins).
                     if (c_toks.issubset(m3u_toks)
                             and len(c_toks) > best_n
-                            and progs_by_chan.get(ccid)):
+                            and progs_by_chan.get(ccid)
+                            and _bf_lang_ok(ccid)):
                         best_cid = ccid
                         best_n = len(c_toks)
                 if best_cid:
@@ -2668,6 +2785,9 @@ def main():
           f"(alias={backfilled_alias}, callsign={backfilled_cs}, "
           f"name={backfilled_nn}, tokens={backfilled_tok}) "
           f"(+{backfill_progs} cloned programmes)")
+    lang_vetoed = sum(1 for v in _bf_lang_cache.values() if not v)
+    if lang_vetoed:
+        print(f"      language guard vetoed {lang_vetoed} non-English backfill source(s)")
 
     uncovered_ids = (set(m3u_display.keys()) - kept_channels.keys()) | forced_ids
     uncovered_ids = {tid for tid in uncovered_ids if tid in m3u_display}
@@ -2817,6 +2937,45 @@ def main():
     # kept_cid. This finally lights up channels whose tvg-id format made
     # them invisible to the strict normalize_name backfill earlier
     # (e.g. 'UK: BBC ONE ᴿᴬᵂ' vs iptv-org/epg's 'BBCOne.uk' / 'BBC One').
+    # ---------- wrong-language binding scrub ----------
+    # The backfill language guard can't catch DIRECT id matches: when the
+    # provider reuses an id/name for a non-English variant (observed: a
+    # Spanish 'Nat Geo Wild' feed), the junk data binds before any guard
+    # runs. Score every channel's real programmes; when a clear majority of
+    # titles are non-English *Latin-script* (Spanish/French/...), drop them
+    # all — the rescue pass below re-binds from an English source, else
+    # gap-fill dummies cover it. Non-Latin scripts (Arabic etc.) are left to
+    # the per-programme English-only filter [5c.4], which handles mixed
+    # feeds without nuking their valid English programmes.
+    print(f"[5c.25] wrong-language binding scrub")
+    _SCRUB_DUMMY_MARKER = b"Programme guide unavailable"
+    progs_by_cid_scrub: dict[str, list[bytes]] = defaultdict(list)
+    for p in kept_programmes:
+        if _SCRUB_DUMMY_MARKER in p:
+            continue
+        m = PROG_CHANNEL_RE.search(p)
+        if m:
+            cid = html.unescape(m.group(1).decode("utf-8", "replace"))
+            progs_by_cid_scrub[cid].append(p)
+    bad_lang_cids: set = set()
+    for cid, plist in progs_by_cid_scrub.items():
+        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.45:
+            bad_lang_cids.add(cid)
+    if bad_lang_cids:
+        before_n = len(kept_programmes)
+        new_kept: list[bytes] = []
+        for p in kept_programmes:
+            m = PROG_CHANNEL_RE.search(p)
+            if m and html.unescape(m.group(1).decode("utf-8", "replace")) in bad_lang_cids:
+                continue
+            new_kept.append(p)
+        kept_programmes = new_kept
+        sample_ids = ", ".join(sorted(bad_lang_cids)[:5])
+        print(f"      scrubbed {len(bad_lang_cids)} channels with majority "
+              f"non-English titles (-{before_n - len(kept_programmes)} programmes): {sample_ids}")
+    else:
+        print(f"      no wrong-language bindings detected")
+
     print(f"[5c.3]  generic dummy rescue (token-set match across all sources)")
 
     # Identify dummy-only channels by examining kept_programmes:
@@ -2855,9 +3014,22 @@ def main():
                 continue
             src_channels.append((c_cid, frozenset(merged)))
         for chan_id, block in iter_programmes(raw):
+            if JUNK_PROG_TITLE_RE.search(block):
+                continue
             src_progs[chan_id].append(block)
     print(f"      source candidates: {len(src_channels)} channels, "
           f"{sum(len(v) for v in src_progs.values())} programmes")
+
+    # Same language guard as the backfill pass — don't rescue a channel
+    # with a non-English source.
+    _rescue_lang_cache: dict[str, bool] = {}
+
+    def _rescue_lang_ok(cid: str) -> bool:
+        ok = _rescue_lang_cache.get(cid)
+        if ok is None:
+            ok = non_english_title_ratio(src_progs.get(cid, [])) < 0.3
+            _rescue_lang_cache[cid] = ok
+        return ok
 
     # Build a token reverse-index so the per-dummy-channel inner loop only
     # walks candidates that share at least one token, not all 5-15k upstream
@@ -2895,7 +3067,8 @@ def main():
             # tokens. Then prefer the candidate with the MOST tokens shared
             # (most-specific wins) so 'BBC News' (3 tokens) beats 'BBC'
             # (1 token) for an M3U 'BBC News HD'.
-            if s_toks.issubset(kept_tokens) and len(s_toks) > best_n and src_progs.get(s_cid):
+            if (s_toks.issubset(kept_tokens) and len(s_toks) > best_n
+                    and src_progs.get(s_cid) and _rescue_lang_ok(s_cid)):
                 best_cid = s_cid
                 best_n = len(s_toks)
         if best_cid:
@@ -2959,6 +3132,30 @@ def main():
     dropped_n = before_n - len(kept_programmes)
     print(f"      dropped {dropped_n} programmes with non-English titles "
           f"(Arabic/Hebrew/CJK/Cyrillic in <title>) — gap-fill will replace")
+
+    # Same policy for descriptions: a programme can carry an English title
+    # but an Arabic/Persian desc (observed on OSN/GOBX/MBC feeds). Keep the
+    # programme — the schedule data is good — but REPLACE the desc with the
+    # title text. Don't delete it: UHF on tvOS renders programmes without a
+    # <desc> as 'Data Unavailable'.
+    NON_ENGLISH_DESC_RE = re.compile(
+        rb'<desc\b[^>]*>[^<]*(?:'
+        rb'[\xd0-\xd3][\x80-\xbf]'              # Cyrillic
+        rb'|\xd7[\x90-\xbf]'                     # Hebrew
+        rb'|[\xd8-\xdb][\x80-\xbf]'              # Arabic + Persian/Farsi
+        rb'|[\xe4-\xe9][\x80-\xbf][\x80-\xbf]'   # CJK
+        rb')[^<]*</desc>'
+    )
+    desc_scrubbed = 0
+    for i, p in enumerate(kept_programmes):
+        if not NON_ENGLISH_DESC_RE.search(p):
+            continue
+        tm = _TITLE_TEXT_RE.search(p)
+        title_text = tm.group(1).strip() if tm else b""
+        repl = b'<desc lang="en">' + title_text + b'</desc>' if title_text else b''
+        kept_programmes[i] = NON_ENGLISH_DESC_RE.sub(lambda _m: repl, p)
+        desc_scrubbed += 1
+    print(f"      replaced {desc_scrubbed} non-English <desc> with the programme title")
 
     # ---------- gap-fill pass ----------
     # Channels with REAL EPG sometimes have coverage gaps (e.g. provider EPG
