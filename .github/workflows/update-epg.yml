@@ -20,7 +20,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45  # 13 iptv-org/epg grabs + build can run long
+    timeout-minutes: 75  # 13 iptv-org/epg grabs + build can run long; the
+                         # June 2026 run hit exactly 45:00 (grab-speed varies
+                         # run to run). Overlap with the next hourly run is
+                         # fine — the concurrency group queues it.
     env:
       M3U_URL_1: ${{ secrets.M3U_URL_1 }}
       M3U_URL_2: ${{ secrets.M3U_URL_2 }}
