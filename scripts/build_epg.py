@@ -2772,7 +2772,7 @@ def main():
     # clone the upstream's channel+programmes under the M3U's effective_id so
     # real EPG data is actually displayed.
     print(f"[5c]  backfill pass (rewire upstream data to M3U effective ids)")
-    backfill_cs: dict[str, str] = {}
+    backfill_cs: dict[str, list[str]] = defaultdict(list)
     backfill_nn: dict[str, str] = {}
     backfill_tokens: dict[str, frozenset] = {}  # kept_cid -> its token set
     # Token reverse-index: token -> list of kept_cids carrying that token.
@@ -2793,13 +2793,13 @@ def main():
             cs = extract_callsign(n)
             if cid_is_cs and cs and cs != cid_cs:
                 continue
-            if cs:
-                backfill_cs.setdefault(cs, cid)
+            if cs and cid not in backfill_cs[cs]:
+                backfill_cs[cs].append(cid)
             nn = normalize_name(n)
             if nn and len(nn) > 3:
                 backfill_nn.setdefault(nn, cid)
-        if cid_is_cs:
-            backfill_cs.setdefault(cid_cs, cid)
+        if cid_is_cs and cid not in backfill_cs[cid_cs]:
+            backfill_cs[cid_cs].append(cid)
         # Build token set (across all display-names) for the token-set
         # fallback. Skip channels with <2 distinct tokens (too generic),
         # and mislabeled names (same guard as above).
@@ -2940,17 +2940,25 @@ def main():
             via_alias = True
             via_tier = "alias"
             backfilled_alias += 1
-        # 2. Callsign match.
+        # 2. Callsign match. Among candidates carrying the callsign, prefer
+        #    one that actually HAS programmes (observed: WGME resolving to
+        #    the programme-less WGME-DT2 subchannel while WGME-DT carried
+        #    the real schedule), then fall back to the first registered.
         if not candidate_cid:
             for nm in (ch["tvg_name"], ch["title"]):
                 if not nm:
                     continue
                 cs = extract_callsign(nm)
-                if cs and cs in backfill_cs and _bf_lang_ok(backfill_cs[cs]):
-                    candidate_cid = backfill_cs[cs]
-                    via_tier = "callsign"
-                    backfilled_cs += 1
-                    break
+                if not cs or cs not in backfill_cs:
+                    continue
+                cands = [c for c in backfill_cs[cs] if _bf_lang_ok(c)]
+                if not cands:
+                    continue
+                candidate_cid = next(
+                    (c for c in cands if progs_by_chan.get(c)), cands[0])
+                via_tier = "callsign"
+                backfilled_cs += 1
+                break
         # 3. Normalised-name exact match.
         if not candidate_cid:
             for nm in (ch["tvg_name"], ch["title"]):
