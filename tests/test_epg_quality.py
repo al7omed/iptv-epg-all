@@ -206,6 +206,18 @@ class TestFinnishDutchDetection:
                  b"<programme><title>The Open Championship</title></programme>"]
         assert non_english_title_ratio(progs) < 0.25
 
+    def test_matchup_listings_with_foreign_names_unaffected(self):
+        # Real titles from beIN Sports 2 English that scored 0.57 before the
+        # matchup exemption — 'De Minaur' hit the 'de' stopword, 'Libéma'
+        # the accent rule. English channel, must never be scrubbed.
+        progs = [
+            "<programme><title>Benjamin Bonzi (FRA) vs Alex De Minaur (AUS)  -  ATP 250 Libéma Open 2026</title></programme>".encode(),
+            "<programme><title>Flavio Cobolli (ITA) vs Alexander Zverev (GER)  -  Men's Singles Final</title></programme>".encode(),
+            "<programme><title>Zhizhen Zhang (CHN) vs Adrian Mannarino (FRA)</title></programme>".encode(),
+            "<programme><title>Felix Auger - Aliassime (CAN) vs Kamil Majchrzak (POL)</title></programme>".encode(),
+        ]
+        assert non_english_title_ratio(progs, latin_only=True) < 0.25
+
 
 from build_epg import callsign_id_contradiction  # noqa: E402
 

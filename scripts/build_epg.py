@@ -302,9 +302,24 @@ _NON_EN_STOPWORD_RE = re.compile(
     rb'|sarja|jakso|kausi|suorana'                     # Finnish (observed: 'MM-sarja' on a FI Eurosport feed)
     rb'|het|een|aflevering'                            # Dutch ('de' covered above)
     rb'|odcinek|sezon'                                 # Polish
+    # Sports vocabulary — foreign Eurosport feeds mix local-language sport
+    # terms with English brand names ('PGA Tour', 'Cycling Show'), keeping
+    # the accent ratio under threshold. None of these words exist in English.
+    rb'|wielrennen|wereldbeker|mannen|vrouwen|klimmen' # Dutch/Afrikaans sport
+    rb'|maantiepy\xc3\xb6r\xc3\xa4ily|koripallo|jalkapallo'  # Finnish sport
+    rb'|biciklizam|mu\xc5\xa1karci|fudbal|ko\xc5\xa1arka'    # Serbian/Croatian sport
+    rb'|herrar|damer|kommer'                           # Swedish sport/filler
     rb')(?:[^a-z]|$)'
 )
 _TITLE_TEXT_RE = re.compile(rb'<title\b[^>]*>([^<]*)</title>')
+
+# Sports matchup listings are English-language even when packed with foreign
+# player/tournament names ('Alex De Minaur', 'ATP 250 Libéma Open') — the
+# 'De' stopword + accent signals false-positive hard on tennis/football
+# channels (observed: beIN Sports 2 English scoring 0.57). A ' vs ' separator
+# or an IOC country code like '(FRA)' marks the title as a matchup; skip the
+# language signals for it.
+_SPORTS_MATCHUP_RE = re.compile(rb'(?i)\bvs\.?\s|\([A-Z]{3}\)')
 
 
 def non_english_title_ratio(progs, sample: int = 40,
@@ -323,6 +338,8 @@ def non_english_title_ratio(progs, sample: int = 40,
             continue
         n += 1
         t = m.group(1)
+        if _SPORTS_MATCHUP_RE.search(t):
+            continue  # matchup listing — foreign names are not a language signal
         if _ACCENTED_LATIN_RE.search(t) or _NON_EN_STOPWORD_RE.search(t):
             hits += 1
         elif not latin_only and _NON_LATIN_SCRIPT_RE.search(t):
@@ -3113,9 +3130,14 @@ def main():
         if m:
             cid = html.unescape(m.group(1).decode("utf-8", "replace"))
             progs_by_cid_scrub[cid].append(p)
+    # Threshold matches the backfill/rescue binding guard (<0.25): a source
+    # those tiers would REJECT as non-English must not survive as a direct
+    # binding either. Safe to hold both to one bar now that the sports-
+    # matchup exemption removed the foreign-player-name false positives
+    # (beIN tennis listings used to score 0.57).
     bad_lang_cids: set = set()
     for cid, plist in progs_by_cid_scrub.items():
-        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.4:
+        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.25:
             bad_lang_cids.add(cid)
     if bad_lang_cids:
         before_n = len(kept_programmes)
