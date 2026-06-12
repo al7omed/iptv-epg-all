@@ -382,6 +382,24 @@ def token_leftover_ok(m3u_tokens: frozenset, src_tokens: frozenset) -> bool:
                    for t in (m3u_tokens - src_tokens))
 
 
+# Donor ids from non-English-market countries are never auto-bound: this
+# playlist is MENA/UK/US English-EPG only, and a foreign feed's SPORTS
+# titles are matchup-shaped ('Brest / Sambre-Avesnois'), which slips the
+# language ratio (observed: beinsports3.fr — the FRENCH beIN 3 — rescued
+# onto 18 MENA beIN 3 variants). English-market and MENA TLDs stay
+# allowed; aliases.tsv bypasses this like every guard.
+_FOREIGN_TLD_RE = re.compile(
+    r"\.(?:fr|es|de|it|pt|nl|be|se|no|dk|fi|pl|tr|ru|gr|il|hu|ro|cz|sk|bg"
+    r"|rs|hr|al|mk|si|lt|lv|ee|ua|br|mx|ar|cl|co|pe|ve|vn|th|my|cn|tw|jp"
+    r"|kr)(?:@[^.]*)?$",
+    re.IGNORECASE,
+)
+
+
+def foreign_tld_donor(cid: str) -> bool:
+    return bool(_FOREIGN_TLD_RE.search(cid or ""))
+
+
 # Singular/plural brand-token equivalence for IDENTITY comparison (the
 # duplicate-feed scrub): 'TNT Sport 1' and 'TNT Sports Event 1' are the
 # same channel, but name_tokens keeps SPORT vs SPORTS distinct, which
@@ -2490,13 +2508,13 @@ def _split_csv(env_value: str) -> list[str]:
 
 
 def load_aliases() -> dict[str, str]:
-    """Parse channels/aliases.tsv into {upstream_cid: m3u_effective_id}.
+    """Parse channels/aliases.tsv into {m3u_effective_id: upstream_cid}.
 
     Lines starting with '#' or blank are ignored. Each non-comment line is
-    TAB-separated: `<m3u_effective_id><TAB><upstream_channel_id>`. The
-    return dict is keyed by upstream id (the form used by source feeds)
-    so backfill can look up "what should this upstream channel be rewritten
-    to" in O(1).
+    TAB-separated: `<m3u_effective_id><TAB><upstream_channel_id>`. Keyed
+    by the M3U id (unique per line) so MANY M3U channels may pin the SAME
+    upstream feed — e.g. every beIN Sports 3 quality variant pinned to
+    one verified source.
     """
     path = Path("channels/aliases.tsv")
     out: dict[str, str] = {}
@@ -2512,7 +2530,7 @@ def load_aliases() -> dict[str, str]:
             bad += 1
             continue
         m3u_id, up_id = parts[0].strip(), parts[1].strip()
-        out[up_id] = m3u_id
+        out[m3u_id] = up_id
     if bad:
         print(f"      aliases.tsv: skipped {bad} malformed lines")
     return out
@@ -2556,10 +2574,12 @@ def main():
     # ids, etc.). Aliased upstream ids also count as "kept" for the first-
     # pass channel_matches check below, so their channel blocks survive
     # to the backfill pass even if no other matcher would keep them.
-    alias_map = load_aliases()
-    tvg_ids |= set(alias_map.keys())
+    alias_map = load_aliases()           # {m3u_effective_id: upstream_cid}
+    alias_targets = set(alias_map.values())
+    tvg_ids |= alias_targets
     if alias_map:
-        print(f"      manual aliases loaded: {len(alias_map)} mappings")
+        print(f"      manual aliases loaded: {len(alias_map)} mappings "
+              f"({len(alias_targets)} distinct upstream feeds)")
     print(f"      index: {len(tvg_ids)} tvg-ids (incl. effective), {len(norm_names)} norm-names, {len(callsigns)} US callsigns")
 
     print(f"[2/6] fetching upstream EPGs from epgshare01...")
@@ -2651,7 +2671,7 @@ def main():
             # exactly when the user reaches for an alias — e.g. the provider
             # typo 'Natioanl Geo' can never name-match 'Nat Geo Abu Dhabi').
             if (channel_matches(cid, names, tvg_ids, norm_names, callsigns)
-                    or cid in alias_map):
+                    or cid in alias_targets):
                 kept_channels[cid] = block
                 chan_source[cid] = name
         added = len(kept_channels) - before
@@ -2819,20 +2839,19 @@ def main():
         )
         return out
 
-    # Reverse alias index for backfill: m3u_effective_id -> upstream cid
-    # the user manually pinned to it. Built once so the inner loop is O(1).
-    alias_rev: dict[str, str] = {}
-    for up_cid, m3u_id in alias_map.items():
-        # Only honour aliases where the upstream cid actually survived the
-        # earlier filter passes (i.e. its block is in kept_channels). If
-        # the alias targets a cid we never kept, log + skip.
-        if up_cid in kept_channels:
-            alias_rev[m3u_id] = up_cid
+    # Alias index for backfill: m3u_effective_id -> upstream cid the user
+    # manually pinned to it. Only honour aliases whose upstream cid
+    # actually survived the earlier filter passes (its block is in
+    # kept_channels); if the alias targets a cid we never kept, log + skip.
+    alias_rev: dict[str, str] = {m3u_id: up_cid
+                                 for m3u_id, up_cid in alias_map.items()
+                                 if up_cid in kept_channels}
     if alias_map and len(alias_rev) < len(alias_map):
-        missing = set(alias_map.values()) - set(alias_rev.keys())
+        missing = {up for m, up in alias_map.items() if m not in alias_rev}
         if missing:
-            print(f"      aliases.tsv: {len(missing)} M3U ids' aliased "
-                  f"upstream not found in kept_channels (skipped)")
+            print(f"      aliases.tsv: {len(alias_map) - len(alias_rev)} pins "
+                  f"skipped — upstream not in kept_channels: "
+                  f"{sorted(missing)[:3]}")
 
     # Language guard: never auto-bind a source whose programme titles are
     # mostly non-English (provider feeds reuse names like 'Nat Geo Wild' for
@@ -2915,7 +2934,9 @@ def main():
                 if not nm:
                     continue
                 nn = normalize_name(nm)
-                if nn and nn in backfill_nn and _bf_lang_ok(backfill_nn[nn]):
+                if (nn and nn in backfill_nn
+                        and not foreign_tld_donor(backfill_nn[nn])
+                        and _bf_lang_ok(backfill_nn[nn])):
                     candidate_cid = backfill_nn[nn]
                     via_tier = "norm-name"
                     backfilled_nn += 1
@@ -2951,6 +2972,7 @@ def main():
                     if (c_toks.issubset(m3u_toks)
                             and len(c_toks) > best_n
                             and token_leftover_ok(m3u_toks, c_toks)
+                            and not foreign_tld_donor(ccid)
                             and progs_by_chan.get(ccid)
                             and _bf_lang_ok(ccid)):
                         best_cid = ccid
@@ -3305,6 +3327,7 @@ def main():
             # (1 token) for an M3U 'BBC News HD'.
             if (s_toks.issubset(kept_tokens) and len(s_toks) > best_n
                     and token_leftover_ok(kept_tokens, s_toks)
+                    and not foreign_tld_donor(s_cid)
                     and src_progs.get(s_cid) and _rescue_lang_ok(s_cid)):
                 best_cid = s_cid
                 best_n = len(s_toks)

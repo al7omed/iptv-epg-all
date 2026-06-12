@@ -52,3 +52,27 @@ MBC2En.ae	MBC.2.ae
 MBC3Ar.ae	MBC.3.ae
 MBCMasr2En.eg	MBC.Masr.2.HD.ae
 MbcMasr2.eg	MBC.Masr.HD.ae
+
+# beIN Sports 3 (2026-06 audit): bein.com's scrape doesn't carry channel
+# 3, so 18 variants were rescued onto beinsports3.fr — the FRENCH beIN 3
+# ('Pourquoi moi ?', Ligue 2 fixtures). The foreign-TLD guard now blocks
+# that, and these pins bind the real MENA feed with English titles
+# (epgshare BEIN1, verified: La Liga + internationals):
+beINSports3.qa	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+beINSports3En.qa	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+8K: beIN SP⚽RTS 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+BE: beIN SP⚽RTS 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+BE: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+BE: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+F: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+F: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+NM: beIN SP⚽RTS 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+NM: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+NM: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SA: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SA: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SS: beIN SP⚽RTS 3 4K	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SS: beIN SP⚽RTS 3 HD	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+ᵁᴴᴰ: beIN Sp⚽rts 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+ᵁᴴᴰ: beIN Sp⚽rts 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+ᵁᴴᴰ: beIN Sp⚽rts 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein

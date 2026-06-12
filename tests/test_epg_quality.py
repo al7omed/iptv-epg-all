@@ -243,6 +243,49 @@ class TestCallsignIdContradiction:
         assert not callsign_id_contradiction("", "US: FOX HARTFORD (WTIC)")
 
 
+from build_epg import foreign_tld_donor, load_aliases  # noqa: E402
+
+
+class TestForeignTldDonor:
+    def test_foreign_market_ids_blocked(self):
+        # The real case: French beIN 3 rescued onto 18 MENA beIN variants.
+        assert foreign_tld_donor("beinsports3.fr")
+        assert foreign_tld_donor("NatGeo.de")
+        assert foreign_tld_donor("natgeo.es@HD")
+        assert foreign_tld_donor("SPORT1.tr")
+
+    def test_english_and_mena_markets_allowed(self):
+        for cid in ("BBCOne.uk", "NatGeo.us", "beINSports3En.qa",
+                    "MBC.2.ae", "Rotana.Drama.sa", "skysport1.nz",
+                    "WGME-DT.us_locals1", "MbcMasr2.eg"):
+            assert not foreign_tld_donor(cid), cid
+
+    def test_uuid_and_plain_ids_allowed(self):
+        assert not foreign_tld_donor("d2d0ba03-cbf0-40ec-a604-010a95390a9e")
+        assert not foreign_tld_donor("6609")
+        assert not foreign_tld_donor("")
+
+
+class TestLoadAliasesManyToOne:
+    def test_many_m3u_ids_share_one_upstream(self, tmp_path, monkeypatch):
+        # Every beIN 3 quality variant pins the SAME verified feed — the
+        # map must be keyed by the (unique) M3U id, not the upstream id.
+        monkeypatch.chdir(tmp_path)
+        (tmp_path / "channels").mkdir()
+        (tmp_path / "channels" / "aliases.tsv").write_text(
+            "# comment\n"
+            "BE: beIN 3 HD\tbeIN_SPORTS3_EN.bein\n"
+            "SA: beIN 3 RAW\tbeIN_SPORTS3_EN.bein\n"
+            "NationalGeographicAbuDhabi.ae\tNat.Geo.Abu.Dhabi.HD.ae\n",
+            encoding="utf-8")
+        out = load_aliases()
+        assert out == {
+            "BE: beIN 3 HD": "beIN_SPORTS3_EN.bein",
+            "SA: beIN 3 RAW": "beIN_SPORTS3_EN.bein",
+            "NationalGeographicAbuDhabi.ae": "Nat.Geo.Abu.Dhabi.HD.ae",
+        }
+
+
 class TestJunkChannelUnavailable:
     def test_no_longer_available_filler_dropped(self):
         # Provider filler observed parked on Sky Showcase + ROOT Sports —
