@@ -182,6 +182,31 @@ class TestTokenLeftoverOk:
 from build_epg import BRAND_TOKENS, name_tokens  # noqa: E402
 
 
+class TestFinnishDutchDetection:
+    def test_finnish_feed_scores_high(self):
+        # Observed live: 'FI: EUROSPORT 1' shipped Finnish titles — Finnish
+        # has few accents in short titles and slipped the older stopword set.
+        progs = [b"<programme><title>Motocross: MM-sarja Latvia</title></programme>",
+                 b"<programme><title>Tennis: ATP-sarja, 1. jakso</title></programme>",
+                 b"<programme><title>Snooker: MM 2026, kausi 3</title></programme>",
+                 b"<programme><title>Ravit: Toto76 suorana</title></programme>"]
+        assert non_english_title_ratio(progs) >= 0.4
+
+    def test_dutch_feed_scores_high(self):
+        progs = [b"<programme><title>Het Klokhuis</title></programme>",
+                 b"<programme><title>Een huis vol</title></programme>",
+                 b"<programme><title>Wie is de Mol? Aflevering 4</title></programme>",
+                 b"<programme><title>De slimste mens</title></programme>"]
+        assert non_english_title_ratio(progs) >= 0.4
+
+    def test_english_sports_titles_unaffected(self):
+        progs = [b"<programme><title>Motocross World Championship: Latvia</title></programme>",
+                 b"<programme><title>Live: Premier League Darts</title></programme>",
+                 b"<programme><title>Season 3 Episode 4</title></programme>",
+                 b"<programme><title>The Open Championship</title></programme>"]
+        assert non_english_title_ratio(progs) < 0.25
+
+
 from build_epg import callsign_id_contradiction  # noqa: E402
 
 

@@ -299,6 +299,9 @@ _NON_EN_STOPWORD_RE = re.compile(
     rb'(?i)(?:^|[^a-z])(?:'
     rb'del?|la|los|las|el|les|une|und|der|das|di|il'   # Romance/German
     rb'|det|den|och|till|med|av|og|ett'                # Swedish/Norwegian/Danish
+    rb'|sarja|jakso|kausi|suorana'                     # Finnish (observed: 'MM-sarja' on a FI Eurosport feed)
+    rb'|het|een|aflevering'                            # Dutch ('de' covered above)
+    rb'|odcinek|sezon'                                 # Polish
     rb')(?:[^a-z]|$)'
 )
 _TITLE_TEXT_RE = re.compile(rb'<title\b[^>]*>([^<]*)</title>')
