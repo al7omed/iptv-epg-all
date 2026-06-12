@@ -324,6 +324,24 @@ def non_english_title_ratio(progs, sample: int = 40,
     return hits / n if n else 0.0
 
 
+def token_leftover_ok(m3u_tokens: frozenset, src_tokens: frozenset) -> bool:
+    """Specificity guard for token-subset matches. The M3U-side leftover
+    (m3u_tokens - src_tokens) must not contain a channel NUMBER the source
+    lacks: 'BBC 3' must never take 'BBC' data, 'beIN SPORTS 2' must never
+    take generic 'beIN SPORTS'. Non-digit leftovers (provider prefixes,
+    'PREMIUM', city names) stay allowed — the per-source clone cap and the
+    language guard bound the damage there."""
+    return not any(t.isdigit() for t in (m3u_tokens - src_tokens))
+
+
+# One upstream source being cloned onto many DIFFERENT channels is the
+# signature of an over-loose token match (observed: one 'News 13' feed on
+# all 36 Spectrum News regionals). Quality variants of the same channel
+# share a normalize_name, so capping DISTINCT norms per source leaves
+# legitimate variant groups (beIN keeps unlimited HD+ variants) untouched.
+MAX_CLONE_NORMS_PER_SOURCE = 4
+
+
 def extract_callsign(name: str) -> str | None:
     """Extract a US broadcast callsign from a channel name. Handles two forms:
        'NBC 4 (KNBC) LOS ANGELES' -> 'KNBC'
@@ -2731,15 +2749,19 @@ def main():
     backfilled_nn = 0
     backfilled_tok = 0
     backfill_progs = 0
+    clone_capped = 0
+    _clone_norms_by_src: dict[str, set] = {}
     backfill_added_programmes: list[bytes] = []
     for ch in m3u_channels:
         tid = ch["effective_id"]
         if tid in kept_channels or tid in forced_ids:
             continue
         candidate_cid = None
+        via_alias = False
         # 1. Manual alias (user-pinned). Always wins.
         if tid in alias_rev:
             candidate_cid = alias_rev[tid]
+            via_alias = True
             backfilled_alias += 1
         # 2. Callsign match.
         if not candidate_cid:
@@ -2791,6 +2813,7 @@ def main():
                     # (most-specific wins).
                     if (c_toks.issubset(m3u_toks)
                             and len(c_toks) > best_n
+                            and token_leftover_ok(m3u_toks, c_toks)
                             and progs_by_chan.get(ccid)
                             and _bf_lang_ok(ccid)):
                         best_cid = ccid
@@ -2800,6 +2823,15 @@ def main():
                     backfilled_tok += 1
         if not candidate_cid:
             continue
+        # Clone cap: one source backing many DIFFERENT channels is a
+        # mismatch epidemic, not a coincidence. Aliases bypass (user-pinned).
+        if not via_alias:
+            nrm = normalize_name(ch["tvg_name"] or ch["title"] or "") or tid
+            norms = _clone_norms_by_src.setdefault(candidate_cid, set())
+            if nrm not in norms and len(norms) >= MAX_CLONE_NORMS_PER_SOURCE:
+                clone_capped += 1
+                continue
+            norms.add(nrm)
         src_block = kept_channels[candidate_cid]
         m3u_name = ch["tvg_name"] or ch["title"] or tid
         new_block = clone_channel_for_m3u(src_block, tid, m3u_name)
@@ -2816,6 +2848,9 @@ def main():
     lang_vetoed = sum(1 for v in _bf_lang_cache.values() if not v)
     if lang_vetoed:
         print(f"      language guard vetoed {lang_vetoed} non-English backfill source(s)")
+    if clone_capped:
+        print(f"      clone cap skipped {clone_capped} binds "
+              f"(source already backs {MAX_CLONE_NORMS_PER_SOURCE} distinct channels)")
 
     uncovered_ids = (set(m3u_display.keys()) - kept_channels.keys()) | forced_ids
     uncovered_ids = {tid for tid in uncovered_ids if tid in m3u_display}
@@ -2905,13 +2940,24 @@ def main():
             if chan_id in bein_cid_set:
                 bein_progs_by_cid[chan_id].append(block)
 
+        # Tokens that distinguish one beIN channel from another. If the M3U
+        # channel carries one and the bein-epg candidate does NOT, they are
+        # different channels — without this, a minimal {BEIN, SPORTS} source
+        # claims 'beIN SPORTS 1/2/.../NEWS/XTRA/USA' (observed: 99 channels
+        # sharing one identical grab-bag feed).
+        _BEIN_DISTINGUISHING = frozenset({"NEWS", "XTRA", "MAX", "NBA", "USA"})
+
         def _best_bein_match(m3u_tokens: frozenset) -> "str | None":
             best_cid = None
             best_n = -1
             for b_cid, b_toks in bein_channels:
-                if b_toks and b_toks.issubset(m3u_tokens) and len(b_toks) > best_n:
-                    best_cid = b_cid
-                    best_n = len(b_toks)
+                if not b_toks or not b_toks.issubset(m3u_tokens) or len(b_toks) <= best_n:
+                    continue
+                leftover = m3u_tokens - b_toks
+                if any(t.isdigit() or t in _BEIN_DISTINGUISHING for t in leftover):
+                    continue
+                best_cid = b_cid
+                best_n = len(b_toks)
             return best_cid
 
         override_map: dict[str, str] = {}
@@ -3056,6 +3102,11 @@ def main():
     # Same language guard as the backfill pass — don't rescue a channel
     # with a non-English source.
     _rescue_lang_cache: dict[str, bool] = {}
+    # SHARED with the backfill pass — source ids are the same upstream cids
+    # in both, and a separate budget would let rescue re-bind exactly the
+    # channels the backfill cap just rejected.
+    _rescue_norms_by_src = _clone_norms_by_src
+    rescue_capped = 0
 
     def _rescue_lang_ok(cid: str) -> bool:
         ok = _rescue_lang_cache.get(cid)
@@ -3101,10 +3152,19 @@ def main():
             # (most-specific wins) so 'BBC News' (3 tokens) beats 'BBC'
             # (1 token) for an M3U 'BBC News HD'.
             if (s_toks.issubset(kept_tokens) and len(s_toks) > best_n
+                    and token_leftover_ok(kept_tokens, s_toks)
                     and src_progs.get(s_cid) and _rescue_lang_ok(s_cid)):
                 best_cid = s_cid
                 best_n = len(s_toks)
         if best_cid:
+            # Same clone cap as the backfill pass: one source rescuing many
+            # DIFFERENT channels means the token match is too loose.
+            nrm = normalize_name(names[0]) if names else kept_cid
+            norms = _rescue_norms_by_src.setdefault(best_cid, set())
+            if nrm not in norms and len(norms) >= MAX_CLONE_NORMS_PER_SOURCE:
+                rescue_capped += 1
+                continue
+            norms.add(nrm)
             rescue_map[kept_cid] = best_cid
 
     if rescue_map:
@@ -3131,6 +3191,9 @@ def main():
         kept_programmes.extend(rescued_progs)
         print(f"      rescued {len(rescue_map)} channels "
               f"(removed {removed_n} dummies, +{len(rescued_progs)} real programmes)")
+        if rescue_capped:
+            print(f"      clone cap skipped {rescue_capped} rescues "
+                  f"(source already backs {MAX_CLONE_NORMS_PER_SOURCE} distinct channels)")
     else:
         print(f"      no rescue matches (all dummy-only channels stay as dummies)")
 
@@ -3789,26 +3852,26 @@ def main():
                               time_filter: bool = False) -> None:
             if not want_ids:
                 return
-            want_bytes = {i.encode("utf-8") for i in want_ids}
-            want_escaped = {
-                i.replace(b"&", b"&amp;").replace(b'"', b"&quot;")
-                 .replace(b"<", b"&lt;").replace(b">", b"&gt;")
-                for i in want_bytes
-            }
-            want_all = want_bytes | want_escaped
+            # Compare ids in CANONICAL (fully unescaped) form on both sides.
+            # Channel keys are raw python strings, but programme channel=
+            # attrs are XML-escaped — and html.escape(quote=True) encodes
+            # apostrophes as &#x27;, which a partial replace()-based escape
+            # list never matched: every programme on an id containing '
+            # was silently dropped while its channel def survived.
+            want_norm = {html.unescape(i) for i in want_ids}
             kept_chans: list[bytes] = []
-            kept_chan_ids: set = set()
+            kept_chan_norms: set = set()
             for cid in sorted(kept_channels):
-                cid_b = cid.encode("utf-8") if isinstance(cid, str) else cid
-                cid_escaped = cid_b.replace(b"&", b"&amp;").replace(b'"', b"&quot;")
-                if cid_b in want_all or cid_escaped in want_all:
+                cid_s = cid if isinstance(cid, str) else cid.decode("utf-8", "replace")
+                cid_norm = html.unescape(cid_s)
+                if cid_norm in want_norm:
                     kept_chans.append(kept_channels[cid])
-                    kept_chan_ids.add(cid_b)
-                    kept_chan_ids.add(cid_escaped)
+                    kept_chan_norms.add(cid_norm)
             kept_progs = []
             for p in kept_programmes:
                 m = prog_chan_re.search(p)
-                if not m or m.group(1) not in kept_chan_ids:
+                if not m or html.unescape(
+                        m.group(1).decode("utf-8", "replace")) not in kept_chan_norms:
                     continue
                 if time_filter:
                     tm = _prog_time_re.search(p)

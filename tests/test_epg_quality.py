@@ -155,3 +155,25 @@ class TestSwedishDetection:
             "Countdown", "The One Show", "Doctor Who",
         ]]
         assert non_english_title_ratio(progs) < 0.25
+
+
+from build_epg import token_leftover_ok, MAX_CLONE_NORMS_PER_SOURCE
+
+
+class TestTokenLeftoverOk:
+    def test_digit_leftover_rejected(self):
+        # 'BBC 3' must never take generic 'BBC' data
+        assert not token_leftover_ok(frozenset({"BBC", "3"}), frozenset({"BBC"}))
+        # 'beIN SPORTS 2' must never take generic 'beIN SPORTS'
+        assert not token_leftover_ok(
+            frozenset({"BEIN", "SPORTS", "2"}), frozenset({"BEIN", "SPORTS"}))
+
+    def test_exact_and_nondigit_leftovers_allowed(self):
+        assert token_leftover_ok(
+            frozenset({"SKY", "CINEMA", "ACTION"}), frozenset({"SKY", "CINEMA", "ACTION"}))
+        # City-name leftover allowed here — the per-source clone cap bounds it
+        assert token_leftover_ok(
+            frozenset({"SPECTRUM", "NEWS", "MILWAUKEE"}), frozenset({"SPECTRUM", "NEWS"}))
+
+    def test_clone_cap_is_small(self):
+        assert 2 <= MAX_CLONE_NORMS_PER_SOURCE <= 8
