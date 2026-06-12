@@ -182,6 +182,23 @@ class TestTokenLeftoverOk:
 from build_epg import BRAND_TOKENS, name_tokens  # noqa: E402
 
 
+class TestJunkChannelUnavailable:
+    def test_no_longer_available_filler_dropped(self):
+        # Provider filler observed parked on Sky Showcase + ROOT Sports —
+        # blocks real data exactly like the TimeShift blocks.
+        for t in (b"Channel No Longer Available",
+                  b"Channel Is No Longer Available",
+                  b"channel no longer available"):
+            assert JUNK_PROG_TITLE_RE.search(
+                b"<programme><title>" + t + b"</title></programme>")
+
+    def test_real_titles_kept(self):
+        for t in (b"The Channel Tunnel Story", b"No Time to Die",
+                  b"Available Light"):
+            assert not JUNK_PROG_TITLE_RE.search(
+                b"<programme><title>" + t + b"</title></programme>")
+
+
 class TestBrandTokenGuard:
     def test_nat_geo_abu_dhabi_regression(self):
         # The real 2026-06 bug: M3U 'Abu Dhabi Natioanl Geo 4K' (provider

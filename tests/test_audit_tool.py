@@ -45,6 +45,29 @@ class TestDupFeedFlag:
         flags = flag_rows(rows, {}, None)
         assert not any(f["flag"] == "dup-feed" for f in flags)
 
+    def test_same_callsign_not_flagged(self):
+        # 'FOX (KDFW)' and 'FOX 4 (KDFW) DALLAS HD' are the same US station
+        # under two naming styles — a shared feed is correct, the digit
+        # difference is not a conflict.
+        rows = [
+            _row("Kdfw.us", "US: FOX (KDFW)", fp="feed03"),
+            _row("Kdfw4.us", "US: FOX 4 (KDFW) DALLAS HD",
+                 tier="callsign", donor="Kdfw.us", fp="feed03"),
+        ]
+        flags = flag_rows(rows, {}, None)
+        assert not any(f["flag"] == "dup-feed" for f in flags)
+
+    def test_different_callsigns_flagged(self):
+        # Two different stations (Portland ME vs Portland OR) sharing one
+        # feed is the wrong-city class — must flag.
+        rows = [
+            _row("Wgme.us", "US: CBS (WGME) PORTLAND MAINE", fp="feed04"),
+            _row("Koin.us", "US: CBS 6 (KOIN) PORTLAND HD",
+                 tier="token", donor="Wgme.us", fp="feed04"),
+        ]
+        flags = flag_rows(rows, {}, None)
+        assert any(f["flag"] == "dup-feed" for f in flags)
+
 
 class TestBrandMismatchFlag:
     def test_nat_geo_bound_to_general_channel(self):

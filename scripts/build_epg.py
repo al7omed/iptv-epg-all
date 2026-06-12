@@ -272,11 +272,14 @@ def name_tokens(s: str) -> frozenset:
 
 # ---------------- junk-programme + language heuristics ----------------
 # Filler programmes some Xtream panels emit for channels they have no real
-# data for: hour-blocks titled 'TimeShift 13' / desc 'TimeShift For Time 13'.
-# They must be dropped at INGEST — if they survive they occupy the channel's
-# EPG slot and block the backfill/rescue passes from wiring in real data.
+# data for: hour-blocks titled 'TimeShift 13' / desc 'TimeShift For Time 13',
+# or 'Channel No Longer Available' blocks (observed occupying Sky Showcase +
+# ROOT Sports while real data existed in other sources). They must be
+# dropped at INGEST — if they survive they occupy the channel's EPG slot and
+# block the backfill/rescue passes from wiring in real data.
 JUNK_PROG_TITLE_RE = re.compile(
-    rb'<title\b[^>]*>\s*Time\s*-?\s*Shift\b', re.IGNORECASE
+    rb'<title\b[^>]*>\s*(?:Time\s*-?\s*Shift\b'
+    rb'|Channel\s+(?:Is\s+)?No\s+Longer\s+Available\b)', re.IGNORECASE
 )
 
 # Byte-level signals that text is not English. Two tiers:
@@ -3279,39 +3282,57 @@ def main():
         if len(parts) >= 4:  # too few programmes fingerprint unreliably
             _dup_groups[frozenset(parts)].append(cid)
     _dup_tokens_of: dict[str, frozenset] = {}
+    _dup_callsigns_of: dict[str, frozenset] = {}
+
+    def _dup_chan_names(cid: str) -> list[str]:
+        blk = kept_channels.get(cid, b"")
+        return [n.decode("utf-8", "replace")
+                for n in DISPLAY_NAME_RE.findall(blk)]
 
     def _dup_chan_tokens(cid: str) -> frozenset:
         toks = _dup_tokens_of.get(cid)
         if toks is None:
-            blk = kept_channels.get(cid, b"")
             merged: set = set()
-            for n in DISPLAY_NAME_RE.findall(blk):
-                merged |= name_tokens(n.decode("utf-8", "replace"))
+            for n in _dup_chan_names(cid):
+                merged |= name_tokens(n)
             toks = frozenset(merged)
             _dup_tokens_of[cid] = toks
         return toks
+
+    def _dup_chan_callsigns(cid: str) -> frozenset:
+        cs = _dup_callsigns_of.get(cid)
+        if cs is None:
+            found = {extract_callsign(n) for n in _dup_chan_names(cid)}
+            found.discard(None)
+            cs = frozenset(found)
+            _dup_callsigns_of[cid] = cs
+        return cs
 
     dup_scrub_cids: set = set()
     for fp, cids in _dup_groups.items():
         if len(cids) < 2:
             continue
-        distinct = {_dup_chan_tokens(c) for c in cids}
-        if len(distinct) < 2:
+        if len({_dup_chan_tokens(c) for c in cids}) < 2:
             continue  # same identity (quality variants) — legit shared feed
-        # The group only conflicts when two members differ by a NUMBER or a
-        # BRAND token — i.e. they are different channels by identity, yet
-        # show the same schedule. 'EAST'/'WEST'/city leftovers stay allowed.
-        conflict = any(
-            t.isdigit() or t in BRAND_TOKENS
-            for a in distinct for b in distinct if a is not b
-            for t in (a ^ b)
-        )
-        if not conflict:
-            continue
-        for c in cids:
-            tier = provenance.get(c, ("direct",))[0]
-            if tier in _DUP_LOOSE_TIERS:
-                dup_scrub_cids.add(c)
+        # A pair only conflicts when the two members differ by a NUMBER or
+        # a BRAND token — different channels by identity, yet showing the
+        # same schedule. Two exemptions: 'EAST'/'WEST'/city leftovers are
+        # allowed, and US locals sharing a CALLSIGN are the same station no
+        # matter how the names differ ('FOX (KDFW)' = 'FOX 4 (KDFW) DALLAS').
+        for i, a in enumerate(cids):
+            a_toks = _dup_chan_tokens(a)
+            for b in cids[i + 1:]:
+                b_toks = _dup_chan_tokens(b)
+                if a_toks == b_toks:
+                    continue
+                if _dup_chan_callsigns(a) & _dup_chan_callsigns(b):
+                    continue
+                if any(t.isdigit() or t in BRAND_TOKENS
+                       for t in (a_toks ^ b_toks)):
+                    for c in (a, b):
+                        tier = provenance.get(c, ("direct",))[0]
+                        if tier in _DUP_LOOSE_TIERS:
+                            dup_scrub_cids.add(c)
     if dup_scrub_cids:
         before_n = len(kept_programmes)
         kept_programmes = [

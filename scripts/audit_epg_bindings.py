@@ -40,7 +40,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_epg import BRAND_TOKENS, name_tokens  # noqa: E402
+from build_epg import BRAND_TOKENS, extract_callsign, name_tokens  # noqa: E402
 
 LOOSE_TIERS = {"norm-name", "token", "rescue-token"}
 
@@ -145,18 +145,27 @@ def flag_rows(rows: list[dict], titles_by_cid: dict[str, list[str]],
         if r["prog_fp"] and int(r["real_prog_count"]) >= 4:
             by_fp[r["prog_fp"]].append(r)
     for fp, group in by_fp.items():
-        tokset = {r["effective_id"]: name_tokens(r["display_name"])
-                  for r in group}
-        distinct = set(tokset.values())
-        if len(group) < 2 or len(distinct) < 2:
+        if len(group) < 2:
             continue
-        if any(t.isdigit() or t in BRAND_TOKENS
-               for a in distinct for b in distinct if a is not b
-               for t in (a ^ b)):
-            names = ", ".join(sorted(r["display_name"] for r in group)[:4])
-            for r in group:
-                add("high", "dup-feed", r,
-                    f"fp={fp} shared by {len(group)} channels: {names}")
+        toks = [name_tokens(r["display_name"]) for r in group]
+        signs = [extract_callsign(r["display_name"]) for r in group]
+        conflicted: set[int] = set()
+        for i in range(len(group)):
+            for j in range(i + 1, len(group)):
+                if toks[i] == toks[j]:
+                    continue  # quality variants — legit shared feed
+                if signs[i] and signs[i] == signs[j]:
+                    continue  # same US station, different name styles
+                if any(t.isdigit() or t in BRAND_TOKENS
+                       for t in (toks[i] ^ toks[j])):
+                    conflicted.update((i, j))
+        if conflicted:
+            names = ", ".join(sorted(group[i]["display_name"]
+                                     for i in conflicted)[:4])
+            for i in conflicted:
+                add("high", "dup-feed", group[i],
+                    f"fp={fp} shared by {len(conflicted)} conflicting "
+                    f"channels: {names}")
 
     # --- brand-mismatch: loose tier, donor lacks a brand token we carry ---
     for r in real_rows:
