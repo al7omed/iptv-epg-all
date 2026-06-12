@@ -42,3 +42,13 @@ PlaneteJustice.fr	Crime+Inv.HD.uk
 # 'CW PIX 11' is WPIX New York but was showing KSTW Seattle's schedule
 # (token match on {CW, 11}); pin the real WPIX (epgshare US_LOCALS1).
 US: CW PIX 11 HD	WPIX-DT.us_locals1
+
+# MBC family (2026-06 audit): the provider publishes ONE junk feed (MBC
+# Masr 1's schedule, or 'No title available') under several MBC ids.
+# epgshare AE1 carries the real distinct feeds — all verified English
+# ('Dolittle' on MBC 2, 'Ben 10' on MBC 3, 'Your Egyptian Morning' on
+# Masr 2):
+MBC2En.ae	MBC.2.ae
+MBC3Ar.ae	MBC.3.ae
+MBCMasr2En.eg	MBC.Masr.2.HD.ae
+MbcMasr2.eg	MBC.Masr.HD.ae

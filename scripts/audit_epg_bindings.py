@@ -40,7 +40,12 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_epg import BRAND_TOKENS, extract_callsign, name_tokens  # noqa: E402
+from build_epg import (  # noqa: E402
+    BRAND_TOKENS,
+    canon_identity_tokens,
+    extract_callsign,
+    name_tokens,
+)
 
 LOOSE_TIERS = {"norm-name", "token", "rescue-token"}
 
@@ -140,15 +145,30 @@ def flag_rows(rows: list[dict], titles_by_cid: dict[str, list[str]],
                  and int(r["real_prog_count"] or 0) > 0]
 
     # --- dup-feed: identical fingerprints across different identities ---
+    # bein-override rows are exempt: bein.com is authoritative and
+    # legitimately publishes one identical no-events filler block across
+    # all XTRA variants.
     by_fp: dict[str, list[dict]] = defaultdict(list)
     for r in real_rows:
+        if r["match_tier"] == "bein-override":
+            continue
         if r["prog_fp"] and int(r["real_prog_count"]) >= 4:
             by_fp[r["prog_fp"]].append(r)
+    def _donor_callsign(donor_cid: str) -> str | None:
+        head = re.split(r"[.\-]", donor_cid)[0].upper() if donor_cid else ""
+        return head if re.fullmatch(r"[KW][A-Z]{2,4}", head) else None
+
     for fp, group in by_fp.items():
         if len(group) < 2:
             continue
-        toks = [name_tokens(r["display_name"]) for r in group]
+        toks = [canon_identity_tokens(name_tokens(r["display_name"]))
+                for r in group]
         signs = [extract_callsign(r["display_name"]) for r in group]
+        # A member whose name-callsign matches its donor's callsign is
+        # verified-correct — never flag it ('CBS 3 (KYW)' fed by KYW.us).
+        verified = [bool(signs[i]) and signs[i] ==
+                    _donor_callsign(group[i]["donor_cid"])
+                    for i in range(len(group))]
         conflicted: set[int] = set()
         for i in range(len(group)):
             for j in range(i + 1, len(group)):
@@ -156,9 +176,13 @@ def flag_rows(rows: list[dict], titles_by_cid: dict[str, list[str]],
                     continue  # quality variants — legit shared feed
                 if signs[i] and signs[i] == signs[j]:
                     continue  # same US station, different name styles
+                if verified[i] and verified[j]:
+                    continue
                 if any(t.isdigit() or t in BRAND_TOKENS
                        for t in (toks[i] ^ toks[j])):
-                    conflicted.update((i, j))
+                    for k in (i, j):
+                        if not verified[k]:
+                            conflicted.add(k)
         if conflicted:
             names = ", ".join(sorted(group[i]["display_name"]
                                      for i in conflicted)[:4])
@@ -168,13 +192,23 @@ def flag_rows(rows: list[dict], titles_by_cid: dict[str, list[str]],
                     f"channels: {names}")
 
     # --- brand-mismatch: loose tier, donor lacks a brand token we carry ---
+    # Substring check against the squashed donor id ('beinsports3.fr' DOES
+    # contain 'sports'; token-splitting concatenated ids misses that).
+    # UUID-shaped donor ids carry no semantics at all — skip them; the
+    # dup-feed and genre checks cover those channels instead.
+    _uuid_re = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-", re.I)
     for r in real_rows:
         if r["match_tier"] not in LOOSE_TIERS or not r["donor_cid"]:
             continue
+        if _uuid_re.match(r["donor_cid"]):
+            continue
+        donor_blob = re.sub(r"[^a-z0-9]", "", r["donor_cid"].lower())
         ch_toks = name_tokens(r["display_name"])
-        d_toks = donor_tokens(r["donor_cid"])
         missing = {t for t in ch_toks
-                   if t in BRAND_TOKENS and t not in d_toks}
+                   if t in BRAND_TOKENS
+                   and t.lower() not in donor_blob
+                   # SPORT/SPORTS singular-plural equivalence
+                   and t.lower().rstrip("s") not in donor_blob}
         if missing:
             add("high", "brand-mismatch", r,
                 f"donor {r['donor_cid']} lacks brand tokens "

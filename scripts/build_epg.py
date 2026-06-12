@@ -362,7 +362,7 @@ BRAND_TOKENS = frozenset({
     "FAMILY", "MUSIC", "DOC", "DOCS", "DOCUMENTARY", "RADIO",
     "XTRA", "EXTRA", "MAX", "PREMIER", "LEAGUE", "CLASSIC", "CLASSICS",
     "CRIME", "THRILLER", "HORROR", "SCIFI", "FOOD", "TRAVEL", "HISTORY",
-    "SCIENCE", "NATURE", "PANORAMA",
+    "SCIENCE", "NATURE", "PANORAMA", "TOON", "TOONS", "CARTOON",
     "FOOTBALL", "GOLF", "TENNIS", "CRICKET", "RACING", "BOXING",
     "RUGBY", "DARTS", "SNOOKER", "F1", "MOTOGP",
     "NBA", "NFL", "NHL", "MLB", "UFC", "WWE", "FIGHT",
@@ -380,6 +380,20 @@ def token_leftover_ok(m3u_tokens: frozenset, src_tokens: frozenset) -> bool:
     bound the damage there."""
     return not any(t.isdigit() or t in BRAND_TOKENS
                    for t in (m3u_tokens - src_tokens))
+
+
+# Singular/plural brand-token equivalence for IDENTITY comparison (the
+# duplicate-feed scrub): 'TNT Sport 1' and 'TNT Sports Event 1' are the
+# same channel, but name_tokens keeps SPORT vs SPORTS distinct, which
+# would read as a brand conflict. Used ONLY when comparing identities —
+# never in matching, where merging singular/plural could cross-bind
+# different countries' channels.
+_TOKEN_EQUIV = {"SPORT": "SPORTS", "MOVIE": "MOVIES", "FILM": "FILMS",
+                "CLASSIC": "CLASSICS", "TOON": "TOONS", "DOC": "DOCS"}
+
+
+def canon_identity_tokens(tokens: frozenset) -> frozenset:
+    return frozenset(_TOKEN_EQUIV.get(t, t) for t in tokens)
 
 
 # One upstream source being cloned onto many DIFFERENT channels is the
@@ -3378,7 +3392,7 @@ def main():
             merged: set = set()
             for n in _dup_chan_names(cid):
                 merged |= name_tokens(n)
-            toks = frozenset(merged)
+            toks = canon_identity_tokens(frozenset(merged))
             _dup_tokens_of[cid] = toks
         return toks
 
