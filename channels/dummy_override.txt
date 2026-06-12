@@ -65,11 +65,59 @@ UK: BBC RADIO WILTSHIRE ᴿᴬᵂ
 UK: BBC RADIO WM ᴿᴬᵂ
 UK: BBC RADIO WORLD SERVICE ᴿᴬᵂ
 UK: BBC RADIO YORK ᴿᴬᵂ
-#
-# US locals bound to the wrong city's station (name-collision in matcher):
-US: FOX 61 (WTIC) HARTFORD HD   # was getting KHON2 Honolulu
-US: CBS 13 (WGME) PORTLAND HD   # was getting KOIN Portland OREGON
-US: CBS 17 (WNCN) GOLDSBORO HD  # was getting KREX Grand Junction CO
+# NOTE 2026-06: the three wrong-city US locals (WTIC/WGME/WNCN) that used
+# to live here now bind their CORRECT station via the callsign tier (the
+# callsign-contradiction guard neutralizes the provider's wrong tvg-id and
+# epgshare US_LOCALS1 carries WGME-DT/WNCN-DT/WTIC-DT) — entries removed.
 #
 # Tennis Channel Plus 4 was getting UK Channel 4's schedule:
 US: TENNIS CHANNEL PLUS 4
+# ...and Plus 8 was getting LuaLua TV's news schedule (2026-06 audit):
+US: TENNIS CHANNEL PLUS 8
+#
+# 2026-06 audit — radio stations (TV-guide sources can never be right;
+# same policy as the BBC Radio block above). Their shared feed was junk
+# ('Home News Tonight' on a music radio station):
+AR: MBC FM 4K
+AR: MBC FM HD
+AR: MBC FM ᴿᴬᵂ
+GOBX: MBC FM ᴴᴰ
+AR: MBC PANORAMA FM 4K
+AR: MBC PANORAMA FM HD
+AR: PANORAMA FM ᴿᴬᵂ
+#
+# 2026-06 audit — Arabic sports channels all sharing one generic junk feed
+# ('Football Match' / 'London 2012 Olympic Story' on five different
+# channels). No trustworthy English source exists for these:
+SPO: Al Ahly TV 4K
+SPO: Jordan Sport 4K
+SPO: Jordan Sport HD
+SPO: Palestine Sport HD
+SPO: Nile Sport
+#
+# 2026-06 audit — provider-invented 'Sky Sports 1/2' labels (no such UK
+# channel since 2017) showing New Zealand Sky Sport's schedule (NRL,
+# Super Rugby). Stream identity unverifiable — blank is safer:
+UK: SKY SPORTS 1 ᵁᴴᴰ ³⁸⁴⁰ᴾ
+UK: SKY SPORTS 2 ᵁᴴᴰ ³⁸⁴⁰ᴾ
+VIP: SKY SPORTS 1 ⁴ᵏ & ³⁸⁴⁰ᴾ
+VIP: SKY SPORTS 2 ⁴ᵏ & ³⁸⁴⁰ᴾ
+#
+# 2026-06 audit — self-contradictory channel (KUTV is Salt Lake City's
+# callsign, the name says Philadelphia, the feed showed CBS Philly):
+CITY: CBS KUTV PHILADELPHIA ᴿᴬᵂ
+#
+# 2026-06 audit — 24/7 Good Morning America loop channel; the provider
+# stamped NBC Tupelo's id on it so it showed 'Today' (the competing
+# show). A loop channel has no real schedule — blank is correct. The
+# genuine Tupelo entries are name-keyed and unaffected:
+WTVA.us
+#
+# 2026-06 audit — French music TV, no English schedule source:
+OSN: RFM TV ᴿᴬᵂ
+#
+# 2026-06 audit — Baltic feeds carrying mixed German/English reality TV
+# of unknown origin ('Die PS Profis' on Latvian sport channels):
+LV: GO3 SPORT 1 ᴿᴬᵂ
+FL: VIASAT SPORT 1 SUOMI ᴿᴬᵂ
+LV: EURO SPORT 1 ᴿᴬᵂ

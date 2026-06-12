@@ -28,3 +28,17 @@
 # (verified content: Air Crash Investigation, Ice Road Rescue, ...).
 # Covers both the 4K and HD variants (they share this tvg-id).
 NationalGeographicAbuDhabi.ae	Nat.Geo.Abu.Dhabi.HD.ae
+
+# 2026-06 audit pins — each of these shipped a different channel's feed:
+# GO: SYFY carried Spanish TVE 'Noticias 24H' news; pin the real Syfy
+# (epgshare US2, verified English movie titles).
+GO: SYFY	Syfy.HD.us2
+# UK Crime+Investigation carried an Italian CI feed ('GURU - La storia
+# di Matteo Cambi') under its own direct id, and the provider stamped a
+# FRENCH channel's id (Planète+ Justice) on the 4K variant. Pin both to
+# the real UK feed (epgshare UK1, verified English true-crime titles).
+CrimeInvestigation.uk	Crime+Inv.HD.uk
+PlaneteJustice.fr	Crime+Inv.HD.uk
+# 'CW PIX 11' is WPIX New York but was showing KSTW Seattle's schedule
+# (token match on {CW, 11}); pin the real WPIX (epgshare US_LOCALS1).
+US: CW PIX 11 HD	WPIX-DT.us_locals1

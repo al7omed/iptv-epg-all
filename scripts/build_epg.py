@@ -2833,6 +2833,35 @@ def main():
             _bf_lang_cache[cid] = ok
         return ok
 
+    # Alias enforcement for ids that ALREADY carry data: a pin must win
+    # over a direct binding too — a source lying under the exact id is
+    # precisely why the user reaches for an alias (observed: an Italian
+    # feed published under CrimeInvestigation.uk). Drop the impostor's
+    # programmes and clone the pinned source's instead.
+    _alias_replace = {m3u_id: up_cid for m3u_id, up_cid in alias_rev.items()
+                      if m3u_id in kept_channels and m3u_id != up_cid
+                      and m3u_id not in forced_ids
+                      and progs_by_chan.get(up_cid)}
+    if _alias_replace:
+        _targets = {html.unescape(i) for i in _alias_replace}
+        before_n = len(kept_programmes)
+        kept_programmes = [
+            p for p in kept_programmes
+            if not (m := PROG_CHANNEL_RE.search(p))
+            or html.unescape(m.group(1).decode("utf-8", "replace")) not in _targets
+        ]
+        removed_n = before_n - len(kept_programmes)
+        added = 0
+        for m3u_id, up_cid in _alias_replace.items():
+            provenance[m3u_id] = ("alias",
+                                  chan_source.get(up_cid, "provider"), up_cid)
+            for prog in progs_by_chan.get(up_cid, []):
+                kept_programmes.append(rewrite_prog_channel(prog, up_cid, m3u_id))
+                added += 1
+        print(f"      alias override on {len(_alias_replace)} directly-bound "
+              f"id(s): -{removed_n} impostor programmes, "
+              f"+{added} pinned programmes")
+
     backfilled = 0
     backfilled_alias = 0
     backfilled_cs = 0
