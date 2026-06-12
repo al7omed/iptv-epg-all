@@ -2945,7 +2945,7 @@ def main():
         # different channels — without this, a minimal {BEIN, SPORTS} source
         # claims 'beIN SPORTS 1/2/.../NEWS/XTRA/USA' (observed: 99 channels
         # sharing one identical grab-bag feed).
-        _BEIN_DISTINGUISHING = frozenset({"NEWS", "XTRA", "MAX", "NBA", "USA"})
+        _BEIN_DISTINGUISHING = frozenset({"NEWS", "XTRA", "MAX", "NBA", "USA", "GLOBAL"})
 
         def _best_bein_match(m3u_tokens: frozenset) -> "str | None":
             best_cid = None
