@@ -45,6 +45,23 @@ class TestDupFeedFlag:
         flags = flag_rows(rows, {}, None)
         assert not any(f["flag"] == "dup-feed" for f in flags)
 
+    def test_brand_abbreviation_spellings_not_flagged(self):
+        # 'NAT GEO' and 'NATIONAL GEOGRAPHIC' (and the provider typo
+        # 'NATIOANL') are one identity — a shared feed is correct.
+        rows = [
+            _row("NatGeo.us", "US: NAT GEO HD", fp="feed05"),
+            _row("NatGeoCh.us", "GO: NATIONAL GEOGRAPHIC CHANNEL",
+                 tier="token", donor="NatGeo.us", fp="feed05"),
+            _row("NationalGeographicAbuDhabi.ae",
+                 "AR: Abu Dhabi Natioanl Geo 4K",
+                 tier="alias", donor="Nat.Geo.Abu.Dhabi.HD.ae", fp="feed06"),
+            _row("NatGeoAD2.ae", "X: National Geographic Abu Dhabi 4K",
+                 tier="token", donor="NationalGeographicAbuDhabi.ae",
+                 fp="feed06"),
+        ]
+        flags = flag_rows(rows, {}, None)
+        assert not any(f["flag"] == "dup-feed" for f in flags)
+
     def test_same_callsign_not_flagged(self):
         # 'FOX (KDFW)' and 'FOX 4 (KDFW) DALLAS HD' are the same US station
         # under two naming styles — a shared feed is correct, the digit

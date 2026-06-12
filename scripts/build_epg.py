@@ -407,7 +407,11 @@ def foreign_tld_donor(cid: str) -> bool:
 # never in matching, where merging singular/plural could cross-bind
 # different countries' channels.
 _TOKEN_EQUIV = {"SPORT": "SPORTS", "MOVIE": "MOVIES", "FILM": "FILMS",
-                "CLASSIC": "CLASSICS", "TOON": "TOONS", "DOC": "DOCS"}
+                "CLASSIC": "CLASSICS", "TOON": "TOONS", "DOC": "DOCS",
+                # abbreviation/typo spellings of the same brand: 'NAT GEO
+                # WILD' and 'NATIONAL GEOGRAPHIC WILD' are one channel
+                "NAT": "NATIONAL", "GEO": "GEOGRAPHIC",
+                "NATIOANL": "NATIONAL"}
 
 
 def canon_identity_tokens(tokens: frozenset) -> frozenset:
@@ -2777,20 +2781,33 @@ def main():
     backfill_token_idx: dict[str, list[str]] = defaultdict(list)
     for cid, block in kept_channels.items():
         names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
+        # Mislabel poisoning guard: the provider's EPG echoes its own M3U
+        # naming, so channel KOIN.us may carry the display name
+        # 'CBS (WGME) PORTLAND MAINE' — indexing that name would route every
+        # WGME lookup to KOIN's (wrong-city) feed. When the cid itself is a
+        # callsign, any display name carrying a DIFFERENT callsign is
+        # provably mislabeled: skip it for both indexes.
+        cid_cs = _strip_us_callsign_suffix(cid.split(".")[0].upper())
+        cid_is_cs = bool(_CALLSIGN_SHAPED_ID_RE.match(cid_cs))
         for n in names:
             cs = extract_callsign(n)
+            if cid_is_cs and cs and cs != cid_cs:
+                continue
             if cs:
                 backfill_cs.setdefault(cs, cid)
             nn = normalize_name(n)
             if nn and len(nn) > 3:
                 backfill_nn.setdefault(nn, cid)
-        cid_cs = _strip_us_callsign_suffix(cid.split(".")[0].upper())
-        if 3 <= len(cid_cs) <= 5 and cid_cs[0] in ("K", "W"):
+        if cid_is_cs:
             backfill_cs.setdefault(cid_cs, cid)
         # Build token set (across all display-names) for the token-set
-        # fallback. Skip channels with <2 distinct tokens (too generic).
+        # fallback. Skip channels with <2 distinct tokens (too generic),
+        # and mislabeled names (same guard as above).
         merged_toks: set = set()
         for n in names:
+            cs = extract_callsign(n)
+            if cid_is_cs and cs and cs != cid_cs:
+                continue
             merged_toks |= name_tokens(n)
         if len(merged_toks) >= 2:
             tok_fs = frozenset(merged_toks)
@@ -2888,9 +2905,15 @@ def main():
         for m3u_id, up_cid in _alias_replace.items():
             provenance[m3u_id] = ("alias",
                                   chan_source.get(up_cid, "provider"), up_cid)
-            for prog in progs_by_chan.get(up_cid, []):
-                kept_programmes.append(rewrite_prog_channel(prog, up_cid, m3u_id))
-                added += 1
+            cloned = [rewrite_prog_channel(prog, up_cid, m3u_id)
+                      for prog in progs_by_chan.get(up_cid, [])]
+            kept_programmes.extend(cloned)
+            added += len(cloned)
+            # Refresh the per-channel index too: later tiers (norm/token)
+            # may pick this id as a DONOR — they must clone the pinned
+            # data, not the impostor's stale programmes (observed: GOBX
+            # MBC 3 cloning the junk that MBC3Ar.ae carried pre-pin).
+            progs_by_chan[m3u_id] = cloned
         print(f"      alias override on {len(_alias_replace)} directly-bound "
               f"id(s): -{removed_n} impostor programmes, "
               f"+{added} pinned programmes")
@@ -3258,8 +3281,13 @@ def main():
             continue
         for c_cid, c_names, _ in iter_channels(raw):
             src_label_by_cid.setdefault(c_cid, src_name)
+            c_head = _strip_us_callsign_suffix(c_cid.split(".")[0].upper())
+            c_is_cs = bool(_CALLSIGN_SHAPED_ID_RE.match(c_head))
             merged: set = set()
             for n in c_names:
+                cs = extract_callsign(n)
+                if c_is_cs and cs and cs != c_head:
+                    continue  # mislabeled echo name — see backfill index guard
                 merged |= name_tokens(n)
             # Need at least 2 identifying tokens (e.g. {BBC, ONE}); single-
             # token channels like just {ONE} or {BEIN} match too loosely.
