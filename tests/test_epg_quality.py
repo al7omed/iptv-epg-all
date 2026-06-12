@@ -177,3 +177,46 @@ class TestTokenLeftoverOk:
 
     def test_clone_cap_is_small(self):
         assert 2 <= MAX_CLONE_NORMS_PER_SOURCE <= 8
+
+
+from build_epg import BRAND_TOKENS, name_tokens  # noqa: E402
+
+
+class TestBrandTokenGuard:
+    def test_nat_geo_abu_dhabi_regression(self):
+        # The real 2026-06 bug: M3U 'Abu Dhabi Natioanl Geo 4K' (provider
+        # typo) token-matched the generic 'Abu Dhabi' (Abu Dhabi TV) feed
+        # and shipped news + drama schedules on a Nat Geo channel. The
+        # leftover {NATIOANL, GEO} marks a different channel identity.
+        m3u = name_tokens("AR: Abu Dhabi Natioanl Geo 4K")
+        src = name_tokens("Abu Dhabi")
+        assert src.issubset(m3u)
+        assert not token_leftover_ok(m3u, src)
+
+    def test_genre_suffix_rejected(self):
+        # 'SKY SPORTS GOLF' must never take a generic 'SKY SPORTS' feed.
+        assert not token_leftover_ok(
+            frozenset({"SKY", "SPORTS", "GOLF"}), frozenset({"SKY", "SPORTS"}))
+        # 'SKY CINEMA ACTION' must never take generic 'SKY CINEMA'.
+        assert not token_leftover_ok(
+            frozenset({"SKY", "CINEMA", "ACTION"}), frozenset({"SKY", "CINEMA"}))
+        # 'MBC PANORAMA FM' must never take the 'MBC FM' feed.
+        assert not token_leftover_ok(
+            frozenset({"MBC", "PANORAMA", "FM"}), frozenset({"MBC", "FM"}))
+
+    def test_city_and_provider_leftovers_still_allowed(self):
+        # Non-brand leftovers (cities, provider prefixes) remain allowed —
+        # the clone cap and language guard bound the damage there.
+        assert token_leftover_ok(
+            frozenset({"SPECTRUM", "NEWS", "MILWAUKEE"}),
+            frozenset({"SPECTRUM", "NEWS"}))
+        assert token_leftover_ok(
+            frozenset({"SKYGO", "SKY", "WITNESS"}), frozenset({"SKY", "WITNESS"}))
+
+    def test_brand_tokens_exclude_quality_and_junk(self):
+        # Quality/junk tokens are stripped by name_tokens() before the
+        # guard ever sees them; keeping them out of BRAND_TOKENS documents
+        # that they are NOT identity markers.
+        for tok in ("HD", "FHD", "UHD", "4K", "8K", "RAW", "VIP", "HEVC",
+                    "BACKUP", "FEED", "MIRROR", "LIVE"):
+            assert tok not in BRAND_TOKENS

@@ -20,3 +20,11 @@
 #     over automatic callsign / name-based matching, so use sparingly to
 #     fix hard-to-pin cases (Arabic-script channels, region splits, etc.).
 #   * Append-only: order doesn't matter.
+
+# Nat Geo Abu Dhabi (2026-06): the provider M3U misspells the name
+# ('Natioanl Geo') so no name tier can match, and the generic 'Abu Dhabi'
+# (Abu Dhabi TV) feed used to token-match it instead — wrong schedule in
+# English, invisible to every guard. Pin to epgshare AE1's real feed
+# (verified content: Air Crash Investigation, Ice Road Rescue, ...).
+# Covers both the 4K and HD variants (they share this tvg-id).
+NationalGeographicAbuDhabi.ae	Nat.Geo.Abu.Dhabi.HD.ae
