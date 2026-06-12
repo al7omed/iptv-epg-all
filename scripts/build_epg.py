@@ -387,6 +387,27 @@ def extract_callsign(name: str) -> str | None:
     return None
 
 
+_CALLSIGN_SHAPED_ID_RE = re.compile(r"^[KW][A-Z]{2,4}$")
+
+
+def callsign_id_contradiction(tvg_id: str, name: str) -> bool:
+    """True when the M3U entry names one US station but its tvg-id is a
+    DIFFERENT station's callsign — observed: the provider stamped
+    'KHON.us' (Honolulu) on 'FOX HARTFORD (WTIC)' and 'KOIN.us' (Oregon)
+    on 'CBS (WGME) PORTLAND MAINE'. Direct-id matching would then ship the
+    wrong city's schedule, invisible to every content guard. Neutralizing
+    the id lets the callsign backfill tier bind the RIGHT station instead.
+    Only fires when both sides are unambiguous callsigns; everything else
+    (brand ids, foreign ids, missing name callsign) is left alone."""
+    if not tvg_id or not name:
+        return False
+    id_head = _strip_us_callsign_suffix(tvg_id.split(".")[0].upper())
+    if not _CALLSIGN_SHAPED_ID_RE.match(id_head):
+        return False
+    name_cs = extract_callsign(name)
+    return bool(name_cs) and name_cs != id_head
+
+
 # ---------------- M3U parsing ----------------
 
 EXTINF_LINE_RE = re.compile(r'#EXTINF[^,\n]*,([^\n]+)')
@@ -544,6 +565,7 @@ def assign_effective_ids(m3u_channels):
         print(f"      degenerate shared tvg-ids neutralized: {len(degenerate)} ({ex})")
     auto_count = 0
     name_count = 0
+    contradicted = 0
     for ch in m3u_channels:
         # Ids must be non-Latin-script-free (English-only EPG policy): the
         # effective id lands in BOTH the patched M3U and the EPG file, and
@@ -551,7 +573,12 @@ def assign_effective_ids(m3u_channels):
         # itself so every downstream consumer sees the same clean id.
         ch["tvg_id"] = strip_non_latin_id(ch["tvg_id"]) if ch["tvg_id"] else ch["tvg_id"]
         name_id = strip_non_latin_id(ch["tvg_name"]) if ch["tvg_name"] else ""
-        if ch["tvg_id"] and ch["tvg_id"] not in degenerate:
+        contradiction = (ch["tvg_id"]
+                         and callsign_id_contradiction(
+                             ch["tvg_id"], ch["tvg_name"] or ch["title"]))
+        if contradiction:
+            contradicted += 1
+        if ch["tvg_id"] and ch["tvg_id"] not in degenerate and not contradiction:
             ch["effective_id"] = _shorten_id(ch["tvg_id"])
         elif name_id:
             ch["effective_id"] = _shorten_id(name_id)
@@ -559,6 +586,8 @@ def assign_effective_ids(m3u_channels):
         else:
             ch["effective_id"] = _shorten_id(auto_tvg_id(ch))
             auto_count += 1
+    if contradicted:
+        print(f"      callsign-contradicted tvg-ids neutralized: {contradicted}")
     return auto_count, name_count
 
 

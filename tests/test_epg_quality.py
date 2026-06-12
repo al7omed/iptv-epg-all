@@ -182,6 +182,30 @@ class TestTokenLeftoverOk:
 from build_epg import BRAND_TOKENS, name_tokens  # noqa: E402
 
 
+from build_epg import callsign_id_contradiction  # noqa: E402
+
+
+class TestCallsignIdContradiction:
+    def test_wrong_station_id_neutralized(self):
+        # Real provider data: Honolulu's id stamped on the Hartford channel,
+        # Oregon's id on the Maine channel, Grand Junction's on Goldsboro.
+        assert callsign_id_contradiction("KHON.us", "US: FOX HARTFORD (WTIC)")
+        assert callsign_id_contradiction("KOIN.us", "US: CBS (WGME) PORTLAND MAINE")
+        assert callsign_id_contradiction("KREX.us", "US: CBS (WNCN) GOLDSBORO NORTH CAROLINA")
+
+    def test_matching_callsign_kept(self):
+        assert not callsign_id_contradiction("KHON.us", "US: FOX 2 (KHON) HONOLULU HD")
+        assert not callsign_id_contradiction("WGME.us", "US: CBS 13 (WGME) PORTLAND HD")
+
+    def test_non_callsign_ids_ignored(self):
+        # Brand ids that merely look vaguely station-shaped never fire
+        # without an unambiguous callsign on BOTH sides.
+        assert not callsign_id_contradiction("WWE.us", "WWE Network HD")
+        assert not callsign_id_contradiction("NatGeo.uk", "UK: NAT GEO (WILD)")
+        assert not callsign_id_contradiction("KHON.us", "US: FOX HARTFORD")
+        assert not callsign_id_contradiction("", "US: FOX HARTFORD (WTIC)")
+
+
 class TestJunkChannelUnavailable:
     def test_no_longer_available_filler_dropped(self):
         # Provider filler observed parked on Sky Showcase + ROOT Sports —
