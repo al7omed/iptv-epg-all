@@ -3018,7 +3018,12 @@ def main():
         if m:
             cid = html.unescape(m.group(1).decode("utf-8", "replace"))
             real_prog_ids.add(cid)
-    dummy_only_cids = [cid for cid in kept_channels if cid not in real_prog_ids]
+    # forced_ids excluded: the user explicitly marked their auto-matched EPG
+    # as wrong (channels/dummy_override.txt) — re-binding them here would
+    # bring the wrong data right back (e.g. BBC RADIO 2 token-matching a
+    # 'BBC 2' TV feed).
+    dummy_only_cids = [cid for cid in kept_channels
+                       if cid not in real_prog_ids and cid not in forced_ids]
     print(f"      candidate channels (dummy-only): {len(dummy_only_cids)}")
 
     # Build a master list of (source_cid, token_set, programme_list) from
