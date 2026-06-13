@@ -637,6 +637,9 @@
  "2 unter millionen": {
   "_negative": "2026-06-12"
  },
+ "2.0 gadget": {
+  "_negative": "2026-06-13"
+ },
  "200% lup": {
   "_negative": "2026-06-12"
  },
@@ -1185,7 +1188,13 @@
   "_negative": "2026-06-13"
  },
  "5news at 6": {
-  "_negative": "2026-06-13"
+  "cast": [
+   "Jeremy Thompson",
+   "Andrew Wilson"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/408/1021806.jpg",
+  "tvmaze_id": 13926
  },
  "6 am news": {
   "cast": [
@@ -1695,6 +1704,9 @@
  "[k8] υγεία & ευεξία (ε)": {
   "_negative": "2026-06-12"
  },
+ "[k] telemarketing 30'": {
+  "_negative": "2026-06-13"
+ },
  "[k] telemarketing 60'": {
   "_negative": "2026-06-11"
  },
@@ -1956,6 +1968,18 @@
  },
  "a l'ombre des grands châteaux": {
   "_negative": "2026-06-11"
+ },
+ "a la carte": {
+  "cast": [
+   "Jessie Woo",
+   "Shani Marq",
+   "Kendall Kyndall",
+   "Jenna Nolen",
+   "Kandi Burruss"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/482/1205617.jpg",
+  "tvmaze_id": 61712
  },
  "a la rencontre des manchots d'australie": {
   "_negative": "2026-06-11"
@@ -2398,6 +2422,9 @@
  },
  "aap ki farmaish": {
   "_negative": "2026-06-12"
+ },
+ "aap mai aur farsi": {
+  "_negative": "2026-06-13"
  },
  "aap, poot, pies": {
   "_negative": "2026-06-12"
@@ -3404,6 +3431,9 @@
  "agricultural programme": {
   "_negative": "2026-06-11"
  },
+ "agro jurnal": {
+  "_negative": "2026-06-13"
+ },
  "agrodnevnik": {
   "_negative": "2026-06-13"
  },
@@ -3717,6 +3747,9 @@
  },
  "al montasaf": {
   "_negative": "2026-06-11"
+ },
+ "al motawahesh": {
+  "_negative": "2026-06-13"
  },
  "al naibii tratament": {
   "_negative": "2026-06-12"
@@ -4032,9 +4065,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/621/1552912.jpg",
   "tvmaze_id": 42189
  },
- "all i have": {
-  "_negative": "2026-06-13"
- },
  "all in": {
   "cast": [
    "Ji Seong",
@@ -4332,9 +4362,6 @@
  },
  "amahubo": {
   "_negative": "2026-06-12"
- },
- "amalanga awafani": {
-  "_negative": "2026-06-13"
  },
  "amanda & alan's greek job": {
   "cast": [
@@ -6454,6 +6481,9 @@
  "athleticus urban games": {
   "_negative": "2026-06-12"
  },
+ "athmalo jeevanam": {
+  "_negative": "2026-06-13"
+ },
  "atithi devo bhav": {
   "_negative": "2026-06-12"
  },
@@ -8460,6 +8490,9 @@
  "bekstvo iz divljine": {
   "_negative": "2026-06-13"
  },
+ "belaku": {
+  "_negative": "2026-06-13"
+ },
  "belcar endurance championship": {
   "_negative": "2026-06-12"
  },
@@ -9863,7 +9896,12 @@
   "_negative": "2026-06-12"
  },
  "bloodline detectives": {
-  "_negative": "2026-06-13"
+  "cast": [
+   "Nancy Grace"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/595/1488120.jpg",
+  "tvmaze_id": 47436
  },
  "bloomberg": {
   "cast": [
@@ -11367,12 +11405,7 @@
   "_negative": "2026-06-11"
  },
  "bumble and bumble.": {
-  "cast": [
-   "Michael Bublé"
-  ],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/173/433850.jpg",
-  "tvmaze_id": 9632
+  "_negative": "2026-06-13"
  },
  "bumblebee": {
   "_negative": "2026-06-13"
@@ -14729,12 +14762,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/80/202316.jpg",
   "tvmaze_id": 1462
  },
- "come again": {
-  "cast": [],
-  "fetched_at": "2026-06-13",
-  "poster": null,
-  "tvmaze_id": 32958
- },
  "come dine with me": {
   "cast": [
    "Dave Lamb"
@@ -15019,6 +15046,9 @@
  },
  "concert orchestre des nations": {
   "_negative": "2026-06-12"
+ },
+ "conclave": {
+  "_negative": "2026-06-13"
  },
  "concluding mass": {
   "_negative": "2026-06-12"
@@ -17321,9 +17351,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/190/477030.jpg",
   "tvmaze_id": 14258
  },
- "deal or no deal celebrity sa": {
-  "_negative": "2026-06-13"
- },
  "dean mickoski": {
   "_negative": "2026-06-11"
  },
@@ -17413,6 +17440,18 @@
  "dee dee & spike": {
   "_negative": "2026-06-12"
  },
+ "deen": {
+  "cast": [
+   "Monique van de Ven",
+   "David Lucieer",
+   "Benja Bruijning",
+   "Jelle de Jong",
+   "Leopold Witte"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/39/98767.jpg",
+  "tvmaze_id": 11730
+ },
  "deep deception": {
   "cast": [],
   "fetched_at": "2026-06-11",
@@ -17436,6 +17475,12 @@
  },
  "deeper life": {
   "_negative": "2026-06-12"
+ },
+ "deer and deer hunting": {
+  "cast": [],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/32/81159.jpg",
+  "tvmaze_id": 7484
  },
  "deer squad": {
   "cast": [
@@ -17911,7 +17956,10 @@
   "_negative": "2026-06-12"
  },
  "destination usa": {
-  "_negative": "2026-06-13"
+  "cast": [],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/398/996514.jpg",
+  "tvmaze_id": 60809
  },
  "destination wild": {
   "cast": [],
@@ -17960,6 +18008,12 @@
  },
  "detetive americano com joe kenda": {
   "_negative": "2026-06-12"
+ },
+ "detroit muscle": {
+  "cast": [],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/26/67375.jpg",
+  "tvmaze_id": 7252
  },
  "deurnag!": {
   "_negative": "2026-06-12"
@@ -24116,9 +24170,6 @@
  "friday night thunder": {
   "_negative": "2026-06-12"
  },
- "friday prayer from uae": {
-  "_negative": "2026-06-13"
- },
  "fridolin": {
   "_negative": "2026-06-12"
  },
@@ -24440,9 +24491,6 @@
   "fetched_at": "2026-06-12",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/628/1570317.jpg",
   "tvmaze_id": 68485
- },
- "g.o.a.ts like us": {
-  "_negative": "2026-06-13"
  },
  "g1 plan": {
   "_negative": "2026-06-12"
@@ -24961,18 +25009,6 @@
  },
  "generatie gebed": {
   "_negative": "2026-06-12"
- },
- "generations": {
-  "cast": [
-   "Jack Betts",
-   "James Reynolds",
-   "Taurean Blacque",
-   "Sharon Brown",
-   "Debbi Morgan"
-  ],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/98/247398.jpg",
-  "tvmaze_id": 25419
  },
  "geneva show": {
   "_negative": "2026-06-12"
@@ -25677,12 +25713,6 @@
  "going to the bathroom too much?": {
   "_negative": "2026-06-13"
  },
- "going up": {
-  "cast": [],
-  "fetched_at": "2026-06-13",
-  "poster": null,
-  "tvmaze_id": 88062
- },
  "gokula krishnaa..!": {
   "_negative": "2026-06-13"
  },
@@ -25953,6 +25983,9 @@
  "good samaritan": {
   "_negative": "2026-06-11"
  },
+ "good taste with tanji patton": {
+  "_negative": "2026-06-13"
+ },
  "good to know": {
   "_negative": "2026-06-12"
  },
@@ -26138,6 +26171,9 @@
  },
  "grade 6 great lesson ideas": {
   "_negative": "2026-06-12"
+ },
+ "grade 6 language": {
+  "_negative": "2026-06-13"
  },
  "grade 6 mathematics": {
   "_negative": "2026-06-12"
@@ -29046,6 +29082,9 @@
  "horse academy pro 1": {
   "_negative": "2026-06-11"
  },
+ "horse race studio": {
+  "_negative": "2026-06-13"
+ },
  "horse racing": {
   "cast": [],
   "fetched_at": "2026-06-11",
@@ -31157,9 +31196,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/333/833993.jpg",
   "tvmaze_id": 3097
  },
- "inkluzija": {
-  "_negative": "2026-06-13"
- },
  "inkontru": {
   "_negative": "2026-06-12"
  },
@@ -31427,6 +31463,12 @@
  },
  "interstellar ella": {
   "_negative": "2026-06-12"
+ },
+ "interview": {
+  "cast": [],
+  "fetched_at": "2026-06-13",
+  "poster": null,
+  "tvmaze_id": 29848
  },
  "interview with a killer": {
   "cast": [],
@@ -32878,9 +32920,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/300/750886.jpg",
   "tvmaze_id": 54193
  },
- "joni jet": {
-  "_negative": "2026-06-13"
- },
  "joni table talk": {
   "cast": [],
   "fetched_at": "2026-06-11",
@@ -33567,6 +33606,9 @@
  },
  "kalki 2898 ad": {
   "_negative": "2026-06-12"
+ },
+ "kalpataru": {
+  "_negative": "2026-06-13"
  },
  "kalyanotsavam / s.d.seva": {
   "_negative": "2026-06-11"
@@ -38855,6 +38897,14 @@
  "love world 4k [uk]": {
   "_negative": "2026-06-12"
  },
+ "love your weekend with alan titchmarsh": {
+  "cast": [
+   "Alan Titchmarsh"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/461/1152965.jpg",
+  "tvmaze_id": 49977
+ },
  "love zone": {
   "cast": [],
   "fetched_at": "2026-06-13",
@@ -38911,6 +38961,9 @@
  },
  "loving living local": {
   "_negative": "2026-06-12"
+ },
+ "ls kaal ka kaalverse": {
+  "_negative": "2026-06-13"
  },
  "lu & the bally bunch": {
   "cast": [
@@ -39034,9 +39087,6 @@
  },
  "lunch hour news": {
   "_negative": "2026-06-11"
- },
- "lunch time news": {
-  "_negative": "2026-06-13"
  },
  "lunchtimechatdotgov": {
   "_negative": "2026-06-12"
@@ -40574,6 +40624,9 @@
  "maryada ramanna": {
   "_negative": "2026-06-11"
  },
+ "marykkundoru kunjaadu": {
+  "_negative": "2026-06-13"
+ },
  "marțianul": {
   "_negative": "2026-06-12"
  },
@@ -40937,6 +40990,9 @@
   "fetched_at": "2026-06-11",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/28/70788.jpg",
   "tvmaze_id": 7696
+ },
+ "mayer anchal": {
+  "_negative": "2026-06-13"
  },
  "mayfair witches": {
   "cast": [
@@ -44032,15 +44088,6 @@
  },
  "my mom jayne": {
   "_negative": "2026-06-12"
- },
- "my night": {
-  "cast": [
-   "Thitiwat Ritprasert",
-   "Natouch Siripongthon"
-  ],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/363/909950.jpg",
-  "tvmaze_id": 58204
  },
  "my penguin friend": {
   "_negative": "2026-06-11"
@@ -48339,6 +48386,12 @@
  "padurea spanzuratilor": {
   "_negative": "2026-06-11"
  },
+ "paganini": {
+  "cast": [],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/192/480616.jpg",
+  "tvmaze_id": 41854
+ },
  "paid a dweud hoyw": {
   "_negative": "2026-06-13"
  },
@@ -48404,6 +48457,18 @@
   "fetched_at": "2026-06-12",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/517/1293627.jpg",
   "tvmaze_id": 47014
+ },
+ "pancho villa": {
+  "cast": [
+   "Jorge A. Jiménez",
+   "Juan Luis Medina",
+   "Armando Hernández",
+   "Leonardo Alonso",
+   "Marco Treviño"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/469/1172504.jpg",
+  "tvmaze_id": 69931
  },
  "panda and rooster": {
   "_negative": "2026-06-12"
@@ -49077,12 +49142,6 @@
   "fetched_at": "2026-06-11",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/440/1102342.jpg",
   "tvmaze_id": 66295
- },
- "penblwyddi cyw": {
-  "cast": [],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/111/278781.jpg",
-  "tvmaze_id": 27536
  },
  "penn & teller": {
   "cast": [
@@ -50556,6 +50615,9 @@
  "poruka u boci": {
   "_negative": "2026-06-13"
  },
+ "porveeran": {
+  "_negative": "2026-06-13"
+ },
  "poseidon": {
   "cast": [
    "Choi Si Won",
@@ -51266,6 +51328,9 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/104/260072.jpg",
   "tvmaze_id": 26417
  },
+ "problem child 2": {
+  "_negative": "2026-06-13"
+ },
  "procura": {
   "cast": [],
   "fetched_at": "2026-06-12",
@@ -51609,9 +51674,6 @@
  },
  "ptv global eu [pk]": {
   "_negative": "2026-06-12"
- },
- "public mirror": {
-  "_negative": "2026-06-13"
  },
  "public mirror / special segment": {
   "_negative": "2026-06-13"
@@ -52174,9 +52236,6 @@
  "rabindra sangeet": {
   "_negative": "2026-06-13"
  },
- "racconti dalle città di mare": {
-  "_negative": "2026-06-13"
- },
  "racconto di una notte": {
   "_negative": "2026-06-11"
  },
@@ -52468,9 +52527,6 @@
   "fetched_at": "2026-06-11",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/61/153224.jpg",
   "tvmaze_id": 16712
- },
- "rands first festival": {
-  "_negative": "2026-06-13"
  },
  "ranga ranga panduranga": {
   "_negative": "2026-06-12"
@@ -52934,8 +52990,14 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/58/145799.jpg",
   "tvmaze_id": 16723
  },
- "reflections of faith": {
-  "_negative": "2026-06-13"
+ "reflex": {
+  "cast": [
+   "Ken Bruce",
+   "Shane Richie"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/86/216696.jpg",
+  "tvmaze_id": 23182
  },
  "reforma integral": {
   "_negative": "2026-06-11"
@@ -53290,9 +53352,6 @@
   "fetched_at": "2026-06-12",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/484/1210952.jpg",
   "tvmaze_id": 57347
- },
- "restyle my style": {
-  "_negative": "2026-06-13"
  },
  "retribution": {
   "cast": [
@@ -53915,6 +53974,9 @@
  },
  "rocky iii, l'oeil du tigre": {
   "_negative": "2026-06-12"
+ },
+ "rodoslavci": {
+  "_negative": "2026-06-13"
  },
  "roganusar ayurved evam jivan darshan": {
   "_negative": "2026-06-11"
@@ -54584,9 +54646,6 @@
  },
  "sabash andhrapradesh": {
   "_negative": "2026-06-12"
- },
- "sabc 1 hd [dstv]": {
-  "_negative": "2026-06-13"
  },
  "sabirni centar": {
   "_negative": "2026-06-12"
@@ -56986,9 +57045,6 @@
  "sisters of the groom": {
   "_negative": "2026-06-12"
  },
- "siswati/isindebele news": {
-  "_negative": "2026-06-13"
- },
  "sitaron ki baat humayun key saath": {
   "_negative": "2026-06-12"
  },
@@ -57038,9 +57094,6 @@
   "fetched_at": "2026-06-11",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/22/56912.jpg",
   "tvmaze_id": 5680
- },
- "skeem saam": {
-  "_negative": "2026-06-13"
  },
  "skemerson": {
   "_negative": "2026-06-12"
@@ -57294,6 +57347,9 @@
  },
  "smashing machine": {
   "_negative": "2026-06-11"
+ },
+ "smile max 365": {
+  "_negative": "2026-06-13"
  },
  "smokin hot": {
   "_negative": "2026-06-12"
@@ -58224,9 +58280,6 @@
  },
  "sport, dietă şi o vedetă": {
   "_negative": "2026-06-12"
- },
- "sport@10": {
-  "_negative": "2026-06-13"
  },
  "sportfreunde stiller": {
   "_negative": "2026-06-11"
@@ -60148,9 +60201,6 @@
  },
  "svjedoci milosti": {
   "_negative": "2026-06-12"
- },
- "svuoto casa... tutto all'asta!": {
-  "_negative": "2026-06-13"
  },
  "swad e virasat": {
   "_negative": "2026-06-12"
@@ -65377,12 +65427,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/435/1089662.jpg",
   "tvmaze_id": 64861
  },
- "the sauce": {
-  "cast": [],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/252/632083.jpg",
-  "tvmaze_id": 46949
- },
  "the scammers": {
   "cast": [],
   "fetched_at": "2026-06-12",
@@ -66622,10 +66666,7 @@
   "_negative": "2026-06-13"
  },
  "third person": {
-  "cast": [],
-  "fetched_at": "2026-06-13",
-  "poster": null,
-  "tvmaze_id": 91584
+  "_negative": "2026-06-13"
  },
  "thirty": {
   "cast": [
@@ -67421,14 +67462,6 @@
   "fetched_at": "2026-06-11",
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/483/1209326.jpg",
   "tvmaze_id": 25114
- },
- "top 60's": {
-  "cast": [
-   "Rob Lowe"
-  ],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/387/968640.jpg",
-  "tvmaze_id": 59334
  },
  "top 9 songs": {
   "cast": [],
@@ -70920,9 +70953,6 @@
  "vruća sedla": {
   "_negative": "2026-06-12"
  },
- "vs gaming": {
-  "_negative": "2026-06-13"
- },
  "vuelven los magos de waverly place": {
   "_negative": "2026-06-11"
  },
@@ -71426,18 +71456,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/587/1469182.jpg",
   "tvmaze_id": 40037
  },
- "waw!": {
-  "cast": [
-   "Dominic West",
-   "Sienna Miller",
-   "Phoebe Fox",
-   "James McArdle",
-   "Nina Sosanya"
-  ],
-  "fetched_at": "2026-06-13",
-  "poster": null,
-  "tvmaze_id": 86587
- },
  "we baby bears": {
   "cast": [
    "Connor Andrade",
@@ -71710,6 +71728,9 @@
  },
  "weqayah": {
   "_negative": "2026-06-11"
+ },
+ "wer ist das phantom": {
+  "_negative": "2026-06-13"
  },
  "wer stiehlt till reiners die show": {
   "_negative": "2026-06-13"
@@ -72672,7 +72693,14 @@
   "tvmaze_id": 2957
  },
  "wow": {
-  "_negative": "2026-06-13"
+  "cast": [
+   "Donna Preston",
+   "AJ Odudu",
+   "Arielle Free"
+  ],
+  "fetched_at": "2026-06-13",
+  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/412/1031008.jpg",
+  "tvmaze_id": 56235
  },
  "wow emi ruchi": {
   "_negative": "2026-06-12"
@@ -72835,9 +72863,6 @@
   "poster": "https://static.tvmaze.com/uploads/images/original_untouched/3/9021.jpg",
   "tvmaze_id": 437
  },
- "xhosa/zulu news": {
-  "_negative": "2026-06-13"
- },
  "xo tacori lab grown diamond jewelry": {
   "_negative": "2026-06-13"
  },
@@ -72866,12 +72891,6 @@
  },
  "y ahora, sonsoles": {
   "_negative": "2026-06-11"
- },
- "y fets": {
-  "cast": [],
-  "fetched_at": "2026-06-13",
-  "poster": "https://static.tvmaze.com/uploads/images/original_untouched/108/271824.jpg",
-  "tvmaze_id": 27559
  },
  "y pitws bychain": {
   "_negative": "2026-06-13"

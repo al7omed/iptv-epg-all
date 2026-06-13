@@ -1,79 +1,79 @@
 #EXTM3U x-tvg-url="https://al7omed.github.io/iptv-epg-all/guide-lite.xml.gz"
-#EXTINF:-1 tvg-id="beINSports1En.qa" tvg-chno="1" tvg-name="beIN Sports 1 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 English RAW [8K]
+#EXTINF:-1 tvg-id="beINSports1En.qa" tvg-chno="1" tvg-name="beIN Sports 1 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 1 English RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544442.ts
-#EXTINF:-1 tvg-id="beINSports1.qa" tvg-chno="2" tvg-name="beIN Sports 1 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports1.qa" tvg-chno="2" tvg-name="beIN Sports 1 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 1 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544454.ts
-#EXTINF:-1 tvg-id="beINSportsXtra1.qa" tvg-chno="3" tvg-name="beIN Sports 1 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="beINSportsXtra1.qa" tvg-chno="3" tvg-name="beIN Sports 1 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 1 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544445.ts
-#EXTINF:-1 tvg-id="beINSports2En.qa" tvg-chno="4" tvg-name="beIN Sports 2 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 English RAW [8K]
+#EXTINF:-1 tvg-id="beINSports2En.qa" tvg-chno="4" tvg-name="beIN Sports 2 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 2 English RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544441.ts
-#EXTINF:-1 tvg-id="beINSports2.qa" tvg-chno="5" tvg-name="beIN Sports 2 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports2.qa" tvg-chno="5" tvg-name="beIN Sports 2 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 2 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544453.ts
-#EXTINF:-1 tvg-id="beINSportsXtra2.qa" tvg-chno="6" tvg-name="beIN Sports 2 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 2 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="beINSportsXtra2.qa" tvg-chno="6" tvg-name="beIN Sports 2 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 2 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544444.ts
-#EXTINF:-1 tvg-id="beINSports3.qa" tvg-chno="7" tvg-name="beIN Sports 3 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 3 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports3.qa" tvg-chno="7" tvg-name="beIN Sports 3 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 3 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544452.ts
-#EXTINF:-1 tvg-id="beINSportsXtra3.qa" tvg-chno="8" tvg-name="beIN Sports 3 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 3 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="beINSportsXtra3.qa" tvg-chno="8" tvg-name="beIN Sports 3 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 3 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544443.ts
-#EXTINF:-1 tvg-id="beINSports4.qa" tvg-chno="9" tvg-name="beIN Sports 4 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 4 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports4.qa" tvg-chno="9" tvg-name="beIN Sports 4 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 4 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544451.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 4 XTRA ᴿᴬᵂ" tvg-chno="10" tvg-name="beIN Sports 4 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 4 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 4 XTRA ᴿᴬᵂ" tvg-chno="10" tvg-name="beIN Sports 4 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 4 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301678.ts
-#EXTINF:-1 tvg-id="beINSports5.qa" tvg-chno="11" tvg-name="beIN Sports 5 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 5 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports5.qa" tvg-chno="11" tvg-name="beIN Sports 5 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 5 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544450.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 5 XTRA ᴿᴬᵂ" tvg-chno="12" tvg-name="beIN Sports 5 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 5 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 5 XTRA ᴿᴬᵂ" tvg-chno="12" tvg-name="beIN Sports 5 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 5 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301677.ts
-#EXTINF:-1 tvg-id="beINSports6.qa" tvg-chno="13" tvg-name="beIN Sports 6 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 6 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports6.qa" tvg-chno="13" tvg-name="beIN Sports 6 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 6 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544449.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 6 XTRA ᴿᴬᵂ" tvg-chno="14" tvg-name="beIN Sports 6 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 6 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 6 XTRA ᴿᴬᵂ" tvg-chno="14" tvg-name="beIN Sports 6 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 6 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301676.ts
-#EXTINF:-1 tvg-id="beINSports7.qa" tvg-chno="15" tvg-name="beIN Sports 7 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 7 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports7.qa" tvg-chno="15" tvg-name="beIN Sports 7 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 7 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544448.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 7 XTRA ᴿᴬᵂ" tvg-chno="16" tvg-name="beIN Sports 7 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 7 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 7 XTRA ᴿᴬᵂ" tvg-chno="16" tvg-name="beIN Sports 7 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 7 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301675.ts
-#EXTINF:-1 tvg-id="beINSports8.qa" tvg-chno="17" tvg-name="beIN Sports 8 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 8 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports8.qa" tvg-chno="17" tvg-name="beIN Sports 8 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 8 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544447.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 8 XTRA ᴿᴬᵂ" tvg-chno="18" tvg-name="beIN Sports 8 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 8 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 8 XTRA ᴿᴬᵂ" tvg-chno="18" tvg-name="beIN Sports 8 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 8 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301674.ts
-#EXTINF:-1 tvg-id="beINSports9.qa" tvg-chno="19" tvg-name="beIN Sports 9 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 9 RAW [8K]
+#EXTINF:-1 tvg-id="beINSports9.qa" tvg-chno="19" tvg-name="beIN Sports 9 RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 9 RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544446.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 9 XTRA ᴿᴬᵂ" tvg-chno="20" tvg-name="beIN Sports 9 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 9 Xtra RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS 9 XTRA ᴿᴬᵂ" tvg-chno="20" tvg-name="beIN Sports 9 Xtra RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 9 Xtra RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1301673.ts
-#EXTINF:-1 tvg-id="beINSportsGlobal.qa" tvg-chno="21" tvg-name="beIN Sports Global RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Global RAW [8K]
+#EXTINF:-1 tvg-id="beINSportsGlobal.qa" tvg-chno="21" tvg-name="beIN Sports Global RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports Global RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544457.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 1 AR ᴿᴬᵂ" tvg-chno="22" tvg-name="beIN Sports MAX 1 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 1 Arabic RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 1 AR ᴿᴬᵂ" tvg-chno="22" tvg-name="beIN Sports MAX 1 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports MAX 1 Arabic RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997476.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 2 AR ᴿᴬᵂ" tvg-chno="23" tvg-name="beIN Sports MAX 2 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 2 Arabic RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 2 AR ᴿᴬᵂ" tvg-chno="23" tvg-name="beIN Sports MAX 2 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports MAX 2 Arabic RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997475.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 3 AR ᴿᴬᵂ" tvg-chno="24" tvg-name="beIN Sports MAX 3 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 3 Arabic RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 3 AR ᴿᴬᵂ" tvg-chno="24" tvg-name="beIN Sports MAX 3 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports MAX 3 Arabic RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997474.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 4 AR ᴿᴬᵂ" tvg-chno="25" tvg-name="beIN Sports MAX 4 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 4 Arabic RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 4 AR ᴿᴬᵂ" tvg-chno="25" tvg-name="beIN Sports MAX 4 Arabic RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports MAX 4 Arabic RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997473.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 5 EN ᴿᴬᵂ" tvg-chno="26" tvg-name="beIN Sports MAX 5 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports MAX 5 English RAW [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS MAX 5 EN ᴿᴬᵂ" tvg-chno="26" tvg-name="beIN Sports MAX 5 English RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports MAX 5 English RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997472.ts
-#EXTINF:-1 tvg-id="beINSportsNews.qa" tvg-chno="27" tvg-name="beIN Sports News RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports News RAW [8K]
+#EXTINF:-1 tvg-id="beINSportsNews.qa" tvg-chno="27" tvg-name="beIN Sports News RAW [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports News RAW [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544458.ts
-#EXTINF:-1 tvg-id="### beIN SP⚽RTS ᴿᴬᵂ ###" tvg-chno="28" tvg-name="beIN Sports RAW" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports RAW
+#EXTINF:-1 tvg-id="### beIN SP⚽RTS ᴿᴬᵂ ###" tvg-chno="28" tvg-name="beIN Sports RAW" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports RAW
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544459.ts
-#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts NBA ᴿᴬᵂ" tvg-chno="29" tvg-name="beIN Sports NBA RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports NBA RAW [UHD]
+#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts NBA ᴿᴬᵂ" tvg-chno="29" tvg-name="beIN Sports NBA RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports NBA RAW [UHD]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/985086.ts
-#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts XTRA 1 ᴿᴬᵂ" tvg-chno="30" tvg-name="beIN Sports Xtra 1 RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 1 RAW [UHD]
+#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts XTRA 1 ᴿᴬᵂ" tvg-chno="30" tvg-name="beIN Sports Xtra 1 RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports Xtra 1 RAW [UHD]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/985093.ts
-#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts XTRA 2 ᴿᴬᵂ" tvg-chno="31" tvg-name="beIN Sports Xtra 2 RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 2 RAW [UHD]
+#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts XTRA 2 ᴿᴬᵂ" tvg-chno="31" tvg-name="beIN Sports Xtra 2 RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports Xtra 2 RAW [UHD]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/985092.ts
-#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts XTRA 3 ᴿᴬᵂ" tvg-chno="32" tvg-name="beIN Sports Xtra 3 RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports Xtra 3 RAW [UHD]
+#EXTINF:-1 tvg-id="ᵁᴴᴰ: beIN Sp⚽rts XTRA 3 ᴿᴬᵂ" tvg-chno="32" tvg-name="beIN Sports Xtra 3 RAW [UHD]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports Xtra 3 RAW [UHD]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/985091.ts
-#EXTINF:-1 tvg-id="GO: BEIN SPORTS XTRA" tvg-chno="33" tvg-name="beIN Sports Xtra [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — beIN",beIN Sports Xtra [GO]
+#EXTINF:-1 tvg-id="GO: BEIN SPORTS XTRA" tvg-chno="33" tvg-name="beIN Sports Xtra [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports Xtra [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568858.ts
-#EXTINF:-1 tvg-id="8K: beIN MAX ⁴ᴷ ³⁸⁴⁰ᵖ (EVENT ONLY)" tvg-chno="34" tvg-name="beIN MAX 4K 3840p (Event Only) [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13686.jpg?ver=79226" group-title="Favorites — beIN",beIN MAX 4K 3840p (Event Only) [8K]
+#EXTINF:-1 tvg-id="8K: beIN MAX ⁴ᴷ ³⁸⁴⁰ᵖ (EVENT ONLY)" tvg-chno="34" tvg-name="beIN MAX 4K 3840p (Event Only) [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN MAX 4K 3840p (Event Only) [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/544456.ts
-#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS SOLO MAX AR ᴴᴰ" tvg-chno="35" tvg-name="beIN Sports Solo MAX Arabic HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/15154.jpg?ver=98146" group-title="Favorites — beIN",beIN Sports Solo MAX Arabic HD [8K]
+#EXTINF:-1 tvg-id="8K: beIN SP⚽RTS SOLO MAX AR ᴴᴰ" tvg-chno="35" tvg-name="beIN Sports Solo MAX Arabic HD [8K]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports Solo MAX Arabic HD [8K]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/2028645.ts
-#EXTINF:-1 tvg-id="NM: beIN ⁴ᴷ ³⁸⁴⁰ᵖ (EVENT ONLY)" tvg-chno="36" tvg-name="beIN 4K 3840p (Event Only) [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13686.jpg?ver=79226" group-title="Favorites — beIN",beIN 4K 3840p (Event Only) [NM]
+#EXTINF:-1 tvg-id="NM: beIN ⁴ᴷ ³⁸⁴⁰ᵖ (EVENT ONLY)" tvg-chno="36" tvg-name="beIN 4K 3840p (Event Only) [NM]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN 4K 3840p (Event Only) [NM]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/983525.ts
-#EXTINF:-1 tvg-id="##### beIN SP⚽RTS MAX ⁸ᴷ #####" tvg-chno="37" tvg-name="beIN Sports MAX 8K" tvg-logo="https://i.ibb.co/QjQY3M2P/Bein-Sports-GIF.gif" group-title="Favorites — beIN",beIN Sports MAX 8K
+#EXTINF:-1 tvg-id="##### beIN SP⚽RTS MAX ⁸ᴷ #####" tvg-chno="37" tvg-name="beIN Sports MAX 8K" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports MAX 8K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1997495.ts
-#EXTINF:-1 tvg-id="BE: beIN SP⚽RTS 1 ENG ᴴᴰ" tvg-chno="38" tvg-name="beIN Sports 1 Eng HD [BE]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png?95032" group-title="Favorites — beIN",beIN Sports 1 Eng HD [BE]
+#EXTINF:-1 tvg-id="BE: beIN SP⚽RTS 1 ENG ᴴᴰ" tvg-chno="38" tvg-name="beIN Sports 1 Eng HD [BE]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png" group-title="Favorites — beIN",beIN Sports 1 Eng HD [BE]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1352999.ts
 #EXTINF:-1 tvg-id="GO: ANIMAL PLANET" tvg-chno="1" tvg-name="Animal Planet [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Animal Planet [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568868.ts
@@ -85,7 +85,7 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568810.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1772107.ts
 #EXTINF:-1 tvg-id="GO: DISCOVERY LIFE" tvg-chno="5" tvg-name="Discovery Life [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — Documentaries",Discovery Life [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568809.ts
-#EXTINF:-1 tvg-id="#### DISCOVERY+ #####" tvg-chno="6" tvg-name="Discovery+" tvg-logo="https://cdn.pixabay.com/animation/2022/09/16/16/43/16-43-28-59_512.gif" group-title="Favorites — Documentaries",Discovery+
+#EXTINF:-1 tvg-id="#### DISCOVERY+ #####" tvg-chno="6" tvg-name="Discovery+" tvg-logo="" group-title="Favorites — Documentaries",Discovery+
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836325.ts
 #EXTINF:-1 tvg-id="AR: DISCOVERY+ 1 ᴬʳᵃᵇᶦᶜ ᴿᴬᵂ" tvg-chno="7" tvg-name="Discovery+ 1 Arabic RAW [AR]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13099.jpg?87470" group-title="Favorites — Documentaries",Discovery+ 1 Arabic RAW [AR]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1836324.ts
@@ -207,9 +207,9 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/4465.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162377.ts
 #EXTINF:-1 tvg-id="UK: DISCOVERY PLUS 4K" tvg-chno="66" tvg-name="Discovery Plus 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/12219.jpg?89049" group-title="Favorites — Documentaries",Discovery Plus 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/910033.ts
-#EXTINF:-1 tvg-id="#### DISCOVERY+ HD/4K ####" tvg-chno="67" tvg-name="Discovery+ HD/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Documentaries",Discovery+ HD/4K
+#EXTINF:-1 tvg-id="#### DISCOVERY+ HD/4K ####" tvg-chno="67" tvg-name="Discovery+ HD/4K" tvg-logo="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Kingdom.svg?width=512" group-title="Favorites — Documentaries",Discovery+ HD/4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015422.ts
-#EXTINF:-1 tvg-id="#### DOCUMENTARY HD/4K ####" tvg-chno="68" tvg-name="Documentary HD/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Documentaries",Documentary HD/4K
+#EXTINF:-1 tvg-id="#### DOCUMENTARY HD/4K ####" tvg-chno="68" tvg-name="Documentary HD/4K" tvg-logo="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Kingdom.svg?width=512" group-title="Favorites — Documentaries",Documentary HD/4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015421.ts
 #EXTINF:-1 tvg-id="###### DOCUMENTARY TV ######" tvg-chno="69" tvg-name="Documentary TV" tvg-logo="" group-title="Favorites — Documentaries",Documentary TV
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/251795.ts
@@ -347,7 +347,7 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568632.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568631.ts
 #EXTINF:-1 tvg-id="GOBX: KIDZ ZONE MAX ᴴᴰ" tvg-chno="25" tvg-name="Kidz Zone MAX HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",Kidz Zone MAX HD [GOBX]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762637.ts
-#EXTINF:-1 tvg-id="###### MBC 4K TV ######" tvg-chno="26" tvg-name="MBC 4K TV" tvg-logo="https://i.ibb.co/GfGx9jCj/MBC.gif" group-title="Favorites — Movies & Series",MBC 4K TV
+#EXTINF:-1 tvg-id="###### MBC 4K TV ######" tvg-chno="26" tvg-name="MBC 4K TV" tvg-logo="" group-title="Favorites — Movies & Series",MBC 4K TV
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/251819.ts
 #EXTINF:-1 tvg-id="GOBX: MBC DRAMA MASR ᴴᴰ" tvg-chno="27" tvg-name="MBC Drama Masr HD [GOBX]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13334.jpg?59189" group-title="Favorites — Movies & Series",MBC Drama Masr HD [GOBX]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1762688.ts
@@ -371,7 +371,7 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/639176.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162348.ts
 #EXTINF:-1 tvg-id="SkyCinemaGreats.uk" tvg-chno="37" tvg-name="Sky Cinema Greats 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Greats 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162339.ts
-#EXTINF:-1 tvg-id="#### SKY CINEMA HD/4K ####" tvg-chno="38" tvg-name="Sky Cinema HD/4K" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — Movies & Series",Sky Cinema HD/4K
+#EXTINF:-1 tvg-id="#### SKY CINEMA HD/4K ####" tvg-chno="38" tvg-name="Sky Cinema HD/4K" tvg-logo="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Kingdom.svg?width=512" group-title="Favorites — Movies & Series",Sky Cinema HD/4K
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1015420.ts
 #EXTINF:-1 tvg-id="SkyCinemaHits.uk" tvg-chno="39" tvg-name="Sky Cinema Hits 4K [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/6473.jpg?42109" group-title="Favorites — Movies & Series",Sky Cinema Hits 4K [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/162342.ts
@@ -489,7 +489,7 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/950402.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568792.ts
 #EXTINF:-1 tvg-id="GO: ESPN" tvg-chno="41" tvg-name="ESPN [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — General Sports",ESPN [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568793.ts
-#EXTINF:-1 tvg-id="####### ESPN+ PPV ⱽᴵᴾ #######" tvg-chno="42" tvg-name="ESPN+ PPV VIP" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/42/Animated-Flag-USA.gif" group-title="Favorites — General Sports",ESPN+ PPV VIP
+#EXTINF:-1 tvg-id="####### ESPN+ PPV ⱽᴵᴾ #######" tvg-chno="42" tvg-name="ESPN+ PPV VIP" tvg-logo="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_States.svg?width=512" group-title="Favorites — General Sports",ESPN+ PPV VIP
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1924730.ts
 #EXTINF:-1 tvg-id="GO: ESPNU" tvg-chno="43" tvg-name="Espnu [GO]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/14545.PNG?ver=52669" group-title="Favorites — General Sports",Espnu [GO]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1568789.ts
@@ -525,7 +525,7 @@ http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605010.ts
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/605009.ts
 #EXTINF:-1 tvg-id="NCAAF 13: FS1" tvg-chno="59" tvg-name="NCAAF 13: FS1" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/13833.png?ver=6288" group-title="Favorites — General Sports",NCAAF 13: FS1
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/604999.ts
-#EXTINF:-1 tvg-id="####### TNT SPORTS EVENT #######" tvg-chno="60" tvg-name="TNT Sports Event" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/2d/Animated-Flag-United-Kingdom.gif" group-title="Favorites — General Sports",TNT Sports Event
+#EXTINF:-1 tvg-id="####### TNT SPORTS EVENT #######" tvg-chno="60" tvg-name="TNT Sports Event" tvg-logo="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Kingdom.svg?width=512" group-title="Favorites — General Sports",TNT Sports Event
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1418472.ts
 #EXTINF:-1 tvg-id="UK: TNT SPORTS EVENT 1" tvg-chno="61" tvg-name="TNT Sports Event 1 [UK]" tvg-logo="http://photo-tmdb.com/stalker_portal/misc/logos/320/1070.png?ver=34825" group-title="Favorites — General Sports",TNT Sports Event 1 [UK]
 http://mil79711.wd.business-cdn-8k.com/live/ac50ff82173e/0b9695fafe/1418471.ts
