@@ -22,12 +22,13 @@
 #   * Append-only: order doesn't matter.
 
 # Nat Geo Abu Dhabi (2026-06): the provider M3U misspells the name
-# ('Natioanl Geo') so no name tier can match, and the generic 'Abu Dhabi'
-# (Abu Dhabi TV) feed used to token-match it instead — wrong schedule in
-# English, invisible to every guard. Pin to epgshare AE1's real feed
-# (verified content: Air Crash Investigation, Ice Road Rescue, ...).
-# Covers both the 4K and HD variants (they share this tvg-id).
-NationalGeographicAbuDhabi.ae	Nat.Geo.Abu.Dhabi.HD.ae
+# ('Natioanl Geo') so no name tier can match. The epgshare AE1 feed we
+# first tried (Nat.Geo.Abu.Dhabi.HD.ae) is a generic Nat Geo rip, not the
+# actual Abu Dhabi channel lineup. Pin instead to elcinema.com's
+# channel-specific guide (iptv-org grabber, site_id 1266 = the National
+# Geographic Abu Dhabi channel page), which carries the real Abu Dhabi
+# schedule in English. Covers both the 4K and HD variants (shared tvg-id).
+NationalGeographicAbuDhabi.ae	NationalGeographicAbuDhabi.ae@SD
 
 # 2026-06 audit pins — each of these shipped a different channel's feed:
 # GO: SYFY carried Spanish TVE 'Noticias 24H' news; pin the real Syfy
@@ -84,3 +85,15 @@ SS: beIN SP⚽RTS 3 HD	beIN_SPORTS3_DIGITAL_Mono_EN.bein
 # UK1 carries Racing.TV.HD.uk with the real English racing schedule
 # (verified: Racing Replay, Irish Racing Replay, ...).
 RacingUK.uk	Racing.TV.HD.uk
+
+# UKTV factual/entertainment channels (2026-06): dummied because UKTV
+# rebranded to "U&" in 2024 and our channel names didn't match the new
+# epgshare UK1 ids. Pin to UK1's real schedules (all verified ≥60 progs:
+# 'Would I Lie To You?' on Dave, 'Lovejoy' on Drama, 'Hudson & Rex' on
+# Alibi, 'Bangers & Cash' on Eden, etc.).
+Dave.uk	U.and.Dave.HD.uk
+Drama.uk	U.and.Drama.uk
+Eden.uk	U.and.Eden.uk
+GOLD.uk	U.and.GOLD.HD.uk
+Alibi.uk	U.and.alibi.HD.uk
+Yesterday.uk	U.and.YESTERDAY.uk
