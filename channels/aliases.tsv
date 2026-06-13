@@ -22,12 +22,16 @@
 #   * Append-only: order doesn't matter.
 
 # Nat Geo Abu Dhabi (2026-06): the provider M3U misspells the name
-# ('Natioanl Geo') so no name tier can match. The epgshare AE1 feed we
-# first tried (Nat.Geo.Abu.Dhabi.HD.ae) is a generic Nat Geo rip, not the
-# actual Abu Dhabi channel lineup. Pin instead to elcinema.com's
-# channel-specific guide (iptv-org grabber, site_id 1266 = the National
-# Geographic Abu Dhabi channel page), which carries the real Abu Dhabi
-# schedule in English. Covers both the 4K and HD variants (shared tvg-id).
+# ('Natioanl Geo') so no name tier matches, and the epgshare AE1 feed
+# (Nat.Geo.Abu.Dhabi.HD.ae) is a generic Nat Geo rip, not the Abu Dhabi
+# lineup (rejected). Pinned to elcinema.com's channel page (iptv-org
+# grabber, site_id 1266). NOTE: elcinema lists this channel but currently
+# publishes NO schedule for it (verified: 0 programmes grabbed, vs 273 for
+# Bahrain TV), so the channel stays a clean blank for now — this pin is a
+# SELF-HEAL: if elcinema starts listing channel 1266's schedule, it binds
+# automatically with no further change. No other accessible source
+# (natgeotv.com is bot-blocked; the provider ships it with 0 programmes)
+# carries the real Abu Dhabi schedule.
 NationalGeographicAbuDhabi.ae	NationalGeographicAbuDhabi.ae@SD
 
 # 2026-06 audit pins — each of these shipped a different channel's feed:
