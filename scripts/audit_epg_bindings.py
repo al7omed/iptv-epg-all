@@ -44,6 +44,7 @@ from build_epg import (  # noqa: E402
     BRAND_TOKENS,
     canon_identity_tokens,
     extract_callsign,
+    foreign_tld_donor,
     name_tokens,
 )
 
@@ -278,6 +279,99 @@ def flag_rows(rows: list[dict], titles_by_cid: dict[str, list[str]],
     return flags
 
 
+def load_baseline(path: Path | None) -> set[tuple[str, str]]:
+    """Accepted/known flags to suppress: TSV of effective_id<TAB>flag.
+    Lets the weekly reporter stay quiet on benign same-network pairs and
+    only surface NEWLY-appeared suspicious bindings."""
+    out: set[tuple[str, str]] = set()
+    if not path or not path.exists():
+        return out
+    for raw in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if not line:
+            continue
+        parts = line.split("\t")
+        if len(parts) >= 2:
+            out.add((parts[0].strip(), parts[1].strip()))
+    return out
+
+
+def suggest_aliases(flags: list[dict], sources_dir: Path) -> list[dict]:
+    """For each high-severity flag, look for a source channel whose brand
+    IDENTITY exactly matches the flagged channel and that carries real
+    programmes — a higher-confidence donor the user can pin in one line.
+    Emits {effective_id, donor_cid, reason}; English-market/MENA donors
+    win over foreign-market ones. Pure suggestion: never auto-applied."""
+    if not sources_dir or not sources_dir.is_dir():
+        return []
+    # Build identity index from every source channel that has programmes.
+    has_progs: set[str] = set()
+    id_index: dict[frozenset, list[str]] = defaultdict(list)
+    chan_names: dict[str, str] = {}
+    _CHAN_RE = re.compile(
+        rb'<channel id="([^"]+)"[^>]*>(.*?)</channel>', re.DOTALL)
+    _DN_RE = re.compile(rb'<display-name[^>]*>([^<]*)</display-name>')
+    for f in sorted(sources_dir.iterdir()):
+        if f.suffix not in (".xml", ".gz"):
+            continue
+        try:
+            raw = read_xml(f)
+        except Exception:
+            continue
+        for m in _PROG_RE.finditer(raw):
+            if DUMMY_MARKER in m.group(2):
+                continue
+            has_progs.add(html.unescape(m.group(1).decode("utf-8", "replace")))
+        for m in _CHAN_RE.finditer(raw):
+            cid = html.unescape(m.group(1).decode("utf-8", "replace"))
+            names = [html.unescape(n.decode("utf-8", "replace"))
+                     for n in _DN_RE.findall(m.group(2))]
+            # Identity comes from the display name (reliable, quality-
+            # stripped). The id is a poor signal — lowercase-concatenated
+            # ids like 'beinsports3' tokenize to junk and quality suffixes
+            # ('.HD') leak in — so only fall back to it when a channel has
+            # no usable display name.
+            idents: set[frozenset] = set()
+            for n in names:
+                ident = canon_identity_tokens(name_tokens(n))
+                if len(ident) >= 2:
+                    idents.add(ident)
+            if not idents:
+                ident = canon_identity_tokens(donor_tokens(cid))
+                if len(ident) >= 2:
+                    idents.add(ident)
+            for ident in idents:
+                id_index[ident].append(cid)
+            if names:
+                chan_names[cid] = names[0]
+
+    suggestions: list[dict] = []
+    seen: set[str] = set()
+    for fl in flags:
+        if fl["severity"] != "high" or fl["effective_id"] in seen:
+            continue
+        want = canon_identity_tokens(name_tokens(fl["display_name"]))
+        if len(want) < 2:
+            continue
+        cands = [c for c in id_index.get(want, [])
+                 if c in has_progs and c != fl["donor_cid"]]
+        if not cands:
+            continue
+        # Prefer English-market / MENA donors over foreign-market ones.
+        cands.sort(key=lambda c: foreign_tld_donor(c))
+        donor = cands[0]
+        seen.add(fl["effective_id"])
+        suggestions.append({
+            "effective_id": fl["effective_id"],
+            "display_name": fl["display_name"],
+            "donor_cid": donor,
+            "donor_name": chan_names.get(donor, ""),
+            "reason": f"{fl['flag']} (currently {fl['match_tier']} "
+                      f"from {fl['donor_cid'] or fl['source']})",
+        })
+    return suggestions
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -290,45 +384,119 @@ def main() -> int:
     ap.add_argument("--summary", action="store_true",
                     help="print per-flag counts + top findings (CI mode)")
     ap.add_argument("--strict", action="store_true",
-                    help="exit 1 if any high-severity flag found")
+                    help="exit 1 if any NEW high-severity flag found "
+                         "(after baseline suppression)")
+    ap.add_argument("--baseline", type=Path, default=None,
+                    help="TSV of accepted effective_id<TAB>flag to suppress")
+    ap.add_argument("--new-only", action="store_true",
+                    help="only report flags absent from --baseline")
+    ap.add_argument("--suggest", action="store_true",
+                    help="emit suggested aliases.tsv lines for high flags "
+                         "(needs --sources)")
+    ap.add_argument("--github-summary", type=Path, default=None,
+                    help="write a markdown report of NEW high flags here "
+                         "(for opening a GitHub issue); empty file if none")
     args = ap.parse_args()
 
     rows = load_audit(args.audit)
     titles = guide_titles_by_cid(args.guide)
     flags = flag_rows(rows, titles, args.sources)
 
+    baseline = load_baseline(args.baseline)
+    for fl in flags:
+        fl["is_new"] = (fl["effective_id"], fl["flag"]) not in baseline
+    report_flags = [fl for fl in flags if fl["is_new"]] if args.new_only else flags
+
     cols = ["severity", "flag", "effective_id", "display_name",
             "match_tier", "source", "detail"]
     if args.out:
         with args.out.open("w", encoding="utf-8") as f:
             f.write("\t".join(cols) + "\n")
-            for fl in flags:
+            for fl in report_flags:
                 f.write("\t".join(str(fl[c]) for c in cols) + "\n")
-        print(f"wrote {args.out} ({len(flags)} flags)")
+        print(f"wrote {args.out} ({len(report_flags)} flags)")
 
     counts: dict[str, int] = defaultdict(int)
-    for fl in flags:
+    for fl in report_flags:
         counts[f"{fl['severity']}/{fl['flag']}"] += 1
-    n_high = sum(1 for fl in flags if fl["severity"] == "high")
+    high = [fl for fl in report_flags if fl["severity"] == "high"]
+    new_high = [fl for fl in flags if fl["severity"] == "high" and fl["is_new"]]
 
     if args.summary or not args.out:
         print(f"audited {len(rows)} channels "
               f"({sum(1 for r in rows if int(r['real_prog_count'] or 0) > 0)} "
-              f"with real EPG) — {len(flags)} flags ({n_high} high)")
+              f"with real EPG) — {len(report_flags)} flags ({len(high)} high; "
+              f"{len(new_high)} new high vs baseline)")
         for key in sorted(counts):
             print(f"  {key}: {counts[key]}")
-        shown = [fl for fl in flags if fl["severity"] != "info"][:25]
+        shown = [fl for fl in report_flags if fl["severity"] != "info"][:25]
         for fl in shown:
-            print(f"  [{fl['severity']}] {fl['flag']}: "
+            tag = "NEW " if fl["is_new"] else ""
+            print(f"  [{tag}{fl['severity']}] {fl['flag']}: "
                   f"{fl['display_name']} ({fl['effective_id']}, "
                   f"{fl['match_tier']}) — {fl['detail']}")
-        if n_high:
+        if high:
             print("fix wrong bindings via channels/aliases.tsv (pin correct "
                   "upstream) or channels/dummy_override.txt (force blank)")
 
-    if args.strict and n_high:
+    suggestions: list[dict] = []
+    if args.suggest:
+        suggestions = suggest_aliases(flags, args.sources)
+        if suggestions:
+            print("\n# suggested channels/aliases.tsv pins "
+                  "(VERIFY before adding):")
+            for s in suggestions:
+                print(f"{s['effective_id']}\t{s['donor_cid']}"
+                      f"\t# {s['reason']} -> {s['donor_name']}")
+        else:
+            print("\n# no confident alias suggestions found")
+
+    if args.github_summary is not None:
+        _write_github_summary(args.github_summary, new_high, suggestions)
+
+    if args.strict and new_high:
         return 1
     return 0
+
+
+def _write_github_summary(path: Path, new_high: list[dict],
+                          suggestions: list[dict]) -> None:
+    """Markdown report of NEW high-severity flags for a GitHub issue.
+    Writes an EMPTY file when nothing new — the workflow treats empty as
+    'no issue needed'."""
+    if not new_high:
+        path.write_text("", encoding="utf-8")
+        return
+    lines = [
+        "## EPG audit: new suspicious bindings",
+        "",
+        f"The weekly audit found **{len(new_high)} new high-severity "
+        "binding(s)** not in `channels/.audit_baseline.tsv`. Each is a "
+        "channel whose EPG may be wrong. Fix with a one-line pin in "
+        "`channels/aliases.tsv` (correct upstream) or "
+        "`channels/dummy_override.txt` (force blank), or — if benign — add "
+        "`<effective_id><TAB><flag>` to `channels/.audit_baseline.tsv` to "
+        "silence it.",
+        "",
+        "| Channel | flag | tier | detail |",
+        "| --- | --- | --- | --- |",
+    ]
+    sugg_by_id = {s["effective_id"]: s for s in suggestions}
+    for fl in new_high[:40]:
+        detail = fl["detail"].replace("|", "\\|")[:140]
+        lines.append(f"| {fl['display_name']} (`{fl['effective_id']}`) "
+                     f"| {fl['flag']} | {fl['match_tier']} | {detail} |")
+    if len(new_high) > 40:
+        lines.append(f"\n…and {len(new_high) - 40} more (see workflow log).")
+    if sugg_by_id:
+        lines += ["", "### Suggested pins (verify first)", "```"]
+        for fl in new_high:
+            s = sugg_by_id.get(fl["effective_id"])
+            if s:
+                lines.append(f"{s['effective_id']}\t{s['donor_cid']}"
+                             f"\t# -> {s['donor_name']}")
+        lines.append("```")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

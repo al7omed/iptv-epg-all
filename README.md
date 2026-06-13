@@ -43,6 +43,39 @@ python3 ~/patch_m3u.py ~/sub2.m3u ~/sub2_patched.m3u
 
 The map file the script downloads (`tvg-id-map.tsv`) is non-sensitive — channel-name → tvg-id only, no URLs.
 
+## EPG correctness & self-healing
+
+Wrong EPG is worse than no EPG, so several guards keep mis-matched data
+from shipping — and surface anything that slips through:
+
+- **Brand / callsign / foreign-TLD guards** stop a channel from inheriting
+  a *different* channel's schedule (e.g. "Nat Geo Abu Dhabi" can never
+  take "Abu Dhabi TV", a Hartford station can never take Honolulu's feed,
+  and a `.fr` feed never lands on a MENA channel).
+- **`docs/epg-audit.tsv`** is published every build: one row per channel
+  with its match tier, source, donor id, and sample titles. It's the first
+  thing to read when a channel looks wrong — it names the culprit.
+- **`scripts/audit_epg_bindings.py`** flags suspicious bindings. Run it
+  against any build:
+  ```sh
+  python3 scripts/audit_epg_bindings.py --audit docs/epg-audit.tsv \
+      --guide docs/guide-lite.xml.gz --summary
+  # add --sources <dir-of-xmltv> --suggest to get proposed aliases.tsv pins
+  ```
+- **Weekly audit report** (`.github/workflows/audit-report.yml`) opens/updates
+  a GitHub issue only when a *new* high-severity binding appears (anything
+  already accepted in `channels/.audit_baseline.tsv` stays quiet).
+
+Fixing a wrong channel is a one-liner that takes effect next build:
+
+- `channels/aliases.tsv` — `<effective_id><TAB><upstream_id>` pins the
+  correct EPG source. Wins over every automatic guard; many channels may
+  point at one source.
+- `channels/dummy_override.txt` — one channel name per line forces a clean
+  blank guide ("this EPG is wrong, blank is better").
+- `channels/.audit_baseline.tsv` — `<effective_id><TAB><flag>` marks a
+  flagged binding as verified-benign so the weekly report ignores it.
+
 ## Configuration (GitHub Secrets)
 
 - `M3U_URL_1`, `PROVIDER_EPG_URL_1` — first subscription.

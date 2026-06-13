@@ -160,3 +160,110 @@ class TestGuideTitles:
         p.write_bytes(gzip.compress(xml))
         titles = guide_titles_by_cid(p)
         assert titles["A.uk"] == ["Real Show"]
+
+
+class TestBaselineSuppression:
+    def test_load_baseline_parses_and_ignores_comments(self, tmp_path):
+        from audit_epg_bindings import load_baseline
+        p = tmp_path / "baseline.tsv"
+        p.write_text(
+            "# header comment\n"
+            "BBC2.uk\tdup-feed\t# BBC 2 HD [UK]\n"
+            "\n"
+            "KYW.us\tdup-feed\n",
+            encoding="utf-8")
+        bl = load_baseline(p)
+        assert ("BBC2.uk", "dup-feed") in bl
+        assert ("KYW.us", "dup-feed") in bl
+        assert len(bl) == 2
+
+    def test_missing_baseline_is_empty(self, tmp_path):
+        from audit_epg_bindings import load_baseline
+        assert load_baseline(tmp_path / "nope.tsv") == set()
+        assert load_baseline(None) == set()
+
+
+class TestGithubSummary:
+    def test_empty_when_no_new_high(self, tmp_path):
+        from audit_epg_bindings import _write_github_summary
+        p = tmp_path / "out.md"
+        _write_github_summary(p, [], [])
+        assert p.read_text() == ""
+
+    def test_table_when_new_high(self, tmp_path):
+        from audit_epg_bindings import _write_github_summary
+        p = tmp_path / "out.md"
+        new_high = [{
+            "severity": "high", "flag": "brand-mismatch",
+            "effective_id": "X.ae", "display_name": "X Channel",
+            "match_tier": "token", "source": "AE1",
+            "detail": "donor Y.ae lacks brand tokens ['X']",
+        }]
+        sugg = [{"effective_id": "X.ae", "donor_cid": "Z.ae",
+                 "donor_name": "Z Real"}]
+        _write_github_summary(p, new_high, sugg)
+        body = p.read_text()
+        assert "new suspicious bindings" in body
+        assert "X Channel" in body and "`X.ae`" in body
+        assert "X.ae\tZ.ae" in body  # suggested pin block
+
+
+class TestSuggestAliases:
+    def _src(self, tmp_path, channels):
+        # channels: list of (cid, name, has_prog)
+        parts = ['<?xml version="1.0"?><tv>']
+        for cid, name, _ in channels:
+            parts.append(f'<channel id="{cid}"><display-name>{name}'
+                         f'</display-name></channel>')
+        for cid, _, has in channels:
+            if has:
+                parts.append(f'<programme start="20260613000000 +0000" '
+                             f'channel="{cid}"><title>Real Show {cid}</title>'
+                             f'</programme>')
+        parts.append("</tv>")
+        d = tmp_path / "src"
+        d.mkdir()
+        (d / "s.xml").write_text("".join(parts), encoding="utf-8")
+        return d
+
+    def test_suggests_matching_donor_with_programmes(self, tmp_path):
+        from audit_epg_bindings import suggest_aliases
+        src = self._src(tmp_path, [
+            ("Nat.Geo.Abu.Dhabi.HD.ae", "Nat Geo Abu Dhabi HD", True),
+        ])
+        flags = [{
+            "severity": "high", "flag": "brand-mismatch",
+            "effective_id": "NationalGeographicAbuDhabi.ae",
+            "display_name": "AR: Abu Dhabi Natioanl Geo 4K",
+            "match_tier": "token", "source": "p", "donor_cid": "Abu.Dhabi.HD.ae",
+        }]
+        out = suggest_aliases(flags, src)
+        assert len(out) == 1
+        assert out[0]["donor_cid"] == "Nat.Geo.Abu.Dhabi.HD.ae"
+
+    def test_prefers_english_market_over_foreign(self, tmp_path):
+        from audit_epg_bindings import suggest_aliases
+        src = self._src(tmp_path, [
+            ("beinsports3.fr", "beIN Sports 3", True),
+            ("beINSports3.qa", "beIN Sports 3", True),
+        ])
+        flags = [{
+            "severity": "high", "flag": "dup-feed",
+            "effective_id": "BE: beIN SP3", "display_name": "beIN Sports 3 HD",
+            "match_tier": "rescue-token", "source": "p", "donor_cid": "x",
+        }]
+        out = suggest_aliases(flags, src)
+        assert out and out[0]["donor_cid"] == "beINSports3.qa"
+
+    def test_no_suggestion_without_programmes(self, tmp_path):
+        from audit_epg_bindings import suggest_aliases
+        src = self._src(tmp_path, [
+            ("Nat.Geo.Abu.Dhabi.HD.ae", "Nat Geo Abu Dhabi HD", False),
+        ])
+        flags = [{
+            "severity": "high", "flag": "brand-mismatch",
+            "effective_id": "NationalGeographicAbuDhabi.ae",
+            "display_name": "AR: Abu Dhabi Natioanl Geo 4K",
+            "match_tier": "token", "source": "p", "donor_cid": "Abu.Dhabi.HD.ae",
+        }]
+        assert suggest_aliases(flags, src) == []

@@ -1,0 +1,15 @@
+# Accepted/known EPG-audit flags — the weekly audit reporter suppresses
+# these so it only opens an issue for NEWLY-appeared suspicious bindings.
+# Format: <effective_id><TAB><flag>   (comments with #)
+# Add a line here when a flagged binding is verified benign (e.g. a
+# same-network affiliate pair or a regional opt-out sharing one schedule).
+#
+# 2026-06: benign same-network / same-station / overnight-filler pairs —
+# a shared feed is correct for these, not a mis-binding.
+BBC2.uk	dup-feed	# BBC 2 HD [UK]
+BBC2NI.uk	dup-feed	# BBC Two Northern Ireland [UK]
+KYW.us	dup-feed	# CBS Philadelphia [US]
+WNUV.us	dup-feed	# CW 54 HD [Baltimore] [US]
+WPSG.us	dup-feed	# CW 57 [Philadelphia] [US]
+hubpremier3.sg	dup-feed	# Hub Premier 3 RAW [SG]
+hubpremier4.sg	dup-feed	# Hub Premier 4 RAW [SG]
