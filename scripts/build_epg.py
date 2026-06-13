@@ -689,12 +689,52 @@ _BROKEN_LOGO_RE = re.compile(
 )
 
 
+# Animated-GIF logos render badly in players (UHF on tvOS shows a frozen/
+# broken frame). The provider uses waving-flag GIFs on PPV/event channels
+# and a few animated brand logos. Rewrite the known ones to clean STATIC
+# images (national flags via Wikimedia's stable Special:FilePath renderer,
+# brand logos to the provider's own static CDN); any OTHER animated GIF is
+# dropped by sanitize_logo so the player falls back to its default icon.
+_FLAG = ("https://commons.wikimedia.org/wiki/Special:FilePath/"
+         "Flag_of_{}.svg?width=512")
+LOGO_URL_REWRITES = {
+    # animated national flags -> static flag PNGs (same region, no jank)
+    "Animated-Flag-USA.gif": _FLAG.format("the_United_States"),
+    "Animated-Flag-United-Kingdom.gif": _FLAG.format("the_United_Kingdom"),
+    "Animated-Flag-Saudi-Arabia.gif": _FLAG.format("Saudi_Arabia"),
+    "Animated-Flag-South-Africa.gif": _FLAG.format("South_Africa"),
+    "Animated-Flag-Singapore.gif": _FLAG.format("Singapore"),
+    "Animated_flag_of_Bahrain.gif": _FLAG.format("Bahrain"),
+    "Animated-Flag-Netherlands.gif": _FLAG.format("the_Netherlands"),
+    "Animated-Flag-New-Zealand.gif": _FLAG.format("New_Zealand"),
+    # animated brand GIFs -> each brand's own static logo (the one the
+    # brand's other channels already use; all verified reachable)
+    "Bein-Sports-GIF.gif":   # also covered by the beIN name override
+        "http://photo-tmdb.com/stalker_portal/misc/logos/320/12782.png",
+    "DAZN-Logo-Gif.gif":
+        "http://photo-tmdb.com/stalker_portal/misc/logos/320/12983.png",
+    "OSN.gif":
+        "http://photo-tmdb.com/stalker_portal/misc/logos/320/6623.jpg",
+    "THMANYAH-Logo-GIF.gif":
+        "http://photo-tmdb.com/stalker_portal/misc/logos/320/14427.png",
+    "Alwan-Logo-Green.gif":
+        "http://photo-tmdb.com/stalker_portal/misc/logos/320/14464.png",
+}
+
+
 def sanitize_logo(url: str) -> str:
-    """Return '' if the logo URL is obviously broken, else the URL unchanged."""
+    """Normalize a logo URL: rewrite known animated GIFs to static images,
+    drop any remaining animated GIF or obviously-broken URL (returns '' so
+    the player shows its own clean default icon)."""
     if not url:
         return ""
+    for needle, repl in LOGO_URL_REWRITES.items():
+        if needle in url:
+            return repl
     if _BROKEN_LOGO_RE.search(url):
         return ""
+    if re.search(r'\.gif(\?|$)', url, re.IGNORECASE):
+        return ""   # unmapped animated GIF — cleaner blank than a frozen frame
     return url
 
 
