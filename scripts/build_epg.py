@@ -2500,6 +2500,13 @@ PROGRAMME_RE = re.compile(rb"<programme\b[^>]*?/>|<programme\b[^>]*?>.*?</progra
 DISPLAY_NAME_RE = re.compile(rb"<display-name[^>]*>([^<]+)</display-name>")
 CHANNEL_ID_RE = re.compile(rb'<channel\b[^>]*?\bid="([^"]+)"')
 PROG_CHANNEL_RE = re.compile(rb'<programme\b[^>]*?\bchannel="([^"]+)"')
+# Programme start/stop, matched independently of attribute ORDER — epgshare
+# sources disagree (AE1 is `start stop channel`, UK1 is `channel start stop`),
+# and a fixed-order regex silently dropped one form in the dedup/gap-fill/lite
+# passes, blanking UK1-sourced channels. Keep these and PROG_CHANNEL_RE
+# position-independent.
+PROG_START_RE = re.compile(rb'\bstart="(\d{14}[^"]*)"')
+PROG_STOP_RE = re.compile(rb'\bstop="(\d{14}[^"]*)"')
 
 
 def iter_channels(xml_bytes: bytes):
@@ -3632,9 +3639,24 @@ def main():
     # Many players show "data unavailable" during such gaps. We fill every
     # gap with a "No EPG" dummy programme so the grid stays uniform.
     print(f"[5d]  gap-fill pass")
-    PROG_TIMES_RE = re.compile(
-        rb'<programme\s+start="(\d{14}[^"]*)"\s+stop="(\d{14}[^"]*)"[^>]*channel="([^"]+)"'
-    )
+    # Attribute-order-agnostic extraction (PROG_START_RE/PROG_STOP_RE/
+    # PROG_CHANNEL_RE are module-level and position-independent — epgshare
+    # AE1 is start-first, UK1 channel-first; a fixed-order regex silently
+    # dropped channel-first programmes in dedup/gap-fill/lite).
+    def _prog_stc(p: bytes):
+        """(start_dt, stop_dt, channel_id) for a programme, any attr order;
+        None if start/stop/channel can't all be parsed."""
+        ms = PROG_START_RE.search(p)
+        me = PROG_STOP_RE.search(p)
+        mc = PROG_CHANNEL_RE.search(p)
+        if not (ms and me and mc):
+            return None
+        try:
+            start = parse_xmltv(ms.group(1).decode())
+            stop = parse_xmltv(me.group(1).decode())
+        except ValueError:
+            return None
+        return start, stop, html.unescape(mc.group(1).decode("utf-8", "replace"))
     TIME_PARSE_RE = re.compile(r"(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(?:\s*([+-]\d{4}|Z))?")
 
     def parse_xmltv(s: str) -> dt.datetime:
@@ -3661,18 +3683,11 @@ def main():
     ch_progs: dict[str, list] = defaultdict(list)
     bad_ts_count = 0
     for p in kept_programmes:
-        m = PROG_TIMES_RE.search(p)
-        if not m:
-            continue
-        try:
-            start = parse_xmltv(m.group(1).decode())
-            stop = parse_xmltv(m.group(2).decode())
-        except ValueError:
+        stc = _prog_stc(p)
+        if stc is None:
             bad_ts_count += 1
             continue
-        # html.unescape because channel attr in XML may have &amp;/&#x27; that
-        # need decoding to match the raw Python form in kept_channels.
-        cid = html.unescape(m.group(3).decode("utf-8", "replace"))
+        start, stop, cid = stc
         ch_progs[cid].append((start, stop))
     if bad_ts_count:
         print(f"      skipped {bad_ts_count} programmes with malformed timestamps")
@@ -3799,18 +3814,16 @@ def main():
     # that overlap an already-kept earlier programme on the same channel.
     print(f"[5d.5] overlap dedup pass")
     chan_to_programmes: dict[str, list] = defaultdict(list)
+    unparseable: list[bytes] = []
     for p in kept_programmes:
-        m = PROG_TIMES_RE.search(p)
-        if not m:
+        stc = _prog_stc(p)
+        if stc is None:
+            unparseable.append(p)   # KEEP — dedup must never delete data
             continue
-        start = parse_xmltv(m.group(1).decode())
-        stop = parse_xmltv(m.group(2).decode())
-        if start is None or stop is None:
-            continue
-        cid = html.unescape(m.group(3).decode("utf-8", "replace"))
+        start, stop, cid = stc
         chan_to_programmes[cid].append((start, stop, p))
 
-    deduped: list[bytes] = []
+    deduped: list[bytes] = list(unparseable)
     overlap_dropped = 0
     for cid, items in chan_to_programmes.items():
         items.sort(key=lambda x: (x[0], x[1]))
@@ -3822,7 +3835,8 @@ def main():
             deduped.append(p)
             last_stop = stop
     kept_programmes = deduped
-    print(f"      dropped {overlap_dropped} overlapping programmes; kept {len(kept_programmes)}")
+    print(f"      dropped {overlap_dropped} overlapping programmes; "
+          f"kept {len(kept_programmes)} ({len(unparseable)} unparsed kept)")
 
     # ---------- orphan prune pass ----------
     # Provider EPGs contain channels neither subscription's M3U references.
@@ -4195,7 +4209,6 @@ def main():
         _lite_window_stop = _lite_window_start + dt.timedelta(hours=25)
         _lite_start_str = _lite_window_start.strftime("%Y%m%d%H%M%S").encode("ascii")
         _lite_stop_str = _lite_window_stop.strftime("%Y%m%d%H%M%S").encode("ascii")
-        _prog_time_re = re.compile(rb'<programme\s+start="(\d{14})[^"]*"\s+stop="(\d{14})[^"]*"')
 
         def _write_epg_subset(out_path: Path, want_ids: set[str], label: str,
                               time_filter: bool = False) -> None:
@@ -4223,11 +4236,15 @@ def main():
                         m.group(1).decode("utf-8", "replace")) not in kept_chan_norms:
                     continue
                 if time_filter:
-                    tm = _prog_time_re.search(p)
-                    if not tm:
+                    # Order-agnostic: channel-first UK1 progs would miss a
+                    # start-first regex and silently drop from the lite guide.
+                    ms = PROG_START_RE.search(p)
+                    me = PROG_STOP_RE.search(p)
+                    if not (ms and me):
                         continue
                     # Keep programmes that overlap [_lite_start, _lite_stop)
-                    if tm.group(2) <= _lite_start_str or tm.group(1) >= _lite_stop_str:
+                    if (me.group(1)[:14] <= _lite_start_str
+                            or ms.group(1)[:14] >= _lite_stop_str):
                         continue
                 kept_progs.append(p)
             with gzip.open(out_path, "wb", compresslevel=6) as f:
