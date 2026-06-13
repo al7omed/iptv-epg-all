@@ -220,6 +220,10 @@ jobs:
             osn.com             # OSN
             rotana.net          # Rotana
             aljazeera.com       # Al Jazeera news
+            elcinema.com        # MENA TV guide (96 EN channels: Nat Geo Abu
+                                # Dhabi, Abu Dhabi/Dubai/Sama/Sharjah TV, MBC,
+                                # Rotana, Discovery/Nat Geo ME — channel-
+                                # specific schedules, fills many MENA dummies)
             # NOTE: freeview.co.uk / tvtv.us / tvpassport.com are re-enabled
             # because the "Curate iptv-org/epg channels.xml" step above
             # trims their channels.xml to ~300 entries matched against our
