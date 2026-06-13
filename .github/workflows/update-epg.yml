@@ -232,7 +232,12 @@ jobs:
           grab_one() {
             local site="$1"
             local channels_file
-            channels_file=$(ls sites/$site/*.channels.xml 2>/dev/null | head -1)
+            # Prefer an English channels.xml when a site ships per-language
+            # lists (elcinema.com has *_ar and *_en — we want EN titles, and
+            # a bare `head -1` would alphabetically pick *_ar). Sites with a
+            # single <site>.channels.xml fall through to it unchanged.
+            channels_file=$(ls sites/$site/*_en.channels.xml 2>/dev/null | head -1)
+            [ -z "$channels_file" ] && channels_file=$(ls sites/$site/*.channels.xml 2>/dev/null | head -1)
             if [ -z "$channels_file" ]; then
               echo "::warning::No channels.xml for $site"
               return 0
