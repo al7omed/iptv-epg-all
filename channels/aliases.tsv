@@ -20,3 +20,62 @@
 #     over automatic callsign / name-based matching, so use sparingly to
 #     fix hard-to-pin cases (Arabic-script channels, region splits, etc.).
 #   * Append-only: order doesn't matter.
+
+# Nat Geo Abu Dhabi (2026-06): the provider M3U misspells the name
+# ('Natioanl Geo') so no name tier can match, and the generic 'Abu Dhabi'
+# (Abu Dhabi TV) feed used to token-match it instead — wrong schedule in
+# English, invisible to every guard. Pin to epgshare AE1's real feed
+# (verified content: Air Crash Investigation, Ice Road Rescue, ...).
+# Covers both the 4K and HD variants (they share this tvg-id).
+NationalGeographicAbuDhabi.ae	Nat.Geo.Abu.Dhabi.HD.ae
+
+# 2026-06 audit pins — each of these shipped a different channel's feed:
+# GO: SYFY carried Spanish TVE 'Noticias 24H' news; pin the real Syfy
+# (epgshare US2, verified English movie titles).
+GO: SYFY	Syfy.HD.us2
+# UK Crime+Investigation carried an Italian CI feed ('GURU - La storia
+# di Matteo Cambi') under its own direct id, and the provider stamped a
+# FRENCH channel's id (Planète+ Justice) on the 4K variant. Pin both to
+# the real UK feed (epgshare UK1, verified English true-crime titles).
+CrimeInvestigation.uk	Crime+Inv.HD.uk
+PlaneteJustice.fr	Crime+Inv.HD.uk
+# 'CW PIX 11' is WPIX New York but was showing KSTW Seattle's schedule
+# (token match on {CW, 11}); pin the real WPIX (epgshare US_LOCALS1).
+US: CW PIX 11 HD	WPIX-DT.us_locals1
+
+# MBC family (2026-06 audit): the provider publishes ONE junk feed (MBC
+# Masr 1's schedule, or 'No title available') under several MBC ids.
+# epgshare AE1 carries the real distinct feeds — all verified English
+# ('Dolittle' on MBC 2, 'Ben 10' on MBC 3, 'Your Egyptian Morning' on
+# Masr 2):
+MBC2En.ae	MBC.2.ae
+MBC3Ar.ae	MBC.3.ae
+MBC3.ae	MBC.3.ae
+GOBX: MBC 3 ᴴᴰ	MBC.3.ae
+GOBX: MBC 3 ᴿᴬᵂ	MBC.3.ae
+MBCMasr2En.eg	MBC.Masr.2.HD.ae
+MbcMasr2.eg	MBC.Masr.HD.ae
+
+# beIN Sports 3 (2026-06 audit): bein.com's scrape doesn't carry channel
+# 3, so 18 variants were rescued onto beinsports3.fr — the FRENCH beIN 3
+# ('Pourquoi moi ?', Ligue 2 fixtures). The foreign-TLD guard now blocks
+# that, and these pins bind the real MENA feed with English titles
+# (epgshare BEIN1, verified: La Liga + internationals):
+beINSports3.qa	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+beINSports3En.qa	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+8K: beIN SP⚽RTS 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+BE: beIN SP⚽RTS 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+BE: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+BE: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+F: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+F: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+NM: beIN SP⚽RTS 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+NM: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+NM: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SA: beIN SP⚽RTS 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SA: beIN SP⚽RTS 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SS: beIN SP⚽RTS 3 4K	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+SS: beIN SP⚽RTS 3 HD	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+ᵁᴴᴰ: beIN Sp⚽rts 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+ᵁᴴᴰ: beIN Sp⚽rts 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+ᵁᴴᴰ: beIN Sp⚽rts 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein

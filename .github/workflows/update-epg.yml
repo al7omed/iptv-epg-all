@@ -334,11 +334,32 @@ jobs:
             echo "::error::EPG quality regression in guide-lite (TimeShift=$JUNK, Arabic chars=$ARABIC)"
             exit 1
           fi
+          # Binding-provenance artifact must exist and cover the playlist —
+          # a missing/truncated epg-audit.tsv means the provenance layer
+          # regressed (it's how wrong bindings get diagnosed).
+          AUDIT_ROWS=$(($(wc -l < docs/epg-audit.tsv) - 1))
+          echo "epg-audit.tsv rows: $AUDIT_ROWS"
+          if [ "$AUDIT_ROWS" -lt 1000 ]; then
+            echo "::error::epg-audit.tsv missing or truncated ($AUDIT_ROWS rows)"
+            exit 1
+          fi
           # Freshness marker — first thing to check when a player shows
           # "data unavailable": a stale built_at_utc means builds stopped.
           cat > docs/build-info.json <<EOF
           {"built_at_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)", "m3u_sources_alive": ${SUBS_ALIVE:-2}, "programmes_full": $FULL_PROGS, "programmes_lite": $LITE_PROGS}
           EOF
+
+      - name: EPG binding audit (warn-only)
+        continue-on-error: true
+        run: |
+          # Flags suspicious channel→EPG bindings (brand mismatch, shared
+          # feeds, loose-tier binds on big brands). Warn-only: upstream data
+          # drift must not block the hourly build — the build itself already
+          # auto-dummies the dangerous classes. Read this log when a channel
+          # shows wrong EPG; fix with channels/aliases.tsv or
+          # channels/dummy_override.txt.
+          python3 scripts/audit_epg_bindings.py --summary \
+            --audit docs/epg-audit.tsv --guide docs/guide-lite.xml.gz
 
       - name: Notify on channel renames (optional)
         continue-on-error: true
@@ -363,14 +384,33 @@ jobs:
                 docs/guide-bein.xml.gz docs/guide-sports.xml.gz \
                 docs/guide-ar.xml.gz docs/guide-uk.xml.gz docs/guide-us.xml.gz
 
+      # Branch runs (workflow_dispatch on a feature branch) must never
+      # commit/publish: docs/ on main is the production Pages payload and
+      # the push-retry below resets onto origin/main. Branch runs upload
+      # the outputs as a workflow artifact instead — that's how EPG changes
+      # are verified against the real subscriptions before merging.
+      - name: Upload outputs as artifact (non-main runs)
+        if: github.ref != 'refs/heads/main'
+        uses: actions/upload-artifact@v5
+        with:
+          name: epg-build-outputs
+          retention-days: 7
+          path: |
+            docs/guide.xml.gz
+            docs/guide-lite.xml.gz
+            docs/tvg-id-map.tsv
+            docs/epg-audit.tsv
+            docs/build-info.json
+
       - name: Commit and push
+        if: github.ref == 'refs/heads/main'
         env:
           M3U_PATH_TOKEN: ${{ secrets.M3U_PATH_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/guide.xml.gz docs/guide-lite.xml.gz docs/tvg-id-map.tsv
-          git add docs/build-info.json
+          git add docs/build-info.json docs/epg-audit.tsv
           # Stage deletes for any deprecated files (region splits +
           # now-playing.json — replaced by lite EPG's 24h window with
           # 🔴 LIVE markers).

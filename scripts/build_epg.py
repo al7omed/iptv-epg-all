@@ -272,11 +272,14 @@ def name_tokens(s: str) -> frozenset:
 
 # ---------------- junk-programme + language heuristics ----------------
 # Filler programmes some Xtream panels emit for channels they have no real
-# data for: hour-blocks titled 'TimeShift 13' / desc 'TimeShift For Time 13'.
-# They must be dropped at INGEST — if they survive they occupy the channel's
-# EPG slot and block the backfill/rescue passes from wiring in real data.
+# data for: hour-blocks titled 'TimeShift 13' / desc 'TimeShift For Time 13',
+# or 'Channel No Longer Available' blocks (observed occupying Sky Showcase +
+# ROOT Sports while real data existed in other sources). They must be
+# dropped at INGEST — if they survive they occupy the channel's EPG slot and
+# block the backfill/rescue passes from wiring in real data.
 JUNK_PROG_TITLE_RE = re.compile(
-    rb'<title\b[^>]*>\s*Time\s*-?\s*Shift\b', re.IGNORECASE
+    rb'<title\b[^>]*>\s*(?:Time\s*-?\s*Shift\b'
+    rb'|Channel\s+(?:Is\s+)?No\s+Longer\s+Available\b)', re.IGNORECASE
 )
 
 # Byte-level signals that text is not English. Two tiers:
@@ -296,9 +299,27 @@ _NON_EN_STOPWORD_RE = re.compile(
     rb'(?i)(?:^|[^a-z])(?:'
     rb'del?|la|los|las|el|les|une|und|der|das|di|il'   # Romance/German
     rb'|det|den|och|till|med|av|og|ett'                # Swedish/Norwegian/Danish
+    rb'|sarja|jakso|kausi|suorana'                     # Finnish (observed: 'MM-sarja' on a FI Eurosport feed)
+    rb'|het|een|aflevering'                            # Dutch ('de' covered above)
+    rb'|odcinek|sezon'                                 # Polish
+    # Sports vocabulary — foreign Eurosport feeds mix local-language sport
+    # terms with English brand names ('PGA Tour', 'Cycling Show'), keeping
+    # the accent ratio under threshold. None of these words exist in English.
+    rb'|wielrennen|wereldbeker|mannen|vrouwen|klimmen' # Dutch/Afrikaans sport
+    rb'|maantiepy\xc3\xb6r\xc3\xa4ily|koripallo|jalkapallo'  # Finnish sport
+    rb'|biciklizam|mu\xc5\xa1karci|fudbal|ko\xc5\xa1arka'    # Serbian/Croatian sport
+    rb'|herrar|damer|kommer'                           # Swedish sport/filler
     rb')(?:[^a-z]|$)'
 )
 _TITLE_TEXT_RE = re.compile(rb'<title\b[^>]*>([^<]*)</title>')
+
+# Sports matchup listings are English-language even when packed with foreign
+# player/tournament names ('Alex De Minaur', 'ATP 250 Libéma Open') — the
+# 'De' stopword + accent signals false-positive hard on tennis/football
+# channels (observed: beIN Sports 2 English scoring 0.57). A ' vs ' separator
+# or an IOC country code like '(FRA)' marks the title as a matchup; skip the
+# language signals for it.
+_SPORTS_MATCHUP_RE = re.compile(rb'(?i)\bvs\.?\s|\([A-Z]{3}\)')
 
 
 def non_english_title_ratio(progs, sample: int = 40,
@@ -317,6 +338,8 @@ def non_english_title_ratio(progs, sample: int = 40,
             continue
         n += 1
         t = m.group(1)
+        if _SPORTS_MATCHUP_RE.search(t):
+            continue  # matchup listing — foreign names are not a language signal
         if _ACCENTED_LATIN_RE.search(t) or _NON_EN_STOPWORD_RE.search(t):
             hits += 1
         elif not latin_only and _NON_LATIN_SCRIPT_RE.search(t):
@@ -324,14 +347,75 @@ def non_english_title_ratio(progs, sample: int = 40,
     return hits / n if n else 0.0
 
 
+# Tokens that change a channel's IDENTITY when present on one side of a
+# token-subset match. Same idea as _BEIN_DISTINGUISHING in the bein-epg
+# override pass, generalized: 'ABU DHABI NAT GEO' must never take the
+# generic 'Abu Dhabi' (Abu Dhabi TV) feed — leftover {NAT, GEO} marks a
+# DIFFERENT channel, exactly like the digit in 'BBC 3' vs 'BBC'. Genre/
+# brand words and sport disciplines qualify; quality tags, provider
+# prefixes and city names do not (those stay allowed leftovers).
+# 'NATIOANL' is a recurring provider typo for NATIONAL — keep it.
+BRAND_TOKENS = frozenset({
+    "NAT", "NATIONAL", "NATIOANL", "GEO", "GEOGRAPHIC", "WILD",
+    "SPORT", "SPORTS", "NEWS", "MOVIES", "MOVIE", "CINEMA", "FILM",
+    "FILMS", "KIDS", "JUNIOR", "SERIES", "DRAMA", "COMEDY", "ACTION",
+    "FAMILY", "MUSIC", "DOC", "DOCS", "DOCUMENTARY", "RADIO",
+    "XTRA", "EXTRA", "MAX", "PREMIER", "LEAGUE", "CLASSIC", "CLASSICS",
+    "CRIME", "THRILLER", "HORROR", "SCIFI", "FOOD", "TRAVEL", "HISTORY",
+    "SCIENCE", "NATURE", "PANORAMA", "TOON", "TOONS", "CARTOON",
+    "FOOTBALL", "GOLF", "TENNIS", "CRICKET", "RACING", "BOXING",
+    "RUGBY", "DARTS", "SNOOKER", "F1", "MOTOGP",
+    "NBA", "NFL", "NHL", "MLB", "UFC", "WWE", "FIGHT",
+})
+
+
 def token_leftover_ok(m3u_tokens: frozenset, src_tokens: frozenset) -> bool:
     """Specificity guard for token-subset matches. The M3U-side leftover
     (m3u_tokens - src_tokens) must not contain a channel NUMBER the source
-    lacks: 'BBC 3' must never take 'BBC' data, 'beIN SPORTS 2' must never
-    take generic 'beIN SPORTS'. Non-digit leftovers (provider prefixes,
-    'PREMIUM', city names) stay allowed — the per-source clone cap and the
-    language guard bound the damage there."""
-    return not any(t.isdigit() for t in (m3u_tokens - src_tokens))
+    lacks ('BBC 3' must never take 'BBC' data, 'beIN SPORTS 2' must never
+    take generic 'beIN SPORTS') nor a BRAND/genre token ('ABU DHABI NAT
+    GEO' must never take 'Abu Dhabi', 'SKY SPORTS GOLF' must never take
+    'SKY SPORTS'). Other leftovers (provider prefixes, 'PREMIUM', city
+    names) stay allowed — the per-source clone cap and the language guard
+    bound the damage there."""
+    return not any(t.isdigit() or t in BRAND_TOKENS
+                   for t in (m3u_tokens - src_tokens))
+
+
+# Donor ids from non-English-market countries are never auto-bound: this
+# playlist is MENA/UK/US English-EPG only, and a foreign feed's SPORTS
+# titles are matchup-shaped ('Brest / Sambre-Avesnois'), which slips the
+# language ratio (observed: beinsports3.fr — the FRENCH beIN 3 — rescued
+# onto 18 MENA beIN 3 variants). English-market and MENA TLDs stay
+# allowed; aliases.tsv bypasses this like every guard.
+_FOREIGN_TLD_RE = re.compile(
+    r"\.(?:fr|es|de|it|pt|nl|be|se|no|dk|fi|pl|tr|ru|gr|il|hu|ro|cz|sk|bg"
+    r"|rs|hr|al|mk|si|lt|lv|ee|ua|br|mx|ar|cl|co|pe|ve|vn|th|my|cn|tw|jp"
+    r"|kr)(?:@[^.]*)?$",
+    re.IGNORECASE,
+)
+
+
+def foreign_tld_donor(cid: str) -> bool:
+    return bool(_FOREIGN_TLD_RE.search(cid or ""))
+
+
+# Singular/plural brand-token equivalence for IDENTITY comparison (the
+# duplicate-feed scrub): 'TNT Sport 1' and 'TNT Sports Event 1' are the
+# same channel, but name_tokens keeps SPORT vs SPORTS distinct, which
+# would read as a brand conflict. Used ONLY when comparing identities —
+# never in matching, where merging singular/plural could cross-bind
+# different countries' channels.
+_TOKEN_EQUIV = {"SPORT": "SPORTS", "MOVIE": "MOVIES", "FILM": "FILMS",
+                "CLASSIC": "CLASSICS", "TOON": "TOONS", "DOC": "DOCS",
+                # abbreviation/typo spellings of the same brand: 'NAT GEO
+                # WILD' and 'NATIONAL GEOGRAPHIC WILD' are one channel
+                "NAT": "NATIONAL", "GEO": "GEOGRAPHIC",
+                "NATIOANL": "NATIONAL"}
+
+
+def canon_identity_tokens(tokens: frozenset) -> frozenset:
+    return frozenset(_TOKEN_EQUIV.get(t, t) for t in tokens)
 
 
 # One upstream source being cloned onto many DIFFERENT channels is the
@@ -357,6 +441,27 @@ def extract_callsign(name: str) -> str | None:
     if bare:
         return bare.group(1)
     return None
+
+
+_CALLSIGN_SHAPED_ID_RE = re.compile(r"^[KW][A-Z]{2,4}$")
+
+
+def callsign_id_contradiction(tvg_id: str, name: str) -> bool:
+    """True when the M3U entry names one US station but its tvg-id is a
+    DIFFERENT station's callsign — observed: the provider stamped
+    'KHON.us' (Honolulu) on 'FOX HARTFORD (WTIC)' and 'KOIN.us' (Oregon)
+    on 'CBS (WGME) PORTLAND MAINE'. Direct-id matching would then ship the
+    wrong city's schedule, invisible to every content guard. Neutralizing
+    the id lets the callsign backfill tier bind the RIGHT station instead.
+    Only fires when both sides are unambiguous callsigns; everything else
+    (brand ids, foreign ids, missing name callsign) is left alone."""
+    if not tvg_id or not name:
+        return False
+    id_head = _strip_us_callsign_suffix(tvg_id.split(".")[0].upper())
+    if not _CALLSIGN_SHAPED_ID_RE.match(id_head):
+        return False
+    name_cs = extract_callsign(name)
+    return bool(name_cs) and name_cs != id_head
 
 
 # ---------------- M3U parsing ----------------
@@ -516,6 +621,7 @@ def assign_effective_ids(m3u_channels):
         print(f"      degenerate shared tvg-ids neutralized: {len(degenerate)} ({ex})")
     auto_count = 0
     name_count = 0
+    contradicted = 0
     for ch in m3u_channels:
         # Ids must be non-Latin-script-free (English-only EPG policy): the
         # effective id lands in BOTH the patched M3U and the EPG file, and
@@ -523,7 +629,12 @@ def assign_effective_ids(m3u_channels):
         # itself so every downstream consumer sees the same clean id.
         ch["tvg_id"] = strip_non_latin_id(ch["tvg_id"]) if ch["tvg_id"] else ch["tvg_id"]
         name_id = strip_non_latin_id(ch["tvg_name"]) if ch["tvg_name"] else ""
-        if ch["tvg_id"] and ch["tvg_id"] not in degenerate:
+        contradiction = (ch["tvg_id"]
+                         and callsign_id_contradiction(
+                             ch["tvg_id"], ch["tvg_name"] or ch["title"]))
+        if contradiction:
+            contradicted += 1
+        if ch["tvg_id"] and ch["tvg_id"] not in degenerate and not contradiction:
             ch["effective_id"] = _shorten_id(ch["tvg_id"])
         elif name_id:
             ch["effective_id"] = _shorten_id(name_id)
@@ -531,6 +642,8 @@ def assign_effective_ids(m3u_channels):
         else:
             ch["effective_id"] = _shorten_id(auto_tvg_id(ch))
             auto_count += 1
+    if contradicted:
+        print(f"      callsign-contradicted tvg-ids neutralized: {contradicted}")
     return auto_count, name_count
 
 
@@ -2399,13 +2512,13 @@ def _split_csv(env_value: str) -> list[str]:
 
 
 def load_aliases() -> dict[str, str]:
-    """Parse channels/aliases.tsv into {upstream_cid: m3u_effective_id}.
+    """Parse channels/aliases.tsv into {m3u_effective_id: upstream_cid}.
 
     Lines starting with '#' or blank are ignored. Each non-comment line is
-    TAB-separated: `<m3u_effective_id><TAB><upstream_channel_id>`. The
-    return dict is keyed by upstream id (the form used by source feeds)
-    so backfill can look up "what should this upstream channel be rewritten
-    to" in O(1).
+    TAB-separated: `<m3u_effective_id><TAB><upstream_channel_id>`. Keyed
+    by the M3U id (unique per line) so MANY M3U channels may pin the SAME
+    upstream feed — e.g. every beIN Sports 3 quality variant pinned to
+    one verified source.
     """
     path = Path("channels/aliases.tsv")
     out: dict[str, str] = {}
@@ -2421,7 +2534,7 @@ def load_aliases() -> dict[str, str]:
             bad += 1
             continue
         m3u_id, up_id = parts[0].strip(), parts[1].strip()
-        out[up_id] = m3u_id
+        out[m3u_id] = up_id
     if bad:
         print(f"      aliases.tsv: skipped {bad} malformed lines")
     return out
@@ -2465,10 +2578,12 @@ def main():
     # ids, etc.). Aliased upstream ids also count as "kept" for the first-
     # pass channel_matches check below, so their channel blocks survive
     # to the backfill pass even if no other matcher would keep them.
-    alias_map = load_aliases()
-    tvg_ids |= set(alias_map.keys())
+    alias_map = load_aliases()           # {m3u_effective_id: upstream_cid}
+    alias_targets = set(alias_map.values())
+    tvg_ids |= alias_targets
     if alias_map:
-        print(f"      manual aliases loaded: {len(alias_map)} mappings")
+        print(f"      manual aliases loaded: {len(alias_map)} mappings "
+              f"({len(alias_targets)} distinct upstream feeds)")
     print(f"      index: {len(tvg_ids)} tvg-ids (incl. effective), {len(norm_names)} norm-names, {len(callsigns)} US callsigns")
 
     print(f"[2/6] fetching upstream EPGs from epgshare01...")
@@ -2521,6 +2636,12 @@ def main():
     # Provider EPGs take priority in the order configured (first wins).
     kept_channels: dict[str, bytes] = {}
     source_stats = {}
+    # Binding provenance, published as docs/epg-audit.tsv at the end of the
+    # build. chan_source records which source file first supplied each kept
+    # channel id; provenance records HOW each effective id got its real
+    # programmes: (match_tier, source_label, donor_cid).
+    chan_source: dict[str, str] = {}
+    provenance: dict[str, tuple[str, str, str]] = {}
 
     for src_name, p_path in provider_paths:
         raw = read_xmltv(p_path)
@@ -2535,6 +2656,7 @@ def main():
                 continue
             if cid not in kept_channels:
                 kept_channels[cid] = block
+                chan_source[cid] = src_name
         added = len(kept_channels) - before
         source_stats[src_name] = added
         suffix = f" (skipped {skipped_auto} stale .auto echoes)" if skipped_auto else ""
@@ -2548,8 +2670,14 @@ def main():
             count += 1
             if cid in kept_channels:
                 continue  # already have it from provider
-            if channel_matches(cid, names, tvg_ids, norm_names, callsigns):
+            # Alias targets are force-kept: aliases.tsv must work even when
+            # the pinned upstream channel matches NOTHING by name (that is
+            # exactly when the user reaches for an alias — e.g. the provider
+            # typo 'Natioanl Geo' can never name-match 'Nat Geo Abu Dhabi').
+            if (channel_matches(cid, names, tvg_ids, norm_names, callsigns)
+                    or cid in alias_targets):
                 kept_channels[cid] = block
+                chan_source[cid] = name
         added = len(kept_channels) - before
         source_stats[name] = added
         print(f"      {name}: scanned={count}, added={added}")
@@ -2644,7 +2772,7 @@ def main():
     # clone the upstream's channel+programmes under the M3U's effective_id so
     # real EPG data is actually displayed.
     print(f"[5c]  backfill pass (rewire upstream data to M3U effective ids)")
-    backfill_cs: dict[str, str] = {}
+    backfill_cs: dict[str, list[str]] = defaultdict(list)
     backfill_nn: dict[str, str] = {}
     backfill_tokens: dict[str, frozenset] = {}  # kept_cid -> its token set
     # Token reverse-index: token -> list of kept_cids carrying that token.
@@ -2653,20 +2781,33 @@ def main():
     backfill_token_idx: dict[str, list[str]] = defaultdict(list)
     for cid, block in kept_channels.items():
         names = [n.decode("utf-8", "replace") for n in DISPLAY_NAME_RE.findall(block)]
+        # Mislabel poisoning guard: the provider's EPG echoes its own M3U
+        # naming, so channel KOIN.us may carry the display name
+        # 'CBS (WGME) PORTLAND MAINE' — indexing that name would route every
+        # WGME lookup to KOIN's (wrong-city) feed. When the cid itself is a
+        # callsign, any display name carrying a DIFFERENT callsign is
+        # provably mislabeled: skip it for both indexes.
+        cid_cs = _strip_us_callsign_suffix(cid.split(".")[0].upper())
+        cid_is_cs = bool(_CALLSIGN_SHAPED_ID_RE.match(cid_cs))
         for n in names:
             cs = extract_callsign(n)
-            if cs:
-                backfill_cs.setdefault(cs, cid)
+            if cid_is_cs and cs and cs != cid_cs:
+                continue
+            if cs and cid not in backfill_cs[cs]:
+                backfill_cs[cs].append(cid)
             nn = normalize_name(n)
             if nn and len(nn) > 3:
                 backfill_nn.setdefault(nn, cid)
-        cid_cs = _strip_us_callsign_suffix(cid.split(".")[0].upper())
-        if 3 <= len(cid_cs) <= 5 and cid_cs[0] in ("K", "W"):
-            backfill_cs.setdefault(cid_cs, cid)
+        if cid_is_cs and cid not in backfill_cs[cid_cs]:
+            backfill_cs[cid_cs].append(cid)
         # Build token set (across all display-names) for the token-set
-        # fallback. Skip channels with <2 distinct tokens (too generic).
+        # fallback. Skip channels with <2 distinct tokens (too generic),
+        # and mislabeled names (same guard as above).
         merged_toks: set = set()
         for n in names:
+            cs = extract_callsign(n)
+            if cid_is_cs and cs and cs != cid_cs:
+                continue
             merged_toks |= name_tokens(n)
         if len(merged_toks) >= 2:
             tok_fs = frozenset(merged_toks)
@@ -2715,20 +2856,19 @@ def main():
         )
         return out
 
-    # Reverse alias index for backfill: m3u_effective_id -> upstream cid
-    # the user manually pinned to it. Built once so the inner loop is O(1).
-    alias_rev: dict[str, str] = {}
-    for up_cid, m3u_id in alias_map.items():
-        # Only honour aliases where the upstream cid actually survived the
-        # earlier filter passes (i.e. its block is in kept_channels). If
-        # the alias targets a cid we never kept, log + skip.
-        if up_cid in kept_channels:
-            alias_rev[m3u_id] = up_cid
+    # Alias index for backfill: m3u_effective_id -> upstream cid the user
+    # manually pinned to it. Only honour aliases whose upstream cid
+    # actually survived the earlier filter passes (its block is in
+    # kept_channels); if the alias targets a cid we never kept, log + skip.
+    alias_rev: dict[str, str] = {m3u_id: up_cid
+                                 for m3u_id, up_cid in alias_map.items()
+                                 if up_cid in kept_channels}
     if alias_map and len(alias_rev) < len(alias_map):
-        missing = set(alias_map.values()) - set(alias_rev.keys())
+        missing = {up for m, up in alias_map.items() if m not in alias_rev}
         if missing:
-            print(f"      aliases.tsv: {len(missing)} M3U ids' aliased "
-                  f"upstream not found in kept_channels (skipped)")
+            print(f"      aliases.tsv: {len(alias_map) - len(alias_rev)} pins "
+                  f"skipped — upstream not in kept_channels: "
+                  f"{sorted(missing)[:3]}")
 
     # Language guard: never auto-bind a source whose programme titles are
     # mostly non-English (provider feeds reuse names like 'Nat Geo Wild' for
@@ -2742,6 +2882,41 @@ def main():
             ok = non_english_title_ratio(progs_by_chan.get(cid, [])) < 0.25
             _bf_lang_cache[cid] = ok
         return ok
+
+    # Alias enforcement for ids that ALREADY carry data: a pin must win
+    # over a direct binding too — a source lying under the exact id is
+    # precisely why the user reaches for an alias (observed: an Italian
+    # feed published under CrimeInvestigation.uk). Drop the impostor's
+    # programmes and clone the pinned source's instead.
+    _alias_replace = {m3u_id: up_cid for m3u_id, up_cid in alias_rev.items()
+                      if m3u_id in kept_channels and m3u_id != up_cid
+                      and m3u_id not in forced_ids
+                      and progs_by_chan.get(up_cid)}
+    if _alias_replace:
+        _targets = {html.unescape(i) for i in _alias_replace}
+        before_n = len(kept_programmes)
+        kept_programmes = [
+            p for p in kept_programmes
+            if not (m := PROG_CHANNEL_RE.search(p))
+            or html.unescape(m.group(1).decode("utf-8", "replace")) not in _targets
+        ]
+        removed_n = before_n - len(kept_programmes)
+        added = 0
+        for m3u_id, up_cid in _alias_replace.items():
+            provenance[m3u_id] = ("alias",
+                                  chan_source.get(up_cid, "provider"), up_cid)
+            cloned = [rewrite_prog_channel(prog, up_cid, m3u_id)
+                      for prog in progs_by_chan.get(up_cid, [])]
+            kept_programmes.extend(cloned)
+            added += len(cloned)
+            # Refresh the per-channel index too: later tiers (norm/token)
+            # may pick this id as a DONOR — they must clone the pinned
+            # data, not the impostor's stale programmes (observed: GOBX
+            # MBC 3 cloning the junk that MBC3Ar.ae carried pre-pin).
+            progs_by_chan[m3u_id] = cloned
+        print(f"      alias override on {len(_alias_replace)} directly-bound "
+              f"id(s): -{removed_n} impostor programmes, "
+              f"+{added} pinned programmes")
 
     backfilled = 0
     backfilled_alias = 0
@@ -2758,29 +2933,43 @@ def main():
             continue
         candidate_cid = None
         via_alias = False
+        via_tier = ""
         # 1. Manual alias (user-pinned). Always wins.
         if tid in alias_rev:
             candidate_cid = alias_rev[tid]
             via_alias = True
+            via_tier = "alias"
             backfilled_alias += 1
-        # 2. Callsign match.
+        # 2. Callsign match. Among candidates carrying the callsign, prefer
+        #    one that actually HAS programmes (observed: WGME resolving to
+        #    the programme-less WGME-DT2 subchannel while WGME-DT carried
+        #    the real schedule), then fall back to the first registered.
         if not candidate_cid:
             for nm in (ch["tvg_name"], ch["title"]):
                 if not nm:
                     continue
                 cs = extract_callsign(nm)
-                if cs and cs in backfill_cs and _bf_lang_ok(backfill_cs[cs]):
-                    candidate_cid = backfill_cs[cs]
-                    backfilled_cs += 1
-                    break
+                if not cs or cs not in backfill_cs:
+                    continue
+                cands = [c for c in backfill_cs[cs] if _bf_lang_ok(c)]
+                if not cands:
+                    continue
+                candidate_cid = next(
+                    (c for c in cands if progs_by_chan.get(c)), cands[0])
+                via_tier = "callsign"
+                backfilled_cs += 1
+                break
         # 3. Normalised-name exact match.
         if not candidate_cid:
             for nm in (ch["tvg_name"], ch["title"]):
                 if not nm:
                     continue
                 nn = normalize_name(nm)
-                if nn and nn in backfill_nn and _bf_lang_ok(backfill_nn[nn]):
+                if (nn and nn in backfill_nn
+                        and not foreign_tld_donor(backfill_nn[nn])
+                        and _bf_lang_ok(backfill_nn[nn])):
                     candidate_cid = backfill_nn[nn]
+                    via_tier = "norm-name"
                     backfilled_nn += 1
                     break
         # 4. Token-set fallback. Find the kept channel whose token set is
@@ -2814,12 +3003,14 @@ def main():
                     if (c_toks.issubset(m3u_toks)
                             and len(c_toks) > best_n
                             and token_leftover_ok(m3u_toks, c_toks)
+                            and not foreign_tld_donor(ccid)
                             and progs_by_chan.get(ccid)
                             and _bf_lang_ok(ccid)):
                         best_cid = ccid
                         best_n = len(c_toks)
                 if best_cid:
                     candidate_cid = best_cid
+                    via_tier = "token"
                     backfilled_tok += 1
         if not candidate_cid:
             continue
@@ -2836,6 +3027,9 @@ def main():
         m3u_name = ch["tvg_name"] or ch["title"] or tid
         new_block = clone_channel_for_m3u(src_block, tid, m3u_name)
         kept_channels[tid] = new_block
+        provenance[tid] = (via_tier,
+                           chan_source.get(candidate_cid, "provider"),
+                           candidate_cid)
         backfilled += 1
         for src_prog in progs_by_chan.get(candidate_cid, []):
             backfill_added_programmes.append(rewrite_prog_channel(src_prog, candidate_cid, tid))
@@ -2993,6 +3187,7 @@ def main():
             removed_n = before_n - len(kept_programmes)
             override_programmes: list[bytes] = []
             for kept_cid, bein_cid in override_map.items():
+                provenance[kept_cid] = ("bein-override", "bein-epg", bein_cid)
                 for prog in bein_progs_by_cid.get(bein_cid, []):
                     override_programmes.append(
                         rewrite_prog_channel(prog, bein_cid, kept_cid)
@@ -3031,9 +3226,14 @@ def main():
         if m:
             cid = html.unescape(m.group(1).decode("utf-8", "replace"))
             progs_by_cid_scrub[cid].append(p)
+    # Threshold matches the backfill/rescue binding guard (<0.25): a source
+    # those tiers would REJECT as non-English must not survive as a direct
+    # binding either. Safe to hold both to one bar now that the sports-
+    # matchup exemption removed the foreign-player-name false positives
+    # (beIN tennis listings used to score 0.57).
     bad_lang_cids: set = set()
     for cid, plist in progs_by_cid_scrub.items():
-        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.4:
+        if len(plist) >= 4 and non_english_title_ratio(plist, latin_only=True) >= 0.25:
             bad_lang_cids.add(cid)
     if bad_lang_cids:
         before_n = len(kept_programmes)
@@ -3044,6 +3244,9 @@ def main():
                 continue
             new_kept.append(p)
         kept_programmes = new_kept
+        for cid in bad_lang_cids:
+            prev = provenance.get(cid, ("direct", chan_source.get(cid, "?"), cid))
+            provenance[cid] = ("scrubbed-lang", prev[1], prev[2])
         sample_ids = ", ".join(sorted(bad_lang_cids)[:5])
         print(f"      scrubbed {len(bad_lang_cids)} channels with majority "
               f"non-English titles (-{before_n - len(kept_programmes)} programmes): {sample_ids}")
@@ -3077,6 +3280,7 @@ def main():
     # pass self-contained.
     src_channels: list[tuple[str, frozenset]] = []
     src_progs: dict[str, list[bytes]] = defaultdict(list)
+    src_label_by_cid: dict[str, str] = {}
     for src_name, src_path in provider_paths + upstream_paths:
         try:
             raw = read_xmltv(src_path)
@@ -3084,8 +3288,14 @@ def main():
             print(f"      skip {src_name}: {e}")
             continue
         for c_cid, c_names, _ in iter_channels(raw):
+            src_label_by_cid.setdefault(c_cid, src_name)
+            c_head = _strip_us_callsign_suffix(c_cid.split(".")[0].upper())
+            c_is_cs = bool(_CALLSIGN_SHAPED_ID_RE.match(c_head))
             merged: set = set()
             for n in c_names:
+                cs = extract_callsign(n)
+                if c_is_cs and cs and cs != c_head:
+                    continue  # mislabeled echo name — see backfill index guard
                 merged |= name_tokens(n)
             # Need at least 2 identifying tokens (e.g. {BBC, ONE}); single-
             # token channels like just {ONE} or {BEIN} match too loosely.
@@ -3153,6 +3363,7 @@ def main():
             # (1 token) for an M3U 'BBC News HD'.
             if (s_toks.issubset(kept_tokens) and len(s_toks) > best_n
                     and token_leftover_ok(kept_tokens, s_toks)
+                    and not foreign_tld_donor(s_cid)
                     and src_progs.get(s_cid) and _rescue_lang_ok(s_cid)):
                 best_cid = s_cid
                 best_n = len(s_toks)
@@ -3186,6 +3397,8 @@ def main():
         removed_n = before_n - len(kept_programmes)
         rescued_progs: list[bytes] = []
         for kept_cid, src_cid in rescue_map.items():
+            provenance[kept_cid] = ("rescue-token",
+                                    src_label_by_cid.get(src_cid, "?"), src_cid)
             for prog in src_progs.get(src_cid, []):
                 rescued_progs.append(rewrite_prog_channel(prog, src_cid, kept_cid))
         kept_programmes.extend(rescued_progs)
@@ -3196,6 +3409,102 @@ def main():
                   f"(source already backs {MAX_CLONE_NORMS_PER_SOURCE} distinct channels)")
     else:
         print(f"      no rescue matches (all dummy-only channels stay as dummies)")
+
+    # ---------- duplicate-feed scrub ----------
+    # Two channels with DIFFERENT brand identities sharing an IDENTICAL
+    # programme set means a loose match cloned one feed onto both (observed:
+    # MBC FM and MBC Panorama FM showing the same schedule). Quality variants
+    # of one channel legitimately share a feed, but name_tokens() strips
+    # quality tags, so their token sets are equal and they are never flagged.
+    # Only the loose-tier bindings (norm-name / token / rescue-token) are
+    # dropped — direct-id, alias, callsign and bein-override stay trusted.
+    # Dropped channels fall through to the gap-fill pass (dummies); a manual
+    # aliases.tsv pin restores real data if the user wants it back.
+    print(f"[5c.35] duplicate-feed scrub")
+    _DUP_LOOSE_TIERS = {"norm-name", "token", "rescue-token"}
+    _DUP_DUMMY_MARKER = b"Programme guide unavailable"
+    _dup_fp_parts: dict[str, list[bytes]] = defaultdict(list)
+    for p in kept_programmes:
+        if _DUP_DUMMY_MARKER in p:
+            continue
+        m = PROG_CHANNEL_RE.search(p)
+        tm = re.search(rb'start="([^"]+)"', p)
+        tt = _TITLE_TEXT_RE.search(p)
+        if m and tm and tt:
+            cid = html.unescape(m.group(1).decode("utf-8", "replace"))
+            _dup_fp_parts[cid].append(tm.group(1) + b"|" + tt.group(1))
+    _dup_groups: dict[frozenset, list[str]] = defaultdict(list)
+    for cid, parts in _dup_fp_parts.items():
+        if len(parts) >= 4:  # too few programmes fingerprint unreliably
+            _dup_groups[frozenset(parts)].append(cid)
+    _dup_tokens_of: dict[str, frozenset] = {}
+    _dup_callsigns_of: dict[str, frozenset] = {}
+
+    def _dup_chan_names(cid: str) -> list[str]:
+        blk = kept_channels.get(cid, b"")
+        return [n.decode("utf-8", "replace")
+                for n in DISPLAY_NAME_RE.findall(blk)]
+
+    def _dup_chan_tokens(cid: str) -> frozenset:
+        toks = _dup_tokens_of.get(cid)
+        if toks is None:
+            merged: set = set()
+            for n in _dup_chan_names(cid):
+                merged |= name_tokens(n)
+            toks = canon_identity_tokens(frozenset(merged))
+            _dup_tokens_of[cid] = toks
+        return toks
+
+    def _dup_chan_callsigns(cid: str) -> frozenset:
+        cs = _dup_callsigns_of.get(cid)
+        if cs is None:
+            found = {extract_callsign(n) for n in _dup_chan_names(cid)}
+            found.discard(None)
+            cs = frozenset(found)
+            _dup_callsigns_of[cid] = cs
+        return cs
+
+    dup_scrub_cids: set = set()
+    for fp, cids in _dup_groups.items():
+        if len(cids) < 2:
+            continue
+        if len({_dup_chan_tokens(c) for c in cids}) < 2:
+            continue  # same identity (quality variants) — legit shared feed
+        # A pair only conflicts when the two members differ by a NUMBER or
+        # a BRAND token — different channels by identity, yet showing the
+        # same schedule. Two exemptions: 'EAST'/'WEST'/city leftovers are
+        # allowed, and US locals sharing a CALLSIGN are the same station no
+        # matter how the names differ ('FOX (KDFW)' = 'FOX 4 (KDFW) DALLAS').
+        for i, a in enumerate(cids):
+            a_toks = _dup_chan_tokens(a)
+            for b in cids[i + 1:]:
+                b_toks = _dup_chan_tokens(b)
+                if a_toks == b_toks:
+                    continue
+                if _dup_chan_callsigns(a) & _dup_chan_callsigns(b):
+                    continue
+                if any(t.isdigit() or t in BRAND_TOKENS
+                       for t in (a_toks ^ b_toks)):
+                    for c in (a, b):
+                        tier = provenance.get(c, ("direct",))[0]
+                        if tier in _DUP_LOOSE_TIERS:
+                            dup_scrub_cids.add(c)
+    if dup_scrub_cids:
+        before_n = len(kept_programmes)
+        kept_programmes = [
+            p for p in kept_programmes
+            if not (m := PROG_CHANNEL_RE.search(p))
+            or html.unescape(m.group(1).decode("utf-8", "replace")) not in dup_scrub_cids
+        ]
+        for cid in dup_scrub_cids:
+            prev = provenance.get(cid, ("?", "?", cid))
+            provenance[cid] = ("dup-feed-scrub", prev[1], prev[2])
+        sample_ids = ", ".join(sorted(dup_scrub_cids)[:5])
+        print(f"      scrubbed {len(dup_scrub_cids)} loose-tier channels sharing "
+              f"a feed with a different-identity channel "
+              f"(-{before_n - len(kept_programmes)} programmes): {sample_ids}")
+    else:
+        print(f"      no conflicting duplicate feeds detected")
 
     # ---------- English-only filter ----------
     # User policy: every programme TITLE/DESC must be English. Provider /
@@ -3900,6 +4209,63 @@ def main():
         _write_epg_subset(out_dir / "guide-lite.xml.gz", used_ids,
                           "lite = playlist channels, next 24h only",
                           time_filter=True)
+
+        # === Binding-provenance audit artifact ===
+        # One row per playlist channel: WHERE its EPG came from and HOW it
+        # was matched. scripts/audit_epg_bindings.py consumes this to flag
+        # suspicious bindings; it's also the first thing to read when a
+        # channel shows wrong EPG ("which source lied, which tier let it in").
+        _AUDIT_DUMMY_MARKER = b"Programme guide unavailable"
+        _audit_counts: dict[str, int] = defaultdict(int)
+        _audit_titles: dict[str, list[str]] = defaultdict(list)
+        _audit_fp_parts: dict[str, list[bytes]] = defaultdict(list)
+        for p in kept_programmes:
+            if _AUDIT_DUMMY_MARKER in p:
+                continue
+            m = prog_chan_re.search(p)
+            if not m:
+                continue
+            cid = html.unescape(m.group(1).decode("utf-8", "replace"))
+            _audit_counts[cid] += 1
+            tt = _TITLE_TEXT_RE.search(p)
+            tm = re.search(rb'start="([^"]+)"', p)
+            if tt and tm:
+                _audit_fp_parts[cid].append(tm.group(1) + b"|" + tt.group(1))
+                if len(_audit_titles[cid]) < 3:
+                    t = html.unescape(tt.group(1).decode("utf-8", "replace"))
+                    t = t.replace("\t", " ").replace("|", "/").strip()
+                    if t and t not in _audit_titles[cid]:
+                        _audit_titles[cid].append(t)
+        import hashlib as _hashlib
+        audit_path = out_dir / "epg-audit.tsv"
+        audit_rows = 0
+        with audit_path.open("w", encoding="utf-8") as f:
+            f.write("effective_id\tdisplay_name\tmatch_tier\tsource\t"
+                    "donor_cid\treal_prog_count\tprog_fp\tsample_titles\n")
+            for tid in sorted(used_ids, key=lambda s: html.unescape(s)):
+                tid_c = html.unescape(tid)
+                n_real = _audit_counts.get(tid_c, 0)
+                if tid_c in forced_ids or tid in forced_ids:
+                    tier, source, donor = "dummy-forced", "", ""
+                elif tid_c in provenance or tid in provenance:
+                    tier, source, donor = provenance.get(tid_c) or provenance[tid]
+                elif n_real > 0:
+                    tier = "direct"
+                    source = chan_source.get(tid_c) or chan_source.get(tid, "?")
+                    donor = tid_c
+                else:
+                    tier, source, donor = "dummy", "", ""
+                fp = ""
+                if n_real:
+                    fp = _hashlib.md5(
+                        b"\n".join(sorted(_audit_fp_parts.get(tid_c, [])))
+                    ).hexdigest()[:10]
+                name = m3u_display.get(tid) or m3u_display.get(tid_c, "")
+                f.write(f"{tid_c}\t{name}\t{tier}\t{source}\t{donor}\t"
+                        f"{n_real}\t{fp}\t{' | '.join(_audit_titles.get(tid_c, []))}\n")
+                audit_rows += 1
+        print(f"      wrote {audit_path} ({audit_path.stat().st_size//1024} KB, "
+              f"{audit_rows} rows)")
 
         # === Subscribe bundle: setup.json + README.txt + QR SVG ===
         # Helps onboarding a new device: one URL/QR can be scanned/copied

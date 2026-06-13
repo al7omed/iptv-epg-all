@@ -106,3 +106,26 @@ def test_lite_gz_is_valid_if_present(build_epg_run):
     raw = gzip.decompress(lite.read_bytes())
     root = ET.fromstring(raw)
     assert root.tag == "tv"
+
+
+def test_epg_audit_tsv_if_guides_present(build_epg_run):
+    """The binding-provenance artifact ships alongside the guides: one row
+    per playlist channel with the expected header. Emitted in the same
+    code path as the guides, so it exists exactly when they do."""
+    tmp_path, _result = build_epg_run
+    guide = tmp_path / "docs" / "guide.xml.gz"
+    audit = tmp_path / "docs" / "epg-audit.tsv"
+    if not guide.exists():
+        pytest.skip("guides not produced (fixture categories not in whitelist)")
+    assert audit.exists(), "expected epg-audit.tsv alongside the guides"
+    lines = audit.read_text(encoding="utf-8").splitlines()
+    assert lines[0].split("\t") == [
+        "effective_id", "display_name", "match_tier", "source",
+        "donor_cid", "real_prog_count", "prog_fp", "sample_titles",
+    ]
+    assert len(lines) >= 2, "expected at least one channel row"
+    tiers = {ln.split("\t")[2] for ln in lines[1:]}
+    allowed = {"direct", "alias", "callsign", "norm-name", "token",
+               "bein-override", "rescue-token", "scrubbed-lang",
+               "dup-feed-scrub", "dummy", "dummy-forced"}
+    assert tiers <= allowed, f"unexpected match tiers: {tiers - allowed}"

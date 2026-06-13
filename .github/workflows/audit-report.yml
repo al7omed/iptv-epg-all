@@ -1,0 +1,72 @@
+name: Weekly EPG audit report
+
+# Runs the binding auditor against the PUBLISHED guide + provenance
+# (docs/guide-lite.xml.gz + docs/epg-audit.tsv, committed by the hourly
+# build) and opens/updates ONE GitHub issue when NEW high-severity
+# suspicious bindings appear — i.e. ones not already accepted in
+# channels/.audit_baseline.tsv. Zero-tinkering alerting: you only hear
+# about it when something genuinely drifts.
+#
+# Nothing here fails the build or touches the EPG. To silence a benign
+# flag, add "<effective_id><TAB><flag>" to channels/.audit_baseline.tsv.
+
+on:
+  schedule:
+    - cron: "30 5 * * 0"   # Sundays 05:30 UTC (clear of the 03:00/06:00 jobs)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: epg-audit-report
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Run binding audit (new-only vs baseline)
+        run: |
+          if [ ! -f docs/epg-audit.tsv ] || [ ! -f docs/guide-lite.xml.gz ]; then
+            echo "No published audit artifact yet — skipping."
+            : > audit-report.md
+            exit 0
+          fi
+          python3 scripts/audit_epg_bindings.py \
+            --audit docs/epg-audit.tsv \
+            --guide docs/guide-lite.xml.gz \
+            --baseline channels/.audit_baseline.tsv \
+            --new-only --summary \
+            --github-summary audit-report.md
+
+      - name: Open or update issue on new high-severity flags
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s audit-report.md ]; then
+            echo "No new high-severity flags — nothing to report."
+            exit 0
+          fi
+          TITLE="EPG audit: new suspicious bindings"
+          # Find an existing open issue with this exact title.
+          NUM=$(gh issue list --state open --search "in:title \"$TITLE\"" \
+                  --json number,title \
+                  --jq ".[] | select(.title==\"$TITLE\") | .number" \
+                  | head -n1)
+          if [ -n "$NUM" ]; then
+            echo "Updating issue #$NUM"
+            gh issue edit "$NUM" --body-file audit-report.md
+          else
+            echo "Creating new issue"
+            gh issue create --title "$TITLE" --body-file audit-report.md \
+              --label "epg-audit" 2>/dev/null \
+              || gh issue create --title "$TITLE" --body-file audit-report.md
+          fi
