@@ -79,3 +79,8 @@ SS: beIN SP⚽RTS 3 HD	beIN_SPORTS3_DIGITAL_Mono_EN.bein
 ᵁᴴᴰ: beIN Sp⚽rts 3 ʰᵉᵛᶜ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
 ᵁᴴᴰ: beIN Sp⚽rts 3 ᴴᴰ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
 ᵁᴴᴰ: beIN Sp⚽rts 3 ᴿᴬᵂ	beIN_SPORTS3_DIGITAL_Mono_EN.bein
+
+# Racing TV (2026-06 cross-check vs reference EPG): we dummied it; epgshare
+# UK1 carries Racing.TV.HD.uk with the real English racing schedule
+# (verified: Racing Replay, Irish Racing Replay, ...).
+RacingUK.uk	Racing.TV.HD.uk
