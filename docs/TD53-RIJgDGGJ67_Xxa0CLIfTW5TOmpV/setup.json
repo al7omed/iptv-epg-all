@@ -5,9 +5,9 @@
   "epg_lite_recommended": "https://al7omed.github.io/iptv-epg-all/guide-lite.xml.gz",
   "failover_data": "https://al7omed.github.io/iptv-epg-all/TD53-RIJgDGGJ67_Xxa0CLIfTW5TOmpV/failover.json",
   "tvg_id_map": "https://al7omed.github.io/iptv-epg-all/tvg-id-map.tsv",
-  "channel_count": 4303,
-  "favorites_count": 309,
-  "generated_utc": "2026-06-16T19:27:51Z",
+  "channel_count": 4321,
+  "favorites_count": 288,
+  "generated_utc": "2026-06-17T00:51:56Z",
   "timezone": "GMT+3 (user local)",
   "build_cron": "every hour at :15",
   "health_check_cron": "Sundays 03:00 UTC"

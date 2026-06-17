@@ -1,8 +1,8 @@
 IPTV — Auto-generated playlist + EPG bundle
 ==================================================
 
-Generated: 2026-06-16T19:27:51Z
-Channels: 4303    Favorites: 309
+Generated: 2026-06-17T00:51:56Z
+Channels: 4321    Favorites: 288
 
 MAIN URLS (paste into your player)
 --------------------------------------------------
