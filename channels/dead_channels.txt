@@ -1,4 +1,4 @@
 # Channels that failed HEAD probe. effective_id per line.
-# Generated: 2026-06-21T12:04:17Z UTC
+# Generated: 2026-06-28T07:03:52Z UTC
 # 0 dead out of 0 checked.
 
